@@ -1,0 +1,150 @@
+import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Leaf, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Solutions", href: "/solutions" },
+    { name: "MRV Tools", href: "/tools" },
+    { name: "Case Studies", href: "/case-studies" },
+    { name: "Resources", href: "/resources" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <header className="bg-white/80 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-50">
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
+          <div className="flex w-full items-center justify-between py-4">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center space-x-2">
+                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-2 rounded-lg">
+                  <Leaf className="h-6 w-6 text-white" />
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  CarbonMRV
+                </span>
+              </Link>
+            </div>
+
+            {/* Desktop navigation */}
+            <div className="hidden md:flex md:items-center md:space-x-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-emerald-600",
+                    location.pathname === item.href
+                      ? "text-emerald-600"
+                      : "text-gray-700"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                Get Started
+              </Button>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile navigation */}
+          {mobileMenuOpen && (
+            <div className="md:hidden">
+              <div className="space-y-1 pb-3 pt-2">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={cn(
+                      "block rounded-md px-3 py-2 text-base font-medium transition-colors",
+                      location.pathname === item.href
+                        ? "bg-emerald-50 text-emerald-600"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-emerald-600"
+                    )}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <div className="px-3 pt-2">
+                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                    Get Started
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </nav>
+      </header>
+
+      <main>{children}</main>
+
+      <footer className="bg-gray-900 text-white">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-2 rounded-lg">
+                  <Leaf className="h-6 w-6 text-white" />
+                </div>
+                <span className="text-xl font-bold">CarbonMRV</span>
+              </div>
+              <p className="text-gray-400 max-w-md">
+                Enabling scalable and affordable MRV solutions for agroforestry and rice-based carbon projects across India's smallholder farming communities.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold mb-4">Solutions</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link to="/solutions" className="hover:text-white transition-colors">MRV Prototypes</Link></li>
+                <li><Link to="/tools" className="hover:text-white transition-colors">Data Collection</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors">Verification</Link></li>
+                <li><Link to="/resources" className="hover:text-white transition-colors">Reporting</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold mb-4">Resources</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link to="/resources" className="hover:text-white transition-colors">Documentation</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
+                <li><Link to="/resources" className="hover:text-white transition-colors">API Reference</Link></li>
+                <li><Link to="/resources" className="hover:text-white transition-colors">Support</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-gray-800">
+            <p className="text-sm text-gray-400 text-center">
+              © 2024 CarbonMRV. All rights reserved. Empowering climate-smart agriculture through technology.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
