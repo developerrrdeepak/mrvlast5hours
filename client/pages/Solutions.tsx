@@ -277,21 +277,21 @@ export default function Solutions() {
         {/* Technical Specifications */}
         <section className="py-16 bg-gray-50 rounded-2xl mb-20">
           <div className="px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-display font-bold text-center mb-12 tracking-tight">
               Technical <span className="text-emerald-600">Specifications</span>
             </h2>
             <div className="grid lg:grid-cols-3 gap-8">
               {technicalSpecs.map((category, index) => (
                 <Card key={index} className="border-0 shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-emerald-600">{category.category}</CardTitle>
+                    <CardTitle className="text-emerald-600 font-bold text-xl">{category.category}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       {category.specs.map((spec, specIndex) => (
                         <div key={specIndex} className="flex justify-between items-center">
-                          <span className="text-gray-600 text-sm">{spec.name}</span>
-                          <span className="font-semibold text-gray-900">{spec.value}</span>
+                          <span className="text-gray-600 text-sm font-medium">{spec.name}</span>
+                          <span className="font-bold text-gray-900">{spec.value}</span>
                         </div>
                       ))}
                     </div>
@@ -306,31 +306,31 @@ export default function Solutions() {
         <section className="text-center">
           <Card className="border-0 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white">
             <CardContent className="p-12">
-              <h2 className="text-3xl font-bold mb-4">Ready to Start Earning from Carbon? 🚀</h2>
-              <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-                Join the 24,000+ farmers already earning ₹25,000-50,000 annually through our advanced MRV solutions. 
+              <h2 className="text-4xl font-display font-black mb-4 leading-tight">Ready to Start Earning from Carbon? 🚀</h2>
+              <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto font-medium leading-relaxed">
+                Join the 24,000+ farmers already earning ₹25,000-50,000 annually through our advanced MRV solutions.
                 AI technology made simple for Indian farmers.
               </p>
               <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
                 <div className="flex items-center space-x-2">
                   <Timer className="h-5 w-5" />
-                  <span>Setup in 10 minutes</span>
+                  <span className="font-semibold">Setup in 10 minutes</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Shield className="h-5 w-5" />
-                  <span>100% verified payments</span>
+                  <span className="font-semibold">100% verified payments</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Target className="h-5 w-5" />
-                  <span>24/7 Hindi support</span>
+                  <span className="font-semibold">24/7 Hindi support</span>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50 text-lg px-8">
+                <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
                   Download Kisan App Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200">
                   Schedule Technical Demo
                 </Button>
               </div>
