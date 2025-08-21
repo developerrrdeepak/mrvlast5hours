@@ -155,31 +155,31 @@ export default function Index() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-orange-100 text-orange-700 hover:bg-orange-200 text-base px-4 py-2">
+              <Badge className="mb-6 bg-orange-100 text-orange-700 hover:bg-orange-200 text-base px-5 py-2 font-bold tracking-wide shadow-sm">
                 🌾 Kisan-First Technology
               </Badge>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-6">
                 <span className="text-green-600">Kisano</span> ka Paisa,{" "}
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                   AI</span> ka Power
               </h1>
-              <p className="mt-6 text-xl text-gray-700 leading-relaxed">
-                Advanced machine learning algorithms jo samjhte hain Indian farmers ki problems. 
-                <span className="font-semibold text-emerald-600"> Real-time carbon credit calculation, instant payments, </span>
+              <p className="text-subtitle text-gray-700 font-medium mb-8">
+                Advanced machine learning algorithms jo samjhte hain Indian farmers ki problems.
+                <span className="font-bold text-emerald-600"> Real-time carbon credit calculation, instant payments, </span>
                 aur transparent verification - sab kuch farmer ke perspective se designed.
               </p>
-              <div className="mt-8 space-y-4">
+              <div className="space-y-5">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-600" />
-                  <span className="text-lg font-medium">99.8% accurate payments through blockchain</span>
+                  <span className="text-feature font-semibold">99.8% accurate payments through blockchain</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-600" />
-                  <span className="text-lg font-medium">Real-time tracking with satellite + AI</span>
+                  <span className="text-feature font-semibold">Real-time tracking with satellite + AI</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-6 w-6 text-green-600" />
-                  <span className="text-lg font-medium">Local language support + voice guidance</span>
+                  <span className="text-feature font-semibold">Local language support + voice guidance</span>
                 </div>
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
