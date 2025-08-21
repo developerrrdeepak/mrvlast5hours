@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { AlertTriangle, ArrowLeft, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -21,7 +27,7 @@ export default function NotFound() {
           </CardHeader>
           <CardContent className="pb-8">
             <p className="text-gray-600 mb-8">
-              The page you're looking for doesn't exist or may have been moved. 
+              The page you're looking for doesn't exist or may have been moved.
               Let's get you back to exploring our MRV solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -31,8 +37,8 @@ export default function NotFound() {
                   Go Home
                 </Button>
               </Link>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
                 onClick={() => window.history.back()}
               >

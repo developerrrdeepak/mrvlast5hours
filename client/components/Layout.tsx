@@ -23,7 +23,10 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
       <header className="bg-white/80 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-50">
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
+        <nav
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          aria-label="Top"
+        >
           <div className="flex w-full items-center justify-between py-4">
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3">
@@ -56,7 +59,7 @@ export default function Layout({ children }: LayoutProps) {
                     "text-sm font-semibold transition-all duration-200 hover:text-emerald-600 hover:scale-105",
                     location.pathname === item.href
                       ? "text-emerald-600 font-bold"
-                      : "text-gray-700"
+                      : "text-gray-700",
                   )}
                 >
                   {item.name}
@@ -95,7 +98,7 @@ export default function Layout({ children }: LayoutProps) {
                       "block rounded-md px-3 py-2 text-base font-semibold transition-all duration-200",
                       location.pathname === item.href
                         ? "bg-emerald-50 text-emerald-600 font-bold"
-                        : "text-gray-700 hover:bg-gray-50 hover:text-emerald-600"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-emerald-600",
                     )}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -123,34 +126,99 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-2 rounded-lg">
                   <Leaf className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-2xl font-display font-extrabold tracking-tight">CarbonMRV</span>
+                <span className="text-2xl font-display font-extrabold tracking-tight">
+                  CarbonMRV
+                </span>
               </div>
               <p className="text-gray-400 max-w-md leading-relaxed font-medium">
-                Enabling scalable and affordable MRV solutions for agroforestry and rice-based carbon projects across India's smallholder farming communities.
+                Enabling scalable and affordable MRV solutions for agroforestry
+                and rice-based carbon projects across India's smallholder
+                farming communities.
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">Solutions</h3>
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">
+                Solutions
+              </h3>
               <ul className="space-y-2 text-sm text-gray-400 font-medium">
-                <li><Link to="/solutions" className="hover:text-white transition-colors">MRV Prototypes</Link></li>
-                <li><Link to="/tools" className="hover:text-white transition-colors">Data Collection</Link></li>
-                <li><Link to="/case-studies" className="hover:text-white transition-colors">Verification</Link></li>
-                <li><Link to="/resources" className="hover:text-white transition-colors">Reporting</Link></li>
+                <li>
+                  <Link
+                    to="/solutions"
+                    className="hover:text-white transition-colors"
+                  >
+                    MRV Prototypes
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/tools"
+                    className="hover:text-white transition-colors"
+                  >
+                    Data Collection
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/case-studies"
+                    className="hover:text-white transition-colors"
+                  >
+                    Verification
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
+                    Reporting
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">Resources</h3>
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">
+                Resources
+              </h3>
               <ul className="space-y-2 text-sm text-gray-400 font-medium">
-                <li><Link to="/resources" className="hover:text-white transition-colors">Documentation</Link></li>
-                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-                <li><Link to="/resources" className="hover:text-white transition-colors">API Reference</Link></li>
-                <li><Link to="/resources" className="hover:text-white transition-colors">Support</Link></li>
+                <li>
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/case-studies"
+                    className="hover:text-white transition-colors"
+                  >
+                    Case Studies
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
+                    API Reference
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
+                    Support
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800">
             <p className="text-sm text-gray-400 text-center font-medium">
-              © 2024 CarbonMRV. All rights reserved. Empowering climate-smart agriculture through technology.
+              © 2024 CarbonMRV. All rights reserved. Empowering climate-smart
+              agriculture through technology.
             </p>
           </div>
         </div>

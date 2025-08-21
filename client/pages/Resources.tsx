@@ -3,13 +3,13 @@ import PlaceholderPage from "@/components/PlaceholderPage";
 export default function Resources() {
   const comingSoonFeatures = [
     "MRV implementation guidelines",
-    "Carbon registries integration docs", 
+    "Carbon registries integration docs",
     "Farmer training materials",
     "Technical specifications and protocols",
     "Data collection best practices",
     "Verification standards compliance",
     "API documentation and tutorials",
-    "Webinars and training videos"
+    "Webinars and training videos",
   ];
 
   return (
