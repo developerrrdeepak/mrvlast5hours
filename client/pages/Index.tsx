@@ -255,10 +255,10 @@ export default function Index() {
       <section className="py-20 bg-red-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
               <span className="text-red-600">Farmer Problems</span> हमने सुलझाई
             </h2>
-            <p className="text-xl text-gray-600">Real farmer interviews से पता चला - यही हैं actual problems</p>
+            <p className="text-xl text-gray-600 font-medium">Real farmer interviews से पता चला - यही हैं actual problems</p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
             {farmerChallenges.map((challenge, index) => (
@@ -272,12 +272,12 @@ export default function Index() {
                       {challenge.impact}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl text-gray-900">{challenge.title}</CardTitle>
+                  <CardTitle className="text-xl font-bold text-gray-900">{challenge.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-4">{challenge.description}</p>
+                  <p className="text-gray-600 mb-4 font-medium leading-relaxed">{challenge.description}</p>
                   <div className="bg-red-100 p-3 rounded-lg">
-                    <p className="text-red-800 font-semibold">{challenge.affected} affected</p>
+                    <p className="text-red-800 font-bold text-sm">{challenge.affected} affected</p>
                   </div>
                 </CardContent>
               </Card>
@@ -290,10 +290,10 @@ export default function Index() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
               Advanced <span className="text-emerald-600">AI Algorithms</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-medium leading-relaxed">
               Cutting-edge machine learning और blockchain technology jo specifically Indian agriculture के लिए designed है
             </p>
           </div>
