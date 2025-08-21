@@ -30,7 +30,7 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-2 rounded-lg">
                   <Leaf className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                <span className="text-2xl font-display font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent tracking-tight">
                   CarbonMRV
                 </span>
               </Link>
@@ -43,16 +43,16 @@ export default function Layout({ children }: LayoutProps) {
                   key={item.name}
                   to={item.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-emerald-600",
+                    "text-sm font-semibold transition-all duration-200 hover:text-emerald-600 hover:scale-105",
                     location.pathname === item.href
-                      ? "text-emerald-600"
+                      ? "text-emerald-600 font-bold"
                       : "text-gray-700"
                   )}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+              <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 font-semibold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200">
                 Get Started
               </Button>
             </div>
@@ -82,9 +82,9 @@ export default function Layout({ children }: LayoutProps) {
                     key={item.name}
                     to={item.href}
                     className={cn(
-                      "block rounded-md px-3 py-2 text-base font-medium transition-colors",
+                      "block rounded-md px-3 py-2 text-base font-semibold transition-all duration-200",
                       location.pathname === item.href
-                        ? "bg-emerald-50 text-emerald-600"
+                        ? "bg-emerald-50 text-emerald-600 font-bold"
                         : "text-gray-700 hover:bg-gray-50 hover:text-emerald-600"
                     )}
                     onClick={() => setMobileMenuOpen(false)}
@@ -93,7 +93,7 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 ))}
                 <div className="px-3 pt-2">
-                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 font-semibold tracking-wide">
                     Get Started
                   </Button>
                 </div>
@@ -113,15 +113,15 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-2 rounded-lg">
                   <Leaf className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold">CarbonMRV</span>
+                <span className="text-2xl font-display font-extrabold tracking-tight">CarbonMRV</span>
               </div>
-              <p className="text-gray-400 max-w-md">
+              <p className="text-gray-400 max-w-md leading-relaxed font-medium">
                 Enabling scalable and affordable MRV solutions for agroforestry and rice-based carbon projects across India's smallholder farming communities.
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold mb-4">Solutions</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">Solutions</h3>
+              <ul className="space-y-2 text-sm text-gray-400 font-medium">
                 <li><Link to="/solutions" className="hover:text-white transition-colors">MRV Prototypes</Link></li>
                 <li><Link to="/tools" className="hover:text-white transition-colors">Data Collection</Link></li>
                 <li><Link to="/case-studies" className="hover:text-white transition-colors">Verification</Link></li>
@@ -129,8 +129,8 @@ export default function Layout({ children }: LayoutProps) {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">Resources</h3>
+              <ul className="space-y-2 text-sm text-gray-400 font-medium">
                 <li><Link to="/resources" className="hover:text-white transition-colors">Documentation</Link></li>
                 <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
                 <li><Link to="/resources" className="hover:text-white transition-colors">API Reference</Link></li>
@@ -139,7 +139,7 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800">
-            <p className="text-sm text-gray-400 text-center">
+            <p className="text-sm text-gray-400 text-center font-medium">
               © 2024 CarbonMRV. All rights reserved. Empowering climate-smart agriculture through technology.
             </p>
           </div>
