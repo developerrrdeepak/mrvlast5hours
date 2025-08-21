@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Leaf, Menu, X } from "lucide-react";
+import { TreePine, Wheat, Menu, X, Satellite } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -15,9 +15,9 @@ export default function Layout({ children }: LayoutProps) {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Solutions", href: "/solutions" },
-    { name: "MRV Tools", href: "/tools" },
-    { name: "Case Studies", href: "/case-studies" },
-    { name: "Resources", href: "/resources" },
+    { name: "MRV Prototype", href: "/tools" },
+    { name: "Farmer App", href: "/case-studies" },
+    { name: "Hackathon", href: "/resources" },
   ];
 
   return (
@@ -26,13 +26,23 @@ export default function Layout({ children }: LayoutProps) {
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="flex w-full items-center justify-between py-4">
             <div className="flex items-center">
-              <Link to="/" className="flex items-center space-x-2">
-                <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-2 rounded-lg">
-                  <Leaf className="h-6 w-6 text-white" />
+              <Link to="/" className="flex items-center space-x-3">
+                <div className="relative">
+                  <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 p-2 rounded-xl shadow-lg">
+                    <TreePine className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 bg-orange-500 p-1 rounded-full">
+                    <Wheat className="h-3 w-3 text-white" />
+                  </div>
                 </div>
-                <span className="text-2xl font-display font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent tracking-tight">
-                  CarbonMRV
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-xl font-display font-black bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent tracking-tight leading-none">
+                    Carbon Roots
+                  </span>
+                  <span className="text-xs font-semibold text-gray-600 tracking-wide">
+                    KISAN CARBONTECH
+                  </span>
+                </div>
               </Link>
             </div>
 
@@ -52,8 +62,8 @@ export default function Layout({ children }: LayoutProps) {
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 font-semibold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200">
-                Get Started
+              <Button className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200">
+                Join Hackathon
               </Button>
             </div>
 
@@ -93,8 +103,8 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 ))}
                 <div className="px-3 pt-2">
-                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 font-semibold tracking-wide">
-                    Get Started
+                  <Button className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide">
+                    Join Hackathon
                   </Button>
                 </div>
               </div>
