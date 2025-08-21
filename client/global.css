@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,7 +39,26 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Typography scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+
+    /* Line heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,7 +121,89 @@
     @apply border-border;
   }
 
+  html {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-variant-ligatures: common-ligatures;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  /* Custom text styles */
+  .text-hero {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  .text-feature {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .text-body {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* Hindi/Hinglish text improvements */
+  .text-hindi {
+    font-family: 'Poppins', 'Inter', 'Noto Sans Devanagari', sans-serif;
+    font-weight: 500;
+  }
+
+  /* Enhanced button text */
+  .btn-text {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Code text improvements */
+  .code-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  /* Improved readability for stats */
+  .stat-number {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
   }
 }
