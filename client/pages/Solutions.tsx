@@ -133,18 +133,18 @@ export default function Solutions() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-hero font-display font-black text-gray-900 mb-6 leading-none">
             Advanced <span className="text-emerald-600">MRV Solutions</span> 🌾
           </h1>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Cutting-edge AI algorithms specifically designed for Indian smallholder farmers. 
-            <span className="font-semibold text-emerald-600"> Real earnings, real technology, real impact.</span>
+          <p className="text-subtitle text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
+            Cutting-edge AI algorithms specifically designed for Indian smallholder farmers.
+            <span className="font-bold text-emerald-600"> Real earnings, real technology, real impact.</span>
           </p>
         </div>
 
         {/* Live Algorithm Demo */}
         <div className="mb-20">
-          <h2 className="text-2xl font-bold text-center mb-8">
+          <h2 className="text-3xl font-display font-bold text-center mb-8 tracking-tight">
             Watch Our <span className="text-emerald-600">AI Algorithm</span> Work Live
           </h2>
           <AlgorithmVisualization />
@@ -152,15 +152,15 @@ export default function Solutions() {
 
         {/* Farmer Success Metrics */}
         <section className="mb-20 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-          <h2 className="text-3xl font-bold text-center mb-8">
+          <h2 className="text-4xl font-display font-bold text-center mb-8 tracking-tight">
             Real Farmer <span className="text-emerald-600">Results</span>
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {farmerSuccessMetrics.map((metric, index) => (
               <Card key={index} className="border-0 shadow-lg text-center">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-emerald-600 mb-2">{metric.value}</div>
-                  <div className="text-gray-900 font-semibold mb-2">{metric.label}</div>
+                  <div className="stat-number text-4xl text-emerald-600 mb-2">{metric.value}</div>
+                  <div className="stat-label text-gray-900 mb-2">{metric.label}</div>
                   <Badge className="bg-green-100 text-green-700">
                     {metric.change} improvement
                   </Badge>
@@ -183,8 +183,8 @@ export default function Solutions() {
                         <solution.icon className="h-8 w-8 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900">{solution.title}</h3>
-                        <p className="text-emerald-600 font-semibold">{solution.subtitle}</p>
+                        <h3 className="text-2xl font-display font-bold text-gray-900">{solution.title}</h3>
+                        <p className="text-emerald-600 font-bold tracking-wide">{solution.subtitle}</p>
                       </div>
                     </div>
                     <Badge className="bg-emerald-600 text-white text-base px-4 py-2">
@@ -192,36 +192,36 @@ export default function Solutions() {
                     </Badge>
                   </div>
 
-                  <p className="text-gray-600 mb-6 text-lg leading-relaxed">{solution.description}</p>
+                  <p className="text-gray-600 mb-6 text-lg leading-relaxed font-medium">{solution.description}</p>
 
                   {/* Performance Metrics */}
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     <div className="bg-blue-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-blue-600">{solution.accuracy}</div>
-                      <div className="text-sm text-blue-700">Accuracy</div>
+                      <div className="stat-number text-2xl text-blue-600">{solution.accuracy}</div>
+                      <div className="text-sm text-blue-700 font-bold">Accuracy</div>
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-green-600">{solution.cost}</div>
-                      <div className="text-sm text-green-700">Cost</div>
+                      <div className="stat-number text-2xl text-green-600">{solution.cost}</div>
+                      <div className="text-sm text-green-700 font-bold">Cost</div>
                     </div>
                     <div className="bg-purple-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-purple-600">{solution.farmers_using}</div>
-                      <div className="text-sm text-purple-700">Active Farmers</div>
+                      <div className="stat-number text-2xl text-purple-600">{solution.farmers_using}</div>
+                      <div className="text-sm text-purple-700 font-bold">Active Farmers</div>
                     </div>
                     <div className="bg-orange-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-orange-600">{solution.avg_earning}</div>
-                      <div className="text-sm text-orange-700">Avg Earning</div>
+                      <div className="stat-number text-2xl text-orange-600">{solution.avg_earning}</div>
+                      <div className="text-sm text-orange-700 font-bold">Avg Earning</div>
                     </div>
                   </div>
 
                   {/* Features */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
+                    <h4 className="font-bold text-gray-900 mb-3 text-lg">Key Features</h4>
                     <div className="grid md:grid-cols-2 gap-3">
                       {solution.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center space-x-2">
                           <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-700 font-medium">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -229,7 +229,7 @@ export default function Solutions() {
 
                   {/* Technology Stack */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">Technology Stack</h4>
+                    <h4 className="font-bold text-gray-900 mb-3 text-lg">Technology Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {solution.tech_stack.map((tech, techIndex) => (
                         <Badge key={techIndex} variant="outline" className="border-emerald-600 text-emerald-600">
@@ -241,14 +241,14 @@ export default function Solutions() {
 
                   {/* Farmer Testimonial */}
                   <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-600">
-                    <p className="text-emerald-800 italic">"{solution.farmer_testimonial}"</p>
-                    <p className="text-emerald-600 text-sm mt-2">- Farmer using this solution</p>
+                    <p className="text-emerald-800 italic font-medium text-lg">"{solution.farmer_testimonial}"</p>
+                    <p className="text-emerald-600 text-sm mt-2 font-semibold">- Farmer using this solution</p>
                   </div>
                 </div>
 
                 {/* Algorithm Visualization */}
                 <div className="bg-gray-900 p-6 lg:p-8">
-                  <h4 className="text-white font-semibold mb-4 flex items-center">
+                  <h4 className="text-white font-bold mb-4 flex items-center text-lg">
                     <Cpu className="h-5 w-5 mr-2" />
                     Algorithm: {solution.algorithm}
                   </h4>
