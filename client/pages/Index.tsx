@@ -183,11 +183,11 @@ export default function Index() {
                 </div>
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-lg px-8">
+                <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200">
                   Kisan App Download करें
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 text-lg px-8">
+                <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200">
                   Live Demo देखें
                 </Button>
               </div>
@@ -196,7 +196,7 @@ export default function Index() {
               {/* Advanced Algorithm Visualization */}
               <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-2xl">
                 <div className="absolute top-4 left-4">
-                  <Badge className="bg-green-500 text-white">Live Algorithm</Badge>
+                  <Badge className="bg-green-500 text-white font-bold tracking-wide shadow-lg animate-pulse">Live Algorithm</Badge>
                 </div>
                 <div className="space-y-6">
                   <div className="text-green-400 font-mono text-sm">
@@ -233,17 +233,17 @@ export default function Index() {
       <section className="py-16 bg-gray-900 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Real-Time Algorithm Performance</h2>
-            <p className="text-gray-300">Live metrics from our production ML models serving 10,000+ farmers</p>
+            <h2 className="text-4xl font-display font-bold mb-4 tracking-tight">Real-Time Algorithm Performance</h2>
+            <p className="text-gray-300 text-lg font-medium">Live metrics from our production ML models serving 10,000+ farmers</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {advancedMetrics.map((metric, index) => (
               <Card key={index} className="bg-gray-800 border-gray-700">
                 <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-green-400 mb-2">{metric.value}%</div>
-                  <div className="text-white font-semibold mb-1">{metric.label}</div>
-                  <div className="text-green-400 text-sm mb-2">{metric.change} this month</div>
-                  <div className="text-gray-400 text-xs">{metric.detail}</div>
+                  <div className="stat-number text-4xl lg:text-5xl text-green-400 mb-2">{metric.value}%</div>
+                  <div className="stat-label text-white mb-1">{metric.label}</div>
+                  <div className="text-green-400 text-sm mb-2 font-semibold">{metric.change} this month</div>
+                  <div className="text-gray-400 text-xs font-medium">{metric.detail}</div>
                 </CardContent>
               </Card>
             ))}
