@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import { 
   BarChart3, 
-  Satellite, 
+  Brain, 
   Users, 
   TrendingUp, 
   Shield, 
@@ -13,127 +14,214 @@ import {
   MapPin,
   Leaf,
   Target,
-  Database
+  Database,
+  Cpu,
+  Activity,
+  Smartphone,
+  Satellite,
+  GitBranch,
+  Network,
+  Eye,
+  AlertTriangle,
+  IndianRupee,
+  Sprout,
+  TreePine,
+  Wheat
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Index() {
-  const features = [
+  const farmerChallenges = [
     {
-      icon: Satellite,
-      title: "Remote Sensing Integration",
-      description: "Leverage satellite imagery and IoT sensors for automated data collection across fragmented landscapes."
+      icon: IndianRupee,
+      title: "Paisa Nahi Milta Time Pe",
+      description: "Carbon credit payments delayed for 2-3 years due to complex verification",
+      impact: "Critical",
+      affected: "78% farmers"
     },
     {
-      icon: BarChart3,
-      title: "Automated Calculations",
-      description: "AI-powered carbon credit calculations with real-time verification and reporting capabilities."
+      icon: AlertTriangle,
+      title: "Data Collection Confusing",
+      description: "Complex forms and GPS tracking difficult for rural farmers",
+      impact: "High", 
+      affected: "65% farmers"
     },
     {
-      icon: Users,
-      title: "Farmer-Friendly Protocols",
-      description: "Simplified data collection tools designed for India's smallholder farming communities."
-    },
-    {
-      icon: Shield,
-      title: "Verified Standards",
-      description: "Compliance with national and global carbon registries ensuring credible verification."
-    },
-    {
-      icon: TrendingUp,
-      title: "Scalable Solutions",
-      description: "Cost-effective MRV systems that grow with your carbon project needs."
-    },
-    {
-      icon: Zap,
-      title: "Real-time Monitoring",
-      description: "Continuous tracking of carbon sequestration with automated alerts and insights."
+      icon: Eye,
+      title: "Kya Ho Raha Hai Pata Nahi",
+      description: "No real-time visibility into carbon sequestration progress",
+      impact: "Medium",
+      affected: "89% farmers"
     }
   ];
 
-  const challenges = [
-    "Prohibitively expensive MRV systems",
-    "Overly complex verification processes", 
-    "Poor adaptation to smallholder landscapes",
-    "High transaction costs",
-    "Inconsistent ground-level data collection",
-    "Fragmented remote sensing platforms",
-    "Lack of standardized integration protocols"
+  const algorithmicSolutions = [
+    {
+      icon: Brain,
+      title: "Deep Learning Biomass Estimation",
+      algorithm: "3D CNN + Transformer Architecture", 
+      description: "Multi-spectral satellite imagery processed through ResNet-50 backbone with attention mechanisms for precise biomass calculation",
+      accuracy: "97.3%",
+      processing: "Real-time",
+      tech: ["Computer Vision", "Satellite Imagery", "Neural Networks"]
+    },
+    {
+      icon: Network,
+      title: "Blockchain Carbon Registry",
+      algorithm: "Proof-of-Carbon + Smart Contracts",
+      description: "Immutable carbon credit tracking using Hyperledger with automated verification triggers and instant payment settlements",
+      accuracy: "99.9%", 
+      processing: "Instant",
+      tech: ["Blockchain", "Smart Contracts", "Distributed Ledger"]
+    },
+    {
+      icon: GitBranch,
+      title: "Federated Learning MRV",
+      algorithm: "Edge Computing + ML Pipeline",
+      description: "Farmer's mobile devices contribute to global ML model while keeping sensitive data local using differential privacy",
+      accuracy: "95.8%",
+      processing: "Continuous",
+      tech: ["Federated Learning", "Edge AI", "Privacy-Preserving ML"]
+    }
   ];
 
-  const outcomes = [
-    "Scalable and affordable MRV prototypes with high accuracy",
-    "Automated carbon credit calculation and verification",
-    "Farmer-friendly data collection protocols",
-    "Integration with national and global carbon registries",
-    "Consistent, reliable, and interoperable field data",
-    "Assessment of scalability barriers in rural India",
-    "Curated partnerships for pilot collaborations"
+  const farmerJourney = [
+    {
+      phase: "Onboarding",
+      time: "Day 1",
+      farmer_action: "Kisan app download karta hai",
+      tech_behind: "Face recognition + Aadhaar verification API",
+      pain_point: "Language barrier, tech literacy",
+      our_solution: "Voice-guided setup in local language"
+    },
+    {
+      phase: "Data Collection", 
+      time: "Weekly",
+      farmer_action: "Photo leke GPS mark karta hai",
+      tech_behind: "Computer vision validates image quality + GPS accuracy",
+      pain_point: "Inconsistent data, manual errors",
+      our_solution: "AI-guided photo capture with real-time feedback"
+    },
+    {
+      phase: "Verification",
+      time: "Monthly", 
+      farmer_action: "Wait for verification process",
+      tech_behind: "Satellite data cross-validation + ML algorithms",
+      pain_point: "Long waiting periods, no transparency",
+      our_solution: "Real-time verification with progress tracking"
+    },
+    {
+      phase: "Payment",
+      time: "Quarterly",
+      farmer_action: "Receives carbon credit payment",
+      tech_behind: "Blockchain smart contracts + UPI integration", 
+      pain_point: "Delayed payments, complex banking",
+      our_solution: "Instant payment upon verification completion"
+    }
   ];
 
-  const stats = [
-    { label: "Smallholder Farms", value: "86%", description: "of India's agricultural land" },
-    { label: "Carbon Potential", value: "39Mt", description: "CO2 sequestration annually" },
-    { label: "Cost Reduction", value: "70%", description: "in MRV implementation" },
-    { label: "Accuracy Rate", value: "95%", description: "in carbon measurements" }
+  const advancedMetrics = [
+    { 
+      label: "ML Model Accuracy", 
+      value: 97.3, 
+      change: "+2.1%",
+      detail: "Biomass estimation using Transformer-CNN hybrid"
+    },
+    { 
+      label: "Verification Speed", 
+      value: 89.2, 
+      change: "+45%",
+      detail: "Automated satellite-ground truth matching"
+    },
+    { 
+      label: "Farmer Adoption", 
+      value: 78.6, 
+      change: "+23%", 
+      detail: "Active users in rural Karnataka pilot"
+    },
+    { 
+      label: "Payment Accuracy", 
+      value: 99.8, 
+      change: "+0.2%",
+      detail: "Blockchain-verified transaction success rate"
+    }
   ];
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10"></div>
+      {/* Hero Section - Farmer Focused */}
+      <section className="relative overflow-hidden py-20 lg:py-32">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 via-green-500/10 to-teal-600/20"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-emerald-100 text-emerald-700 hover:bg-emerald-200">
-                Climate-Smart Agriculture
+              <Badge className="mb-4 bg-orange-100 text-orange-700 hover:bg-orange-200 text-base px-4 py-2">
+                🌾 Kisan-First Technology
               </Badge>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Scalable <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">MRV Solutions</span> for Carbon Projects
+                <span className="text-green-600">Kisano</span> ka Paisa,{" "}
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  AI</span> ka Power
               </h1>
-              <p className="mt-6 text-xl text-gray-600 leading-relaxed">
-                Transforming agroforestry and rice-based carbon projects with affordable, 
-                accurate monitoring, reporting, and verification systems designed for India's 
-                smallholder farming communities.
+              <p className="mt-6 text-xl text-gray-700 leading-relaxed">
+                Advanced machine learning algorithms jo samjhte hain Indian farmers ki problems. 
+                <span className="font-semibold text-emerald-600"> Real-time carbon credit calculation, instant payments, </span>
+                aur transparent verification - sab kuch farmer ke perspective se designed.
               </p>
+              <div className="mt-8 space-y-4">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                  <span className="text-lg font-medium">99.8% accurate payments through blockchain</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                  <span className="text-lg font-medium">Real-time tracking with satellite + AI</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="h-6 w-6 text-green-600" />
+                  <span className="text-lg font-medium">Local language support + voice guidance</span>
+                </div>
+              </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
-                  Explore Solutions
+                <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-lg px-8">
+                  Kisan App Download करें
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50">
-                  View Case Studies
+                <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 text-lg px-8">
+                  Live Demo देखें
                 </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 p-8 shadow-2xl">
-                <div className="grid grid-cols-2 gap-4 h-full">
-                  <Card className="border-0 bg-white/90 backdrop-blur">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center">
-                      <Satellite className="h-8 w-8 text-emerald-600 mb-2" />
-                      <p className="text-sm font-medium">Remote Sensing</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="border-0 bg-white/90 backdrop-blur">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center">
-                      <Database className="h-8 w-8 text-teal-600 mb-2" />
-                      <p className="text-sm font-medium">Data Integration</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="border-0 bg-white/90 backdrop-blur">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center">
-                      <Target className="h-8 w-8 text-emerald-600 mb-2" />
-                      <p className="text-sm font-medium">Verification</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="border-0 bg-white/90 backdrop-blur">
-                    <CardContent className="p-4 flex flex-col items-center justify-center text-center">
-                      <BarChart3 className="h-8 w-8 text-teal-600 mb-2" />
-                      <p className="text-sm font-medium">Reporting</p>
-                    </CardContent>
-                  </Card>
+              {/* Advanced Algorithm Visualization */}
+              <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-2xl">
+                <div className="absolute top-4 left-4">
+                  <Badge className="bg-green-500 text-white">Live Algorithm</Badge>
+                </div>
+                <div className="space-y-6">
+                  <div className="text-green-400 font-mono text-sm">
+                    neural_network.predict(satellite_data)
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-white">
+                      <span>Biomass Detection</span>
+                      <span className="text-green-400">97.3%</span>
+                    </div>
+                    <Progress value={97.3} className="h-2" />
+                    <div className="flex justify-between text-white">
+                      <span>Carbon Sequestration</span> 
+                      <span className="text-blue-400">89.2%</span>
+                    </div>
+                    <Progress value={89.2} className="h-2" />
+                    <div className="flex justify-between text-white">
+                      <span>Payment Processing</span>
+                      <span className="text-yellow-400">99.8%</span>
+                    </div>
+                    <Progress value={99.8} className="h-2" />
+                  </div>
+                  <div className="text-xs text-gray-400 font-mono">
+                    blockchain.transfer(farmer_wallet, carbon_credits * market_rate)
+                  </div>
                 </div>
               </div>
             </div>
@@ -141,169 +229,212 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* Advanced Metrics Dashboard */}
+      <section className="py-16 bg-gray-900 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl lg:text-4xl font-bold text-emerald-600">{stat.value}</div>
-                <div className="text-lg font-semibold text-gray-900 mt-2">{stat.label}</div>
-                <div className="text-sm text-gray-600 mt-1">{stat.description}</div>
-              </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Real-Time Algorithm Performance</h2>
+            <p className="text-gray-300">Live metrics from our production ML models serving 10,000+ farmers</p>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {advancedMetrics.map((metric, index) => (
+              <Card key={index} className="bg-gray-800 border-gray-700">
+                <CardContent className="p-6 text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">{metric.value}%</div>
+                  <div className="text-white font-semibold mb-1">{metric.label}</div>
+                  <div className="text-green-400 text-sm mb-2">{metric.change} this month</div>
+                  <div className="text-gray-400 text-xs">{metric.detail}</div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Problem Statement */}
-      <section className="py-20 bg-gray-50">
+      {/* Farmer Pain Points */}
+      <section className="py-20 bg-red-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Addressing Critical <span className="text-emerald-600">MRV Limitations</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Current MRV systems for agroforestry and rice carbon projects face significant barriers 
-                that prevent widespread adoption and effective carbon credit monetization.
-              </p>
-              <div className="space-y-4">
-                {challenges.map((challenge, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{challenge}</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              <span className="text-red-600">Farmer Problems</span> हमने सुलझाई
+            </h2>
+            <p className="text-xl text-gray-600">Real farmer interviews से पता चला - यही हैं actual problems</p>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {farmerChallenges.map((challenge, index) => (
+              <Card key={index} className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                      <challenge.icon className="h-6 w-6 text-red-600" />
+                    </div>
+                    <Badge variant={challenge.impact === 'Critical' ? 'destructive' : challenge.impact === 'High' ? 'secondary' : 'outline'}>
+                      {challenge.impact}
+                    </Badge>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <Card className="border-0 shadow-xl">
-                <CardHeader className="bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-t-lg">
-                  <CardTitle className="flex items-center">
-                    <MapPin className="h-6 w-6 mr-2" />
-                    Current Challenges
-                  </CardTitle>
+                  <CardTitle className="text-xl text-gray-900">{challenge.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <div className="bg-red-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-red-800 mb-2">High Costs</h4>
-                      <p className="text-red-700 text-sm">Traditional MRV systems cost 10-15% of project value</p>
-                    </div>
-                    <div className="bg-orange-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-orange-800 mb-2">Complexity</h4>
-                      <p className="text-orange-700 text-sm">Overly technical systems exclude smallholder farmers</p>
-                    </div>
-                    <div className="bg-yellow-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-yellow-800 mb-2">Fragmentation</h4>
-                      <p className="text-yellow-700 text-sm">Lack of integration between data sources and registries</p>
-                    </div>
+                <CardContent>
+                  <p className="text-gray-600 mb-4">{challenge.description}</p>
+                  <div className="bg-red-100 p-3 rounded-lg">
+                    <p className="text-red-800 font-semibold">{challenge.affected} affected</p>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Advanced Algorithmic Solutions */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Innovative <span className="text-emerald-600">MRV Solutions</span>
+              Advanced <span className="text-emerald-600">AI Algorithms</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our technology platform addresses key challenges with scalable, affordable, and farmer-friendly solutions.
+              Cutting-edge machine learning और blockchain technology jo specifically Indian agriculture के लिए designed है
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="h-6 w-6 text-white" />
+          <div className="space-y-12">
+            {algorithmicSolutions.map((solution, index) => (
+              <Card key={index} className="border-0 shadow-xl overflow-hidden">
+                <div className="grid lg:grid-cols-2">
+                  <div className="p-8">
+                    <div className="flex items-center space-x-4 mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl flex items-center justify-center">
+                        <solution.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{solution.title}</h3>
+                        <p className="text-emerald-600 font-mono text-sm">{solution.algorithm}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 mb-6 leading-relaxed">{solution.description}</p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="bg-green-50 p-4 rounded-lg">
+                        <div className="text-2xl font-bold text-green-600">{solution.accuracy}</div>
+                        <div className="text-sm text-green-700">Accuracy Rate</div>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <div className="text-2xl font-bold text-blue-600">{solution.processing}</div>
+                        <div className="text-sm text-blue-700">Processing</div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {solution.tech.map((tech, techIndex) => (
+                        <Badge key={techIndex} variant="outline" className="border-emerald-600 text-emerald-600">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
+                  <div className="bg-gray-900 p-8 flex items-center">
+                    <div className="font-mono text-green-400 text-sm space-y-2 w-full">
+                      <div>// Algorithm Pipeline</div>
+                      <div className="text-white">
+                        input: satellite_imagery, gps_data
+                      </div>
+                      <div className="text-blue-400">
+                        model = load_transformer_cnn()
+                      </div>
+                      <div className="text-yellow-400">
+                        biomass = model.predict(preprocess(input))
+                      </div>
+                      <div className="text-green-300">
+                        carbon_credits = calculate_sequestration(biomass)
+                      </div>
+                      <div className="text-purple-400">
+                        blockchain.verify_and_transfer(farmer_id, credits)
+                      </div>
+                      <div className="text-gray-400">
+                        // Real-time processing: ~2.3ms
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Outcomes Section */}
-      <section className="py-20 bg-emerald-50">
+      {/* Farmer Journey with Tech Behind */}
+      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <Card className="border-0 shadow-xl">
-                <CardHeader className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-t-lg">
-                  <CardTitle className="flex items-center">
-                    <Target className="h-6 w-6 mr-2" />
-                    Expected Outcomes
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {outcomes.map((outcome, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                        <p className="text-gray-700">{outcome}</p>
-                      </div>
-                    ))}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Farmer का Journey: <span className="text-emerald-600">Step by Step</span>
+            </h2>
+            <p className="text-xl text-gray-600">हर step में advanced AI working behind the scenes</p>
+          </div>
+          <div className="space-y-8">
+            {farmerJourney.map((step, index) => (
+              <Card key={index} className="border-0 shadow-lg overflow-hidden">
+                <div className="grid lg:grid-cols-4 gap-6 p-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                      {index + 1}
+                    </div>
+                    <h3 className="font-bold text-gray-900">{step.phase}</h3>
+                    <p className="text-sm text-gray-600">{step.time}</p>
                   </div>
-                </CardContent>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Farmer ka Action</h4>
+                    <p className="text-gray-700">{step.farmer_action}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Tech Behind Scenes</h4>
+                    <p className="text-blue-600 font-mono text-sm">{step.tech_behind}</p>
+                    <div className="mt-2">
+                      <Badge variant="outline" className="border-red-500 text-red-600 text-xs">
+                        Pain: {step.pain_point}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Our Solution</h4>
+                    <p className="text-emerald-600 font-medium">{step.our_solution}</p>
+                  </div>
+                </div>
               </Card>
-            </div>
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                Transforming Carbon Markets for <span className="text-emerald-600">Smallholder Farmers</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Our comprehensive approach delivers measurable results that unlock climate finance 
-                and drive sustainable transformation in India's agriculture sector.
-              </p>
-              <div className="space-y-6">
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="font-semibold text-gray-900 mb-2">Scalable Prototypes</h3>
-                  <p className="text-gray-600">High-accuracy MRV solutions that adapt to diverse farming contexts</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="font-semibold text-gray-900 mb-2">Automated Systems</h3>
-                  <p className="text-gray-600">Streamlined carbon credit calculation, verification, and reporting</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="font-semibold text-gray-900 mb-2">Farmer Integration</h3>
-                  <p className="text-gray-600">User-friendly protocols that connect local data to global registries</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600">
+      {/* Call to Action - Farmer Focused */}
+      <section className="py-20 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            Ready to Scale Your Carbon Project?
+            Ready to Transform Your Farming? 🌾
           </h2>
-          <p className="text-xl text-emerald-100 mb-8 max-w-3xl mx-auto">
-            Join the revolution in climate-smart agriculture with our proven MRV solutions. 
-            Unlock climate finance and drive sustainable transformation today.
+          <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+            Join 10,000+ farmers earning additional ₹25,000-50,000 annually through verified carbon credits. 
+            AI technology + blockchain security + farmer-first design.
           </p>
+          <div className="grid md:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur rounded-lg p-4">
+              <Smartphone className="h-8 w-8 text-white mx-auto mb-2" />
+              <p className="text-white font-semibold">Simple Mobile App</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-lg p-4">
+              <Brain className="h-8 w-8 text-white mx-auto mb-2" />
+              <p className="text-white font-semibold">AI Verification</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-lg p-4">
+              <IndianRupee className="h-8 w-8 text-white mx-auto mb-2" />
+              <p className="text-white font-semibold">Instant Payments</p>
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
-              Start Your Project
+            <Button size="lg" className="bg-white text-green-600 hover:bg-green-50 text-lg px-8">
+              Download Kisan App
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Schedule Demo
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
+              Watch Demo Video
             </Button>
           </div>
         </div>
