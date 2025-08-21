@@ -132,14 +132,14 @@ export default function AlgorithmVisualization() {
       <CardHeader>
         <CardTitle className="flex items-center space-x-3">
           <Brain className="h-6 w-6 text-green-400" />
-          <span>Live ML Pipeline</span>
-          <Badge className="bg-green-500 text-white animate-pulse">
+          <span className="font-display font-bold text-xl">Live ML Pipeline</span>
+          <Badge className="bg-green-500 text-white animate-pulse font-bold tracking-wide">
             Processing
           </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="font-mono text-sm text-green-400 mb-4">
+        <div className="font-mono text-sm text-green-400 mb-4 font-semibold">
           # Deep Learning Carbon Estimation Pipeline
         </div>
         
@@ -153,7 +153,7 @@ export default function AlgorithmVisualization() {
                     step.status === 'completed' ? 'text-green-400' :
                     step.status === 'processing' ? 'text-blue-400' : 'text-gray-400'
                   }`} />
-                  <span className="font-medium">{step.name}</span>
+                  <span className="font-semibold text-lg">{step.name}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Badge className={getStatusColor(step.status)}>
@@ -173,16 +173,16 @@ export default function AlgorithmVisualization() {
                 />
               </div>
               
-              <p className="text-sm text-gray-400">{step.description}</p>
+              <p className="text-sm text-gray-400 font-medium">{step.description}</p>
               
               {step.status === 'processing' && (
-                <div className="font-mono text-xs text-yellow-400 mt-2">
+                <div className="font-mono text-xs text-yellow-400 mt-2 font-medium">
                   → Executing: model.forward(tensor_batch[{index}])
                 </div>
               )}
               
               {step.status === 'completed' && (
-                <div className="font-mono text-xs text-green-400 mt-2">
+                <div className="font-mono text-xs text-green-400 mt-2 font-medium">
                   ✓ Output: tensor({step.progress}% confidence)
                 </div>
               )}
@@ -191,11 +191,11 @@ export default function AlgorithmVisualization() {
         })}
         
         <div className="mt-6 p-4 bg-gray-800 rounded-lg">
-          <div className="font-mono text-xs space-y-1">
-            <div className="text-green-400"># Final Output</div>
+          <div className="font-mono text-xs space-y-1 font-medium">
+            <div className="text-green-400 font-semibold"># Final Output</div>
             <div className="text-white">carbon_credits = 15.7 tonnes CO2e</div>
             <div className="text-blue-400">verification_hash = 0x7a8b9c...</div>
-            <div className="text-yellow-400">farmer_payment = ₹23,550</div>
+            <div className="text-yellow-400 font-semibold">farmer_payment = ₹23,550</div>
             <div className="text-purple-400">blockchain_confirmed = True</div>
           </div>
         </div>
