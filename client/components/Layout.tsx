@@ -1,6 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TreePine, Wheat, Menu, X, Satellite, Leaf, User, LogOut } from "lucide-react";
+import {
+  TreePine,
+  Wheat,
+  Menu,
+  X,
+  Satellite,
+  Leaf,
+  User,
+  LogOut,
+} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
@@ -80,16 +89,31 @@ export default function Layout({ children }: LayoutProps) {
               {isAuthenticated ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center space-x-2"
+                    >
                       <User className="h-4 w-4" />
-                      <span>{user?.farmer?.name || user?.admin?.name || user?.farmer?.email || user?.admin?.email}</span>
+                      <span>
+                        {user?.farmer?.name ||
+                          user?.admin?.name ||
+                          user?.farmer?.email ||
+                          user?.admin?.email}
+                      </span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
-                      <Link to={user?.type === 'farmer' ? '/farmer-dashboard' : '/admin-dashboard'}>
+                      <Link
+                        to={
+                          user?.type === "farmer"
+                            ? "/farmer-dashboard"
+                            : "/admin-dashboard"
+                        }
+                      >
                         Dashboard
                       </Link>
                     </DropdownMenuItem>
@@ -147,12 +171,14 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="px-3 pt-2">
                   {isAuthenticated ? (
                     <div className="space-y-2">
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        asChild
-                      >
-                        <Link to={user?.type === 'farmer' ? '/farmer-dashboard' : '/admin-dashboard'}>
+                      <Button variant="outline" className="w-full" asChild>
+                        <Link
+                          to={
+                            user?.type === "farmer"
+                              ? "/farmer-dashboard"
+                              : "/admin-dashboard"
+                          }
+                        >
                           Dashboard
                         </Link>
                       </Button>
@@ -288,10 +314,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
       </footer>
 
-      <AuthModal
-        open={authModalOpen}
-        onOpenChange={setAuthModalOpen}
-      />
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 }

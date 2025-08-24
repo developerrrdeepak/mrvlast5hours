@@ -21,7 +21,7 @@ export interface Admin {
   id: string;
   email: string;
   name: string;
-  role: 'admin' | 'super_admin';
+  role: "admin" | "super_admin";
   createdAt: Date;
 }
 
@@ -43,11 +43,11 @@ export interface FarmData {
 export interface CarbonProject {
   id: string;
   name: string;
-  type: 'agroforestry' | 'rice_based' | 'soil_carbon' | 'biomass';
+  type: "agroforestry" | "rice_based" | "soil_carbon" | "biomass";
   description: string;
   creditRate: number; // per hectare
   requirements: string[];
-  status: 'active' | 'inactive' | 'completed';
+  status: "active" | "inactive" | "completed";
   participants: string[]; // farmer IDs
   createdAt: Date;
   updatedAt: Date;
@@ -59,13 +59,13 @@ export interface CarbonCredit {
   projectId: string;
   credits: number;
   income: number;
-  status: 'pending' | 'verified' | 'rejected' | 'paid';
+  status: "pending" | "verified" | "rejected" | "paid";
   calculatedAt: Date;
   verifiedAt?: Date;
   paymentDate?: Date;
 }
 
-export type UserType = 'farmer' | 'admin';
+export type UserType = "farmer" | "admin";
 
 export interface AuthUser {
   type: UserType;

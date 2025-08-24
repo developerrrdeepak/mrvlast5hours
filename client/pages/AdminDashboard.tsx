@@ -2,20 +2,45 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { 
-  Users, 
-  FileText, 
-  TreePine, 
+import {
+  Users,
+  FileText,
+  TreePine,
   BarChart3,
   Download,
   Plus,
@@ -25,7 +50,7 @@ import {
   Clock,
   IndianRupee,
   MapPin,
-  Filter
+  Filter,
 } from "lucide-react";
 
 // Mock data - in real app this would come from API
@@ -39,30 +64,30 @@ const mockFarmers = [
     landSize: 5.2,
     status: "verified",
     carbonCredits: 12.5,
-    joinedDate: "2024-01-15"
+    joinedDate: "2024-01-15",
   },
   {
-    id: "2", 
+    id: "2",
     name: "Priya Sharma",
     email: "priya@example.com",
     phone: "+91 87654 32109",
-    location: "Haryana", 
+    location: "Haryana",
     landSize: 3.8,
     status: "pending",
     carbonCredits: 0,
-    joinedDate: "2024-02-20"
+    joinedDate: "2024-02-20",
   },
   {
     id: "3",
     name: "Amit Singh",
-    email: "amit@example.com", 
+    email: "amit@example.com",
     phone: "+91 76543 21098",
     location: "Uttar Pradesh",
     landSize: 7.1,
     status: "verified",
     carbonCredits: 18.7,
-    joinedDate: "2024-01-08"
-  }
+    joinedDate: "2024-01-08",
+  },
 ];
 
 const mockProjects = [
@@ -73,17 +98,17 @@ const mockProjects = [
     participants: 45,
     totalCredits: 567.8,
     status: "active",
-    createdDate: "2024-01-01"
+    createdDate: "2024-01-01",
   },
   {
     id: "2",
-    name: "Rice Carbon Project", 
+    name: "Rice Carbon Project",
     type: "rice_based",
     participants: 23,
     totalCredits: 234.5,
     status: "active",
-    createdDate: "2024-02-01"
-  }
+    createdDate: "2024-02-01",
+  },
 ];
 
 export default function AdminDashboard() {
@@ -96,18 +121,20 @@ export default function AdminDashboard() {
     type: "",
     description: "",
     creditRate: "",
-    requirements: ""
+    requirements: "",
   });
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  if (!isAuthenticated || user?.type !== 'admin') {
+  if (!isAuthenticated || user?.type !== "admin") {
     return <Navigate to="/" replace />;
   }
 
   const handleFarmerStatusUpdate = (farmerId: string, newStatus: string) => {
-    setFarmers(prev => prev.map(farmer => 
-      farmer.id === farmerId ? { ...farmer, status: newStatus } : farmer
-    ));
+    setFarmers((prev) =>
+      prev.map((farmer) =>
+        farmer.id === farmerId ? { ...farmer, status: newStatus } : farmer,
+      ),
+    );
     toast.success(`Farmer status updated to ${newStatus}`);
   };
 
@@ -123,11 +150,17 @@ export default function AdminDashboard() {
       participants: 0,
       totalCredits: 0,
       status: "active",
-      createdDate: new Date().toISOString().split('T')[0]
+      createdDate: new Date().toISOString().split("T")[0],
     };
 
-    setProjects(prev => [...prev, project]);
-    setNewProject({ name: "", type: "", description: "", creditRate: "", requirements: "" });
+    setProjects((prev) => [...prev, project]);
+    setNewProject({
+      name: "",
+      type: "",
+      description: "",
+      creditRate: "",
+      requirements: "",
+    });
     setShowNewProjectDialog(false);
     toast.success("Project created successfully!");
   };
@@ -139,10 +172,12 @@ export default function AdminDashboard() {
 
   const calculateStats = () => {
     const totalFarmers = farmers.length;
-    const verifiedFarmers = farmers.filter(f => f.status === 'verified').length;
+    const verifiedFarmers = farmers.filter(
+      (f) => f.status === "verified",
+    ).length;
     const totalCredits = farmers.reduce((sum, f) => sum + f.carbonCredits, 0);
     const totalLand = farmers.reduce((sum, f) => sum + f.landSize, 0);
-    
+
     return { totalFarmers, verifiedFarmers, totalCredits, totalLand };
   };
 
@@ -164,44 +199,60 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Farmers</p>
-                  <p className="text-3xl font-bold text-gray-900">{stats.totalFarmers}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Farmers
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats.totalFarmers}
+                  </p>
                 </div>
                 <Users className="h-8 w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Verified Farmers</p>
-                  <p className="text-3xl font-bold text-green-600">{stats.verifiedFarmers}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Verified Farmers
+                  </p>
+                  <p className="text-3xl font-bold text-green-600">
+                    {stats.verifiedFarmers}
+                  </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Credits</p>
-                  <p className="text-3xl font-bold text-emerald-600">{stats.totalCredits.toFixed(1)}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Credits
+                  </p>
+                  <p className="text-3xl font-bold text-emerald-600">
+                    {stats.totalCredits.toFixed(1)}
+                  </p>
                 </div>
                 <TreePine className="h-8 w-8 text-emerald-600" />
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Land (Ha)</p>
-                  <p className="text-3xl font-bold text-amber-600">{stats.totalLand.toFixed(1)}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Land (Ha)
+                  </p>
+                  <p className="text-3xl font-bold text-amber-600">
+                    {stats.totalLand.toFixed(1)}
+                  </p>
                 </div>
                 <MapPin className="h-8 w-8 text-amber-600" />
               </div>
@@ -230,7 +281,11 @@ export default function AdminDashboard() {
                       <Filter className="h-4 w-4 mr-2" />
                       Filter
                     </Button>
-                    <Button variant="outline" size="sm" onClick={() => exportReport('Farmers')}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => exportReport("Farmers")}
+                    >
                       <Download className="h-4 w-4 mr-2" />
                       Export
                     </Button>
@@ -253,14 +308,21 @@ export default function AdminDashboard() {
                   <TableBody>
                     {farmers.map((farmer) => (
                       <TableRow key={farmer.id}>
-                        <TableCell className="font-medium">{farmer.name}</TableCell>
+                        <TableCell className="font-medium">
+                          {farmer.name}
+                        </TableCell>
                         <TableCell>{farmer.email}</TableCell>
                         <TableCell>{farmer.location}</TableCell>
                         <TableCell>{farmer.landSize} Ha</TableCell>
                         <TableCell>
-                          <Badge 
-                            variant={farmer.status === 'verified' ? 'default' : 
-                                   farmer.status === 'pending' ? 'secondary' : 'destructive'}
+                          <Badge
+                            variant={
+                              farmer.status === "verified"
+                                ? "default"
+                                : farmer.status === "pending"
+                                  ? "secondary"
+                                  : "destructive"
+                            }
                           >
                             {farmer.status}
                           </Badge>
@@ -268,26 +330,36 @@ export default function AdminDashboard() {
                         <TableCell>{farmer.carbonCredits}</TableCell>
                         <TableCell>
                           <div className="flex items-center space-x-2">
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               variant="outline"
                               onClick={() => setSelectedFarmer(farmer)}
                             >
                               <Eye className="h-4 w-4" />
                             </Button>
-                            {farmer.status === 'pending' && (
+                            {farmer.status === "pending" && (
                               <>
-                                <Button 
+                                <Button
                                   size="sm"
-                                  onClick={() => handleFarmerStatusUpdate(farmer.id, 'verified')}
+                                  onClick={() =>
+                                    handleFarmerStatusUpdate(
+                                      farmer.id,
+                                      "verified",
+                                    )
+                                  }
                                   className="bg-green-600 hover:bg-green-700"
                                 >
                                   <CheckCircle className="h-4 w-4" />
                                 </Button>
-                                <Button 
-                                  size="sm" 
+                                <Button
+                                  size="sm"
                                   variant="destructive"
-                                  onClick={() => handleFarmerStatusUpdate(farmer.id, 'rejected')}
+                                  onClick={() =>
+                                    handleFarmerStatusUpdate(
+                                      farmer.id,
+                                      "rejected",
+                                    )
+                                  }
                                 >
                                   <XCircle className="h-4 w-4" />
                                 </Button>
@@ -311,7 +383,10 @@ export default function AdminDashboard() {
                     <TreePine className="h-5 w-5" />
                     <span>Project Management</span>
                   </div>
-                  <Dialog open={showNewProjectDialog} onOpenChange={setShowNewProjectDialog}>
+                  <Dialog
+                    open={showNewProjectDialog}
+                    onOpenChange={setShowNewProjectDialog}
+                  >
                     <DialogTrigger asChild>
                       <Button className="bg-green-600 hover:bg-green-700">
                         <Plus className="h-4 w-4 mr-2" />
@@ -328,20 +403,35 @@ export default function AdminDashboard() {
                           <Input
                             id="projectName"
                             value={newProject.name}
-                            onChange={(e) => setNewProject({...newProject, name: e.target.value})}
+                            onChange={(e) =>
+                              setNewProject({
+                                ...newProject,
+                                name: e.target.value,
+                              })
+                            }
                             placeholder="Enter project name"
                           />
                         </div>
                         <div>
                           <Label htmlFor="projectType">Project Type *</Label>
-                          <Select onValueChange={(value) => setNewProject({...newProject, type: value})}>
+                          <Select
+                            onValueChange={(value) =>
+                              setNewProject({ ...newProject, type: value })
+                            }
+                          >
                             <SelectTrigger>
                               <SelectValue placeholder="Select project type" />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="agroforestry">Agroforestry</SelectItem>
-                              <SelectItem value="rice_based">Rice Based</SelectItem>
-                              <SelectItem value="soil_carbon">Soil Carbon</SelectItem>
+                              <SelectItem value="agroforestry">
+                                Agroforestry
+                              </SelectItem>
+                              <SelectItem value="rice_based">
+                                Rice Based
+                              </SelectItem>
+                              <SelectItem value="soil_carbon">
+                                Soil Carbon
+                              </SelectItem>
                               <SelectItem value="biomass">Biomass</SelectItem>
                             </SelectContent>
                           </Select>
@@ -351,18 +441,30 @@ export default function AdminDashboard() {
                           <Textarea
                             id="description"
                             value={newProject.description}
-                            onChange={(e) => setNewProject({...newProject, description: e.target.value})}
+                            onChange={(e) =>
+                              setNewProject({
+                                ...newProject,
+                                description: e.target.value,
+                              })
+                            }
                             placeholder="Enter project description"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="creditRate">Credit Rate (per hectare)</Label>
+                          <Label htmlFor="creditRate">
+                            Credit Rate (per hectare)
+                          </Label>
                           <Input
                             id="creditRate"
                             type="number"
                             step="0.1"
                             value={newProject.creditRate}
-                            onChange={(e) => setNewProject({...newProject, creditRate: e.target.value})}
+                            onChange={(e) =>
+                              setNewProject({
+                                ...newProject,
+                                creditRate: e.target.value,
+                              })
+                            }
                             placeholder="Enter credit rate"
                           />
                         </div>
@@ -371,11 +473,19 @@ export default function AdminDashboard() {
                           <Textarea
                             id="requirements"
                             value={newProject.requirements}
-                            onChange={(e) => setNewProject({...newProject, requirements: e.target.value})}
+                            onChange={(e) =>
+                              setNewProject({
+                                ...newProject,
+                                requirements: e.target.value,
+                              })
+                            }
                             placeholder="Enter project requirements"
                           />
                         </div>
-                        <Button onClick={handleCreateProject} className="w-full bg-green-600 hover:bg-green-700">
+                        <Button
+                          onClick={handleCreateProject}
+                          className="w-full bg-green-600 hover:bg-green-700"
+                        >
                           Create Project
                         </Button>
                       </div>
@@ -386,23 +496,37 @@ export default function AdminDashboard() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {projects.map((project) => (
-                    <Card key={project.id} className="border-l-4 border-l-green-500">
+                    <Card
+                      key={project.id}
+                      className="border-l-4 border-l-green-500"
+                    >
                       <CardContent className="p-4">
                         <div className="space-y-3">
                           <div className="flex items-center justify-between">
                             <h3 className="font-semibold">{project.name}</h3>
-                            <Badge variant="outline" className="bg-green-50 text-green-700">
+                            <Badge
+                              variant="outline"
+                              className="bg-green-50 text-green-700"
+                            >
                               {project.status}
                             </Badge>
                           </div>
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                              <span className="text-gray-600">Participants:</span>
-                              <p className="font-medium">{project.participants}</p>
+                              <span className="text-gray-600">
+                                Participants:
+                              </span>
+                              <p className="font-medium">
+                                {project.participants}
+                              </p>
                             </div>
                             <div>
-                              <span className="text-gray-600">Total Credits:</span>
-                              <p className="font-medium">{project.totalCredits}</p>
+                              <span className="text-gray-600">
+                                Total Credits:
+                              </span>
+                              <p className="font-medium">
+                                {project.totalCredits}
+                              </p>
                             </div>
                           </div>
                           <div className="flex items-center justify-between pt-2">
@@ -435,15 +559,26 @@ export default function AdminDashboard() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-4 bg-green-50 rounded-lg">
-                        <p className="text-2xl font-bold text-green-600">{stats.totalCredits.toFixed(1)}</p>
-                        <p className="text-sm text-gray-600">Total Credits Generated</p>
+                        <p className="text-2xl font-bold text-green-600">
+                          {stats.totalCredits.toFixed(1)}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Total Credits Generated
+                        </p>
                       </div>
                       <div className="text-center p-4 bg-blue-50 rounded-lg">
-                        <p className="text-2xl font-bold text-blue-600">{(stats.totalCredits * 500).toLocaleString('en-IN')}</p>
-                        <p className="text-sm text-gray-600">Total Value (INR)</p>
+                        <p className="text-2xl font-bold text-blue-600">
+                          {(stats.totalCredits * 500).toLocaleString("en-IN")}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Total Value (INR)
+                        </p>
                       </div>
                     </div>
-                    <Button className="w-full" onClick={() => exportReport('Carbon Credits')}>
+                    <Button
+                      className="w-full"
+                      onClick={() => exportReport("Carbon Credits")}
+                    >
                       <Download className="h-4 w-4 mr-2" />
                       Export Credit Report
                     </Button>
@@ -498,20 +633,20 @@ export default function AdminDashboard() {
                       Comprehensive farmer data and verification status
                     </p>
                     <div className="space-y-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="w-full"
-                        onClick={() => exportReport('PDF Farmer')}
+                        onClick={() => exportReport("PDF Farmer")}
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export PDF
                       </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="w-full"
-                        onClick={() => exportReport('Excel Farmer')}
+                        onClick={() => exportReport("Excel Farmer")}
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export Excel
@@ -525,20 +660,20 @@ export default function AdminDashboard() {
                       Detailed carbon credit calculations and verification
                     </p>
                     <div className="space-y-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="w-full"
-                        onClick={() => exportReport('PDF Carbon')}
+                        onClick={() => exportReport("PDF Carbon")}
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export PDF
                       </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="w-full"
-                        onClick={() => exportReport('Excel Carbon')}
+                        onClick={() => exportReport("Excel Carbon")}
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export Excel
@@ -552,20 +687,20 @@ export default function AdminDashboard() {
                       Project performance and participant data
                     </p>
                     <div className="space-y-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="w-full"
-                        onClick={() => exportReport('PDF Project')}
+                        onClick={() => exportReport("PDF Project")}
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export PDF
                       </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="w-full"
-                        onClick={() => exportReport('Excel Project')}
+                        onClick={() => exportReport("Excel Project")}
                       >
                         <Download className="h-4 w-4 mr-2" />
                         Export Excel
@@ -580,55 +715,76 @@ export default function AdminDashboard() {
 
         {/* Farmer Details Modal */}
         {selectedFarmer && (
-          <Dialog open={!!selectedFarmer} onOpenChange={() => setSelectedFarmer(null)}>
+          <Dialog
+            open={!!selectedFarmer}
+            onOpenChange={() => setSelectedFarmer(null)}
+          >
             <DialogContent className="max-w-2xl">
               <DialogHeader>
-                <DialogTitle>Farmer Details - {selectedFarmer.name}</DialogTitle>
+                <DialogTitle>
+                  Farmer Details - {selectedFarmer.name}
+                </DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label>Email</Label>
-                    <p className="text-sm text-gray-600">{selectedFarmer.email}</p>
+                    <p className="text-sm text-gray-600">
+                      {selectedFarmer.email}
+                    </p>
                   </div>
                   <div>
                     <Label>Phone</Label>
-                    <p className="text-sm text-gray-600">{selectedFarmer.phone}</p>
+                    <p className="text-sm text-gray-600">
+                      {selectedFarmer.phone}
+                    </p>
                   </div>
                   <div>
                     <Label>Location</Label>
-                    <p className="text-sm text-gray-600">{selectedFarmer.location}</p>
+                    <p className="text-sm text-gray-600">
+                      {selectedFarmer.location}
+                    </p>
                   </div>
                   <div>
                     <Label>Land Size</Label>
-                    <p className="text-sm text-gray-600">{selectedFarmer.landSize} hectares</p>
+                    <p className="text-sm text-gray-600">
+                      {selectedFarmer.landSize} hectares
+                    </p>
                   </div>
                   <div>
                     <Label>Status</Label>
-                    <Badge variant={selectedFarmer.status === 'verified' ? 'default' : 'secondary'}>
+                    <Badge
+                      variant={
+                        selectedFarmer.status === "verified"
+                          ? "default"
+                          : "secondary"
+                      }
+                    >
                       {selectedFarmer.status}
                     </Badge>
                   </div>
                   <div>
                     <Label>Carbon Credits</Label>
-                    <p className="text-sm text-gray-600">{selectedFarmer.carbonCredits}</p>
+                    <p className="text-sm text-gray-600">
+                      {selectedFarmer.carbonCredits}
+                    </p>
                   </div>
                 </div>
-                {selectedFarmer.status === 'pending' && (
+                {selectedFarmer.status === "pending" && (
                   <div className="flex space-x-2 pt-4">
-                    <Button 
+                    <Button
                       onClick={() => {
-                        handleFarmerStatusUpdate(selectedFarmer.id, 'verified');
+                        handleFarmerStatusUpdate(selectedFarmer.id, "verified");
                         setSelectedFarmer(null);
                       }}
                       className="bg-green-600 hover:bg-green-700"
                     >
                       Approve
                     </Button>
-                    <Button 
+                    <Button
                       variant="destructive"
                       onClick={() => {
-                        handleFarmerStatusUpdate(selectedFarmer.id, 'rejected');
+                        handleFarmerStatusUpdate(selectedFarmer.id, "rejected");
                         setSelectedFarmer(null);
                       }}
                     >

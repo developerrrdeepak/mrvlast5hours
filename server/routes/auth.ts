@@ -10,7 +10,7 @@ let admins: Admin[] = [
     name: "Admin",
     role: "admin",
     createdAt: new Date(),
-  }
+  },
 ];
 
 // OTP storage - in production, use Redis or similar
@@ -42,7 +42,9 @@ export const sendOTP: RequestHandler = async (req, res) => {
     const { email } = req.body;
 
     if (!email) {
-      return res.status(400).json({ success: false, message: "Email is required" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Email is required" });
     }
 
     const otp = generateOTP();
@@ -59,7 +61,7 @@ export const sendOTP: RequestHandler = async (req, res) => {
       res.json({
         success: true,
         message: "OTP sent successfully",
-        otp: otp // Remove this in production!
+        otp: otp, // Remove this in production!
       });
     } else {
       res.status(500).json({ success: false, message: "Failed to send OTP" });
@@ -75,19 +77,23 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     const { email, otp } = req.body;
 
     if (!email || !otp) {
-      return res.status(400).json({ success: false, message: "Email and OTP are required" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Email and OTP are required" });
     }
 
     const storedOTP = otpStorage[email];
 
     console.log(`🔍 [OTP VERIFICATION] for ${email}:`);
     console.log(`   Provided OTP: ${otp}`);
-    console.log(`   Stored OTP: ${storedOTP?.otp || 'Not found'}`);
+    console.log(`   Stored OTP: ${storedOTP?.otp || "Not found"}`);
     console.log(`   Current time: ${Date.now()}`);
-    console.log(`   Expires at: ${storedOTP?.expires || 'N/A'}`);
+    console.log(`   Expires at: ${storedOTP?.expires || "N/A"}`);
 
     if (!storedOTP) {
-      return res.status(400).json({ success: false, message: "OTP not found or expired" });
+      return res
+        .status(400)
+        .json({ success: false, message: "OTP not found or expired" });
     }
 
     if (Date.now() > storedOTP.expires) {
@@ -100,8 +106,8 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     }
 
     // OTP verified, create or find farmer
-    let farmer = farmers.find(f => f.email === email);
-    
+    let farmer = farmers.find((f) => f.email === email);
+
     if (!farmer) {
       farmer = {
         id: `farmer-${Date.now()}`,
@@ -116,10 +122,10 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     // Create session
     const token = generateToken();
     const user: AuthUser = {
-      type: 'farmer',
-      farmer
+      type: "farmer",
+      farmer,
     };
-    
+
     sessions[token] = user;
 
     // Clean up OTP
@@ -143,24 +149,31 @@ export const adminLogin: RequestHandler = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ success: false, message: "Email and password are required" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Email and password are required" });
     }
 
     // Check credentials
-    if (email === "developerrdeepak@gmail.com" && password === "IITdelhi2023@") {
-      const admin = admins.find(a => a.email === email);
-      
+    if (
+      email === "developerrdeepak@gmail.com" &&
+      password === "IITdelhi2023@"
+    ) {
+      const admin = admins.find((a) => a.email === email);
+
       if (!admin) {
-        return res.status(401).json({ success: false, message: "Invalid credentials" });
+        return res
+          .status(401)
+          .json({ success: false, message: "Invalid credentials" });
       }
 
       // Create session
       const token = generateToken();
       const user: AuthUser = {
-        type: 'admin',
-        admin
+        type: "admin",
+        admin,
       };
-      
+
       sessions[token] = user;
 
       const response: LoginResponse = {
@@ -181,10 +194,12 @@ export const adminLogin: RequestHandler = async (req, res) => {
 
 export const verifyToken: RequestHandler = async (req, res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization?.replace("Bearer ", "");
 
     if (!token) {
-      return res.status(401).json({ success: false, message: "No token provided" });
+      return res
+        .status(401)
+        .json({ success: false, message: "No token provided" });
     }
 
     const user = sessions[token];
@@ -202,23 +217,29 @@ export const verifyToken: RequestHandler = async (req, res) => {
 
 export const updateProfile: RequestHandler = async (req, res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization?.replace("Bearer ", "");
 
     if (!token) {
-      return res.status(401).json({ success: false, message: "No token provided" });
+      return res
+        .status(401)
+        .json({ success: false, message: "No token provided" });
     }
 
     const user = sessions[token];
 
-    if (!user || user.type !== 'farmer') {
-      return res.status(401).json({ success: false, message: "Invalid token or user type" });
+    if (!user || user.type !== "farmer") {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid token or user type" });
     }
 
     const updates = req.body;
-    const farmerIndex = farmers.findIndex(f => f.id === user.farmer?.id);
+    const farmerIndex = farmers.findIndex((f) => f.id === user.farmer?.id);
 
     if (farmerIndex === -1) {
-      return res.status(404).json({ success: false, message: "Farmer not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Farmer not found" });
     }
 
     // Update farmer data
@@ -230,10 +251,10 @@ export const updateProfile: RequestHandler = async (req, res) => {
 
     // Update session
     const updatedUser: AuthUser = {
-      type: 'farmer',
-      farmer: farmers[farmerIndex]
+      type: "farmer",
+      farmer: farmers[farmerIndex],
     };
-    
+
     sessions[token] = updatedUser;
 
     res.json({ success: true, user: updatedUser });
@@ -245,7 +266,7 @@ export const updateProfile: RequestHandler = async (req, res) => {
 
 export const logout: RequestHandler = async (req, res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization?.replace("Bearer ", "");
 
     if (token && sessions[token]) {
       delete sessions[token];
@@ -261,16 +282,20 @@ export const logout: RequestHandler = async (req, res) => {
 // Get all farmers (admin only)
 export const getFarmers: RequestHandler = async (req, res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization?.replace("Bearer ", "");
 
     if (!token) {
-      return res.status(401).json({ success: false, message: "No token provided" });
+      return res
+        .status(401)
+        .json({ success: false, message: "No token provided" });
     }
 
     const user = sessions[token];
 
-    if (!user || user.type !== 'admin') {
-      return res.status(403).json({ success: false, message: "Admin access required" });
+    if (!user || user.type !== "admin") {
+      return res
+        .status(403)
+        .json({ success: false, message: "Admin access required" });
     }
 
     res.json({ success: true, farmers });
@@ -283,26 +308,32 @@ export const getFarmers: RequestHandler = async (req, res) => {
 // Update farmer status (admin only)
 export const updateFarmerStatus: RequestHandler = async (req, res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
+    const token = req.headers.authorization?.replace("Bearer ", "");
 
     if (!token) {
-      return res.status(401).json({ success: false, message: "No token provided" });
+      return res
+        .status(401)
+        .json({ success: false, message: "No token provided" });
     }
 
     const user = sessions[token];
 
-    if (!user || user.type !== 'admin') {
-      return res.status(403).json({ success: false, message: "Admin access required" });
+    if (!user || user.type !== "admin") {
+      return res
+        .status(403)
+        .json({ success: false, message: "Admin access required" });
     }
 
     const { farmerId, status } = req.body;
-    const farmerIndex = farmers.findIndex(f => f.id === farmerId);
+    const farmerIndex = farmers.findIndex((f) => f.id === farmerId);
 
     if (farmerIndex === -1) {
-      return res.status(404).json({ success: false, message: "Farmer not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Farmer not found" });
     }
 
-    farmers[farmerIndex].verified = status === 'verified';
+    farmers[farmerIndex].verified = status === "verified";
     farmers[farmerIndex].updatedAt = new Date();
 
     res.json({ success: true, farmer: farmers[farmerIndex] });

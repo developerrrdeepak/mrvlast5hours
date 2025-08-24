@@ -1,17 +1,23 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  TreePine, 
-  Users, 
-  Target, 
-  Lightbulb, 
-  Globe, 
-  Award, 
+import {
+  TreePine,
+  Users,
+  Target,
+  Lightbulb,
+  Globe,
+  Award,
   Leaf,
   TrendingUp,
   Shield,
-  Heart
+  Heart,
 } from "lucide-react";
 
 export default function AboutUs() {
@@ -20,33 +26,33 @@ export default function AboutUs() {
       name: "Dr. Rajesh Kumar",
       role: "Climate Scientist",
       description: "Leading expert in agricultural carbon sequestration",
-      image: "👨‍🌾"
+      image: "👨‍🌾",
     },
     {
       name: "Priya Sharma",
-      role: "Technology Lead", 
+      role: "Technology Lead",
       description: "Developing MRV solutions for smallholder farmers",
-      image: "👩‍💻"
+      image: "👩‍💻",
     },
     {
       name: "Amit Singh",
       role: "Rural Development",
       description: "20+ years experience in farmer outreach programs",
-      image: "👨‍🏫"
+      image: "👨‍🏫",
     },
     {
       name: "Dr. Meera Patel",
       role: "Data Scientist",
       description: "AI/ML specialist for satellite monitoring",
-      image: "👩‍🔬"
-    }
+      image: "👩‍🔬",
+    },
   ];
 
   const achievements = [
     { number: "50,000+", label: "Farmers Registered", icon: Users },
     { number: "125,000", label: "Hectares Monitored", icon: Globe },
     { number: "85,000", label: "Carbon Credits Generated", icon: TreePine },
-    { number: "₹2.5 Cr", label: "Farmer Income Generated", icon: TrendingUp }
+    { number: "₹2.5 Cr", label: "Farmer Income Generated", icon: TrendingUp },
   ];
 
   return (
@@ -60,17 +66,29 @@ export default function AboutUs() {
             </div>
           </div>
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            About <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent">Carbon Roots</span>
+            About{" "}
+            <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent">
+              Carbon Roots
+            </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Empowering India's smallholder farmers through technology-driven carbon credit solutions. 
-            We make MRV (Monitoring, Reporting & Verification) accessible, affordable, and accurate.
+            Empowering India's smallholder farmers through technology-driven
+            carbon credit solutions. We make MRV (Monitoring, Reporting &
+            Verification) accessible, affordable, and accurate.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <Badge className="bg-green-100 text-green-800 px-4 py-2 text-sm">Climate Technology</Badge>
-            <Badge className="bg-blue-100 text-blue-800 px-4 py-2 text-sm">AgriTech</Badge>
-            <Badge className="bg-amber-100 text-amber-800 px-4 py-2 text-sm">Carbon Credits</Badge>
-            <Badge className="bg-purple-100 text-purple-800 px-4 py-2 text-sm">Sustainable Agriculture</Badge>
+            <Badge className="bg-green-100 text-green-800 px-4 py-2 text-sm">
+              Climate Technology
+            </Badge>
+            <Badge className="bg-blue-100 text-blue-800 px-4 py-2 text-sm">
+              AgriTech
+            </Badge>
+            <Badge className="bg-amber-100 text-amber-800 px-4 py-2 text-sm">
+              Carbon Credits
+            </Badge>
+            <Badge className="bg-purple-100 text-purple-800 px-4 py-2 text-sm">
+              Sustainable Agriculture
+            </Badge>
           </div>
 
           {/* Hero Image */}
@@ -83,8 +101,12 @@ export default function AboutUs() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
-                <p className="text-2xl font-bold mb-2">Transforming Rural Lives</p>
-                <p className="text-lg opacity-90">Through Climate-Smart Agriculture</p>
+                <p className="text-2xl font-bold mb-2">
+                  Transforming Rural Lives
+                </p>
+                <p className="text-lg opacity-90">
+                  Through Climate-Smart Agriculture
+                </p>
               </div>
             </div>
           </div>
@@ -104,9 +126,10 @@ export default function AboutUs() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  To democratize access to carbon markets for India's 86% smallholder farmers through 
-                  innovative MRV technology, enabling them to earn additional income while contributing 
-                  to global climate action.
+                  To democratize access to carbon markets for India's 86%
+                  smallholder farmers through innovative MRV technology,
+                  enabling them to earn additional income while contributing to
+                  global climate action.
                 </p>
               </CardContent>
             </Card>
@@ -120,9 +143,9 @@ export default function AboutUs() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
-                  A future where every farmer in India can participate in carbon markets, 
-                  transforming agriculture into a climate solution while improving rural livelihoods 
-                  and food security.
+                  A future where every farmer in India can participate in carbon
+                  markets, transforming agriculture into a climate solution
+                  while improving rural livelihoods and food security.
                 </p>
               </CardContent>
             </Card>
@@ -134,23 +157,33 @@ export default function AboutUs() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Impact
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Measurable results in empowering farmers and fighting climate change
+              Measurable results in empowering farmers and fighting climate
+              change
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((achievement, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow"
+              >
                 <CardContent className="p-6">
                   <div className="flex justify-center mb-4">
                     <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-3 rounded-full">
                       <achievement.icon className="h-6 w-6 text-white" />
                     </div>
                   </div>
-                  <h3 className="text-3xl font-bold text-green-600 mb-2">{achievement.number}</h3>
-                  <p className="text-gray-600 font-medium">{achievement.label}</p>
+                  <h3 className="text-3xl font-bold text-green-600 mb-2">
+                    {achievement.number}
+                  </h3>
+                  <p className="text-gray-600 font-medium">
+                    {achievement.label}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -162,12 +195,14 @@ export default function AboutUs() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Values
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center">
               <CardContent className="p-6">
@@ -176,7 +211,8 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Transparency</h3>
                 <p className="text-gray-600">
-                  Complete transparency in MRV processes, ensuring credible and verifiable carbon credits
+                  Complete transparency in MRV processes, ensuring credible and
+                  verifiable carbon credits
                 </p>
               </CardContent>
             </Card>
@@ -188,7 +224,8 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Farmer-First</h3>
                 <p className="text-gray-600">
-                  Putting farmer needs and financial wellbeing at the center of our technology solutions
+                  Putting farmer needs and financial wellbeing at the center of
+                  our technology solutions
                 </p>
               </CardContent>
             </Card>
@@ -200,7 +237,8 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Sustainability</h3>
                 <p className="text-gray-600">
-                  Long-term thinking that balances environmental protection with economic development
+                  Long-term thinking that balances environmental protection with
+                  economic development
                 </p>
               </CardContent>
             </Card>
@@ -212,19 +250,27 @@ export default function AboutUs() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Meet Our Team
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Experts in climate science, technology, and rural development working together
+              Experts in climate science, technology, and rural development
+              working together
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow"
+              >
                 <CardContent className="p-6">
                   <div className="text-6xl mb-4">{member.image}</div>
                   <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-green-600 font-medium mb-3">{member.role}</p>
+                  <p className="text-green-600 font-medium mb-3">
+                    {member.role}
+                  </p>
                   <p className="text-gray-600 text-sm">{member.description}</p>
                 </CardContent>
               </Card>
@@ -237,17 +283,21 @@ export default function AboutUs() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Technology</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Technology
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Combining cutting-edge technology with ground-level implementation
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
                 <CardTitle>Satellite Monitoring</CardTitle>
-                <CardDescription>Real-time crop and land use monitoring</CardDescription>
+                <CardDescription>
+                  Real-time crop and land use monitoring
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-600">
@@ -277,7 +327,9 @@ export default function AboutUs() {
             <Card>
               <CardHeader>
                 <CardTitle>AI/ML Analytics</CardTitle>
-                <CardDescription>Intelligent carbon credit calculation</CardDescription>
+                <CardDescription>
+                  Intelligent carbon credit calculation
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-gray-600">
@@ -314,14 +366,22 @@ export default function AboutUs() {
             Join the Climate Revolution
           </h2>
           <p className="text-xl text-green-50 mb-8 leading-relaxed">
-            Whether you're a farmer, investor, or climate advocate, there's a place for you 
-            in our mission to transform agriculture into a climate solution.
+            Whether you're a farmer, investor, or climate advocate, there's a
+            place for you in our mission to transform agriculture into a climate
+            solution.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-green-600 hover:bg-gray-50 font-bold">
+            <Button
+              size="lg"
+              className="bg-white text-green-600 hover:bg-gray-50 font-bold"
+            >
               Become a Partner
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-green-600"
+            >
               Learn More
             </Button>
           </div>

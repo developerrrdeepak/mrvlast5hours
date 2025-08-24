@@ -10,7 +10,7 @@ import {
   updateProfile,
   logout,
   getFarmers,
-  updateFarmerStatus
+  updateFarmerStatus,
 } from "./routes/auth";
 
 export function createServer() {

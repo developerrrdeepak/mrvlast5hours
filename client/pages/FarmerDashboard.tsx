@@ -2,30 +2,42 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { 
-  User, 
-  MapPin, 
-  Phone, 
-  CreditCard, 
-  Sprout, 
-  Droplets, 
+import {
+  User,
+  MapPin,
+  Phone,
+  CreditCard,
+  Sprout,
+  Droplets,
   Calculator,
   TreePine,
   IndianRupee,
   Upload,
   CheckCircle,
   Clock,
-  AlertCircle
+  AlertCircle,
 } from "lucide-react";
 
 export default function FarmerDashboard() {
@@ -61,22 +73,25 @@ export default function FarmerDashboard() {
         pincode: user.farmer.location?.pincode || "",
         landSize: user.farmer.landSize?.toString() || "",
       });
-      
+
       // Check if profile is complete
-      const isComplete = user.farmer.name && user.farmer.phone && 
-                        user.farmer.aadhaarId && user.farmer.location?.address;
+      const isComplete =
+        user.farmer.name &&
+        user.farmer.phone &&
+        user.farmer.aadhaarId &&
+        user.farmer.location?.address;
       setProfileComplete(!!isComplete);
     }
   }, [user]);
 
-  if (!isAuthenticated || user?.type !== 'farmer') {
+  if (!isAuthenticated || user?.type !== "farmer") {
     return <Navigate to="/" replace />;
   }
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       await updateProfile({
         name: profile.name,
@@ -89,27 +104,27 @@ export default function FarmerDashboard() {
         },
         landSize: parseFloat(profile.landSize) || 0,
       });
-      
+
       toast.success("Profile updated successfully!");
       setProfileComplete(true);
     } catch (error) {
       toast.error("Failed to update profile");
     }
-    
+
     setLoading(false);
   };
 
   const handleFarmDataSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       // Here you would typically save farm data to your backend
       toast.success("Farm data submitted successfully!");
     } catch (error) {
       toast.error("Failed to submit farm data");
     }
-    
+
     setLoading(false);
   };
 
@@ -117,10 +132,10 @@ export default function FarmerDashboard() {
     const landSize = parseFloat(profile.landSize) || 0;
     const creditsPerHectare = 2.5; // Example rate
     const pricePerCredit = 500; // INR per credit
-    
+
     const totalCredits = landSize * creditsPerHectare;
     const estimatedIncome = totalCredits * pricePerCredit;
-    
+
     return { totalCredits, estimatedIncome };
   };
 
@@ -133,16 +148,16 @@ export default function FarmerDashboard() {
       type: "agroforestry",
       status: "active",
       creditRate: 2.5,
-      description: "Tree plantation in agricultural lands"
+      description: "Tree plantation in agricultural lands",
     },
     {
       id: 2,
       name: "Rice Carbon Project",
       type: "rice_based",
-      status: "active", 
+      status: "active",
       creditRate: 1.8,
-      description: "Sustainable rice cultivation practices"
-    }
+      description: "Sustainable rice cultivation practices",
+    },
   ];
 
   return (
@@ -151,7 +166,9 @@ export default function FarmerDashboard() {
         <div className="mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
             <div className="lg:col-span-2">
-              <h1 className="text-3xl font-bold text-gray-900">Farmer Dashboard</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Farmer Dashboard
+              </h1>
               <p className="text-gray-600 mt-2">
                 Welcome, {user?.farmer?.name || user?.farmer?.email}
               </p>
@@ -201,7 +218,8 @@ export default function FarmerDashboard() {
                   <span>Profile Setup</span>
                 </CardTitle>
                 <CardDescription>
-                  Complete your profile to start participating in carbon projects
+                  Complete your profile to start participating in carbon
+                  projects
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -212,7 +230,9 @@ export default function FarmerDashboard() {
                       <Input
                         id="name"
                         value={profile.name}
-                        onChange={(e) => setProfile({...profile, name: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, name: e.target.value })
+                        }
                         placeholder="Enter your full name"
                         required
                       />
@@ -222,7 +242,9 @@ export default function FarmerDashboard() {
                       <Input
                         id="phone"
                         value={profile.phone}
-                        onChange={(e) => setProfile({...profile, phone: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, phone: e.target.value })
+                        }
                         placeholder="Enter your phone number"
                         required
                       />
@@ -232,7 +254,9 @@ export default function FarmerDashboard() {
                       <Input
                         id="aadhaar"
                         value={profile.aadhaarId}
-                        onChange={(e) => setProfile({...profile, aadhaarId: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, aadhaarId: e.target.value })
+                        }
                         placeholder="Enter Aadhaar number"
                         maxLength={12}
                         required
@@ -243,7 +267,9 @@ export default function FarmerDashboard() {
                       <Input
                         id="farmerId"
                         value={profile.farmerId}
-                        onChange={(e) => setProfile({...profile, farmerId: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, farmerId: e.target.value })
+                        }
                         placeholder="Enter farmer ID if available"
                       />
                     </div>
@@ -252,7 +278,9 @@ export default function FarmerDashboard() {
                       <Textarea
                         id="address"
                         value={profile.address}
-                        onChange={(e) => setProfile({...profile, address: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, address: e.target.value })
+                        }
                         placeholder="Enter your complete address"
                         required
                       />
@@ -262,7 +290,9 @@ export default function FarmerDashboard() {
                       <Input
                         id="pincode"
                         value={profile.pincode}
-                        onChange={(e) => setProfile({...profile, pincode: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, pincode: e.target.value })
+                        }
                         placeholder="Enter pincode"
                         maxLength={6}
                         required
@@ -275,14 +305,20 @@ export default function FarmerDashboard() {
                         type="number"
                         step="0.1"
                         value={profile.landSize}
-                        onChange={(e) => setProfile({...profile, landSize: e.target.value})}
+                        onChange={(e) =>
+                          setProfile({ ...profile, landSize: e.target.value })
+                        }
                         placeholder="Enter land size in hectares"
                         required
                       />
                     </div>
                   </div>
-                  
-                  <Button type="submit" disabled={loading} className="bg-green-600 hover:bg-green-700">
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-green-600 hover:bg-green-700"
+                  >
                     {loading ? "Updating..." : "Update Profile"}
                   </Button>
                 </form>
@@ -311,7 +347,9 @@ export default function FarmerDashboard() {
                         type="number"
                         step="0.1"
                         value={farmData.soilPh}
-                        onChange={(e) => setFarmData({...farmData, soilPh: e.target.value})}
+                        onChange={(e) =>
+                          setFarmData({ ...farmData, soilPh: e.target.value })
+                        }
                         placeholder="Enter soil pH (6.0-8.0)"
                       />
                     </div>
@@ -321,13 +359,22 @@ export default function FarmerDashboard() {
                         id="soilMoisture"
                         type="number"
                         value={farmData.soilMoisture}
-                        onChange={(e) => setFarmData({...farmData, soilMoisture: e.target.value})}
+                        onChange={(e) =>
+                          setFarmData({
+                            ...farmData,
+                            soilMoisture: e.target.value,
+                          })
+                        }
                         placeholder="Enter soil moisture percentage"
                       />
                     </div>
                     <div>
                       <Label htmlFor="cropType">Crop Type</Label>
-                      <Select onValueChange={(value) => setFarmData({...farmData, cropType: value})}>
+                      <Select
+                        onValueChange={(value) =>
+                          setFarmData({ ...farmData, cropType: value })
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select crop type" />
                         </SelectTrigger>
@@ -343,42 +390,66 @@ export default function FarmerDashboard() {
                     </div>
                     <div>
                       <Label htmlFor="irrigation">Irrigation Type</Label>
-                      <Select onValueChange={(value) => setFarmData({...farmData, irrigationType: value})}>
+                      <Select
+                        onValueChange={(value) =>
+                          setFarmData({ ...farmData, irrigationType: value })
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select irrigation type" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="drip">Drip Irrigation</SelectItem>
                           <SelectItem value="sprinkler">Sprinkler</SelectItem>
-                          <SelectItem value="flood">Flood Irrigation</SelectItem>
+                          <SelectItem value="flood">
+                            Flood Irrigation
+                          </SelectItem>
                           <SelectItem value="rainfed">Rain-fed</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="waterUsage">Water Usage (Liters/day)</Label>
+                      <Label htmlFor="waterUsage">
+                        Water Usage (Liters/day)
+                      </Label>
                       <Input
                         id="waterUsage"
                         type="number"
                         value={farmData.waterUsage}
-                        onChange={(e) => setFarmData({...farmData, waterUsage: e.target.value})}
+                        onChange={(e) =>
+                          setFarmData({
+                            ...farmData,
+                            waterUsage: e.target.value,
+                          })
+                        }
                         placeholder="Enter daily water usage"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="areaPlanted">Area Planted (Hectares)</Label>
+                      <Label htmlFor="areaPlanted">
+                        Area Planted (Hectares)
+                      </Label>
                       <Input
                         id="areaPlanted"
                         type="number"
                         step="0.1"
                         value={farmData.areaPlanted}
-                        onChange={(e) => setFarmData({...farmData, areaPlanted: e.target.value})}
+                        onChange={(e) =>
+                          setFarmData({
+                            ...farmData,
+                            areaPlanted: e.target.value,
+                          })
+                        }
                         placeholder="Enter planted area"
                       />
                     </div>
                   </div>
-                  
-                  <Button type="submit" disabled={loading} className="bg-green-600 hover:bg-green-700">
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-green-600 hover:bg-green-700"
+                  >
                     {loading ? "Submitting..." : "Submit Farm Data"}
                   </Button>
                 </form>
@@ -399,22 +470,28 @@ export default function FarmerDashboard() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Land Size:</span>
-                      <span className="font-medium">{profile.landSize || 0} hectares</span>
+                      <span className="font-medium">
+                        {profile.landSize || 0} hectares
+                      </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Credits per hectare:</span>
+                      <span className="text-sm text-gray-600">
+                        Credits per hectare:
+                      </span>
                       <span className="font-medium">2.5 credits</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Total Credits:</span>
-                      <span className="font-bold text-green-600">{totalCredits.toFixed(1)}</span>
+                      <span className="font-bold text-green-600">
+                        {totalCredits.toFixed(1)}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Estimated Income:</span>
                       <span className="font-bold text-green-600 flex items-center">
                         <IndianRupee className="h-4 w-4 mr-1" />
-                        {estimatedIncome.toLocaleString('en-IN')}
+                        {estimatedIncome.toLocaleString("en-IN")}
                       </span>
                     </div>
                   </div>
@@ -432,7 +509,7 @@ export default function FarmerDashboard() {
                       <span className="text-sm text-gray-600">60%</span>
                     </div>
                     <Progress value={60} className="h-2" />
-                    
+
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
@@ -468,22 +545,36 @@ export default function FarmerDashboard() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {projects.map((project) => (
-                      <Card key={project.id} className="border-l-4 border-l-green-500">
+                      <Card
+                        key={project.id}
+                        className="border-l-4 border-l-green-500"
+                      >
                         <CardContent className="p-4">
                           <div className="space-y-3">
                             <div className="flex items-center justify-between">
                               <h3 className="font-semibold">{project.name}</h3>
-                              <Badge variant="outline" className="bg-green-50 text-green-700">
+                              <Badge
+                                variant="outline"
+                                className="bg-green-50 text-green-700"
+                              >
                                 {project.status}
                               </Badge>
                             </div>
-                            <p className="text-sm text-gray-600">{project.description}</p>
+                            <p className="text-sm text-gray-600">
+                              {project.description}
+                            </p>
                             <div className="flex items-center justify-between">
                               <span className="text-sm">
                                 <IndianRupee className="h-4 w-4 inline mr-1" />
-                                {(project.creditRate * 500).toLocaleString('en-IN')}/hectare
+                                {(project.creditRate * 500).toLocaleString(
+                                  "en-IN",
+                                )}
+                                /hectare
                               </span>
-                              <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                              <Button
+                                size="sm"
+                                className="bg-green-600 hover:bg-green-700"
+                              >
                                 Apply
                               </Button>
                             </div>

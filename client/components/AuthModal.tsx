@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
@@ -98,10 +103,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
   };
 
   return (
-    <Dialog open={open} onOpenChange={(open) => {
-      onOpenChange(open);
-      if (!open) resetForm();
-    }}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        onOpenChange(open);
+        if (!open) resetForm();
+      }}
+    >
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Sign In</DialogTitle>
@@ -111,7 +119,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
             <TabsTrigger value="farmer">👨‍🌾 Farmer</TabsTrigger>
             <TabsTrigger value="admin">👨‍💻 Admin</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="farmer" className="space-y-4 mt-4">
             {!otpSent ? (
               <div className="space-y-4">
@@ -125,7 +133,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <Button 
+                <Button
                   onClick={handleSendOTP}
                   disabled={loading}
                   className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500"
@@ -145,13 +153,14 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     onChange={(e) => setOtp(e.target.value)}
                     maxLength={6}
                   />
-                  <p className="text-sm text-gray-600">
-                    OTP sent to {email}
-                  </p>
+                  <p className="text-sm text-gray-600">OTP sent to {email}</p>
                   {generatedOTP && (
                     <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
                       <p className="text-sm font-medium text-blue-800">
-                        🔐 Your OTP: <span className="font-mono text-lg">{generatedOTP}</span>
+                        🔐 Your OTP:{" "}
+                        <span className="font-mono text-lg">
+                          {generatedOTP}
+                        </span>
                       </p>
                       <p className="text-xs text-blue-600 mt-1">
                         (For testing purposes only)
@@ -160,15 +169,15 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   )}
                 </div>
                 <div className="space-y-2">
-                  <Button 
+                  <Button
                     onClick={handleVerifyOTP}
                     disabled={loading}
                     className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500"
                   >
                     {loading ? "Verifying..." : "Verify OTP"}
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     onClick={() => setOtpSent(false)}
                     className="w-full"
                   >
@@ -178,7 +187,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
               </div>
             )}
           </TabsContent>
-          
+
           <TabsContent value="admin" className="space-y-4 mt-4">
             <div className="space-y-4">
               <div className="space-y-2">
@@ -201,7 +210,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button 
+              <Button
                 onClick={handleAdminLogin}
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600"
