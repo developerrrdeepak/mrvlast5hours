@@ -413,15 +413,15 @@ export default function Solutions() {
               <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
                 <div className="flex items-center space-x-2">
                   <Timer className="h-5 w-5" />
-                  <span className="font-semibold">Setup in 10 minutes</span>
+                  <span className="font-semibold">10 मिनट में Setup / Setup in 10 minutes</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Shield className="h-5 w-5" />
-                  <span className="font-semibold">100% verified payments</span>
+                  <span className="font-semibold">100% सत्यापित भुगतान / verified payments</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Target className="h-5 w-5" />
-                  <span className="font-semibold">24/7 Hindi support</span>
+                  <span className="font-semibold">24/7 Hindi में support</span>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
