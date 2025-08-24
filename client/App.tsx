@@ -15,6 +15,7 @@ import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 import FarmerDashboard from "./pages/FarmerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import AboutUs from "./pages/AboutUs";
 import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
