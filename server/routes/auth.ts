@@ -55,7 +55,12 @@ export const sendOTP: RequestHandler = async (req, res) => {
     const emailSent = await sendOTPEmail(email, otp);
 
     if (emailSent) {
-      res.json({ success: true, message: "OTP sent successfully" });
+      // For testing purposes, include OTP in response (remove in production)
+      res.json({
+        success: true,
+        message: "OTP sent successfully",
+        otp: otp // Remove this in production!
+      });
     } else {
       res.status(500).json({ success: false, message: "Failed to send OTP" });
     }
