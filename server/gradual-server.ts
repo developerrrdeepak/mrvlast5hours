@@ -54,5 +54,37 @@ export function createGradualServer() {
     });
   });
 
+  // Global error handler
+  app.use(
+    (
+      error: Error,
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction,
+    ) => {
+      console.error("🚨 [SERVER ERROR]", {
+        path: req.path,
+        method: req.method,
+        error: error.message,
+        stack: error.stack,
+      });
+
+      res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        ...(process.env.NODE_ENV !== "production" && { error: error.message }),
+      });
+    },
+  );
+
+  // 404 handler for API routes
+  app.use("/api/*", (req, res) => {
+    console.log("❓ [404] API endpoint not found:", req.path);
+    res.status(404).json({
+      success: false,
+      message: `API endpoint not found: ${req.path}`,
+    });
+  });
+
   return app;
 }
