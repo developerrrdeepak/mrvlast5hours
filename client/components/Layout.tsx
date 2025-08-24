@@ -287,6 +287,11 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </footer>
+
+      <AuthModal
+        open={authModalOpen}
+        onOpenChange={setAuthModalOpen}
+      />
     </div>
   );
 }
