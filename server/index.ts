@@ -11,6 +11,8 @@ import {
   logout,
   getFarmers,
   updateFarmerStatus,
+  farmerPasswordRegister,
+  farmerPasswordLogin,
 } from "./routes/auth";
 
 export function createServer() {
@@ -33,6 +35,8 @@ export function createServer() {
   app.post("/api/auth/send-otp", sendOTP);
   app.post("/api/auth/verify-otp", verifyOTP);
   app.post("/api/auth/admin-login", adminLogin);
+  app.post("/api/auth/farmer-register", farmerPasswordRegister);
+  app.post("/api/auth/farmer-login", farmerPasswordLogin);
   app.get("/api/auth/verify", verifyToken);
   app.put("/api/auth/update-profile", updateProfile);
   app.post("/api/auth/logout", logout);
