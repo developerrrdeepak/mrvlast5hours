@@ -40,6 +40,8 @@ import {
   Leaf,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import LanguageSelector, { useLanguage } from "@/components/LanguageSelector";
+import { useState } from "react";
 
 export default function Index() {
   const hackathonChallenges = [
