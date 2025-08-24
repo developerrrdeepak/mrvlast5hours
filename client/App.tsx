@@ -13,6 +13,8 @@ import Tools from "./pages/Tools";
 import CaseStudies from "./pages/CaseStudies";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
+import FarmerDashboard from "./pages/FarmerDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
