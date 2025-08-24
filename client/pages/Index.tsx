@@ -44,6 +44,8 @@ import LanguageSelector, { useLanguage } from "@/components/LanguageSelector";
 import { useState } from "react";
 
 export default function Index() {
+  const { language, changeLanguage } = useLanguage();
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
   const hackathonChallenges = [
     {
       icon: TreePine,
