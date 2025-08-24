@@ -47,7 +47,10 @@ export const sendOTP: RequestHandler = async (req, res) => {
   try {
     const { email } = req.body;
 
+    console.log(`🔐 [SEND OTP] Request for email: ${email}`);
+
     if (!email) {
+      console.log("❌ [SEND OTP] Email is missing");
       return res
         .status(400)
         .json({ success: false, message: "Email is required" });
@@ -63,17 +66,26 @@ export const sendOTP: RequestHandler = async (req, res) => {
     const emailSent = await sendOTPEmail(email, otp);
 
     if (emailSent) {
-      // For testing purposes, include OTP in response (remove in production)
-      res.json({
+      console.log(`✅ [SEND OTP] OTP sent successfully to ${email}`);
+
+      // In development/test mode, include OTP in response
+      const response: any = {
         success: true,
         message: "OTP sent successfully",
-        otp: otp, // Remove this in production!
-      });
+      };
+
+      // Only include OTP in response for development/testing
+      if (process.env.NODE_ENV !== "production" || process.env.DEBUG_AUTH === "true") {
+        response.otp = otp;
+      }
+
+      res.json(response);
     } else {
+      console.log(`❌ [SEND OTP] Failed to send email to ${email}`);
       res.status(500).json({ success: false, message: "Failed to send OTP" });
     }
   } catch (error) {
-    console.error("Send OTP error:", error);
+    console.error("❌ [SEND OTP] Error:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
