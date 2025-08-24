@@ -363,7 +363,7 @@ export default function Layout({ children }: LayoutProps) {
       </footer>
 
       <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
-      <AIChatbot
+      <EnhancedAIChatbot
         open={chatbotOpen}
         onOpenChange={setChatbotOpen}
         selectedLanguage={language}
