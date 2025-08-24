@@ -27,10 +27,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [generatedOTP, setGeneratedOTP] = useState("");
-  const [farmerAuthType, setFarmerAuthType] = useState<"otp" | "password">("password"); // Default to password
+  const [farmerAuthType, setFarmerAuthType] = useState<"otp" | "password">(
+    "password",
+  ); // Default to password
   const [isRegistering, setIsRegistering] = useState(false);
-  
-  const { sendOTP, verifyOTP, adminLogin, farmerRegister, farmerLogin } = useAuth();
+
+  const { sendOTP, verifyOTP, adminLogin, farmerRegister, farmerLogin } =
+    useAuth();
   const navigate = useNavigate();
 
   const handleSendOTP = async () => {
@@ -91,14 +94,14 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setLoading(true);
     try {
       let result;
-      
+
       if (isRegistering) {
         // Registration
-        result = await farmerRegister({ 
-          email, 
-          password, 
-          name: name || email.split('@')[0], 
-          phone 
+        result = await farmerRegister({
+          email,
+          password,
+          name: name || email.split("@")[0],
+          phone,
         });
         if (result.success) {
           toast.success("Registration successful! Welcome!");
@@ -241,7 +244,11 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   <Input
                     id="farmer-password"
                     type="password"
-                    placeholder={isRegistering ? "Create password (min 6 chars)" : "Enter your password"}
+                    placeholder={
+                      isRegistering
+                        ? "Create password (min 6 chars)"
+                        : "Enter your password"
+                    }
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -252,10 +259,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   disabled={loading}
                   className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500"
                 >
-                  {loading 
-                    ? (isRegistering ? "Registering..." : "Signing in...") 
-                    : (isRegistering ? "Register" : "Sign In")
-                  }
+                  {loading
+                    ? isRegistering
+                      ? "Registering..."
+                      : "Signing in..."
+                    : isRegistering
+                      ? "Register"
+                      : "Sign In"}
                 </Button>
 
                 <div className="text-center">
@@ -264,10 +274,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     onClick={() => setIsRegistering(!isRegistering)}
                     className="text-sm text-green-600"
                   >
-                    {isRegistering 
-                      ? "Already have an account? Sign in" 
-                      : "New farmer? Create account"
-                    }
+                    {isRegistering
+                      ? "Already have an account? Sign in"
+                      : "New farmer? Create account"}
                   </Button>
                 </div>
               </div>
@@ -306,7 +315,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                         onChange={(e) => setOtp(e.target.value)}
                         maxLength={6}
                       />
-                      <p className="text-sm text-gray-600">OTP sent to {email}</p>
+                      <p className="text-sm text-gray-600">
+                        OTP sent to {email}
+                      </p>
                       {generatedOTP && (
                         <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
                           <p className="text-sm font-medium text-blue-800">

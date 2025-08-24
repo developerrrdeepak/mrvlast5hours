@@ -90,23 +90,23 @@ export default function Index() {
     {
       number: "1,46,000+",
       label: "किसान साझीदार",
-      description: "भारत भर में"
+      description: "भारत भर में",
     },
     {
       number: "₹50 करोड़+",
       label: "Carbon Income",
-      description: "किसानों को मिली"
+      description: "किसानों को मिली",
     },
     {
       number: "15+",
       label: "भाषाएं",
-      description: "Local language support"
+      description: "Local language support",
     },
     {
       number: "24/7",
       label: "सहायता",
-      description: "Customer support"
-    }
+      description: "Customer support",
+    },
   ];
 
   return (
@@ -253,7 +253,8 @@ export default function Index() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
-              क्यों चुनें <span className="text-emerald-600">Carbon Farming?</span>
+              क्यों चुनें{" "}
+              <span className="text-emerald-600">Carbon Farming?</span>
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
               आसान, फायदेमंद, और पर्यावरण के लिए बेहतर
@@ -266,7 +267,9 @@ export default function Index() {
                 className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group"
               >
                 <CardHeader>
-                  <div className={`w-16 h-16 bg-${feature.color}-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`w-16 h-16 bg-${feature.color}-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <feature.icon
                       className={`h-8 w-8 text-${feature.color}-600`}
                     />
@@ -295,14 +298,12 @@ export default function Index() {
                 <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
-                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर होगा।
+                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
+                होगा।
               </p>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3"
-                  >
+                  <div key={index} className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-emerald-600 mt-1 flex-shrink-0" />
                     <span className="text-gray-700 font-medium text-lg">
                       {benefit}
@@ -348,7 +349,8 @@ export default function Index() {
             शुरू करने के लिए तैयार हैं?
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
-            आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू करें
+            आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
+            करें
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

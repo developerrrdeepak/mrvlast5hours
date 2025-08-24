@@ -434,7 +434,10 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
       console.log("❌ [FARMER REGISTER] Password too short");
       return res
         .status(400)
-        .json({ success: false, message: "Password must be at least 6 characters" });
+        .json({
+          success: false,
+          message: "Password must be at least 6 characters",
+        });
     }
 
     // Check if farmer already exists
@@ -443,14 +446,17 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
       console.log(`❌ [FARMER REGISTER] Farmer already exists: ${email}`);
       return res
         .status(400)
-        .json({ success: false, message: "Farmer already registered with this email" });
+        .json({
+          success: false,
+          message: "Farmer already registered with this email",
+        });
     }
 
     // Create new farmer
     const farmer: Farmer = {
       id: `farmer-${Date.now()}`,
       email,
-      name: name || email.split('@')[0],
+      name: name || email.split("@")[0],
       phone,
       verified: true,
       createdAt: new Date(),
@@ -461,7 +467,10 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
     farmers.push(farmer);
 
     // Store password (in production, hash this!)
-    otpStorage[`password_${email}`] = { otp: password, expires: Date.now() + 365 * 24 * 60 * 60 * 1000 }; // 1 year
+    otpStorage[`password_${email}`] = {
+      otp: password,
+      expires: Date.now() + 365 * 24 * 60 * 60 * 1000,
+    }; // 1 year
 
     // Create session
     const token = generateToken();
@@ -472,7 +481,9 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
 
     sessions[token] = user;
 
-    console.log(`✅ [FARMER REGISTER] Farmer registered successfully: ${email}`);
+    console.log(
+      `✅ [FARMER REGISTER] Farmer registered successfully: ${email}`,
+    );
 
     const response: LoginResponse = {
       success: true,
