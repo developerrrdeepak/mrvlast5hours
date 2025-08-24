@@ -107,7 +107,7 @@ export default function Solutions() {
         "Differential Privacy",
       ],
       farmer_testimonial:
-        "हमारा पूरा गांव मिलकर carbon farming कर रहा है। Unity में strength! अब तो हमारे यहां सबसे ज्यादा कमाई होती है।",
+        "हमारा पूरा गांव मिलकर carbon farming कर रहा है। Unity में strength! अब तो हमारे ���हां सबसे ज्यादा कमाई होती है।",
       badge: "Community Choice",
     },
   ];
@@ -158,7 +158,7 @@ export default function Solutions() {
             Advanced <span className="text-emerald-600">MRV Solutions</span> 🌾
           </h1>
           <p className="text-subtitle text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
-            भारतीय छ���टे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
+            भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
             <span className="font-bold text-emerald-600">
               {" "}
               वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव।
@@ -178,7 +178,7 @@ export default function Solutions() {
         {/* Farmer Success Metrics */}
         <section className="mb-20 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
           <h2 className="text-4xl font-display font-bold text-center mb-8 tracking-tight">
-            Real Farmer <span className="text-emerald-600">Results</span>
+            वास्तविक किसान <span className="text-emerald-600">परिणाम</span> / Real Farmer Results
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {farmerSuccessMetrics.map((metric, index) => (
