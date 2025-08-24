@@ -153,3 +153,15 @@ export interface AdminLoginRequest {
   email: string;
   password: string;
 }
+
+export interface FarmerPasswordRequest {
+  email: string;
+  password: string;
+  name?: string;
+  phone?: string;
+}
+
+export interface FarmerLoginRequest {
+  email: string;
+  password: string;
+}

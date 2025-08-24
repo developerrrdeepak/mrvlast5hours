@@ -3,13 +3,22 @@
   functions = "netlify/functions"
   publish = "dist/spa"
 
-
 [functions]
-  external_node_modules = ["express"]
+  external_node_modules = ["express", "serverless-http"]
   node_bundler = "esbuild"
-  
+  included_files = ["server/**/*", "shared/**/*"]
+
+# API redirects
 [[redirects]]
-  force = true
   from = "/api/*"
-  status = 200
   to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# SPA fallback - serve index.html for all non-API routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["", "guest"]}
+  force = false
