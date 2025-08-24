@@ -14,8 +14,8 @@ import {
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
-import AuthModal from "./AuthModal";
-import AIChatbot from "./AIChatbot";
+import EnhancedAuthModal from "./EnhancedAuthModal";
+import EnhancedAIChatbot from "./EnhancedAIChatbot";
 import LanguageSelector, { useLanguage } from "./LanguageSelector";
 import {
   DropdownMenu,
@@ -362,8 +362,8 @@ export default function Layout({ children }: LayoutProps) {
         </div>
       </footer>
 
-      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
-      <AIChatbot
+      <EnhancedAuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
+      <EnhancedAIChatbot
         open={chatbotOpen}
         onOpenChange={setChatbotOpen}
         selectedLanguage={language}

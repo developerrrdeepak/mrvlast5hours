@@ -6,6 +6,7 @@ import {
   OTPRequest,
   OTPVerification,
   AdminLoginRequest,
+  EnhancedFarmerRegistration,
 } from "@shared/auth";
 
 interface AuthContextType extends AuthState {

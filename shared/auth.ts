@@ -5,13 +5,35 @@ export interface Farmer {
   phone?: string;
   aadhaarId?: string;
   farmerId?: string;
+
+  // Farm Details
+  farmName?: string;
+  landSize?: number;
+  landUnit?: "acres" | "hectares";
+  farmingType?: "organic" | "conventional" | "mixed";
+  primaryCrops?: string[];
+  irrigationType?: "rain_fed" | "canal" | "borewell" | "drip" | "sprinkler";
+
+  // Location Details
   location?: {
-    latitude: number;
-    longitude: number;
+    latitude?: number;
+    longitude?: number;
     address: string;
     pincode: string;
+    state: string;
+    district?: string;
   };
-  landSize?: number;
+
+  // Documents
+  panNumber?: string;
+  bankAccountNumber?: string;
+  ifscCode?: string;
+
+  // Carbon Projects
+  interestedProjects?: string[];
+  sustainablePractices?: string[];
+  estimatedIncome?: number;
+
   verified: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -92,6 +114,39 @@ export interface OTPRequest {
 export interface OTPVerification {
   email: string;
   otp: string;
+  registrationData?: EnhancedFarmerRegistration;
+}
+
+export interface EnhancedFarmerRegistration {
+  // Personal Info
+  name: string;
+  phone: string;
+
+  // Farm Details
+  farmName: string;
+  landSize: number;
+  landUnit: "acres" | "hectares";
+  farmingType: "organic" | "conventional" | "mixed";
+  primaryCrops: string[];
+  irrigationType: "rain_fed" | "canal" | "borewell" | "drip" | "sprinkler";
+
+  // Location
+  address: string;
+  pincode: string;
+  state: string;
+  district?: string;
+  latitude?: number;
+  longitude?: number;
+
+  // Optional Documents
+  aadhaarNumber?: string;
+  panNumber?: string;
+  bankAccountNumber?: string;
+  ifscCode?: string;
+
+  // Carbon Projects
+  interestedProjects: string[];
+  sustainablePractices: string[];
 }
 
 export interface AdminLoginRequest {
