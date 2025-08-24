@@ -80,7 +80,7 @@ export default function Solutions() {
         "IPFS",
       ],
       farmer_testimonial:
-        "Satellite se mera khet dekh kar paisa mil raha hai. Science fiction lag raha hai!",
+        "Satellite से मेरा खेत देखकर पैसा मिल रहा है। पहले तो science fiction लग रहा था, अब तो मेरी जिंदगी ही बदल गई है!",
       badge: "Highest Accuracy",
     },
     {
