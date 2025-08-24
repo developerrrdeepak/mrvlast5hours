@@ -19,6 +19,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
   const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [generatedOTP, setGeneratedOTP] = useState("");
   const { sendOTP, verifyOTP, adminLogin } = useAuth();
   const navigate = useNavigate();
 
