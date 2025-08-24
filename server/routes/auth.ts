@@ -75,6 +75,12 @@ export const verifyOTP: RequestHandler = async (req, res) => {
 
     const storedOTP = otpStorage[email];
 
+    console.log(`🔍 [OTP VERIFICATION] for ${email}:`);
+    console.log(`   Provided OTP: ${otp}`);
+    console.log(`   Stored OTP: ${storedOTP?.otp || 'Not found'}`);
+    console.log(`   Current time: ${Date.now()}`);
+    console.log(`   Expires at: ${storedOTP?.expires || 'N/A'}`);
+
     if (!storedOTP) {
       return res.status(400).json({ success: false, message: "OTP not found or expired" });
     }
