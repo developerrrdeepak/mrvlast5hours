@@ -107,7 +107,7 @@ export default function Solutions() {
         "Differential Privacy",
       ],
       farmer_testimonial:
-        "हमारा पूरा गांव मिलकर carbon farming कर रहा है। Unity में strength! अब तो हमारे ���हां सबसे ज्यादा कमाई होती है।",
+        "हमारा पूरा गांव मिलकर carbon farming कर रहा है। Unity में strength! अब तो हमारे यहां सबसे ज्यादा कमाई होती है।",
       badge: "Community Choice",
     },
   ];
@@ -403,12 +403,12 @@ export default function Solutions() {
           <Card className="border-0 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white">
             <CardContent className="p-12">
               <h2 className="text-4xl font-display font-black mb-4 leading-tight">
-                Ready to Start Earning from Carbon? 🚀
+                Carbon से कमाई शुरू करने को तैयार हैं? 🚀
               </h2>
               <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto font-medium leading-relaxed">
-                Join the 24,000+ farmers already earning ₹25,000-50,000 annually
+                Join the 50,000+ farmers already earning ₹25,000-50,000 monthly
                 through our advanced MRV solutions. AI technology made simple
-                for Indian farmers.
+                for Indian farmers. <span className="font-bold">हर महीने गारंटी के साथ पैसा!</span>
               </p>
               <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
                 <div className="flex items-center space-x-2">
