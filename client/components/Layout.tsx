@@ -191,6 +191,31 @@ export default function Layout({ children }: LayoutProps) {
                     {item.name}
                   </Link>
                 ))}
+
+                {/* Mobile Language Selector & Chatbot */}
+                <div className="px-3 pt-2 space-y-2 border-t border-gray-200">
+                  <div className="flex space-x-2">
+                    <div className="flex-1">
+                      <LanguageSelector
+                        selectedLanguage={language}
+                        onLanguageChange={changeLanguage}
+                      />
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setChatbotOpen(true);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center space-x-2 border-green-200 hover:bg-green-50"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>AI Help</span>
+                    </Button>
+                  </div>
+                </div>
+
                 <div className="px-3 pt-2">
                   {isAuthenticated ? (
                     <div className="space-y-2">
