@@ -127,6 +127,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const verifyOTP = async (data: OTPVerification): Promise<LoginResponse> => {
     try {
+      console.log("🔐 [CLIENT] Verifying OTP for:", data.email);
       dispatch({ type: "SET_LOADING", payload: true });
 
       const response = await fetch("/api/auth/verify-otp", {
@@ -137,20 +138,37 @@ export function AuthProvider({ children }: AuthProviderProps) {
         body: JSON.stringify(data),
       });
 
+      console.log("📡 [CLIENT] Verify OTP Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ [CLIENT] OTP verification failed:", response.status, errorText);
+        dispatch({ type: "SET_LOADING", payload: false });
+        return {
+          success: false,
+          message: `Server error: ${response.status} - ${errorText}`
+        };
+      }
+
       const result = await response.json();
+      console.log("📊 [CLIENT] OTP verification result:", { success: result.success, hasUser: !!result.user });
 
       if (result.success && result.user) {
         localStorage.setItem("auth_token", result.token);
         dispatch({ type: "SET_USER", payload: result.user });
+        console.log("✅ [CLIENT] User authenticated successfully");
       } else {
         dispatch({ type: "SET_LOADING", payload: false });
       }
 
       return result;
     } catch (error) {
-      console.error("OTP verification failed:", error);
+      console.error("❌ [CLIENT] OTP verification network error:", error);
       dispatch({ type: "SET_LOADING", payload: false });
-      return { success: false, message: "Verification failed" };
+      return {
+        success: false,
+        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      };
     }
   };
 
@@ -158,6 +176,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     data: AdminLoginRequest,
   ): Promise<LoginResponse> => {
     try {
+      console.log("👨‍💻 [CLIENT] Admin login attempt for:", data.email);
       dispatch({ type: "SET_LOADING", payload: true });
 
       const response = await fetch("/api/auth/admin-login", {
@@ -168,20 +187,37 @@ export function AuthProvider({ children }: AuthProviderProps) {
         body: JSON.stringify(data),
       });
 
+      console.log("📡 [CLIENT] Admin login Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ [CLIENT] Admin login failed:", response.status, errorText);
+        dispatch({ type: "SET_LOADING", payload: false });
+        return {
+          success: false,
+          message: `Server error: ${response.status} - ${errorText}`
+        };
+      }
+
       const result = await response.json();
+      console.log("📊 [CLIENT] Admin login result:", { success: result.success, hasUser: !!result.user });
 
       if (result.success && result.user) {
         localStorage.setItem("auth_token", result.token);
         dispatch({ type: "SET_USER", payload: result.user });
+        console.log("✅ [CLIENT] Admin authenticated successfully");
       } else {
         dispatch({ type: "SET_LOADING", payload: false });
       }
 
       return result;
     } catch (error) {
-      console.error("Admin login failed:", error);
+      console.error("❌ [CLIENT] Admin login network error:", error);
       dispatch({ type: "SET_LOADING", payload: false });
-      return { success: false, message: "Login failed" };
+      return {
+        success: false,
+        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      };
     }
   };
 
