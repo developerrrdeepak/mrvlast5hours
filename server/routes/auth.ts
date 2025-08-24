@@ -5,6 +5,8 @@ import {
   Admin,
   LoginResponse,
   EnhancedFarmerRegistration,
+  FarmerPasswordRequest,
+  FarmerLoginRequest,
 } from "@shared/auth";
 
 // Mock data storage - in production, use a proper database
@@ -410,6 +412,133 @@ export const getFarmers: RequestHandler = async (req, res) => {
     res.json({ success: true, farmers });
   } catch (error) {
     console.error("Get farmers error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+// Farmer password registration
+export const farmerPasswordRegister: RequestHandler = async (req, res) => {
+  try {
+    const { email, password, name, phone } = req.body as FarmerPasswordRequest;
+
+    console.log(`👨‍🌾 [FARMER REGISTER] Registration attempt for: ${email}`);
+
+    if (!email || !password) {
+      console.log("❌ [FARMER REGISTER] Missing email or password");
+      return res
+        .status(400)
+        .json({ success: false, message: "Email and password are required" });
+    }
+
+    if (password.length < 6) {
+      console.log("❌ [FARMER REGISTER] Password too short");
+      return res
+        .status(400)
+        .json({ success: false, message: "Password must be at least 6 characters" });
+    }
+
+    // Check if farmer already exists
+    const existingFarmer = farmers.find((f) => f.email === email);
+    if (existingFarmer) {
+      console.log(`❌ [FARMER REGISTER] Farmer already exists: ${email}`);
+      return res
+        .status(400)
+        .json({ success: false, message: "Farmer already registered with this email" });
+    }
+
+    // Create new farmer
+    const farmer: Farmer = {
+      id: `farmer-${Date.now()}`,
+      email,
+      name: name || email.split('@')[0],
+      phone,
+      verified: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      estimatedIncome: 0,
+    };
+
+    farmers.push(farmer);
+
+    // Store password (in production, hash this!)
+    otpStorage[`password_${email}`] = { otp: password, expires: Date.now() + 365 * 24 * 60 * 60 * 1000 }; // 1 year
+
+    // Create session
+    const token = generateToken();
+    const user: AuthUser = {
+      type: "farmer",
+      farmer,
+    };
+
+    sessions[token] = user;
+
+    console.log(`✅ [FARMER REGISTER] Farmer registered successfully: ${email}`);
+
+    const response: LoginResponse = {
+      success: true,
+      user,
+      token,
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error("❌ [FARMER REGISTER] Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+// Farmer password login
+export const farmerPasswordLogin: RequestHandler = async (req, res) => {
+  try {
+    const { email, password } = req.body as FarmerLoginRequest;
+
+    console.log(`👨‍🌾 [FARMER LOGIN] Login attempt for: ${email}`);
+
+    if (!email || !password) {
+      console.log("❌ [FARMER LOGIN] Missing email or password");
+      return res
+        .status(400)
+        .json({ success: false, message: "Email and password are required" });
+    }
+
+    // Find farmer
+    const farmer = farmers.find((f) => f.email === email);
+    if (!farmer) {
+      console.log(`❌ [FARMER LOGIN] Farmer not found: ${email}`);
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    // Check password (in production, compare hashed passwords!)
+    const storedPassword = otpStorage[`password_${email}`];
+    if (!storedPassword || storedPassword.otp !== password) {
+      console.log(`❌ [FARMER LOGIN] Invalid password for: ${email}`);
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    // Create session
+    const token = generateToken();
+    const user: AuthUser = {
+      type: "farmer",
+      farmer,
+    };
+
+    sessions[token] = user;
+
+    console.log(`✅ [FARMER LOGIN] Farmer logged in successfully: ${email}`);
+
+    const response: LoginResponse = {
+      success: true,
+      user,
+      token,
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error("❌ [FARMER LOGIN] Error:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
