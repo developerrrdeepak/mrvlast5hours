@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Languages, Globe, CheckCircle } from "lucide-react";
 
 interface Language {
@@ -15,18 +26,90 @@ interface Language {
 }
 
 const supportedLanguages: Language[] = [
-  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸', region: 'Global' },
-  { code: 'hi', name: 'Hindi', nativeName: 'हिंदी', flag: '🇮🇳', region: 'North India' },
-  { code: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: '🇧🇩', region: 'West Bengal, Bangladesh' },
-  { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: '🇮🇳', region: 'Andhra Pradesh, Telangana' },
-  { code: 'mr', name: 'Marathi', nativeName: 'मराठी', flag: '🇮🇳', region: 'Maharashtra' },
-  { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳', region: 'Tamil Nadu' },
-  { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: '🇮🇳', region: 'Gujarat' },
-  { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ', flag: '🇮🇳', region: 'Karnataka' },
-  { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', flag: '🇮🇳', region: 'Punjab' },
-  { code: 'or', name: 'Odia', nativeName: 'ଓଡ଼ିଆ', flag: '🇮🇳', region: 'Odisha' },
-  { code: 'as', name: 'Assamese', nativeName: 'অসমীয়া', flag: '🇮🇳', region: 'Assam' },
-  { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം', flag: '🇮🇳', region: 'Kerala' }
+  {
+    code: "en",
+    name: "English",
+    nativeName: "English",
+    flag: "🇺🇸",
+    region: "Global",
+  },
+  {
+    code: "hi",
+    name: "Hindi",
+    nativeName: "हिंदी",
+    flag: "🇮🇳",
+    region: "North India",
+  },
+  {
+    code: "bn",
+    name: "Bengali",
+    nativeName: "বাংলা",
+    flag: "🇧🇩",
+    region: "West Bengal, Bangladesh",
+  },
+  {
+    code: "te",
+    name: "Telugu",
+    nativeName: "తెలుగు",
+    flag: "🇮🇳",
+    region: "Andhra Pradesh, Telangana",
+  },
+  {
+    code: "mr",
+    name: "Marathi",
+    nativeName: "मराठी",
+    flag: "🇮🇳",
+    region: "Maharashtra",
+  },
+  {
+    code: "ta",
+    name: "Tamil",
+    nativeName: "தமிழ்",
+    flag: "🇮🇳",
+    region: "Tamil Nadu",
+  },
+  {
+    code: "gu",
+    name: "Gujarati",
+    nativeName: "ગુજરાતી",
+    flag: "🇮🇳",
+    region: "Gujarat",
+  },
+  {
+    code: "kn",
+    name: "Kannada",
+    nativeName: "ಕನ್ನಡ",
+    flag: "🇮🇳",
+    region: "Karnataka",
+  },
+  {
+    code: "pa",
+    name: "Punjabi",
+    nativeName: "ਪੰਜਾਬੀ",
+    flag: "🇮🇳",
+    region: "Punjab",
+  },
+  {
+    code: "or",
+    name: "Odia",
+    nativeName: "ଓଡ଼ିଆ",
+    flag: "🇮🇳",
+    region: "Odisha",
+  },
+  {
+    code: "as",
+    name: "Assamese",
+    nativeName: "অসমীয়া",
+    flag: "🇮🇳",
+    region: "Assam",
+  },
+  {
+    code: "ml",
+    name: "Malayalam",
+    nativeName: "മലയാളം",
+    flag: "🇮🇳",
+    region: "Kerala",
+  },
 ];
 
 interface LanguageSelectorProps {
@@ -36,15 +119,17 @@ interface LanguageSelectorProps {
   onModalChange?: (show: boolean) => void;
 }
 
-export default function LanguageSelector({ 
-  selectedLanguage, 
-  onLanguageChange, 
-  showModal = false, 
-  onModalChange 
+export default function LanguageSelector({
+  selectedLanguage,
+  onLanguageChange,
+  showModal = false,
+  onModalChange,
 }: LanguageSelectorProps) {
   const [isModalOpen, setIsModalOpen] = useState(showModal);
 
-  const currentLanguage = supportedLanguages.find(lang => lang.code === selectedLanguage) || supportedLanguages[0];
+  const currentLanguage =
+    supportedLanguages.find((lang) => lang.code === selectedLanguage) ||
+    supportedLanguages[0];
 
   const handleLanguageSelect = (languageCode: string) => {
     onLanguageChange(languageCode);
@@ -98,8 +183,12 @@ export default function LanguageSelector({
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">{currentLanguage.flag}</span>
                     <div>
-                      <p className="font-semibold text-green-800">{currentLanguage.nativeName}</p>
-                      <p className="text-sm text-green-600">{currentLanguage.region}</p>
+                      <p className="font-semibold text-green-800">
+                        {currentLanguage.nativeName}
+                      </p>
+                      <p className="text-sm text-green-600">
+                        {currentLanguage.region}
+                      </p>
                     </div>
                   </div>
                   <Badge className="bg-green-600 text-white">
@@ -115,11 +204,13 @@ export default function LanguageSelector({
               {supportedLanguages.map((language) => (
                 <Button
                   key={language.code}
-                  variant={selectedLanguage === language.code ? "default" : "outline"}
+                  variant={
+                    selectedLanguage === language.code ? "default" : "outline"
+                  }
                   className={`h-auto p-4 justify-start ${
-                    selectedLanguage === language.code 
-                      ? 'bg-green-600 hover:bg-green-700 border-green-600' 
-                      : 'hover:bg-green-50 hover:border-green-200'
+                    selectedLanguage === language.code
+                      ? "bg-green-600 hover:bg-green-700 border-green-600"
+                      : "hover:bg-green-50 hover:border-green-200"
                   }`}
                   onClick={() => handleLanguageSelect(language.code)}
                 >
@@ -127,9 +218,13 @@ export default function LanguageSelector({
                     <span className="text-xl">{language.flag}</span>
                     <div className="text-left flex-1">
                       <p className="font-medium">{language.nativeName}</p>
-                      <p className={`text-xs ${
-                        selectedLanguage === language.code ? 'text-green-100' : 'text-gray-600'
-                      }`}>
+                      <p
+                        className={`text-xs ${
+                          selectedLanguage === language.code
+                            ? "text-green-100"
+                            : "text-gray-600"
+                        }`}
+                      >
                         {language.region}
                       </p>
                     </div>
@@ -157,7 +252,8 @@ export default function LanguageSelector({
 
             <div className="text-center">
               <p className="text-xs text-gray-500">
-                Language settings are saved automatically. You can change this anytime.
+                Language settings are saved automatically. You can change this
+                anytime.
               </p>
             </div>
           </div>
@@ -169,17 +265,17 @@ export default function LanguageSelector({
 
 // Hook for language context
 export const useLanguage = () => {
-  const [language, setLanguage] = useState('en');
-  
+  const [language, setLanguage] = useState("en");
+
   const changeLanguage = (newLanguage: string) => {
     setLanguage(newLanguage);
-    localStorage.setItem('preferred-language', newLanguage);
+    localStorage.setItem("preferred-language", newLanguage);
   };
 
   // Load saved language on mount
   useState(() => {
-    const saved = localStorage.getItem('preferred-language');
-    if (saved && supportedLanguages.find(l => l.code === saved)) {
+    const saved = localStorage.getItem("preferred-language");
+    if (saved && supportedLanguages.find((l) => l.code === saved)) {
       setLanguage(saved);
     }
   });
