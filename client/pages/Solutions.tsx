@@ -52,7 +52,7 @@ export default function Solutions() {
       avg_earning: "₹28,000/year",
       tech_stack: ["TensorFlow Lite", "Computer Vision", "NLP", "Edge AI"],
       farmer_testimonial:
-        "Ab main apne phone se hi carbon credit kama leta hun. Bahut easy hai!",
+        "अब मैं अपने phone से ही carbon credit कमा लेता हूं। बहुत easy है! मेरे 2 एकड़ खेत से महीने का ₹25,000 मिल जाता है।",
       badge: "Farmer Favorite",
     },
     {
@@ -161,7 +161,7 @@ export default function Solutions() {
             भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
             <span className="font-bold text-emerald-600">
               {" "}
-              वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव��
+              वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव।
             </span>
           </p>
         </div>
