@@ -145,9 +145,34 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 ))}
                 <div className="px-3 pt-2">
-                  <Button className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide">
-                    Join Hackathon
-                  </Button>
+                  {isAuthenticated ? (
+                    <div className="space-y-2">
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        asChild
+                      >
+                        <Link to={user?.type === 'farmer' ? '/farmer-dashboard' : '/admin-dashboard'}>
+                          Dashboard
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={logout}
+                        className="w-full text-red-600 border-red-600 hover:bg-red-50"
+                      >
+                        <LogOut className="h-4 w-4 mr-2" />
+                        Logout
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={() => setAuthModalOpen(true)}
+                      className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide"
+                    >
+                      Sign in (Farmer)
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
