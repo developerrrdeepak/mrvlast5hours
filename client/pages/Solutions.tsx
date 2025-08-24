@@ -158,11 +158,10 @@ export default function Solutions() {
             Advanced <span className="text-emerald-600">MRV Solutions</span> 🌾
           </h1>
           <p className="text-subtitle text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
-            Cutting-edge AI algorithms specifically designed for Indian
-            smallholder farmers.
+            भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
             <span className="font-bold text-emerald-600">
               {" "}
-              Real earnings, real technology, real impact.
+              वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव��
             </span>
           </p>
         </div>
