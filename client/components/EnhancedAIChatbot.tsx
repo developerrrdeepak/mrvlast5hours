@@ -75,7 +75,8 @@ const languages = {
 // Enhanced AI responses with more context and personality
 const enhancedResponses = {
   en: {
-    greeting: "👋 Hello! I'm **Kisan AI**, your intelligent farming companion! I'm here to help you with carbon credits, sustainable farming practices, and maximizing your agricultural income. How can I assist you today?",
+    greeting:
+      "👋 Hello! I'm **Kisan AI**, your intelligent farming companion! I'm here to help you with carbon credits, sustainable farming practices, and maximizing your agricultural income. How can I assist you today?",
     carbonCredits: `🌱 **Carbon Credits - Your Green Gold!**
 
 Carbon credits are certificates that represent reducing 1 metric ton of CO2 from the atmosphere. Here's how farmers like you can benefit:
@@ -92,7 +93,7 @@ Carbon credits are certificates that represent reducing 1 metric ton of CO2 from
 • **Biomass Management**: Proper crop residue handling
 
 Would you like me to calculate your potential earnings based on your farm size?`,
-    
+
     mrvProcess: `📊 **MRV Process - Made Simple!**
 
 MRV stands for **Monitoring, Reporting & Verification**. Think of it as your farm's carbon passport:
@@ -235,7 +236,8 @@ I'm designed to understand your natural speech in multiple languages:
 Ready to chat? Just click the microphone! 🎤`,
   },
   hi: {
-    greeting: "🙏 नमस्ते! मैं **किसान AI** हूं, आपका बुद्धिमान खेती साथी! मैं कार्बन क्रेडिट, टिकाऊ खेती और आपकी कृषि आय बढ़ाने में मदद करता हूं। आज मैं आपकी कैसे सेवा कर सकता हूं?",
+    greeting:
+      "🙏 नमस्ते! मैं **किसान AI** हूं, आपका बुद्धिमान खेती साथी! मैं कार्बन क्रेडिट, टिकाऊ खेती और आपकी कृषि आय बढ़ाने में मदद करता हूं। आज मैं आपकी कैसे सेवा कर सकता हूं?",
     carbonCredits: `🌱 **कार्बन क्रेडिट - आपका हरा सोना!**
 
 कार्बन क्रेडिट ऐसे प्रमाणपत्र हैं जो 1 मीट्रिक टन CO2 कम करने का प्रतिनिधित्व करते हैं। जानिए कैसे फायदा उठाएं:
@@ -252,7 +254,7 @@ Ready to chat? Just click the microphone! 🎤`,
 • **फसल अवशेष**: उचित प��रबंधन
 
 क्या आप चाहते हैं कि मैं आपके खेत के आधार पर संभावित कमाई की गणना करूं?`,
-    
+
     mrvProcess: `📊 **MRV प्रक्रिया - आसान भाषा में!**
 
 MRV यानी **निगरानी, रिपोर्टिंग और सत्यापन**। इसे अपने खेत का कार्बन पासपोर्ट समझें:
@@ -345,7 +347,9 @@ export default function EnhancedAIChatbot({
   const [isMinimized, setIsMinimized] = useState(false);
   const [chatLanguage, setChatLanguage] = useState(selectedLanguage);
   const [isTyping, setIsTyping] = useState(false);
-  const [conversationMode, setConversationMode] = useState<"text" | "voice" | "phone">("text");
+  const [conversationMode, setConversationMode] = useState<
+    "text" | "voice" | "phone"
+  >("text");
   const [isOnline, setIsOnline] = useState(true);
   const [autoSpeak, setAutoSpeak] = useState(true);
 
@@ -358,12 +362,18 @@ export default function EnhancedAIChatbot({
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Speech Recognition
-      if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
-        const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+      if (
+        "webkitSpeechRecognition" in window ||
+        "SpeechRecognition" in window
+      ) {
+        const SpeechRecognition =
+          (window as any).webkitSpeechRecognition ||
+          (window as any).SpeechRecognition;
         recognition.current = new SpeechRecognition();
         recognition.current.continuous = false;
         recognition.current.interimResults = false;
-        recognition.current.lang = languages[chatLanguage as keyof typeof languages]?.voice || "en-US";
+        recognition.current.lang =
+          languages[chatLanguage as keyof typeof languages]?.voice || "en-US";
 
         recognition.current.onresult = (event: any) => {
           const transcript = event.results[0][0].transcript;
@@ -401,7 +411,9 @@ export default function EnhancedAIChatbot({
     if (open && messages.length === 0) {
       const welcomeMessage: Message = {
         id: Date.now().toString(),
-        text: enhancedResponses[chatLanguage as keyof typeof enhancedResponses]?.greeting || enhancedResponses.en.greeting,
+        text:
+          enhancedResponses[chatLanguage as keyof typeof enhancedResponses]
+            ?.greeting || enhancedResponses.en.greeting,
         sender: "bot",
         timestamp: new Date(),
         language: chatLanguage,
@@ -441,7 +453,11 @@ export default function EnhancedAIChatbot({
 
     // Generate AI response with enhanced context awareness
     setTimeout(() => {
-      const botResponse = generateEnhancedBotResponse(text, chatLanguage, conversationContext.current);
+      const botResponse = generateEnhancedBotResponse(
+        text,
+        chatLanguage,
+        conversationContext.current,
+      );
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: botResponse,
@@ -449,12 +465,17 @@ export default function EnhancedAIChatbot({
         timestamp: new Date(),
         language: chatLanguage,
       };
-      
+
       setIsTyping(false);
-      setMessages((prev) => prev.filter(m => m.id !== "typing").concat(botMessage));
+      setMessages((prev) =>
+        prev.filter((m) => m.id !== "typing").concat(botMessage),
+      );
 
       // Auto-speak in voice/phone mode
-      if ((conversationMode === "voice" || conversationMode === "phone") && autoSpeak) {
+      if (
+        (conversationMode === "voice" || conversationMode === "phone") &&
+        autoSpeak
+      ) {
         setTimeout(() => {
           speakMessage(botResponse, chatLanguage);
         }, 500);
@@ -469,32 +490,83 @@ export default function EnhancedAIChatbot({
     }, 1500); // Realistic typing delay
   };
 
-  const generateEnhancedBotResponse = (userInput: string, language: string, context: string[]) => {
+  const generateEnhancedBotResponse = (
+    userInput: string,
+    language: string,
+    context: string[],
+  ) => {
     const input = userInput.toLowerCase();
-    const responses = enhancedResponses[language as keyof typeof enhancedResponses] || enhancedResponses.en;
+    const responses =
+      enhancedResponses[language as keyof typeof enhancedResponses] ||
+      enhancedResponses.en;
 
     // Context-aware responses
-    const hasDiscussedCredits = context.some(msg => msg.includes("carbon") || msg.includes("कार्बन"));
-    const hasDiscussedRegistration = context.some(msg => msg.includes("register") || msg.includes("पंजीकरण"));
+    const hasDiscussedCredits = context.some(
+      (msg) => msg.includes("carbon") || msg.includes("कार्बन"),
+    );
+    const hasDiscussedRegistration = context.some(
+      (msg) => msg.includes("register") || msg.includes("पंजीकरण"),
+    );
 
     // Enhanced pattern matching with context
-    if (input.includes("carbon") || input.includes("कार्बन") || input.includes("credit")) {
+    if (
+      input.includes("carbon") ||
+      input.includes("कार्बन") ||
+      input.includes("credit")
+    ) {
       return responses.carbonCredits;
-    } else if (input.includes("mrv") || input.includes("निगरानी") || input.includes("monitoring")) {
+    } else if (
+      input.includes("mrv") ||
+      input.includes("निगरानी") ||
+      input.includes("monitoring")
+    ) {
       return responses.mrvProcess;
-    } else if (input.includes("register") || input.includes("signup") || input.includes("पंजीकरण") || input.includes("join")) {
+    } else if (
+      input.includes("register") ||
+      input.includes("signup") ||
+      input.includes("पंजीकरण") ||
+      input.includes("join")
+    ) {
       return responses.registration;
-    } else if (input.includes("earn") || input.includes("income") || input.includes("कमाई") || input.includes("आय") || input.includes("money") || input.includes("price")) {
+    } else if (
+      input.includes("earn") ||
+      input.includes("income") ||
+      input.includes("कमाई") ||
+      input.includes("आय") ||
+      input.includes("money") ||
+      input.includes("price")
+    ) {
       return responses.earnings;
-    } else if (input.includes("voice") || input.includes("speak") || input.includes("mic") || input.includes("बोल") || input.includes("आवाज़")) {
+    } else if (
+      input.includes("voice") ||
+      input.includes("speak") ||
+      input.includes("mic") ||
+      input.includes("बोल") ||
+      input.includes("आवाज़")
+    ) {
       return responses.voiceHelp || responses.helpOptions;
-    } else if (input.includes("help") || input.includes("मदद") || input.includes("सहायता") || input.includes("what can you do")) {
+    } else if (
+      input.includes("help") ||
+      input.includes("मदद") ||
+      input.includes("सहायता") ||
+      input.includes("what can you do")
+    ) {
       return responses.helpOptions;
-    } else if (input.includes("farm size") || input.includes("hectare") || input.includes("acre") || input.includes("हेक्टेयर")) {
-      return language === "hi" 
+    } else if (
+      input.includes("farm size") ||
+      input.includes("hectare") ||
+      input.includes("acre") ||
+      input.includes("हेक्टेयर")
+    ) {
+      return language === "hi"
         ? `🌾 **खेत का आकार और कमाई:**\n\nमुझे बताएं आपका खेत कितना बड़ा है:\n• छोटा खेत (1-2 हेक्टेयर)\n• मध्यम खेत (3-5 हेक्टेयर)\n• बड़ा खेत (5+ हेक्टेयर)\n\nमैं आपके लिए सटीक कमाई की गणना कर दूंगा! 💰`
         : `🌾 **Farm Size & Earnings:**\n\nTell me your farm size:\n• Small farm (1-2 hectares)\n• Medium farm (3-5 hectares)\n• Large farm (5+ hectares)\n\nI'll calculate exact earnings for you! 💰`;
-    } else if (input.includes("crops") || input.includes("फसल") || input.includes("plant") || input.includes("grow")) {
+    } else if (
+      input.includes("crops") ||
+      input.includes("फसल") ||
+      input.includes("plant") ||
+      input.includes("grow")
+    ) {
       return language === "hi"
         ? `🌾 **फसल सलाह:**\n\nकार्बन क्रेडिट के लिए सबसे अच्छी फसलें:\n• **धान**: SRI विधि से 30% अधिक कमाई\n• **गेहूं**: ज़ीरो टिलेज से 2-3 क्रेडिट/हेक्टेयर\n• **दालें**: नाइट्रोजन फिक्सेशन से अतिरिक्त लाभ\n• **बागवानी**: लंबी अवधि में सबसे ज्यादा फायदा\n\nकौन सी फसल के बारे में विस्तार से जानना चाहते हैं?`
         : `🌾 **Crop Advisory:**\n\nBest crops for carbon credits:\n• **Rice**: SRI method gives 30% more earnings\n• **Wheat**: Zero tillage yields 2-3 credits/hectare\n• **Pulses**: Extra benefits from nitrogen fixation\n• **Horticulture**: Highest long-term profits\n\nWhich crop would you like to know more about?`;
@@ -515,10 +587,15 @@ export default function EnhancedAIChatbot({
   const startListening = () => {
     if (recognition.current && !isListening) {
       setIsListening(true);
-      recognition.current.lang = languages[chatLanguage as keyof typeof languages]?.voice || "en-US";
+      recognition.current.lang =
+        languages[chatLanguage as keyof typeof languages]?.voice || "en-US";
       recognition.current.start();
     } else if (!recognition.current) {
-      toast.error(chatLanguage === "hi" ? "आपका ब्राउज़र वॉयस को सपोर्ट नही�� करता" : "Voice recognition not supported");
+      toast.error(
+        chatLanguage === "hi"
+          ? "आपका ब्राउज़र वॉयस को सपोर्ट नही�� करता"
+          : "Voice recognition not supported",
+      );
     }
   };
 
@@ -533,10 +610,14 @@ export default function EnhancedAIChatbot({
     if (synthesis.current && text) {
       setIsSpeaking(true);
       // Remove markdown formatting for speech
-      const cleanText = text.replace(/\*\*(.*?)\*\*/g, '$1').replace(/[•*#]/g, '').replace(/\n/g, ' ');
-      
+      const cleanText = text
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        .replace(/[•*#]/g, "")
+        .replace(/\n/g, " ");
+
       const utterance = new SpeechSynthesisUtterance(cleanText);
-      utterance.lang = languages[language as keyof typeof languages]?.voice || "en-US";
+      utterance.lang =
+        languages[language as keyof typeof languages]?.voice || "en-US";
       utterance.rate = 0.9;
       utterance.pitch = 1.1;
       utterance.volume = 0.8;
@@ -565,24 +646,30 @@ export default function EnhancedAIChatbot({
     const currentIndex = modes.indexOf(conversationMode);
     const nextMode = modes[(currentIndex + 1) % modes.length];
     setConversationMode(nextMode);
-    
+
     if (nextMode === "voice" || nextMode === "phone") {
       toast.success(
-        chatLanguage === "hi" 
+        chatLanguage === "hi"
           ? `🎤 ${nextMode === "phone" ? "फोन कॉल" : "वॉयस"} मोड चालू। बोलना शुरू करें!`
-          : `🎤 ${nextMode === "phone" ? "Phone Call" : "Voice"} mode activated. Start speaking!`
+          : `🎤 ${nextMode === "phone" ? "Phone Call" : "Voice"} mode activated. Start speaking!`,
       );
       setTimeout(() => startListening(), 1000);
     } else {
       stopListening();
       stopSpeaking();
-      toast.info(chatLanguage === "hi" ? "📝 टेक्स्ट मोड चालू" : "📝 Text mode activated");
+      toast.info(
+        chatLanguage === "hi"
+          ? "📝 टेक्स्ट मोड चालू"
+          : "📝 Text mode activated",
+      );
     }
   };
 
   const copyMessage = (text: string) => {
     navigator.clipboard.writeText(text);
-    toast.success(chatLanguage === "hi" ? "📋 कॉपी हो गया!" : "📋 Copied to clipboard!");
+    toast.success(
+      chatLanguage === "hi" ? "📋 कॉपी हो गया!" : "📋 Copied to clipboard!",
+    );
   };
 
   const clearChat = () => {
@@ -590,25 +677,37 @@ export default function EnhancedAIChatbot({
     conversationContext.current = [];
     const welcomeMessage: Message = {
       id: Date.now().toString(),
-      text: enhancedResponses[chatLanguage as keyof typeof enhancedResponses]?.greeting || enhancedResponses.en.greeting,
+      text:
+        enhancedResponses[chatLanguage as keyof typeof enhancedResponses]
+          ?.greeting || enhancedResponses.en.greeting,
       sender: "bot",
       timestamp: new Date(),
       language: chatLanguage,
     };
     setMessages([welcomeMessage]);
-    toast.success(chatLanguage === "hi" ? "🔄 चैट क्लियर हो गया" : "🔄 Chat cleared");
+    toast.success(
+      chatLanguage === "hi" ? "🔄 चैट क्लियर हो गया" : "🔄 Chat cleared",
+    );
   };
 
   const formatMessage = (text: string) => {
     // Convert markdown-style formatting to JSX
-    return text.split('\n').map((line, index) => {
+    return text.split("\n").map((line, index) => {
       // Bold text
-      const boldFormatted = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      const boldFormatted = line.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>",
+      );
       // Bullet points
-      const bulletFormatted = boldFormatted.replace(/^• /, '• ').replace(/^•/, '•');
-      
+      const bulletFormatted = boldFormatted
+        .replace(/^• /, "• ")
+        .replace(/^•/, "•");
+
       return (
-        <span key={index} dangerouslySetInnerHTML={{ __html: bulletFormatted }} />
+        <span
+          key={index}
+          dangerouslySetInnerHTML={{ __html: bulletFormatted }}
+        />
       );
     });
   };
@@ -637,33 +736,47 @@ export default function EnhancedAIChatbot({
                   <Sparkles className="h-5 w-5 text-yellow-500 animate-pulse" />
                 </DialogTitle>
                 <div className="flex items-center space-x-2 text-sm">
-                  <Badge variant="outline" className="bg-green-100 text-green-700 border-green-300">
+                  <Badge
+                    variant="outline"
+                    className="bg-green-100 text-green-700 border-green-300"
+                  >
                     🟢 Online
                   </Badge>
-                  <Badge variant="outline" className={cn(
-                    "text-xs",
-                    conversationMode === "text" && "bg-blue-100 text-blue-700",
-                    conversationMode === "voice" && "bg-purple-100 text-purple-700", 
-                    conversationMode === "phone" && "bg-red-100 text-red-700"
-                  )}>
+                  <Badge
+                    variant="outline"
+                    className={cn(
+                      "text-xs",
+                      conversationMode === "text" &&
+                        "bg-blue-100 text-blue-700",
+                      conversationMode === "voice" &&
+                        "bg-purple-100 text-purple-700",
+                      conversationMode === "phone" && "bg-red-100 text-red-700",
+                    )}
+                  >
                     {conversationMode === "text" && "📝 Text"}
                     {conversationMode === "voice" && "🎤 Voice"}
                     {conversationMode === "phone" && "📞 Phone"}
                   </Badge>
                   {isListening && (
-                    <Badge variant="outline" className="bg-red-100 text-red-700 animate-pulse">
+                    <Badge
+                      variant="outline"
+                      className="bg-red-100 text-red-700 animate-pulse"
+                    >
                       🎤 Listening...
                     </Badge>
                   )}
                   {isSpeaking && (
-                    <Badge variant="outline" className="bg-green-100 text-green-700 animate-pulse">
+                    <Badge
+                      variant="outline"
+                      className="bg-green-100 text-green-700 animate-pulse"
+                    >
                       🔊 Speaking...
                     </Badge>
                   )}
                 </div>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Select value={chatLanguage} onValueChange={setChatLanguage}>
                 <SelectTrigger className="w-36 bg-white/80">
@@ -680,19 +793,33 @@ export default function EnhancedAIChatbot({
                   ))}
                 </SelectContent>
               </Select>
-              
-              <Button variant="outline" size="sm" onClick={toggleConversationMode}>
-                {conversationMode === "text" && <MessageCircle className="h-4 w-4" />}
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={toggleConversationMode}
+              >
+                {conversationMode === "text" && (
+                  <MessageCircle className="h-4 w-4" />
+                )}
                 {conversationMode === "voice" && <Mic className="h-4 w-4" />}
                 {conversationMode === "phone" && <Phone className="h-4 w-4" />}
               </Button>
-              
+
               <Button variant="outline" size="sm" onClick={clearChat}>
                 <RotateCcw className="h-4 w-4" />
               </Button>
-              
-              <Button variant="outline" size="sm" onClick={() => setIsMinimized(!isMinimized)}>
-                {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsMinimized(!isMinimized)}
+              >
+                {isMinimized ? (
+                  <Maximize2 className="h-4 w-4" />
+                ) : (
+                  <Minimize2 className="h-4 w-4" />
+                )}
               </Button>
             </div>
           </div>
@@ -708,13 +835,15 @@ export default function EnhancedAIChatbot({
                     key={message.id}
                     className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                   >
-                    <div className={`max-w-[85%] ${message.sender === "user" ? "ml-4" : "mr-4"}`}>
+                    <div
+                      className={`max-w-[85%] ${message.sender === "user" ? "ml-4" : "mr-4"}`}
+                    >
                       <div
                         className={cn(
                           "rounded-2xl px-6 py-4 shadow-lg",
                           message.sender === "user"
                             ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white"
-                            : "bg-white border border-gray-200 text-gray-900"
+                            : "bg-white border border-gray-200 text-gray-900",
                         )}
                       >
                         <div className="flex items-start space-x-3">
@@ -725,21 +854,27 @@ export default function EnhancedAIChatbot({
                               </AvatarFallback>
                             </Avatar>
                           )}
-                          
+
                           <div className="flex-1 min-w-0">
                             {message.isTyping ? (
                               <div className="flex items-center space-x-2">
                                 <Loader2 className="h-4 w-4 animate-spin text-green-600" />
                                 <span className="text-gray-600 text-sm animate-pulse">
-                                  {chatLanguage === "hi" ? "टाइप कर रहा है..." : "Typing..."}
+                                  {chatLanguage === "hi"
+                                    ? "टाइप कर रहा है..."
+                                    : "Typing..."}
                                 </span>
                               </div>
                             ) : (
                               <>
-                                <div className={cn(
-                                  "text-base leading-relaxed",
-                                  message.sender === "user" ? "text-white" : "text-gray-900"
-                                )}>
+                                <div
+                                  className={cn(
+                                    "text-base leading-relaxed",
+                                    message.sender === "user"
+                                      ? "text-white"
+                                      : "text-gray-900",
+                                  )}
+                                >
                                   {message.sender === "bot" ? (
                                     <div className="space-y-2">
                                       {formatMessage(message.text)}
@@ -748,23 +883,29 @@ export default function EnhancedAIChatbot({
                                     message.text
                                   )}
                                 </div>
-                                
+
                                 <div className="flex items-center justify-between mt-3">
-                                  <span className={cn(
-                                    "text-xs",
-                                    message.sender === "user" ? "text-green-100" : "text-gray-500"
-                                  )}>
-                                    {message.timestamp.toLocaleTimeString()} 
+                                  <span
+                                    className={cn(
+                                      "text-xs",
+                                      message.sender === "user"
+                                        ? "text-green-100"
+                                        : "text-gray-500",
+                                    )}
+                                  >
+                                    {message.timestamp.toLocaleTimeString()}
                                     {message.type === "voice" && " 🎤"}
                                   </span>
-                                  
+
                                   <div className="flex items-center space-x-2">
                                     {message.sender === "bot" && (
                                       <>
                                         <Button
                                           variant="ghost"
                                           size="sm"
-                                          onClick={() => copyMessage(message.text)}
+                                          onClick={() =>
+                                            copyMessage(message.text)
+                                          }
                                           className="h-6 w-6 p-0 hover:bg-gray-100"
                                         >
                                           <Copy className="h-3 w-3" />
@@ -772,7 +913,12 @@ export default function EnhancedAIChatbot({
                                         <Button
                                           variant="ghost"
                                           size="sm"
-                                          onClick={() => speakMessage(message.text, message.language)}
+                                          onClick={() =>
+                                            speakMessage(
+                                              message.text,
+                                              message.language,
+                                            )
+                                          }
                                           className="h-6 w-6 p-0 hover:bg-gray-100"
                                         >
                                           <Volume2 className="h-3 w-3" />
@@ -784,7 +930,7 @@ export default function EnhancedAIChatbot({
                               </>
                             )}
                           </div>
-                          
+
                           {message.sender === "user" && (
                             <Avatar className="h-8 w-8 bg-gradient-to-r from-blue-600 to-purple-600 mt-1">
                               <AvatarFallback className="text-white">
@@ -807,19 +953,29 @@ export default function EnhancedAIChatbot({
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setInputMessage(
-                    chatLanguage === "hi" ? "कार्बन क्रेडिट क्या है?" : "What are carbon credits?"
-                  )}
+                  onClick={() =>
+                    setInputMessage(
+                      chatLanguage === "hi"
+                        ? "कार्बन क्रेडिट क्या है?"
+                        : "What are carbon credits?",
+                    )
+                  }
                   className="bg-green-50 hover:bg-green-100 border-green-200"
                 >
-                  {chatLanguage === "hi" ? "🌱 कार्बन क्रेडिट" : "🌱 Carbon Credits"}
+                  {chatLanguage === "hi"
+                    ? "🌱 कार्बन क्रेडिट"
+                    : "🌱 Carbon Credits"}
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setInputMessage(
-                    chatLanguage === "hi" ? "रजिस्ट्रेशन कैसे करूं?" : "How do I register?"
-                  )}
+                  onClick={() =>
+                    setInputMessage(
+                      chatLanguage === "hi"
+                        ? "रजिस्ट्रेशन कैसे करूं?"
+                        : "How do I register?",
+                    )
+                  }
                   className="bg-blue-50 hover:bg-blue-100 border-blue-200"
                 >
                   {chatLanguage === "hi" ? "📝 रजिस्टर करें" : "📝 Register"}
@@ -827,9 +983,13 @@ export default function EnhancedAIChatbot({
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setInputMessage(
-                    chatLanguage === "hi" ? "मैं कितना कमा सकता हूं?" : "How much can I earn?"
-                  )}
+                  onClick={() =>
+                    setInputMessage(
+                      chatLanguage === "hi"
+                        ? "मैं कितना कमा सकता हूं?"
+                        : "How much can I earn?",
+                    )
+                  }
                   className="bg-amber-50 hover:bg-amber-100 border-amber-200"
                 >
                   {chatLanguage === "hi" ? "💰 कमाई" : "💰 Earnings"}
@@ -852,8 +1012,12 @@ export default function EnhancedAIChatbot({
                     onChange={(e) => setInputMessage(e.target.value)}
                     placeholder={
                       chatLanguage === "hi"
-                        ? conversationMode === "voice" ? "बोलें या टाइप करें..." : "अपना सवाल टाइप करें..."
-                        : conversationMode === "voice" ? "Speak or type..." : "Type your question..."
+                        ? conversationMode === "voice"
+                          ? "बोलें या टाइप करें..."
+                          : "अपना सवाल टाइप करें..."
+                        : conversationMode === "voice"
+                          ? "Speak or type..."
+                          : "Type your question..."
                     }
                     onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                     className="pr-12 bg-white border-gray-300 focus:border-green-500 focus:ring-green-500"
@@ -864,14 +1028,20 @@ export default function EnhancedAIChatbot({
                     size="sm"
                     className={cn(
                       "absolute right-2 top-1 h-8 w-8",
-                      isListening ? "text-red-600 animate-pulse" : "text-gray-600"
+                      isListening
+                        ? "text-red-600 animate-pulse"
+                        : "text-gray-600",
                     )}
                     onClick={isListening ? stopListening : startListening}
                   >
-                    {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+                    {isListening ? (
+                      <MicOff className="h-4 w-4" />
+                    ) : (
+                      <Mic className="h-4 w-4" />
+                    )}
                   </Button>
                 </div>
-                
+
                 <Button
                   onClick={() => handleSendMessage()}
                   disabled={!inputMessage.trim()}
@@ -879,32 +1049,37 @@ export default function EnhancedAIChatbot({
                 >
                   <Send className="h-4 w-4" />
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   onClick={isSpeaking ? stopSpeaking : () => {}}
                   className={cn(
                     "shadow-lg",
-                    isSpeaking ? "text-red-600 border-red-300" : "text-gray-600"
+                    isSpeaking
+                      ? "text-red-600 border-red-300"
+                      : "text-gray-600",
                   )}
                 >
-                  {isSpeaking ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+                  {isSpeaking ? (
+                    <VolumeX className="h-4 w-4" />
+                  ) : (
+                    <Volume2 className="h-4 w-4" />
+                  )}
                 </Button>
               </div>
-              
+
               {conversationMode !== "text" && (
                 <div className="mt-3 text-center">
                   <p className="text-sm text-gray-600 flex items-center justify-center space-x-2">
                     <Zap className="h-4 w-4 text-green-600" />
                     <span>
-                      {chatLanguage === "hi" 
-                        ? conversationMode === "phone" 
+                      {chatLanguage === "hi"
+                        ? conversationMode === "phone"
                           ? "📞 फोन कॉल मोड - हाथ-मुक्त बातचीत करें"
                           : "🎤 वॉयस मोड - बस बोलना शुरू करें"
                         : conversationMode === "phone"
                           ? "📞 Phone Call Mode - Hands-free conversation"
-                          : "🎤 Voice Mode - Just start speaking"
-                      }
+                          : "🎤 Voice Mode - Just start speaking"}
                     </span>
                   </p>
                 </div>

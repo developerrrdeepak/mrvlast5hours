@@ -53,7 +53,7 @@ interface FarmerRegistrationData {
   otp: string;
   name: string;
   phone: string;
-  
+
   // Step 2: Farm Details
   farmName: string;
   landSize: number;
@@ -61,7 +61,7 @@ interface FarmerRegistrationData {
   farmingType: "organic" | "conventional" | "mixed";
   primaryCrops: string[];
   irrigationType: "rain_fed" | "canal" | "borewell" | "drip" | "sprinkler";
-  
+
   // Step 3: Location
   address: string;
   pincode: string;
@@ -69,13 +69,13 @@ interface FarmerRegistrationData {
   district: string;
   latitude?: number;
   longitude?: number;
-  
+
   // Step 4: Documents
   aadhaarNumber?: string;
   panNumber?: string;
   bankAccountNumber?: string;
   ifscCode?: string;
-  
+
   // Step 5: Carbon Projects Interest
   interestedProjects: string[];
   sustainablePractices: string[];
@@ -83,57 +83,110 @@ interface FarmerRegistrationData {
 }
 
 const cropOptions = [
-  "Rice (धान)", "Wheat (गेहूं)", "Sugarcane (गन्ना)", "Cotton (कपास)",
-  "Pulses (दालें)", "Oilseeds (तिलहन)", "Maize (मक्का)", "Bajra (बाजरा)",
-  "Jowar (ज्वार)", "Barley (जौ)", "Vegetables (सब्जियां)", "Fruits (फल)",
-  "Spices (मसाले)", "Tea (चाय)", "Coffee (कॉफी)", "Rubber (रबर)"
+  "Rice (धान)",
+  "Wheat (गेहूं)",
+  "Sugarcane (गन्ना)",
+  "Cotton (कपास)",
+  "Pulses (दालें)",
+  "Oilseeds (तिलहन)",
+  "Maize (मक्का)",
+  "Bajra (बाजरा)",
+  "Jowar (ज्वार)",
+  "Barley (जौ)",
+  "Vegetables (सब्जियां)",
+  "Fruits (फल)",
+  "Spices (मसाले)",
+  "Tea (चाय)",
+  "Coffee (कॉफी)",
+  "Rubber (रबर)",
 ];
 
 const sustainablePractices = [
-  "Agroforestry", "Zero Tillage", "Crop Rotation", "Organic Farming",
-  "Water Conservation", "Soil Health Management", "Integrated Pest Management",
-  "Renewable Energy Use", "Waste Composting", "Cover Cropping"
+  "Agroforestry",
+  "Zero Tillage",
+  "Crop Rotation",
+  "Organic Farming",
+  "Water Conservation",
+  "Soil Health Management",
+  "Integrated Pest Management",
+  "Renewable Energy Use",
+  "Waste Composting",
+  "Cover Cropping",
 ];
 
 const carbonProjects = [
-  "Rice-based Carbon Credits", "Agroforestry Projects", "Soil Carbon Enhancement",
-  "Methane Reduction", "Biomass Management", "Water Conservation Projects"
+  "Rice-based Carbon Credits",
+  "Agroforestry Projects",
+  "Soil Carbon Enhancement",
+  "Methane Reduction",
+  "Biomass Management",
+  "Water Conservation Projects",
 ];
 
 const indianStates = [
-  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
-  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
-  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
-  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
 ];
 
-export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthModalProps) {
+export default function EnhancedAuthModal({
+  open,
+  onOpenChange,
+}: EnhancedAuthModalProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [totalSteps] = useState(5);
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [generatedOTP, setGeneratedOTP] = useState("");
-  const [adminCredentials, setAdminCredentials] = useState({ email: "", password: "" });
-  
-  const [registrationData, setRegistrationData] = useState<FarmerRegistrationData>({
+  const [adminCredentials, setAdminCredentials] = useState({
     email: "",
-    otp: "",
-    name: "",
-    phone: "",
-    farmName: "",
-    landSize: 0,
-    landUnit: "acres",
-    farmingType: "conventional",
-    primaryCrops: [],
-    irrigationType: "rain_fed",
-    address: "",
-    pincode: "",
-    state: "",
-    district: "",
-    interestedProjects: [],
-    sustainablePractices: [],
+    password: "",
   });
+
+  const [registrationData, setRegistrationData] =
+    useState<FarmerRegistrationData>({
+      email: "",
+      otp: "",
+      name: "",
+      phone: "",
+      farmName: "",
+      landSize: 0,
+      landUnit: "acres",
+      farmingType: "conventional",
+      primaryCrops: [],
+      irrigationType: "rain_fed",
+      address: "",
+      pincode: "",
+      state: "",
+      district: "",
+      interestedProjects: [],
+      sustainablePractices: [],
+    });
 
   const { sendOTP, verifyOTP, adminLogin } = useAuth();
   const navigate = useNavigate();
@@ -143,10 +196,10 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
       setLoading(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setRegistrationData(prev => ({
+          setRegistrationData((prev) => ({
             ...prev,
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            longitude: position.coords.longitude,
           }));
           setLoading(false);
           toast.success("Location captured successfully! 📍");
@@ -154,7 +207,7 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
         (error) => {
           setLoading(false);
           toast.error("Unable to get location. Please enter manually.");
-        }
+        },
       );
     } else {
       toast.error("Geolocation is not supported by this browser.");
@@ -195,9 +248,9 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
 
     setLoading(true);
     try {
-      const result = await verifyOTP({ 
-        email: registrationData.email, 
-        otp: registrationData.otp 
+      const result = await verifyOTP({
+        email: registrationData.email,
+        otp: registrationData.otp,
       });
       if (result.success) {
         toast.success("Email verified! Continue with registration.");
@@ -249,13 +302,17 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
         }
         break;
       case 4:
-        if (!registrationData.address || !registrationData.pincode || !registrationData.state) {
+        if (
+          !registrationData.address ||
+          !registrationData.pincode ||
+          !registrationData.state
+        ) {
           toast.error("Please fill all required location details");
           return;
         }
         break;
     }
-    
+
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
@@ -296,13 +353,15 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
           ifscCode: registrationData.ifscCode,
           interestedProjects: registrationData.interestedProjects,
           sustainablePractices: registrationData.sustainablePractices,
-        }
+        },
       });
 
       if (result.success) {
         toast.success("🎉 Registration completed successfully!");
         if (result.user?.farmer?.estimatedIncome) {
-          toast.success(`💰 Estimated annual carbon income: ₹${result.user.farmer.estimatedIncome.toLocaleString()}`);
+          toast.success(
+            `💰 Estimated annual carbon income: ₹${result.user.farmer.estimatedIncome.toLocaleString()}`,
+          );
         }
         onOpenChange(false);
         navigate("/farmer-dashboard");
@@ -354,7 +413,7 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
             Welcome to Carbon Roots
           </DialogTitle>
         </DialogHeader>
-        
+
         <Tabs defaultValue="farmer" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="farmer" className="flex items-center space-x-2">
@@ -379,13 +438,43 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                 </span>
               </div>
               <Progress value={calculateProgress()} className="h-3" />
-              
+
               <div className="flex justify-between mt-2 text-xs text-gray-500">
-                <span className={currentStep >= 1 ? "text-emerald-600 font-medium" : ""}>Email</span>
-                <span className={currentStep >= 2 ? "text-emerald-600 font-medium" : ""}>Personal</span>
-                <span className={currentStep >= 3 ? "text-emerald-600 font-medium" : ""}>Farm</span>
-                <span className={currentStep >= 4 ? "text-emerald-600 font-medium" : ""}>Location</span>
-                <span className={currentStep >= 5 ? "text-emerald-600 font-medium" : ""}>Complete</span>
+                <span
+                  className={
+                    currentStep >= 1 ? "text-emerald-600 font-medium" : ""
+                  }
+                >
+                  Email
+                </span>
+                <span
+                  className={
+                    currentStep >= 2 ? "text-emerald-600 font-medium" : ""
+                  }
+                >
+                  Personal
+                </span>
+                <span
+                  className={
+                    currentStep >= 3 ? "text-emerald-600 font-medium" : ""
+                  }
+                >
+                  Farm
+                </span>
+                <span
+                  className={
+                    currentStep >= 4 ? "text-emerald-600 font-medium" : ""
+                  }
+                >
+                  Location
+                </span>
+                <span
+                  className={
+                    currentStep >= 5 ? "text-emerald-600 font-medium" : ""
+                  }
+                >
+                  Complete
+                </span>
               </div>
             </div>
 
@@ -397,7 +486,9 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     <Mail className="h-8 w-8 text-green-600" />
                   </div>
                   <CardTitle>Email Verification</CardTitle>
-                  <p className="text-gray-600">Let's start with verifying your email address</p>
+                  <p className="text-gray-600">
+                    Let's start with verifying your email address
+                  </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {!otpSent ? (
@@ -409,7 +500,12 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                           type="email"
                           placeholder="farmer@example.com"
                           value={registrationData.email}
-                          onChange={(e) => setRegistrationData(prev => ({ ...prev, email: e.target.value }))}
+                          onChange={(e) =>
+                            setRegistrationData((prev) => ({
+                              ...prev,
+                              email: e.target.value,
+                            }))
+                          }
                         />
                       </div>
                       <Button
@@ -429,16 +525,28 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                           type="text"
                           placeholder="Enter 6-digit OTP"
                           value={registrationData.otp}
-                          onChange={(e) => setRegistrationData(prev => ({ ...prev, otp: e.target.value }))}
+                          onChange={(e) =>
+                            setRegistrationData((prev) => ({
+                              ...prev,
+                              otp: e.target.value,
+                            }))
+                          }
                           maxLength={6}
                         />
-                        <p className="text-sm text-gray-600 mt-1">OTP sent to {registrationData.email}</p>
+                        <p className="text-sm text-gray-600 mt-1">
+                          OTP sent to {registrationData.email}
+                        </p>
                         {generatedOTP && (
                           <div className="p-3 bg-blue-50 border border-blue-200 rounded-md mt-2">
                             <p className="text-sm font-medium text-blue-800">
-                              🔐 Your OTP: <span className="font-mono text-lg">{generatedOTP}</span>
+                              🔐 Your OTP:{" "}
+                              <span className="font-mono text-lg">
+                                {generatedOTP}
+                              </span>
                             </p>
-                            <p className="text-xs text-blue-600 mt-1">(For testing purposes only)</p>
+                            <p className="text-xs text-blue-600 mt-1">
+                              (For testing purposes only)
+                            </p>
                           </div>
                         )}
                       </div>
@@ -482,7 +590,12 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                         id="name"
                         placeholder="Enter your full name"
                         value={registrationData.name}
-                        onChange={(e) => setRegistrationData(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                     <div>
@@ -491,17 +604,25 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                         id="phone"
                         placeholder="9876543210"
                         value={registrationData.phone}
-                        onChange={(e) => setRegistrationData(prev => ({ ...prev, phone: e.target.value }))}
+                        onChange={(e) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            phone: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                   </div>
-                  
+
                   <div className="flex justify-between pt-4">
                     <Button variant="outline" onClick={handlePrevStep}>
                       <ArrowLeft className="h-4 w-4 mr-2" />
                       Previous
                     </Button>
-                    <Button onClick={handleNextStep} className="bg-blue-600 hover:bg-blue-700">
+                    <Button
+                      onClick={handleNextStep}
+                      className="bg-blue-600 hover:bg-blue-700"
+                    >
                       Next
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
@@ -518,7 +639,9 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     <Wheat className="h-8 w-8 text-emerald-600" />
                   </div>
                   <CardTitle>Farm Details</CardTitle>
-                  <p className="text-gray-600">Information about your farming operation</p>
+                  <p className="text-gray-600">
+                    Information about your farming operation
+                  </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
@@ -527,10 +650,15 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                       id="farmName"
                       placeholder="e.g., Green Valley Farm"
                       value={registrationData.farmName}
-                      onChange={(e) => setRegistrationData(prev => ({ ...prev, farmName: e.target.value }))}
+                      onChange={(e) =>
+                        setRegistrationData((prev) => ({
+                          ...prev,
+                          farmName: e.target.value,
+                        }))
+                      }
                     />
                   </div>
-                  
+
                   <div className="grid md:grid-cols-3 gap-4">
                     <div className="md:col-span-2">
                       <Label htmlFor="landSize">Total Land Size *</Label>
@@ -539,15 +667,23 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                         type="number"
                         placeholder="5"
                         value={registrationData.landSize || ""}
-                        onChange={(e) => setRegistrationData(prev => ({ ...prev, landSize: parseFloat(e.target.value) || 0 }))}
+                        onChange={(e) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            landSize: parseFloat(e.target.value) || 0,
+                          }))
+                        }
                       />
                     </div>
                     <div>
                       <Label htmlFor="landUnit">Unit</Label>
-                      <Select 
-                        value={registrationData.landUnit} 
-                        onValueChange={(value: "acres" | "hectares") => 
-                          setRegistrationData(prev => ({ ...prev, landUnit: value }))
+                      <Select
+                        value={registrationData.landUnit}
+                        onValueChange={(value: "acres" | "hectares") =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            landUnit: value,
+                          }))
                         }
                       >
                         <SelectTrigger>
@@ -564,10 +700,15 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="farmingType">Farming Type</Label>
-                      <Select 
-                        value={registrationData.farmingType} 
-                        onValueChange={(value: "organic" | "conventional" | "mixed") => 
-                          setRegistrationData(prev => ({ ...prev, farmingType: value }))
+                      <Select
+                        value={registrationData.farmingType}
+                        onValueChange={(
+                          value: "organic" | "conventional" | "mixed",
+                        ) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            farmingType: value,
+                          }))
                         }
                       >
                         <SelectTrigger>
@@ -575,17 +716,22 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="organic">Organic</SelectItem>
-                          <SelectItem value="conventional">Conventional</SelectItem>
+                          <SelectItem value="conventional">
+                            Conventional
+                          </SelectItem>
                           <SelectItem value="mixed">Mixed</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
                       <Label htmlFor="irrigationType">Irrigation Type</Label>
-                      <Select 
-                        value={registrationData.irrigationType} 
-                        onValueChange={(value: any) => 
-                          setRegistrationData(prev => ({ ...prev, irrigationType: value }))
+                      <Select
+                        value={registrationData.irrigationType}
+                        onValueChange={(value: any) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            irrigationType: value,
+                          }))
                         }
                       >
                         <SelectTrigger>
@@ -606,20 +752,27 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     <Label>Primary Crops (Select multiple)</Label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2 max-h-40 overflow-y-auto">
                       {cropOptions.map((crop) => (
-                        <label key={crop} className="flex items-center space-x-2 cursor-pointer">
+                        <label
+                          key={crop}
+                          className="flex items-center space-x-2 cursor-pointer"
+                        >
                           <input
                             type="checkbox"
-                            checked={registrationData.primaryCrops.includes(crop)}
+                            checked={registrationData.primaryCrops.includes(
+                              crop,
+                            )}
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setRegistrationData(prev => ({
+                                setRegistrationData((prev) => ({
                                   ...prev,
-                                  primaryCrops: [...prev.primaryCrops, crop]
+                                  primaryCrops: [...prev.primaryCrops, crop],
                                 }));
                               } else {
-                                setRegistrationData(prev => ({
+                                setRegistrationData((prev) => ({
                                   ...prev,
-                                  primaryCrops: prev.primaryCrops.filter(c => c !== crop)
+                                  primaryCrops: prev.primaryCrops.filter(
+                                    (c) => c !== crop,
+                                  ),
                                 }));
                               }
                             }}
@@ -636,7 +789,10 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                       <ArrowLeft className="h-4 w-4 mr-2" />
                       Previous
                     </Button>
-                    <Button onClick={handleNextStep} className="bg-emerald-600 hover:bg-emerald-700">
+                    <Button
+                      onClick={handleNextStep}
+                      className="bg-emerald-600 hover:bg-emerald-700"
+                    >
                       Next
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
@@ -653,7 +809,9 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     <MapPin className="h-8 w-8 text-amber-600" />
                   </div>
                   <CardTitle>Farm Location</CardTitle>
-                  <p className="text-gray-600">Help us locate your farm for carbon monitoring</p>
+                  <p className="text-gray-600">
+                    Help us locate your farm for carbon monitoring
+                  </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
@@ -662,7 +820,12 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                       id="address"
                       placeholder="Village, Block/Tehsil details"
                       value={registrationData.address}
-                      onChange={(e) => setRegistrationData(prev => ({ ...prev, address: e.target.value }))}
+                      onChange={(e) =>
+                        setRegistrationData((prev) => ({
+                          ...prev,
+                          address: e.target.value,
+                        }))
+                      }
                       rows={3}
                     />
                   </div>
@@ -674,21 +837,33 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                         id="pincode"
                         placeholder="400001"
                         value={registrationData.pincode}
-                        onChange={(e) => setRegistrationData(prev => ({ ...prev, pincode: e.target.value }))}
+                        onChange={(e) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            pincode: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                     <div>
                       <Label htmlFor="state">State *</Label>
-                      <Select 
-                        value={registrationData.state} 
-                        onValueChange={(value) => setRegistrationData(prev => ({ ...prev, state: value }))}
+                      <Select
+                        value={registrationData.state}
+                        onValueChange={(value) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            state: value,
+                          }))
+                        }
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select state" />
                         </SelectTrigger>
                         <SelectContent>
                           {indianStates.map((state) => (
-                            <SelectItem key={state} value={state}>{state}</SelectItem>
+                            <SelectItem key={state} value={state}>
+                              {state}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -699,14 +874,21 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                         id="district"
                         placeholder="District name"
                         value={registrationData.district}
-                        onChange={(e) => setRegistrationData(prev => ({ ...prev, district: e.target.value }))}
+                        onChange={(e) =>
+                          setRegistrationData((prev) => ({
+                            ...prev,
+                            district: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                   </div>
 
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium text-blue-800">GPS Coordinates</span>
+                      <span className="font-medium text-blue-800">
+                        GPS Coordinates
+                      </span>
                       <Button
                         variant="outline"
                         size="sm"
@@ -720,11 +902,14 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     </div>
                     {registrationData.latitude && registrationData.longitude ? (
                       <p className="text-sm text-blue-700">
-                        📍 Location captured: {registrationData.latitude.toFixed(6)}, {registrationData.longitude.toFixed(6)}
+                        📍 Location captured:{" "}
+                        {registrationData.latitude.toFixed(6)},{" "}
+                        {registrationData.longitude.toFixed(6)}
                       </p>
                     ) : (
                       <p className="text-sm text-blue-600">
-                        Click "Get Current Location" for accurate carbon monitoring
+                        Click "Get Current Location" for accurate carbon
+                        monitoring
                       </p>
                     )}
                   </div>
@@ -734,7 +919,10 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                       <ArrowLeft className="h-4 w-4 mr-2" />
                       Previous
                     </Button>
-                    <Button onClick={handleNextStep} className="bg-amber-600 hover:bg-amber-700">
+                    <Button
+                      onClick={handleNextStep}
+                      className="bg-amber-600 hover:bg-amber-700"
+                    >
                       Next
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Button>
@@ -751,27 +939,42 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     <Leaf className="h-8 w-8 text-green-600" />
                   </div>
                   <CardTitle>Carbon Projects Interest</CardTitle>
-                  <p className="text-gray-600">Choose projects you're interested in</p>
+                  <p className="text-gray-600">
+                    Choose projects you're interested in
+                  </p>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div>
-                    <Label className="text-base font-medium">Interested Carbon Projects</Label>
+                    <Label className="text-base font-medium">
+                      Interested Carbon Projects
+                    </Label>
                     <div className="grid md:grid-cols-2 gap-3 mt-3">
                       {carbonProjects.map((project) => (
-                        <label key={project} className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-green-50">
+                        <label
+                          key={project}
+                          className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-green-50"
+                        >
                           <input
                             type="checkbox"
-                            checked={registrationData.interestedProjects.includes(project)}
+                            checked={registrationData.interestedProjects.includes(
+                              project,
+                            )}
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setRegistrationData(prev => ({
+                                setRegistrationData((prev) => ({
                                   ...prev,
-                                  interestedProjects: [...prev.interestedProjects, project]
+                                  interestedProjects: [
+                                    ...prev.interestedProjects,
+                                    project,
+                                  ],
                                 }));
                               } else {
-                                setRegistrationData(prev => ({
+                                setRegistrationData((prev) => ({
                                   ...prev,
-                                  interestedProjects: prev.interestedProjects.filter(p => p !== project)
+                                  interestedProjects:
+                                    prev.interestedProjects.filter(
+                                      (p) => p !== project,
+                                    ),
                                 }));
                               }
                             }}
@@ -784,23 +987,36 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                   </div>
 
                   <div>
-                    <Label className="text-base font-medium">Current Sustainable Practices</Label>
+                    <Label className="text-base font-medium">
+                      Current Sustainable Practices
+                    </Label>
                     <div className="grid md:grid-cols-2 gap-3 mt-3">
                       {sustainablePractices.map((practice) => (
-                        <label key={practice} className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-emerald-50">
+                        <label
+                          key={practice}
+                          className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-emerald-50"
+                        >
                           <input
                             type="checkbox"
-                            checked={registrationData.sustainablePractices.includes(practice)}
+                            checked={registrationData.sustainablePractices.includes(
+                              practice,
+                            )}
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setRegistrationData(prev => ({
+                                setRegistrationData((prev) => ({
                                   ...prev,
-                                  sustainablePractices: [...prev.sustainablePractices, practice]
+                                  sustainablePractices: [
+                                    ...prev.sustainablePractices,
+                                    practice,
+                                  ],
                                 }));
                               } else {
-                                setRegistrationData(prev => ({
+                                setRegistrationData((prev) => ({
                                   ...prev,
-                                  sustainablePractices: prev.sustainablePractices.filter(p => p !== practice)
+                                  sustainablePractices:
+                                    prev.sustainablePractices.filter(
+                                      (p) => p !== practice,
+                                    ),
                                 }));
                               }
                             }}
@@ -820,14 +1036,29 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     </h3>
                     <div className="grid md:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p><strong>Farmer:</strong> {registrationData.name}</p>
-                        <p><strong>Farm:</strong> {registrationData.farmName}</p>
-                        <p><strong>Size:</strong> {registrationData.landSize} {registrationData.landUnit}</p>
+                        <p>
+                          <strong>Farmer:</strong> {registrationData.name}
+                        </p>
+                        <p>
+                          <strong>Farm:</strong> {registrationData.farmName}
+                        </p>
+                        <p>
+                          <strong>Size:</strong> {registrationData.landSize}{" "}
+                          {registrationData.landUnit}
+                        </p>
                       </div>
                       <div>
-                        <p><strong>Location:</strong> {registrationData.state}</p>
-                        <p><strong>Crops:</strong> {registrationData.primaryCrops.length} selected</p>
-                        <p><strong>Projects:</strong> {registrationData.interestedProjects.length} selected</p>
+                        <p>
+                          <strong>Location:</strong> {registrationData.state}
+                        </p>
+                        <p>
+                          <strong>Crops:</strong>{" "}
+                          {registrationData.primaryCrops.length} selected
+                        </p>
+                        <p>
+                          <strong>Projects:</strong>{" "}
+                          {registrationData.interestedProjects.length} selected
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -837,8 +1068,8 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                       <ArrowLeft className="h-4 w-4 mr-2" />
                       Previous
                     </Button>
-                    <Button 
-                      onClick={handleFinalSubmit} 
+                    <Button
+                      onClick={handleFinalSubmit}
                       disabled={loading}
                       className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 text-white font-bold px-8"
                     >
@@ -877,7 +1108,12 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     type="email"
                     placeholder="admin@carbonroots.com"
                     value={adminCredentials.email}
-                    onChange={(e) => setAdminCredentials(prev => ({ ...prev, email: e.target.value }))}
+                    onChange={(e) =>
+                      setAdminCredentials((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <div>
@@ -887,7 +1123,12 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
                     type="password"
                     placeholder="Password"
                     value={adminCredentials.password}
-                    onChange={(e) => setAdminCredentials(prev => ({ ...prev, password: e.target.value }))}
+                    onChange={(e) =>
+                      setAdminCredentials((prev) => ({
+                        ...prev,
+                        password: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <Button
