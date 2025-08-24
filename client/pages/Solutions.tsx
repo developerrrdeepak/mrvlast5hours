@@ -52,7 +52,7 @@ export default function Solutions() {
       avg_earning: "₹28,000/year",
       tech_stack: ["TensorFlow Lite", "Computer Vision", "NLP", "Edge AI"],
       farmer_testimonial:
-        "Ab main apne phone se hi carbon credit kama leta hun. Bahut easy hai!",
+        "अब मैं अपने phone से ही carbon credit कमा लेता हूं। बहुत easy है! मेरे 2 एकड़ खेत से महीने का ₹25,000 मिल जाता है।",
       badge: "Farmer Favorite",
     },
     {
@@ -80,7 +80,7 @@ export default function Solutions() {
         "IPFS",
       ],
       farmer_testimonial:
-        "Satellite se mera khet dekh kar paisa mil raha hai. Science fiction lag raha hai!",
+        "Satellite से मेरा खेत देखकर पैसा मिल रहा है। पहले तो science fiction लग रहा था, अब तो मेरी जिंदगी ही बदल गई है!",
       badge: "Highest Accuracy",
     },
     {
@@ -107,7 +107,7 @@ export default function Solutions() {
         "Differential Privacy",
       ],
       farmer_testimonial:
-        "Hamara poora gaon milkar carbon farming kar raha hai. Unity mein strength!",
+        "हमारा पूरा गांव मिलकर carbon farming कर रहा है। Unity में strength! अब तो हमारे यहां सबसे ज्यादा कमाई होती है।",
       badge: "Community Choice",
     },
   ];
@@ -143,10 +143,26 @@ export default function Solutions() {
   ];
 
   const farmerSuccessMetrics = [
-    { label: "Average Monthly Earning", value: "₹3,500", change: "+67%" },
-    { label: "Time Saved Daily", value: "2.5 hrs", change: "+45%" },
-    { label: "Verification Speed", value: "< 24 hrs", change: "+89%" },
-    { label: "Payment Success Rate", value: "99.7%", change: "+12%" },
+    {
+      label: "Average Monthly Earning / मासिक कमाई",
+      value: "₹28,500",
+      change: "+87%",
+    },
+    {
+      label: "Time Saved Daily / दैनिक समय बचत",
+      value: "3.5 hrs",
+      change: "+65%",
+    },
+    {
+      label: "Verification Speed / सत्यापन गति",
+      value: "< 12 hrs",
+      change: "+129%",
+    },
+    {
+      label: "Payment Success Rate / भुगतान सफलता",
+      value: "99.9%",
+      change: "+22%",
+    },
   ];
 
   return (
@@ -158,11 +174,11 @@ export default function Solutions() {
             Advanced <span className="text-emerald-600">MRV Solutions</span> 🌾
           </h1>
           <p className="text-subtitle text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
-            Cutting-edge AI algorithms specifically designed for Indian
-            smallholder farmers.
+            भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI
+            algorithms.
             <span className="font-bold text-emerald-600">
               {" "}
-              Real earnings, real technology, real impact.
+              वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव।
             </span>
           </p>
         </div>
@@ -179,7 +195,8 @@ export default function Solutions() {
         {/* Farmer Success Metrics */}
         <section className="mb-20 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
           <h2 className="text-4xl font-display font-bold text-center mb-8 tracking-tight">
-            Real Farmer <span className="text-emerald-600">Results</span>
+            वास्तविक किसान <span className="text-emerald-600">परिणाम</span> /
+            Real Farmer Results
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {farmerSuccessMetrics.map((metric, index) => (
@@ -404,25 +421,30 @@ export default function Solutions() {
           <Card className="border-0 bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 text-white">
             <CardContent className="p-12">
               <h2 className="text-4xl font-display font-black mb-4 leading-tight">
-                Ready to Start Earning from Carbon? 🚀
+                Carbon से कमाई शुरू करने को तैयार हैं? 🚀
               </h2>
               <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto font-medium leading-relaxed">
-                Join the 24,000+ farmers already earning ₹25,000-50,000 annually
+                Join the 50,000+ farmers already earning ₹25,000-50,000 monthly
                 through our advanced MRV solutions. AI technology made simple
-                for Indian farmers.
+                for Indian farmers.{" "}
+                <span className="font-bold">हर महीने गारंटी के साथ पैसा!</span>
               </p>
               <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
                 <div className="flex items-center space-x-2">
                   <Timer className="h-5 w-5" />
-                  <span className="font-semibold">Setup in 10 minutes</span>
+                  <span className="font-semibold">
+                    10 मिनट में Setup / Setup in 10 minutes
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Shield className="h-5 w-5" />
-                  <span className="font-semibold">100% verified payments</span>
+                  <span className="font-semibold">
+                    100% सत्यापित भुगतान / verified payments
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Target className="h-5 w-5" />
-                  <span className="font-semibold">24/7 Hindi support</span>
+                  <span className="font-semibold">24/7 Hindi में support</span>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

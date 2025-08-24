@@ -40,8 +40,12 @@ import {
   Leaf,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import LanguageSelector, { useLanguage } from "@/components/LanguageSelector";
+import { useState } from "react";
 
 export default function Index() {
+  const { language, changeLanguage } = useLanguage();
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
   const hackathonChallenges = [
     {
       icon: TreePine,
@@ -262,6 +266,29 @@ export default function Index() {
               ))}
             </div>
 
+            {/* Language Selector for Farmers */}
+            <div className="mb-8">
+              <Card className="border-2 border-green-200 bg-green-50/80 backdrop-blur max-w-2xl mx-auto">
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center space-x-2 mb-3">
+                    <Languages className="h-5 w-5 text-green-600" />
+                    <h3 className="text-lg font-bold text-green-800">
+                      अपनी भाषा चुनें / Choose Your Language
+                    </h3>
+                  </div>
+                  <p className="text-green-700 mb-4 text-sm">
+                    किसानों के लिए - अपनी सुविधाजनक भाषा में जानकारी पाएं
+                  </p>
+                  <LanguageSelector
+                    selectedLanguage={language}
+                    onLanguageChange={changeLanguage}
+                    showModal={showLanguageModal}
+                    onModalChange={setShowLanguageModal}
+                  />
+                </CardContent>
+              </Card>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button
                 size="lg"
@@ -279,43 +306,43 @@ export default function Index() {
               </Button>
             </div>
 
-            {/* Hero Images Grid */}
+            {/* AI-Generated Hero Images Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <img
-                  src="https://images.pexels.com/photos/15014487/pexels-photo-15014487.jpeg"
-                  alt="Smiling Indian farmer in field showcasing rural agricultural life"
+                  src="https://images.pexels.com/photos/20527463/pexels-photo-20527463.jpeg"
+                  alt="Two women in Nagpur, India, working with harvested wheat using a traditional thresher"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">Empowering Farmers</p>
-                  <p className="text-sm opacity-90">Through Technology</p>
+                  <p className="font-bold text-lg">Traditional Wisdom</p>
+                  <p className="text-sm opacity-90">Modern Technology</p>
                 </div>
               </div>
 
               <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <img
-                  src="https://images.pexels.com/photos/20841296/pexels-photo-20841296.jpeg"
-                  alt="Farmer working in lush green rice paddy fields under summer sun"
+                  src="https://images.pexels.com/photos/20527455/pexels-photo-20527455.jpeg"
+                  alt="Indian woman sorting fresh greens in traditional baskets at a rural farm in Nagpur"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">Smart Agriculture</p>
-                  <p className="text-sm opacity-90">Sustainable Practices</p>
+                  <p className="font-bold text-lg">Women Farmers</p>
+                  <p className="text-sm opacity-90">Leading Change</p>
                 </div>
               </div>
 
               <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <img
-                  src="https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg"
-                  alt="Young woman tending to plants in sustainable indoor farming greenhouse"
+                  src="https://images.pexels.com/photos/7782861/pexels-photo-7782861.jpeg"
+                  alt="Close-up of hands holding seeds over soil, symbolizing growth and agriculture"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">Innovation</p>
+                  <p className="font-bold text-lg">Seeds of Change</p>
                   <p className="text-sm opacity-90">Climate Solutions</p>
                 </div>
               </div>

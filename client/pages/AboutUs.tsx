@@ -23,25 +23,25 @@ import {
 export default function AboutUs() {
   const team = [
     {
-      name: "Dr. Rajesh Kumar",
+      name: "Sourav Kumar",
       role: "Climate Scientist",
       description: "Leading expert in agricultural carbon sequestration",
       image: "👨‍🌾",
     },
     {
-      name: "Priya Sharma",
+      name: "Deepak Amit",
       role: "Technology Lead",
       description: "Developing MRV solutions for smallholder farmers",
       image: "👩‍💻",
     },
     {
-      name: "Amit Singh",
+      name: "Ravi",
       role: "Rural Development",
       description: "20+ years experience in farmer outreach programs",
       image: "👨‍🏫",
     },
     {
-      name: "Dr. Meera Patel",
+      name: "Swapna Kumar",
       role: "Data Scientist",
       description: "AI/ML specialist for satellite monitoring",
       image: "👩‍🔬",
