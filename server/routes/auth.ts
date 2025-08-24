@@ -94,7 +94,10 @@ export const verifyOTP: RequestHandler = async (req, res) => {
   try {
     const { email, otp, registrationData } = req.body;
 
+    console.log(`🔐 [OTP VERIFICATION] Request for email: ${email}`);
+
     if (!email || !otp) {
+      console.log("❌ [OTP VERIFICATION] Missing email or OTP");
       return res
         .status(400)
         .json({ success: false, message: "Email and OTP are required" });
@@ -109,17 +112,20 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     console.log(`   Expires at: ${storedOTP?.expires || "N/A"}`);
 
     if (!storedOTP) {
+      console.log(`❌ [OTP VERIFICATION] No OTP found for ${email}`);
       return res
         .status(400)
         .json({ success: false, message: "OTP not found or expired" });
     }
 
     if (Date.now() > storedOTP.expires) {
+      console.log(`❌ [OTP VERIFICATION] OTP expired for ${email}`);
       delete otpStorage[email];
       return res.status(400).json({ success: false, message: "OTP expired" });
     }
 
     if (storedOTP.otp !== otp) {
+      console.log(`❌ [OTP VERIFICATION] Invalid OTP for ${email}. Expected: ${storedOTP.otp}, Got: ${otp}`);
       return res.status(400).json({ success: false, message: "Invalid OTP" });
     }
 
@@ -209,23 +215,35 @@ export const adminLogin: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    console.log(`🔐 [ADMIN LOGIN] Attempt for email: ${email}`);
+
     if (!email || !password) {
+      console.log("❌ [ADMIN LOGIN] Missing email or password");
       return res
         .status(400)
         .json({ success: false, message: "Email and password are required" });
     }
 
-    // Check credentials
-    if (
-      email === "developerrdeepak@gmail.com" &&
-      password === "IITdelhi2023@"
-    ) {
-      const admin = admins.find((a) => a.email === email);
+    // Get admin credentials from environment variables or fallback to defaults
+    const validEmail = process.env.ADMIN_EMAIL || "developerrdeepak@gmail.com";
+    const validPassword = process.env.ADMIN_PASSWORD || "IITdelhi2023@";
 
+    console.log(`🔍 [ADMIN LOGIN] Checking against admin email: ${validEmail}`);
+
+    // Check credentials
+    if (email === validEmail && password === validPassword) {
+      let admin = admins.find((a) => a.email === email);
+
+      // If admin doesn't exist in memory, create one
       if (!admin) {
-        return res
-          .status(401)
-          .json({ success: false, message: "Invalid credentials" });
+        admin = {
+          id: "admin-1",
+          email: validEmail,
+          name: "Admin",
+          role: "admin",
+          createdAt: new Date(),
+        };
+        admins = [admin]; // Replace the array with current admin
       }
 
       // Create session
@@ -243,12 +261,14 @@ export const adminLogin: RequestHandler = async (req, res) => {
         token,
       };
 
+      console.log(`✅ [ADMIN LOGIN] Successful login for ${email}`);
       res.json(response);
     } else {
+      console.log(`❌ [ADMIN LOGIN] Invalid credentials for ${email}`);
       res.status(401).json({ success: false, message: "Invalid credentials" });
     }
   } catch (error) {
-    console.error("Admin login error:", error);
+    console.error("❌ [ADMIN LOGIN] Error:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
