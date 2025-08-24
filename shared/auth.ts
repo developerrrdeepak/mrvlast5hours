@@ -105,6 +105,7 @@ export interface LoginResponse {
   success: boolean;
   user?: AuthUser;
   message?: string;
+  token?: string;
 }
 
 export interface OTPRequest {
