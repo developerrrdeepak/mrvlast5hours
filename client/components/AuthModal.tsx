@@ -147,6 +147,16 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   <p className="text-sm text-gray-600">
                     OTP sent to {email}
                   </p>
+                  {generatedOTP && (
+                    <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
+                      <p className="text-sm font-medium text-blue-800">
+                        🔐 Your OTP: <span className="font-mono text-lg">{generatedOTP}</span>
+                      </p>
+                      <p className="text-xs text-blue-600 mt-1">
+                        (For testing purposes only)
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Button 
