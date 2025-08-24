@@ -33,8 +33,10 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
   const location = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
+  const { language, changeLanguage } = useLanguage();
 
   const navigation = [
     { name: "Home", href: "/" },
