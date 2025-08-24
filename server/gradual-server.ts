@@ -31,8 +31,19 @@ export function createGradualServer() {
 
   app.get("/api/demo", handleDemo);
 
-  // Authentication routes - add one by one to test
+  // Authentication routes
   app.post("/api/auth/send-otp", sendOTP);
+  app.post("/api/auth/verify-otp", verifyOTP);
+  app.post("/api/auth/admin-login", adminLogin);
+  app.post("/api/auth/farmer-register", farmerPasswordRegister);
+  app.post("/api/auth/farmer-login", farmerPasswordLogin);
+  app.get("/api/auth/verify", verifyToken);
+  app.put("/api/auth/update-profile", updateProfile);
+  app.post("/api/auth/logout", logout);
+
+  // Admin routes
+  app.get("/api/admin/farmers", getFarmers);
+  app.put("/api/admin/farmer-status", updateFarmerStatus);
 
   // Health check endpoint
   app.get("/api/health", (_req, res) => {
