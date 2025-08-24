@@ -94,6 +94,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setOtp("");
     setPassword("");
     setOtpSent(false);
+    setGeneratedOTP("");
   };
 
   return (
