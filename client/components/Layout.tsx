@@ -362,7 +362,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
       </footer>
 
-      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
+      <EnhancedAuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
       <EnhancedAIChatbot
         open={chatbotOpen}
         onOpenChange={setChatbotOpen}
