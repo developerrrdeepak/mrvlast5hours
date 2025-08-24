@@ -80,7 +80,7 @@ export default function Solutions() {
         "IPFS",
       ],
       farmer_testimonial:
-        "Satellite से मेरा खेत देखकर पैसा मिल रह�� है। पहले तो science fiction लग रहा था, अब तो मेरी जिंदगी ही बदल गई है!",
+        "Satellite से मेरा खेत देखकर पैसा मिल रहा है। पहले तो science fiction लग रहा था, अब तो मेरी जिंदगी ही बदल गई है!",
       badge: "Highest Accuracy",
     },
     {
@@ -143,10 +143,10 @@ export default function Solutions() {
   ];
 
   const farmerSuccessMetrics = [
-    { label: "Average Monthly Earning", value: "₹3,500", change: "+67%" },
-    { label: "Time Saved Daily", value: "2.5 hrs", change: "+45%" },
-    { label: "Verification Speed", value: "< 24 hrs", change: "+89%" },
-    { label: "Payment Success Rate", value: "99.7%", change: "+12%" },
+    { label: "Average Monthly Earning / मासिक कमाई", value: "₹28,500", change: "+87%" },
+    { label: "Time Saved Daily / दैनिक समय बचत", value: "3.5 hrs", change: "+65%" },
+    { label: "Verification Speed / सत्यापन गति", value: "< 12 hrs", change: "+129%" },
+    { label: "Payment Success Rate / भुगतान सफलता", value: "99.9%", change: "+22%" },
   ];
 
   return (
@@ -158,7 +158,7 @@ export default function Solutions() {
             Advanced <span className="text-emerald-600">MRV Solutions</span> 🌾
           </h1>
           <p className="text-subtitle text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
-            भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
+            भारतीय छ���टे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
             <span className="font-bold text-emerald-600">
               {" "}
               वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव।
