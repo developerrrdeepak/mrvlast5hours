@@ -7,14 +7,18 @@ import {
   OTPVerification,
   AdminLoginRequest,
   EnhancedFarmerRegistration,
+  FarmerPasswordRequest,
+  FarmerLoginRequest,
 } from "@shared/auth";
 
 interface AuthContextType extends AuthState {
   sendOTP: (
     data: OTPRequest,
-  ) => Promise<{ success: boolean; message?: string }>;
+  ) => Promise<{ success: boolean; message?: string; otp?: string }>;
   verifyOTP: (data: OTPVerification) => Promise<LoginResponse>;
   adminLogin: (data: AdminLoginRequest) => Promise<LoginResponse>;
+  farmerRegister: (data: FarmerPasswordRequest) => Promise<LoginResponse>;
+  farmerLogin: (data: FarmerLoginRequest) => Promise<LoginResponse>;
   logout: () => void;
   updateProfile: (data: any) => Promise<void>;
 }
@@ -265,11 +269,111 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
+  const farmerRegister = async (
+    data: FarmerPasswordRequest,
+  ): Promise<LoginResponse> => {
+    try {
+      console.log("👨‍🌾 [CLIENT] Farmer registration attempt for:", data.email);
+      dispatch({ type: "SET_LOADING", payload: true });
+
+      const response = await fetch("/api/auth/farmer-register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log("📡 [CLIENT] Farmer register Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ [CLIENT] Farmer registration failed:", response.status, errorText);
+        dispatch({ type: "SET_LOADING", payload: false });
+        return {
+          success: false,
+          message: `Server error: ${response.status} - ${errorText}`
+        };
+      }
+
+      const result = await response.json();
+      console.log("📊 [CLIENT] Farmer register result:", { success: result.success, hasUser: !!result.user });
+
+      if (result.success && result.user) {
+        localStorage.setItem("auth_token", result.token);
+        dispatch({ type: "SET_USER", payload: result.user });
+        console.log("✅ [CLIENT] Farmer registered and authenticated successfully");
+      } else {
+        dispatch({ type: "SET_LOADING", payload: false });
+      }
+
+      return result;
+    } catch (error) {
+      console.error("❌ [CLIENT] Farmer registration network error:", error);
+      dispatch({ type: "SET_LOADING", payload: false });
+      return {
+        success: false,
+        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      };
+    }
+  };
+
+  const farmerLogin = async (
+    data: FarmerLoginRequest,
+  ): Promise<LoginResponse> => {
+    try {
+      console.log("👨‍🌾 [CLIENT] Farmer login attempt for:", data.email);
+      dispatch({ type: "SET_LOADING", payload: true });
+
+      const response = await fetch("/api/auth/farmer-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log("📡 [CLIENT] Farmer login Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ [CLIENT] Farmer login failed:", response.status, errorText);
+        dispatch({ type: "SET_LOADING", payload: false });
+        return {
+          success: false,
+          message: `Server error: ${response.status} - ${errorText}`
+        };
+      }
+
+      const result = await response.json();
+      console.log("📊 [CLIENT] Farmer login result:", { success: result.success, hasUser: !!result.user });
+
+      if (result.success && result.user) {
+        localStorage.setItem("auth_token", result.token);
+        dispatch({ type: "SET_USER", payload: result.user });
+        console.log("✅ [CLIENT] Farmer authenticated successfully");
+      } else {
+        dispatch({ type: "SET_LOADING", payload: false });
+      }
+
+      return result;
+    } catch (error) {
+      console.error("❌ [CLIENT] Farmer login network error:", error);
+      dispatch({ type: "SET_LOADING", payload: false });
+      return {
+        success: false,
+        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      };
+    }
+  };
+
   const value: AuthContextType = {
     ...state,
     sendOTP,
     verifyOTP,
     adminLogin,
+    farmerRegister,
+    farmerLogin,
     logout,
     updateProfile,
   };
