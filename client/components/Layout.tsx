@@ -91,6 +91,24 @@ export default function Layout({ children }: LayoutProps) {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Language Selector */}
+              <LanguageSelector
+                selectedLanguage={language}
+                onLanguageChange={changeLanguage}
+              />
+
+              {/* AI Chatbot Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setChatbotOpen(true)}
+                className="flex items-center space-x-2 border-green-200 hover:bg-green-50"
+              >
+                <MessageCircle className="h-4 w-4" />
+                <span className="hidden lg:inline">Kisan AI</span>
+              </Button>
+
               {isAuthenticated ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
