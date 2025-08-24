@@ -32,7 +32,7 @@ function expressPlugin(): Plugin {
     configureServer(server) {
       try {
         console.log("🚀 Initializing Express server...");
-        const app = createServer();
+        const app = createMinimalServer();
         console.log("✅ Express server created successfully");
 
         // Add Express app as middleware to Vite dev server
