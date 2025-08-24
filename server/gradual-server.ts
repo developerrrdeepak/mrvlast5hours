@@ -2,6 +2,18 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import {
+  sendOTP,
+  verifyOTP,
+  adminLogin,
+  verifyToken,
+  updateProfile,
+  logout,
+  getFarmers,
+  updateFarmerStatus,
+  farmerPasswordRegister,
+  farmerPasswordLogin,
+} from "./routes/auth";
 
 export function createGradualServer() {
   const app = express();
