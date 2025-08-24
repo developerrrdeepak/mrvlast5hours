@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { AuthUser, Farmer, Admin, LoginResponse } from "@shared/auth";
+import { AuthUser, Farmer, Admin, LoginResponse, EnhancedFarmerRegistration } from "@shared/auth";
 
 // Mock data storage - in production, use a proper database
 let farmers: Farmer[] = [];
@@ -74,7 +74,7 @@ export const sendOTP: RequestHandler = async (req, res) => {
 
 export const verifyOTP: RequestHandler = async (req, res) => {
   try {
-    const { email, otp } = req.body;
+    const { email, otp, registrationData } = req.body;
 
     if (!email || !otp) {
       return res
@@ -109,14 +109,53 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     let farmer = farmers.find((f) => f.email === email);
 
     if (!farmer) {
+      // Calculate estimated income based on registration data
+      let estimatedIncome = 0;
+      if (registrationData) {
+        const landSizeInHectares = registrationData.landUnit === "acres"
+          ? registrationData.landSize * 0.405
+          : registrationData.landSize;
+        const baseIncome = landSizeInHectares * 1000; // ₹1000 per hectare base
+        const practiceMultiplier = 1 + (registrationData.sustainablePractices.length * 0.1);
+        estimatedIncome = Math.round(baseIncome * practiceMultiplier);
+      }
+
       farmer = {
         id: `farmer-${Date.now()}`,
         email,
         verified: true,
         createdAt: new Date(),
         updatedAt: new Date(),
+        // Enhanced registration data
+        ...(registrationData && {
+          name: registrationData.name,
+          phone: registrationData.phone,
+          farmName: registrationData.farmName,
+          landSize: registrationData.landSize,
+          landUnit: registrationData.landUnit,
+          farmingType: registrationData.farmingType,
+          primaryCrops: registrationData.primaryCrops,
+          irrigationType: registrationData.irrigationType,
+          location: {
+            address: registrationData.address,
+            pincode: registrationData.pincode,
+            state: registrationData.state,
+            district: registrationData.district,
+            latitude: registrationData.latitude,
+            longitude: registrationData.longitude,
+          },
+          aadhaarId: registrationData.aadhaarNumber,
+          panNumber: registrationData.panNumber,
+          bankAccountNumber: registrationData.bankAccountNumber,
+          ifscCode: registrationData.ifscCode,
+          interestedProjects: registrationData.interestedProjects,
+          sustainablePractices: registrationData.sustainablePractices,
+          estimatedIncome,
+        }),
       };
       farmers.push(farmer);
+
+      console.log(`🌾 [FARMER CREATED] ${farmer.name || email} with estimated income: ₹${estimatedIncome}`);
     }
 
     // Create session
@@ -242,10 +281,24 @@ export const updateProfile: RequestHandler = async (req, res) => {
         .json({ success: false, message: "Farmer not found" });
     }
 
+    // Recalculate estimated income if relevant fields are updated
+    let estimatedIncome = farmers[farmerIndex].estimatedIncome;
+    if (updates.landSize || updates.landUnit || updates.sustainablePractices) {
+      const landSize = updates.landSize || farmers[farmerIndex].landSize || 0;
+      const landUnit = updates.landUnit || farmers[farmerIndex].landUnit || "acres";
+      const practices = updates.sustainablePractices || farmers[farmerIndex].sustainablePractices || [];
+
+      const landSizeInHectares = landUnit === "acres" ? landSize * 0.405 : landSize;
+      const baseIncome = landSizeInHectares * 1000;
+      const practiceMultiplier = 1 + (practices.length * 0.1);
+      estimatedIncome = Math.round(baseIncome * practiceMultiplier);
+    }
+
     // Update farmer data
     farmers[farmerIndex] = {
       ...farmers[farmerIndex],
       ...updates,
+      estimatedIncome,
       updatedAt: new Date(),
     };
 
@@ -256,6 +309,8 @@ export const updateProfile: RequestHandler = async (req, res) => {
     };
 
     sessions[token] = updatedUser;
+
+    console.log(`📝 [PROFILE UPDATED] ${farmers[farmerIndex].name} - New estimated income: ₹${estimatedIncome}`);
 
     res.json({ success: true, user: updatedUser });
   } catch (error) {
