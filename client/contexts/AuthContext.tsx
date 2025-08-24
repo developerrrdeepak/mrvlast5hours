@@ -106,10 +106,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("❌ [CLIENT] OTP request failed:", response.status, errorText);
+        console.error(
+          "❌ [CLIENT] OTP request failed:",
+          response.status,
+          errorText,
+        );
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`
+          message: `Server error: ${response.status} - ${errorText}`,
         };
       }
 
@@ -120,7 +124,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       console.error("❌ [CLIENT] Send OTP network error:", error);
       return {
         success: false,
-        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+        message: `Network error: ${error instanceof Error ? error.message : "Unknown error"}`,
       };
     }
   };
@@ -142,16 +146,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("❌ [CLIENT] OTP verification failed:", response.status, errorText);
+        console.error(
+          "❌ [CLIENT] OTP verification failed:",
+          response.status,
+          errorText,
+        );
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`
+          message: `Server error: ${response.status} - ${errorText}`,
         };
       }
 
       const result = await response.json();
-      console.log("📊 [CLIENT] OTP verification result:", { success: result.success, hasUser: !!result.user });
+      console.log("📊 [CLIENT] OTP verification result:", {
+        success: result.success,
+        hasUser: !!result.user,
+      });
 
       if (result.success && result.user) {
         localStorage.setItem("auth_token", result.token);
@@ -167,7 +178,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       dispatch({ type: "SET_LOADING", payload: false });
       return {
         success: false,
-        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+        message: `Network error: ${error instanceof Error ? error.message : "Unknown error"}`,
       };
     }
   };
@@ -191,16 +202,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error("❌ [CLIENT] Admin login failed:", response.status, errorText);
+        console.error(
+          "❌ [CLIENT] Admin login failed:",
+          response.status,
+          errorText,
+        );
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`
+          message: `Server error: ${response.status} - ${errorText}`,
         };
       }
 
       const result = await response.json();
-      console.log("📊 [CLIENT] Admin login result:", { success: result.success, hasUser: !!result.user });
+      console.log("📊 [CLIENT] Admin login result:", {
+        success: result.success,
+        hasUser: !!result.user,
+      });
 
       if (result.success && result.user) {
         localStorage.setItem("auth_token", result.token);
@@ -216,7 +234,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       dispatch({ type: "SET_LOADING", payload: false });
       return {
         success: false,
-        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+        message: `Network error: ${error instanceof Error ? error.message : "Unknown error"}`,
       };
     }
   };

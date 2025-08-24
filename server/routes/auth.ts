@@ -75,7 +75,10 @@ export const sendOTP: RequestHandler = async (req, res) => {
       };
 
       // Only include OTP in response for development/testing
-      if (process.env.NODE_ENV !== "production" || process.env.DEBUG_AUTH === "true") {
+      if (
+        process.env.NODE_ENV !== "production" ||
+        process.env.DEBUG_AUTH === "true"
+      ) {
         response.otp = otp;
       }
 
@@ -125,7 +128,9 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     }
 
     if (storedOTP.otp !== otp) {
-      console.log(`❌ [OTP VERIFICATION] Invalid OTP for ${email}. Expected: ${storedOTP.otp}, Got: ${otp}`);
+      console.log(
+        `❌ [OTP VERIFICATION] Invalid OTP for ${email}. Expected: ${storedOTP.otp}, Got: ${otp}`,
+      );
       return res.status(400).json({ success: false, message: "Invalid OTP" });
     }
 

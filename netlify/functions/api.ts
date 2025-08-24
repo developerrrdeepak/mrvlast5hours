@@ -8,7 +8,7 @@ const app = createServer();
 app.use((req, res, next) => {
   console.log(`🌐 [NETLIFY API] ${req.method} ${req.path}`, {
     headers: req.headers,
-    body: req.method !== 'GET' ? req.body : undefined
+    body: req.method !== "GET" ? req.body : undefined,
   });
   next();
 });
