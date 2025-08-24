@@ -80,7 +80,7 @@ export default function Solutions() {
         "IPFS",
       ],
       farmer_testimonial:
-        "Satellite से मेरा खेत देखकर पैसा मिल रहा है। पहले तो science fiction लग रहा था, अब तो मेरी जिंदगी ही बदल गई है!",
+        "Satellite से मेरा खेत देखकर पैसा मिल रह�� है। पहले तो science fiction लग रहा था, अब तो मेरी जिंदगी ही बदल गई है!",
       badge: "Highest Accuracy",
     },
     {
@@ -107,7 +107,7 @@ export default function Solutions() {
         "Differential Privacy",
       ],
       farmer_testimonial:
-        "Hamara poora gaon milkar carbon farming kar raha hai. Unity mein strength!",
+        "हमारा पूरा गांव मिलकर carbon farming कर रहा है। Unity में strength! अब तो हमारे यहां सबसे ज्यादा कमाई होती है।",
       badge: "Community Choice",
     },
   ];
