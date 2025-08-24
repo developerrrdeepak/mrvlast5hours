@@ -34,6 +34,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
       const result = await sendOTP({ email });
       if (result.success) {
         setOtpSent(true);
+        setGeneratedOTP(result.otp || ""); // Store OTP for testing
         toast.success("OTP sent to your email");
       } else {
         toast.error(result.message || "Failed to send OTP");
