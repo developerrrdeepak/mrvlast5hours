@@ -266,6 +266,29 @@ export default function Index() {
               ))}
             </div>
 
+            {/* Language Selector for Farmers */}
+            <div className="mb-8">
+              <Card className="border-2 border-green-200 bg-green-50/80 backdrop-blur max-w-2xl mx-auto">
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center space-x-2 mb-3">
+                    <Languages className="h-5 w-5 text-green-600" />
+                    <h3 className="text-lg font-bold text-green-800">
+                      अपनी भाषा चुनें / Choose Your Language
+                    </h3>
+                  </div>
+                  <p className="text-green-700 mb-4 text-sm">
+                    किसानों के लिए - अपनी सुविधाजनक भाषा में जानकारी पाएं
+                  </p>
+                  <LanguageSelector
+                    selectedLanguage={language}
+                    onLanguageChange={changeLanguage}
+                    showModal={showLanguageModal}
+                    onModalChange={setShowLanguageModal}
+                  />
+                </CardContent>
+              </Card>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button
                 size="lg"
