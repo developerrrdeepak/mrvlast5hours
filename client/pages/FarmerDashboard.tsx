@@ -149,10 +149,27 @@ export default function FarmerDashboard() {
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Farmer Dashboard</h1>
-          <p className="text-gray-600 mt-2">
-            Welcome, {user?.farmer?.name || user?.farmer?.email}
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+            <div className="lg:col-span-2">
+              <h1 className="text-3xl font-bold text-gray-900">Farmer Dashboard</h1>
+              <p className="text-gray-600 mt-2">
+                Welcome, {user?.farmer?.name || user?.farmer?.email}
+              </p>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="relative overflow-hidden rounded-2xl shadow-lg h-32">
+                <img
+                  src="https://images.pexels.com/photos/20841296/pexels-photo-20841296.jpeg"
+                  alt="Farmer working in green paddy fields"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-emerald-600/20"></div>
+                <div className="absolute bottom-2 left-3 text-white">
+                  <p className="font-semibold text-sm">Your Farm Data</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {!profileComplete && (
