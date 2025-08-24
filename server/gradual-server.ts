@@ -31,6 +31,9 @@ export function createGradualServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Authentication routes - add one by one to test
+  app.post("/api/auth/send-otp", sendOTP);
+
   // Health check endpoint
   app.get("/api/health", (_req, res) => {
     res.json({
