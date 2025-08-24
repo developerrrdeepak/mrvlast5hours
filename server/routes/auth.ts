@@ -32,7 +32,8 @@ function generateToken(): string {
 // Send OTP email (mock implementation)
 async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
   // In production, integrate with email service like SendGrid, SES, etc.
-  console.log(`[MOCK EMAIL] OTP for ${email}: ${otp}`);
+  console.log(`\n🔐 [OTP GENERATED] for ${email}: ${otp}`);
+  console.log(`⏰ Valid for 5 minutes\n`);
   return true;
 }
 
