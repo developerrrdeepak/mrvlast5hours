@@ -92,6 +92,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const sendOTP = async (data: OTPRequest) => {
     try {
+      console.log("🔐 [CLIENT] Sending OTP request for:", data.email);
+
       const response = await fetch("/api/auth/send-otp", {
         method: "POST",
         headers: {
@@ -100,11 +102,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
         body: JSON.stringify(data),
       });
 
+      console.log("📡 [CLIENT] OTP Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ [CLIENT] OTP request failed:", response.status, errorText);
+        return {
+          success: false,
+          message: `Server error: ${response.status} - ${errorText}`
+        };
+      }
+
       const result = await response.json();
+      console.log("✅ [CLIENT] OTP request successful:", result.success);
       return result;
     } catch (error) {
-      console.error("Send OTP failed:", error);
-      return { success: false, message: "Failed to send OTP" };
+      console.error("❌ [CLIENT] Send OTP network error:", error);
+      return {
+        success: false,
+        message: `Network error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      };
     }
   };
 
