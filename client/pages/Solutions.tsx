@@ -143,10 +143,26 @@ export default function Solutions() {
   ];
 
   const farmerSuccessMetrics = [
-    { label: "Average Monthly Earning / मासिक कमाई", value: "₹28,500", change: "+87%" },
-    { label: "Time Saved Daily / दैनिक समय बचत", value: "3.5 hrs", change: "+65%" },
-    { label: "Verification Speed / सत्यापन गति", value: "< 12 hrs", change: "+129%" },
-    { label: "Payment Success Rate / भुगतान सफलता", value: "99.9%", change: "+22%" },
+    {
+      label: "Average Monthly Earning / मासिक कमाई",
+      value: "₹28,500",
+      change: "+87%",
+    },
+    {
+      label: "Time Saved Daily / दैनिक समय बचत",
+      value: "3.5 hrs",
+      change: "+65%",
+    },
+    {
+      label: "Verification Speed / सत्यापन गति",
+      value: "< 12 hrs",
+      change: "+129%",
+    },
+    {
+      label: "Payment Success Rate / भुगतान सफलता",
+      value: "99.9%",
+      change: "+22%",
+    },
   ];
 
   return (
@@ -158,7 +174,8 @@ export default function Solutions() {
             Advanced <span className="text-emerald-600">MRV Solutions</span> 🌾
           </h1>
           <p className="text-subtitle text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
-            भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI algorithms.
+            भारतीय छोटे किसानों के लिए विशेष रूप से designed cutting-edge AI
+            algorithms.
             <span className="font-bold text-emerald-600">
               {" "}
               वास्तविक कमाई, असली तकनीक, सच्चा प्रभाव।
@@ -178,7 +195,8 @@ export default function Solutions() {
         {/* Farmer Success Metrics */}
         <section className="mb-20 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
           <h2 className="text-4xl font-display font-bold text-center mb-8 tracking-tight">
-            वास्तविक किसान <span className="text-emerald-600">परिणाम</span> / Real Farmer Results
+            वास्तविक किसान <span className="text-emerald-600">परिणाम</span> /
+            Real Farmer Results
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {farmerSuccessMetrics.map((metric, index) => (
@@ -408,16 +426,21 @@ export default function Solutions() {
               <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto font-medium leading-relaxed">
                 Join the 50,000+ farmers already earning ₹25,000-50,000 monthly
                 through our advanced MRV solutions. AI technology made simple
-                for Indian farmers. <span className="font-bold">हर महीने गारंटी के साथ पैसा!</span>
+                for Indian farmers.{" "}
+                <span className="font-bold">हर महीने गारंटी के साथ पैसा!</span>
               </p>
               <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
                 <div className="flex items-center space-x-2">
                   <Timer className="h-5 w-5" />
-                  <span className="font-semibold">10 मिनट में Setup / Setup in 10 minutes</span>
+                  <span className="font-semibold">
+                    10 मिनट में Setup / Setup in 10 minutes
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Shield className="h-5 w-5" />
-                  <span className="font-semibold">100% सत्यापित भुगतान / verified payments</span>
+                  <span className="font-semibold">
+                    100% सत्यापित भुगतान / verified payments
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Target className="h-5 w-5" />

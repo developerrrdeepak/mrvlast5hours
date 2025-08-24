@@ -42,7 +42,8 @@ export default function CaseStudies() {
       icon: Languages,
       title: "15+ Indian Languages",
       subtitle: "अपनी भाषा में खेती",
-      description: "Hindi, Bengali, Telugu, Tamil, Marathi, Gujarati और अन्य भाषाओं में पूरा एप्प",
+      description:
+        "Hindi, Bengali, Telugu, Tamil, Marathi, Gujarati और अन्य भाषाओं में पूरा एप्प",
       color: "bg-blue-500",
     },
     {
@@ -56,21 +57,24 @@ export default function CaseStudies() {
       icon: Camera,
       title: "Photo-Based Reporting",
       subtitle: "तस्वीर लेकर रिपोर्ट करें",
-      description: "फसल की फोटो लेकर AI automatically carbon credits calculate करेगा",
+      description:
+        "फसल की फोटो लेकर AI automatically carbon credits calculate करेगा",
       color: "bg-green-500",
     },
     {
       icon: Wifi,
       title: "Offline Mode",
       subtitle: "बिना इंटरनेट के काम करें",
-      description: "7 दिन तक offline data collect करें, Internet आने पर sync ��ो जाएगा",
+      description:
+        "7 दिन तक offline data collect करें, Internet आने पर sync ��ो जाएगा",
       color: "bg-orange-500",
     },
     {
       icon: Wallet,
       title: "UPI Direct Payment",
       subtitle: "सीधे पैसे मिलें",
-      description: "Carbon credits का पैसा directly आपके bank account में UPI से",
+      description:
+        "Carbon credits का पैसा directly आपके bank account में UPI से",
       color: "bg-pink-500",
     },
     {
@@ -95,7 +99,8 @@ export default function CaseStudies() {
       location: "महाराष्ट्र",
       crop: "Cotton & Sugarcane",
       earning: "₹35,000/month",
-      quote: "पहले मुझे carbon credit के बारे में कुछ नहीं पता था। अब मैं ���पने 3 एकड़ खेत से हर महीने ₹35,000 कमा रहा हूं। ऐप बहुत आसान है, Marathi में सब कुछ समझ आता है।",
+      quote:
+        "पहले मुझे carbon credit के बारे में कुछ नहीं पता था। अब मैं ���पने 3 एकड़ खेत से हर महीने ₹35,000 कमा रहा हूं। ऐप बहुत आसान है, Marathi में सब कुछ समझ आता है।",
       image: "👨‍🌾",
       rating: 5,
     },
@@ -104,7 +109,8 @@ export default function CaseStudies() {
       location: "बिहार",
       crop: "Rice & Vegetables",
       earning: "₹22,000/month",
-      quote: "मैं पढ़ी-लिखी नहीं हूं, लेकिन voice command से सब काम हो जाता है। AI से Hindi में पूछती हूं, वो सब बताता है। अब मेरी भी अच्छी कमाई हो रही है।",
+      quote:
+        "मैं पढ़ी-लिखी नहीं हूं, लेकिन voice command से सब काम हो जाता है। AI से Hindi में पूछती हूं, वो सब बताता है। अब मेरी भी अच्छी कमाई हो रही है।",
       image: "👩‍🌾",
       rating: 5,
     },
@@ -113,7 +119,8 @@ export default function CaseStudies() {
       location: "गुजरात",
       crop: "Groundnut & Cotton",
       earning: "₹40,000/month",
-      quote: "Technology की वजह से खेती में नया रास्ता मिला है। Satellite से मेरा खेत monitor होता है, payment UPI से मिल जाता है। बहुत smooth process है।",
+      quote:
+        "Technology की वजह से खेती में नया रास्ता मिला है। Satellite से मेरा खेत monitor होता है, payment UPI से मिल जाता है। बहुत smooth process है।",
       image: "👨‍🌾",
       rating: 5,
     },
@@ -127,7 +134,7 @@ export default function CaseStudies() {
       icon: Download,
     },
     {
-      step: "2", 
+      step: "2",
       title: "Registration करें",
       description: "अपना phone number और खेत की details डालें",
       icon: Smartphone,
@@ -168,14 +175,20 @@ export default function CaseStudies() {
               App
             </h1>
             <p className="text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              भारत का पहला <span className="font-bold text-green-600">Multilingual Carbon Credit App</span> - 
-              किसानों के लिए बनाया गया, किसानों के द्वारा tested
+              भारत का पहला{" "}
+              <span className="font-bold text-green-600">
+                Multilingual Carbon Credit App
+              </span>{" "}
+              - किसानों के लिए बनाया गया, किसानों के द्वारा tested
             </p>
-            
+
             {/* App Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-4xl mx-auto">
               {appStats.map((stat, index) => (
-                <Card key={index} className="border-0 shadow-lg bg-white/80 backdrop-blur">
+                <Card
+                  key={index}
+                  className="border-0 shadow-lg bg-white/80 backdrop-blur"
+                >
                   <CardContent className="p-4 text-center">
                     <div className="flex justify-center mb-2">
                       <stat.icon className="h-6 w-6 text-green-600" />
@@ -217,8 +230,12 @@ export default function CaseStudies() {
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       <div className="bg-green-50 p-4 rounded-lg">
                         <TreePine className="h-8 w-8 text-green-600 mb-2" />
-                        <h4 className="font-bold text-green-800">Carbon Credits</h4>
-                        <p className="text-2xl font-bold text-green-600">₹28,450</p>
+                        <h4 className="font-bold text-green-800">
+                          Carbon Credits
+                        </h4>
+                        <p className="text-2xl font-bold text-green-600">
+                          ₹28,450
+                        </p>
                       </div>
                       <div className="bg-blue-50 p-4 rounded-lg">
                         <BarChart3 className="h-8 w-8 text-blue-600 mb-2" />
@@ -244,18 +261,25 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Why <span className="text-green-600">50,000+ Farmers</span> Love Our App
+              Why <span className="text-green-600">50,000+ Farmers</span> Love
+              Our App
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              विशेष रूप से भारतीय किसानों के लिए designed - सरल, सुरक्षित, और सफल
+              विशेष रूप से भारतीय किसानों के लिए designed - सरल, सुरक्षित, और
+              सफल
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {appFeatures.map((feature, index) => (
-              <Card key={index} className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <Card
+                key={index}
+                className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
                 <CardContent className="p-8 text-center">
-                  <div className={`${feature.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <div
+                    className={`${feature.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}
+                  >
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -279,7 +303,8 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              कैसे काम करता है? <span className="text-green-600">5 Easy Steps</span>
+              कैसे काम करता है?{" "}
+              <span className="text-green-600">5 Easy Steps</span>
             </h2>
             <p className="text-xl text-gray-600">
               सिर्फ 10 मिनट में शुरू करें, पहले महीने से कमाई शुरू
@@ -288,7 +313,10 @@ export default function CaseStudies() {
 
           <div className="grid md:grid-cols-5 gap-6">
             {howItWorks.map((step, index) => (
-              <Card key={index} className="border-0 shadow-lg text-center relative">
+              <Card
+                key={index}
+                className="border-0 shadow-lg text-center relative"
+              >
                 <CardContent className="p-6">
                   <div className="bg-gradient-to-r from-green-600 to-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
                     {step.step}
@@ -313,7 +341,8 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Real Farmers, <span className="text-green-600">Real Success Stories</span>
+              Real Farmers,{" "}
+              <span className="text-green-600">Real Success Stories</span>
             </h2>
             <p className="text-xl text-gray-600">
               भारत भर के किसान अपनी सफलता की कहानी सुनाते हैं
@@ -328,21 +357,28 @@ export default function CaseStudies() {
                     <div className="flex items-center space-x-3">
                       <span className="text-4xl">{testimonial.image}</span>
                       <div>
-                        <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                        <p className="text-sm text-gray-600">{testimonial.location} • {testimonial.crop}</p>
+                        <h4 className="font-bold text-gray-900">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {testimonial.location} • {testimonial.crop}
+                        </p>
                       </div>
                     </div>
                     <Badge className="bg-green-600 text-white">
                       {testimonial.earning}
                     </Badge>
                   </div>
-                  
+
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                      <Star
+                        key={i}
+                        className="h-4 w-4 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
-                  
+
                   <p className="text-gray-700 leading-relaxed italic">
                     "{testimonial.quote}"
                   </p>
@@ -364,7 +400,7 @@ export default function CaseStudies() {
             <br />
             <span className="font-bold">पहले महीने में ही earning शुरू!</span>
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-8 text-white">
             <div className="flex items-center justify-center space-x-2">
               <Shield className="h-5 w-5" />
@@ -379,7 +415,7 @@ export default function CaseStudies() {
               <span>Govt. Approved</span>
             </div>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
@@ -396,7 +432,7 @@ export default function CaseStudies() {
               Get WhatsApp Support
             </Button>
           </div>
-          
+
           <p className="text-green-100 mt-6 text-sm">
             Available on Google Play Store • 100% FREE • No Hidden Charges
           </p>
