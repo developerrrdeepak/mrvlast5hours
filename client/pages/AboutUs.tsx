@@ -66,11 +66,27 @@ export default function AboutUs() {
             Empowering India's smallholder farmers through technology-driven carbon credit solutions. 
             We make MRV (Monitoring, Reporting & Verification) accessible, affordable, and accurate.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
             <Badge className="bg-green-100 text-green-800 px-4 py-2 text-sm">Climate Technology</Badge>
             <Badge className="bg-blue-100 text-blue-800 px-4 py-2 text-sm">AgriTech</Badge>
             <Badge className="bg-amber-100 text-amber-800 px-4 py-2 text-sm">Carbon Credits</Badge>
             <Badge className="bg-purple-100 text-purple-800 px-4 py-2 text-sm">Sustainable Agriculture</Badge>
+          </div>
+
+          {/* Hero Image */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+              <img
+                src="https://images.pexels.com/photos/30133676/pexels-photo-30133676.jpeg"
+                alt="Shepherd with herd of goats on lush country road in rural India showcasing agricultural landscape"
+                className="w-full h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <p className="text-2xl font-bold mb-2">Transforming Rural Lives</p>
+                <p className="text-lg opacity-90">Through Climate-Smart Agriculture</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
