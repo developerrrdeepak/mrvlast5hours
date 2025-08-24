@@ -262,7 +262,7 @@ export default function Index() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
@@ -277,6 +277,48 @@ export default function Index() {
               >
                 Join Hackathon
               </Button>
+            </div>
+
+            {/* Hero Images Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <img
+                  src="https://images.pexels.com/photos/15014487/pexels-photo-15014487.jpeg"
+                  alt="Smiling Indian farmer in field showcasing rural agricultural life"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-bold text-lg">Empowering Farmers</p>
+                  <p className="text-sm opacity-90">Through Technology</p>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <img
+                  src="https://images.pexels.com/photos/20841296/pexels-photo-20841296.jpeg"
+                  alt="Farmer working in lush green rice paddy fields under summer sun"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-bold text-lg">Smart Agriculture</p>
+                  <p className="text-sm opacity-90">Sustainable Practices</p>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+                <img
+                  src="https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg"
+                  alt="Young woman tending to plants in sustainable indoor farming greenhouse"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-bold text-lg">Innovation</p>
+                  <p className="text-sm opacity-90">Climate Solutions</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

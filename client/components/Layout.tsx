@@ -1,8 +1,30 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TreePine, Wheat, Menu, X, Satellite } from "lucide-react";
+import {
+  TreePine,
+  Wheat,
+  Menu,
+  X,
+  Satellite,
+  Leaf,
+  User,
+  LogOut,
+  MessageCircle,
+} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
+import AuthModal from "./AuthModal";
+import AIChatbot from "./AIChatbot";
+import LanguageSelector, { useLanguage } from "./LanguageSelector";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,14 +32,18 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
   const location = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
+  const { language, changeLanguage } = useLanguage();
 
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Solutions", href: "/solutions" },
     { name: "MRV Prototype", href: "/tools" },
     { name: "Farmer App", href: "/case-studies" },
-    { name: "Hackathon", href: "/resources" },
+    { name: "About Us", href: "/about" },
   ];
 
   return (
@@ -65,9 +91,69 @@ export default function Layout({ children }: LayoutProps) {
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200">
-                Join Hackathon
+
+              {/* Language Selector */}
+              <LanguageSelector
+                selectedLanguage={language}
+                onLanguageChange={changeLanguage}
+              />
+
+              {/* AI Chatbot Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setChatbotOpen(true)}
+                className="flex items-center space-x-2 border-green-200 hover:bg-green-50"
+              >
+                <MessageCircle className="h-4 w-4" />
+                <span className="hidden lg:inline">Kisan AI</span>
               </Button>
+
+              {isAuthenticated ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center space-x-2"
+                    >
+                      <User className="h-4 w-4" />
+                      <span>
+                        {user?.farmer?.name ||
+                          user?.admin?.name ||
+                          user?.farmer?.email ||
+                          user?.admin?.email}
+                      </span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to={
+                          user?.type === "farmer"
+                            ? "/farmer-dashboard"
+                            : "/admin-dashboard"
+                        }
+                      >
+                        Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={logout} className="text-red-600">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button
+                  onClick={() => setAuthModalOpen(true)}
+                  className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200"
+                >
+                  Sign in (Farmer)
+                </Button>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -105,10 +191,62 @@ export default function Layout({ children }: LayoutProps) {
                     {item.name}
                   </Link>
                 ))}
+
+                {/* Mobile Language Selector & Chatbot */}
+                <div className="px-3 pt-2 space-y-2 border-t border-gray-200">
+                  <div className="flex space-x-2">
+                    <div className="flex-1">
+                      <LanguageSelector
+                        selectedLanguage={language}
+                        onLanguageChange={changeLanguage}
+                      />
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setChatbotOpen(true);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center space-x-2 border-green-200 hover:bg-green-50"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>AI Help</span>
+                    </Button>
+                  </div>
+                </div>
+
                 <div className="px-3 pt-2">
-                  <Button className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide">
-                    Join Hackathon
-                  </Button>
+                  {isAuthenticated ? (
+                    <div className="space-y-2">
+                      <Button variant="outline" className="w-full" asChild>
+                        <Link
+                          to={
+                            user?.type === "farmer"
+                              ? "/farmer-dashboard"
+                              : "/admin-dashboard"
+                          }
+                        >
+                          Dashboard
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={logout}
+                        className="w-full text-red-600 border-red-600 hover:bg-red-50"
+                      >
+                        <LogOut className="h-4 w-4 mr-2" />
+                        Logout
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={() => setAuthModalOpen(true)}
+                      className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide"
+                    >
+                      Sign in (Farmer)
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -223,6 +361,8 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </footer>
+
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 }

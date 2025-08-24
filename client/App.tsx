@@ -6,35 +6,44 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import Solutions from "./pages/Solutions";
 import Tools from "./pages/Tools";
 import CaseStudies from "./pages/CaseStudies";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
+import FarmerDashboard from "./pages/FarmerDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import AboutUs from "./pages/AboutUs";
 import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/tools" element={<Tools />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
-            <Route path="/resources" element={<Resources />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/tools" element={<Tools />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/farmer-dashboard" element={<FarmerDashboard />} />
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
