@@ -363,6 +363,22 @@ export default function Layout({ children }: LayoutProps) {
       </footer>
 
       <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
+      <AIChatbot
+        open={chatbotOpen}
+        onOpenChange={setChatbotOpen}
+        selectedLanguage={language}
+      />
+
+      {/* Floating AI Assistant Button */}
+      {!chatbotOpen && (
+        <Button
+          onClick={() => setChatbotOpen(true)}
+          className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 shadow-2xl hover:shadow-3xl hover:scale-110 transition-all duration-300 border-2 border-white"
+          size="sm"
+        >
+          <MessageCircle className="h-6 w-6 text-white" />
+        </Button>
+      )}
     </div>
   );
 }
