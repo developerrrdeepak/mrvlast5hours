@@ -15,7 +15,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "./AuthModal";
-import AIChatbot from "./AIChatbot";
+import EnhancedAIChatbot from "./EnhancedAIChatbot";
 import LanguageSelector, { useLanguage } from "./LanguageSelector";
 import {
   DropdownMenu,
