@@ -269,29 +269,46 @@ export default function EnhancedAuthModal({ open, onOpenChange }: EnhancedAuthMo
 
   const handleFinalSubmit = async () => {
     setLoading(true);
-    
-    // Calculate estimated carbon income
-    const baseIncome = registrationData.landSize * (registrationData.landUnit === "acres" ? 2.47 : 1) * 1000; // ₹1000 per hectare base
-    const practiceMultiplier = 1 + (registrationData.sustainablePractices.length * 0.1);
-    const estimatedIncome = Math.round(baseIncome * practiceMultiplier);
-    
-    const finalData = {
-      ...registrationData,
-      estimatedIncome
-    };
 
     try {
-      // Here you would normally send to backend
-      console.log("Final Registration Data:", finalData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast.success("🎉 Registration completed successfully!");
-      toast.success(`💰 Estimated annual carbon income: ₹${estimatedIncome.toLocaleString()}`);
-      
-      onOpenChange(false);
-      navigate("/farmer-dashboard");
+      // Send complete registration data with OTP verification
+      const result = await verifyOTP({
+        email: registrationData.email,
+        otp: registrationData.otp,
+        registrationData: {
+          name: registrationData.name,
+          phone: registrationData.phone,
+          farmName: registrationData.farmName,
+          landSize: registrationData.landSize,
+          landUnit: registrationData.landUnit,
+          farmingType: registrationData.farmingType,
+          primaryCrops: registrationData.primaryCrops,
+          irrigationType: registrationData.irrigationType,
+          address: registrationData.address,
+          pincode: registrationData.pincode,
+          state: registrationData.state,
+          district: registrationData.district,
+          latitude: registrationData.latitude,
+          longitude: registrationData.longitude,
+          aadhaarNumber: registrationData.aadhaarNumber,
+          panNumber: registrationData.panNumber,
+          bankAccountNumber: registrationData.bankAccountNumber,
+          ifscCode: registrationData.ifscCode,
+          interestedProjects: registrationData.interestedProjects,
+          sustainablePractices: registrationData.sustainablePractices,
+        }
+      });
+
+      if (result.success) {
+        toast.success("🎉 Registration completed successfully!");
+        if (result.user?.farmer?.estimatedIncome) {
+          toast.success(`💰 Estimated annual carbon income: ₹${result.user.farmer.estimatedIncome.toLocaleString()}`);
+        }
+        onOpenChange(false);
+        navigate("/farmer-dashboard");
+      } else {
+        toast.error(result.message || "Registration failed");
+      }
     } catch (error) {
       toast.error("Registration failed. Please try again.");
     }
