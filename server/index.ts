@@ -78,7 +78,7 @@ export function createServer() {
   );
 
   // 404 handler for API routes
-  app.use("/api/*", (req, res) => {
+  app.use("/api", (req, res) => {
     console.log("❓ [404] API endpoint not found:", req.path);
     res.status(404).json({
       success: false,
