@@ -136,7 +136,7 @@ export default function Index() {
               <span className="font-bold text-amber-600">
                 ₹5,000-15,000 extra income
               </span>{" "}
-              पाएं। सबसे आसान तरीका sustainable farming का।
+              पाएं। सबसे आसान तर��का sustainable farming का।
             </p>
 
             {/* Quick Stats */}
@@ -357,7 +357,7 @@ export default function Index() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">भविष्य की तकनीक</span> <br />
+              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">भविष्��� की तकनीक</span> <br />
               आज ही अपनाएं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
@@ -367,7 +367,7 @@ export default function Index() {
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <Card className="border-0 shadow-xl bg-gradient-to-r from-teal-50 to-emerald-50 hover:shadow-2xl transition-all duration-300">
+              <Card className="border-0 shadow-xl bg-gradient-to-r from-teal-100 to-emerald-100 hover:shadow-2xl transition-all duration-300 hover:from-teal-200 hover:to-emerald-200">
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center">
@@ -376,12 +376,12 @@ export default function Index() {
                     <h3 className="text-xl font-bold text-gray-900">AI-Powered Monitoring</h3>
                   </div>
                   <p className="text-gray-700 font-medium">
-                    रियल-टाइम monitoring से अपनी carbon credits track करें और optimized farming करें
+                    रियल-टाइम monitoring से अपनी carbon credits track करें और optimized farming ���रें
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-0 shadow-xl bg-gradient-to-r from-emerald-50 to-green-50 hover:shadow-2xl transition-all duration-300">
+              <Card className="border-0 shadow-xl bg-gradient-to-r from-emerald-100 to-green-100 hover:shadow-2xl transition-all duration-300 hover:from-emerald-200 hover:to-green-200">
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center">
