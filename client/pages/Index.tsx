@@ -42,7 +42,7 @@ export default function Index() {
     {
       icon: Smartphone,
       title: "सरल मोबाइल ऐप",
-      description: "आसान interface के साथ हिंदी में carbon farming track करें",
+      description: "आसान interface क�� साथ हिंदी में carbon farming track करें",
       color: "blue",
     },
     {
@@ -281,7 +281,16 @@ export default function Index() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100">
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg')`
+          }}
+        ></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/95 via-white/90 to-green-50/95"></div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
@@ -289,7 +298,7 @@ export default function Index() {
               <span className="text-emerald-600">Carbon Farming?</span>
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              आसान, फायदेमंद, और पर्याव��ण के लिए बेहतर
+              आसान, फायदेमंद, और पर्यावरण के लिए बेहतर
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -466,7 +475,7 @@ export default function Index() {
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
             आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
-            कर��ं
+            करें
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
