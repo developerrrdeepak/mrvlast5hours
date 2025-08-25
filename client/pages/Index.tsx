@@ -93,7 +93,7 @@ export default function Index() {
       description: "भारत भर में",
     },
     {
-      number: "₹50 करोड़+",
+      number: "₹50 करोड���+",
       label: "Carbon Income",
       description: "किसानों को मिली",
     },
@@ -121,7 +121,7 @@ export default function Index() {
               🌱 Carbon Farming India - AI Powered
             </Badge>
             <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-8">
-              <span className="text-green-600">किसानों के लिए</span> <br />
+              <span className="text-green-600">किसा���ों के लिए</span> <br />
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
                 Carbon Income
               </span>{" "}
@@ -172,7 +172,7 @@ export default function Index() {
                     </h3>
                   </div>
                   <p className="text-green-700 mb-4 text-sm">
-                    किसानों के लिए - अपनी सुविधाजनक भाषा में जानकारी पाएं
+                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी पाएं
                   </p>
                   <LanguageSelector
                     selectedLanguage={language}
@@ -340,7 +340,7 @@ export default function Index() {
                     ₹12,000
                   </h3>
                   <p className="text-lg text-gray-600 font-medium">
-                    औसत मासिक अतिर��क्त आय
+                    औसत मास��क अतिर��क्त आय
                   </p>
                   <p className="text-sm text-emerald-600 font-semibold mt-2">
                     प्र��ि एकड़ carbon farming से
@@ -441,7 +441,7 @@ export default function Index() {
             <Button
               size="lg"
               onClick={() => setShowAuthModal(true)}
-              className="bg-white text-teal-600 hover:bg-teal-50 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+              className="bg-gradient-to-r from-amber-400 to-yellow-400 text-teal-800 hover:from-amber-500 hover:to-yellow-500 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
             >
               अभी Sign Up करें
               <ArrowRight className="ml-2 h-5 w-5" />
