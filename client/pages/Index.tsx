@@ -121,22 +121,24 @@ export default function Index() {
               🌱 Carbon Farming India - AI Powered
             </Badge>
             <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-8">
-              <span className="text-green-600">किसा���ों के लिए</span> <br />
+              <span className="text-green-600">किसानों&nbsp; &nbsp;लिए</span> <br />
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
                 Carbon Income
               </span>{" "}
-              का नया रास्त���
+              का नया&nbsp;रास्ता
             </h1>
             <p className="text-subtitle text-gray-700 font-medium mb-8 max-w-4xl mx-auto">
-              अपनी farming practices से{" "}
+              अपनी farming practices से&nbsp;{" "}
               <span className="font-bold text-emerald-600">
-                carbon credits earn करें
+                carbon credits earn करें&nbsp;
               </span>{" "}
               और महीने में{" "}
               <span className="font-bold text-amber-600">
-                ₹5,000-15,000 extra income
+                &nbsp; ₹5,000-15,000&nbsp; &nbsp; &nbsp; &nbsp;
+                <br />
+                &nbsp;extra income&nbsp; &nbsp;
               </span>{" "}
-              पाएं। सबसे आसान तरीका sustainable farming का।
+              पाएं। सबसे आसान तरीका sustainable farming का��
             </p>
 
             {/* Quick Stats */}
