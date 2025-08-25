@@ -554,6 +554,64 @@ export const farmerPasswordLogin: RequestHandler = async (req, res) => {
   }
 };
 
+// Social Authentication (placeholder for OAuth integration)
+export const socialAuth: RequestHandler = async (req, res) => {
+  try {
+    const { provider } = req.body;
+
+    console.log(`🔗 [SOCIAL AUTH] ${provider} authentication attempt`);
+
+    // In production, integrate with OAuth providers:
+    // - Google OAuth 2.0
+    // - Facebook Login
+    // - GitHub OAuth
+    // - Twitter OAuth
+
+    // For now, return a placeholder response
+    res.json({
+      success: false,
+      message: `${provider} integration coming soon! Please use email/password or OTP authentication for now.`,
+      redirectUrl: null
+    });
+
+    // Production implementation would:
+    // 1. Redirect to OAuth provider
+    // 2. Handle callback
+    // 3. Create/update farmer profile
+    // 4. Generate session token
+    // 5. Return success response
+
+  } catch (error) {
+    console.error(`❌ [SOCIAL AUTH] Error:`, error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
+// Social OAuth callback handler (placeholder)
+export const socialCallback: RequestHandler = async (req, res) => {
+  try {
+    const { provider, code, state } = req.query;
+
+    console.log(`🔗 [SOCIAL CALLBACK] ${provider} callback received`);
+
+    // Production implementation would:
+    // 1. Exchange code for access token
+    // 2. Fetch user profile from provider
+    // 3. Create/update farmer in database
+    // 4. Create session
+    // 5. Redirect to dashboard
+
+    res.json({
+      success: false,
+      message: `${provider} callback handling coming soon!`
+    });
+
+  } catch (error) {
+    console.error(`❌ [SOCIAL CALLBACK] Error:`, error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+
 // Update farmer status (admin only)
 export const updateFarmerStatus: RequestHandler = async (req, res) => {
   try {
