@@ -142,7 +142,7 @@ export default function Index() {
               </span>{" "}
               और महीने में{" "}
               <span className="font-bold text-amber-600">
-                &nbsp; ��5,000-15,000&nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; ₹5,000-15,000&nbsp; &nbsp; &nbsp; &nbsp;
                 <br />
                 &nbsp;extra income&nbsp; &nbsp;
               </span>{" "}
@@ -403,7 +403,7 @@ export default function Index() {
         ></div>
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50/95 via-teal-50/90 to-emerald-50/95"></div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center mb-20">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
               <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
