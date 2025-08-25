@@ -432,24 +432,20 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
 
     if (password.length < 6) {
       console.log("❌ [FARMER REGISTER] Password too short");
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Password must be at least 6 characters",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Password must be at least 6 characters",
+      });
     }
 
     // Check if farmer already exists
     const existingFarmer = farmers.find((f) => f.email === email);
     if (existingFarmer) {
       console.log(`❌ [FARMER REGISTER] Farmer already exists: ${email}`);
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Farmer already registered with this email",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Farmer already registered with this email",
+      });
     }
 
     // Create new farmer
@@ -571,7 +567,7 @@ export const socialAuth: RequestHandler = async (req, res) => {
     res.json({
       success: false,
       message: `${provider} integration coming soon! Please use email/password or OTP authentication for now.`,
-      redirectUrl: null
+      redirectUrl: null,
     });
 
     // Production implementation would:
@@ -580,7 +576,6 @@ export const socialAuth: RequestHandler = async (req, res) => {
     // 3. Create/update farmer profile
     // 4. Generate session token
     // 5. Return success response
-
   } catch (error) {
     console.error(`❌ [SOCIAL AUTH] Error:`, error);
     res.status(500).json({ success: false, message: "Internal server error" });
@@ -603,9 +598,8 @@ export const socialCallback: RequestHandler = async (req, res) => {
 
     res.json({
       success: false,
-      message: `${provider} callback handling coming soon!`
+      message: `${provider} callback handling coming soon!`,
     });
-
   } catch (error) {
     console.error(`❌ [SOCIAL CALLBACK] Error:`, error);
     res.status(500).json({ success: false, message: "Internal server error" });

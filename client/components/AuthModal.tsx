@@ -14,7 +14,14 @@ import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Chrome, Facebook, Github, Twitter, Smartphone, Mail } from "lucide-react";
+import {
+  Chrome,
+  Facebook,
+  Github,
+  Twitter,
+  Smartphone,
+  Mail,
+} from "lucide-react";
 
 interface AuthModalProps {
   open: boolean;
@@ -40,14 +47,16 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
   const navigate = useNavigate();
 
   // Social Authentication Handlers
-  const handleSocialAuth = async (provider: 'google' | 'facebook' | 'github' | 'twitter') => {
+  const handleSocialAuth = async (
+    provider: "google" | "facebook" | "github" | "twitter",
+  ) => {
     setLoading(true);
     try {
       // Simulate social auth - in production, integrate with OAuth providers
       const response = await fetch(`/api/auth/social/${provider}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ provider }),
       });
@@ -223,12 +232,17 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
               transition={{ duration: 0.3 }}
             >
               <div className="text-center">
-                <p className="text-sm text-gray-600 mb-4">किसानों के लिए तेज़ और आसान साइन इन</p>
+                <p className="text-sm text-gray-600 mb-4">
+                  किसानों के लिए तेज़ और आसान साइन इन
+                </p>
                 <div className="grid grid-cols-2 gap-3 mb-4">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button
                       variant="outline"
-                      onClick={() => handleSocialAuth('google')}
+                      onClick={() => handleSocialAuth("google")}
                       disabled={loading}
                       className="w-full flex items-center justify-center gap-2 py-3 border-2 hover:bg-red-50 hover:border-red-200 transition-all duration-200"
                     >
@@ -237,10 +251,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     </Button>
                   </motion.div>
 
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button
                       variant="outline"
-                      onClick={() => handleSocialAuth('facebook')}
+                      onClick={() => handleSocialAuth("facebook")}
                       disabled={loading}
                       className="w-full flex items-center justify-center gap-2 py-3 border-2 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200"
                     >
@@ -249,10 +266,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     </Button>
                   </motion.div>
 
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button
                       variant="outline"
-                      onClick={() => handleSocialAuth('github')}
+                      onClick={() => handleSocialAuth("github")}
                       disabled={loading}
                       className="w-full flex items-center justify-center gap-2 py-3 border-2 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200"
                     >
@@ -261,10 +281,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     </Button>
                   </motion.div>
 
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button
                       variant="outline"
-                      onClick={() => handleSocialAuth('twitter')}
+                      onClick={() => handleSocialAuth("twitter")}
                       disabled={loading}
                       className="w-full flex items-center justify-center gap-2 py-3 border-2 hover:bg-sky-50 hover:border-sky-200 transition-all duration-200"
                     >
@@ -278,7 +301,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <div className="relative">
                 <Separator />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="bg-white px-2 text-xs text-gray-500">या</span>
+                  <span className="bg-white px-2 text-xs text-gray-500">
+                    या
+                  </span>
                 </div>
               </div>
             </motion.div>
