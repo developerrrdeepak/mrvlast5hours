@@ -39,11 +39,17 @@ export default function Index() {
   const [showLanguageModal, setShowLanguageModal] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  // Scroll animations
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 300], [0, -150]);
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0.3]);
+  const heroScale = useTransform(scrollY, [0, 300], [1, 1.1]);
+
   const features = [
     {
       icon: Smartphone,
       title: "सरल मोबाइल ऐप",
-      description: "आसान interface के स���थ हिंदी में carbon farming track करें",
+      description: "आसान interface के साथ हिंदी में carbon farming track करें",
       color: "blue",
     },
     {
@@ -349,7 +355,7 @@ export default function Index() {
                 <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
-                Carbon farming से न केवल आपकी आय बढ़ेग��, बल्कि पर्यावरण भी बेहतर
+                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
                 होगा।
               </p>
               <div className="space-y-4">
@@ -490,7 +496,7 @@ export default function Index() {
       <section className="py-20 bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight">
-            शुरू करने के लिए त��यार हैं?
+            शुरू करने के लिए त��यार ��ैं?
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
             आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
