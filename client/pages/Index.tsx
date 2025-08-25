@@ -188,7 +188,7 @@ export default function Index() {
               <Button
                 size="lg"
                 onClick={() => setShowAuthModal(true)}
-                className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+                className="bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 hover:from-teal-700 hover:via-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
               >
                 आज ही शुरू करें
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -197,7 +197,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-green-600 text-green-600 hover:bg-green-50 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
+                  className="border-teal-600 text-teal-600 hover:bg-teal-50 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
                 >
                   और जानें
                 </Button>
@@ -231,7 +231,7 @@ export default function Index() {
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 via-green-500/20 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 text-white">
                   <p className="font-bold text-xl mb-1">डिजिटल कृषि</p>
-                  <p className="text-sm opacity-90 font-medium">तकनीक से बेहतर फसल</p>
+                  <p className="text-sm opacity-90 font-medium">तकनी�� से बेहतर फसल</p>
                 </div>
                 <div className="absolute top-4 right-4">
                   <Badge className="bg-green-500/90 text-white border-0">Carbon Income</Badge>
@@ -325,7 +325,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   onClick={() => setShowAuthModal(true)}
-                  className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+                  className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
                 >
                   अभी Registration करें
                   <Heart className="ml-2 h-5 w-5" />
@@ -361,7 +361,7 @@ export default function Index() {
               आज ही अपनाएं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              AI और IOT से जुड़ी आधुनिक तकनीक के साथ carbon farming करें
+              AI और IOT से जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
             </p>
           </div>
 
@@ -431,7 +431,7 @@ export default function Index() {
       <section className="py-20 bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight">
-            शुरू करने के लिए तैयार हैं?
+            शुरू करने के लिए त��यार हैं?
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
             आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
@@ -441,7 +441,7 @@ export default function Index() {
             <Button
               size="lg"
               onClick={() => setShowAuthModal(true)}
-              className="bg-white text-emerald-600 hover:bg-green-50 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+              className="bg-white text-teal-600 hover:bg-teal-50 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
             >
               अभी Sign Up करें
               <ArrowRight className="ml-2 h-5 w-5" />
