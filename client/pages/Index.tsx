@@ -291,7 +291,7 @@ export default function Index() {
         ></div>
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/95 via-white/90 to-green-50/95"></div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
               क्यों चुनें{" "}
@@ -404,7 +404,7 @@ export default function Index() {
               आज ही अपनाएं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              AI और IOT से जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
+              AI और IOT स��� जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
             </p>
           </div>
 
