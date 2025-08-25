@@ -45,6 +45,10 @@ export default function Index() {
   const heroOpacity = useTransform(scrollY, [0, 300], [1, 0.3]);
   const heroScale = useTransform(scrollY, [0, 300], [1, 1.1]);
 
+  // Features section parallax
+  const featuresY = useTransform(scrollY, [300, 800], [0, -100]);
+  const featuresOpacity = useTransform(scrollY, [300, 800], [0.3, 1]);
+
   const features = [
     {
       icon: Smartphone,
@@ -398,7 +402,7 @@ export default function Index() {
                   src: "https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg",
                   alt: "Sustainable greenhouse farming with modern technology",
                   title: "स्मार्ट फार्मिंग",
-                  subtitle: "आधुनिक तकनीक से खेती",
+                  subtitle: "आधुनिक तकनीक ���े खेती",
                   badge: "AI Powered",
                   gradientFrom: "emerald-900/90",
                   gradientVia: "emerald-500/30",
@@ -566,7 +570,7 @@ export default function Index() {
                 <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
-                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
+                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्क�� पर्यावरण भी बेहतर
                 होगा।
               </p>
               <div className="space-y-4">
