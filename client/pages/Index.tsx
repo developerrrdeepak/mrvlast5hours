@@ -136,7 +136,7 @@ export default function Index() {
               <span className="font-bold text-amber-600">
                 ₹5,000-15,000 extra income
               </span>{" "}
-              पाएं। सबसे आसान तर��का sustainable farming का।
+              पाएं। सबसे आसान तरीका sustainable farming का।
             </p>
 
             {/* Quick Stats */}
