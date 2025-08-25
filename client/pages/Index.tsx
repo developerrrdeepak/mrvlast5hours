@@ -171,13 +171,38 @@ export default function Index() {
                 🌱 Carbon Farming India - AI Powered
               </Badge>
             </motion.div>
-            <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-8">
-              <span className="text-green-600">किसानों&nbsp; &nbsp;लिए</span> <br />
-              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
+            <motion.h1
+              className="text-hero font-display font-black text-gray-900 leading-none mb-8"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 100 }}
+            >
+              <motion.span
+                className="text-green-600 inline-block"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                किसानों&nbsp; &nbsp;लिए
+              </motion.span>
+              <br />
+              <motion.span
+                className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent inline-block"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                whileHover={{ scale: 1.05 }}
+              >
                 Carbon Income
-              </span>{" "}
-              का नया&nbsp;रास्ता
-            </h1>
+              </motion.span>{" "}
+              <motion.span
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+              >
+                का नया&nbsp;रास्ता
+              </motion.span>
+            </motion.h1>
             <p className="text-subtitle text-gray-700 font-medium mb-8 max-w-4xl mx-auto">
               अपनी farming practices से&nbsp;{" "}
               <span className="font-bold text-emerald-600">
@@ -225,7 +250,7 @@ export default function Index() {
                     </h3>
                   </div>
                   <p className="text-green-700 mb-4 text-sm">
-                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी प��एं
+                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी पाएं
                   </p>
                   <LanguageSelector
                     selectedLanguage={language}
@@ -341,7 +366,7 @@ export default function Index() {
               <span className="text-emerald-600">Carbon Farming?</span>
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              आसान, फायदेमंद, और पर्यावरण के लिए बेहतर
+              आसान, फायदेमंद, और प���्यावरण के लिए बेहतर
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
