@@ -352,8 +352,83 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Modern Sustainability Showcase */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-teal-50 to-emerald-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">भविष्य की तकनीक</span> <br />
+              आज ही अपनाएं
+            </h2>
+            <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
+              AI और IOT से जुड़ी आधुनिक तकनीक के साथ carbon farming करें
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <Card className="border-0 shadow-xl bg-gradient-to-r from-teal-50 to-emerald-50 hover:shadow-2xl transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                      <Zap className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">AI-Powered Monitoring</h3>
+                  </div>
+                  <p className="text-gray-700 font-medium">
+                    रियल-टाइम monitoring से अपनी carbon credits track करें और optimized farming करें
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-xl bg-gradient-to-r from-emerald-50 to-green-50 hover:shadow-2xl transition-all duration-300">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center">
+                      <BarChart3 className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">Smart Analytics</h3>
+                  </div>
+                  <p className="text-gray-700 font-medium">
+                    Advanced analytics से बेहतर yield और higher carbon income पाएं
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300">
+                  <img
+                    src="https://images.pexels.com/photos/8849295/pexels-photo-8849295.jpeg"
+                    alt="AI technology illustration for smart farming"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-teal-900/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <p className="font-bold text-sm">AI Technology</p>
+                  </div>
+                </div>
+
+                <div className="relative overflow-hidden rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 mt-8">
+                  <img
+                    src="https://images.pexels.com/photos/17827016/pexels-photo-17827016.jpeg"
+                    alt="Wind turbine in green landscape for sustainable energy"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <p className="font-bold text-sm">Green Energy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-green-600">
+      <section className="py-20 bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight">
             शुरू करने के लिए तैयार हैं?
