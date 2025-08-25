@@ -23,13 +23,13 @@ import {
 export default function AboutUs() {
   const team = [
     {
-      name: "Sourav Kumar",
+      name: "Swapn Kumar",
       role: "Climate Scientist",
       description: "Leading expert in agricultural carbon sequestration",
       image: "👨‍🌾",
     },
     {
-      name: "Deepak Amit",
+      name: "Deepak",
       role: "Technology Lead",
       description: "Developing MRV solutions for smallholder farmers",
       image: "👩‍💻",
@@ -44,7 +44,7 @@ export default function AboutUs() {
       name: "Swapna Kumar",
       role: "Data Scientist",
       description: "AI/ML specialist for satellite monitoring",
-      image: "👩‍🔬",
+      image: "👨‍🔬",
     },
   ];
 
