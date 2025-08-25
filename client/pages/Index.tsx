@@ -53,7 +53,7 @@ export default function Index() {
     {
       icon: Smartphone,
       title: "सरल मोबाइल ऐप",
-      description: "आसान interface के साथ हिंदी में carbon farming track करें",
+      description: "��सान interface के साथ हिंदी में carbon farming track करें",
       color: "blue",
     },
     {
@@ -92,7 +92,7 @@ export default function Index() {
     "प्रति एकड़ ₹5,000-15,000 अतिरिक्त आय",
     "Sustainable farming practices",
     "Government incentives के साथ support",
-    "Free training और technical guidance",
+    "Free training औ��� technical guidance",
     "Real-time income tracking",
     "Community support network",
   ];
@@ -676,7 +676,7 @@ export default function Index() {
                     औसत मास��क अतिर��क्त आ���
                   </p>
                   <p className="text-sm text-emerald-600 font-semibold mt-2">
-                    प्र��ि एकड़ carbon farming से
+                    प्र���ि एकड़ carbon farming से
                   </p>
                 </div>
               </div>
@@ -779,34 +779,114 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight">
-            शुरू करने के लिए त��यार हैं?
-          </h2>
-          <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
-            आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
-            करें
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              onClick={() => setShowAuthModal(true)}
-              className="bg-gradient-to-r from-amber-400 to-yellow-400 text-teal-800 hover:from-amber-500 hover:to-yellow-500 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+      <section className="relative py-24 overflow-hidden">
+        {/* Enhanced gradient background with multiple layers */}
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-700 via-emerald-600 to-green-600"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/30 via-transparent to-teal-500/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/5"></div>
+
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-4 h-4 bg-white/10 rounded-full"
+              animate={{
+                y: [0, -100, 0],
+                x: [0, Math.random() * 50 - 25, 0],
+                opacity: [0, 0.8, 0],
+                scale: [0.5, 1.2, 0.5],
+              }}
+              transition={{
+                duration: 5 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center z-10">
+          <motion.h2
+            className="text-4xl lg:text-6xl font-display font-black text-white mb-8 leading-tight drop-shadow-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.span
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="bg-gradient-to-r from-white via-green-100 to-white bg-clip-text text-transparent bg-[length:200%_100%]"
             >
-              अभी Sign Up करें
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Link to="/about-us">
+              शुरू करने के लिए तैयार हैं?
+            </motion.span>
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-12 drop-shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू कर���ं
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
+                onClick={() => setShowAuthModal(true)}
+                className="bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 text-teal-900 hover:from-amber-500 hover:via-yellow-500 hover:to-orange-500 text-xl px-10 py-4 font-bold tracking-wide shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden group border-2 border-yellow-300/50"
               >
-                हमारे बारे में जानें
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10">अभी Sign Up करें</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                  className="relative z-10"
+                >
+                  <ArrowRight className="ml-3 h-6 w-6" />
+                </motion.div>
               </Button>
+            </motion.div>
+
+            <Link to="/about-us">
+              <motion.div
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white/80 text-white hover:bg-white/20 hover:border-white text-xl px-10 py-4 font-semibold tracking-wide hover:shadow-2xl transition-all duration-300 backdrop-blur-sm bg-white/10"
+                >
+                  हमारे बारे में जानें
+                </Button>
+              </motion.div>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
