@@ -203,19 +203,36 @@ export default function Index() {
                 का नया&nbsp;रास्ता
               </motion.span>
             </motion.h1>
-            <p className="text-subtitle text-gray-700 font-medium mb-8 max-w-4xl mx-auto">
+            <motion.p
+              className="text-subtitle text-gray-700 font-medium mb-8 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
               अपनी farming practices से&nbsp;{" "}
-              <span className="font-bold text-emerald-600">
+              <motion.span
+                className="font-bold text-emerald-600"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.5 }}
+                whileHover={{ scale: 1.05, color: "#059669" }}
+              >
                 carbon credits earn करें&nbsp;
-              </span>{" "}
+              </motion.span>{" "}
               और महीने में{" "}
-              <span className="font-bold text-amber-600">
+              <motion.span
+                className="font-bold text-amber-600"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1.7 }}
+                whileHover={{ scale: 1.1 }}
+              >
                 &nbsp; ₹5,000-15,000&nbsp; &nbsp; &nbsp; &nbsp;
                 <br />
                 &nbsp;extra income&nbsp; &nbsp;
-              </span>{" "}
+              </motion.span>{" "}
               पाएं। सबसे आसान&nbsp;
-            </p>
+            </motion.p>
 
             {/* Quick Stats */}
             <div className="grid md:grid-cols-4 gap-6 mb-10 max-w-4xl mx-auto">
@@ -366,7 +383,7 @@ export default function Index() {
               <span className="text-emerald-600">Carbon Farming?</span>
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              आसान, फायदेमंद, और प���्यावरण के लिए बेहतर
+              आसान, फायदेमंद, और पर्यावरण के लिए बेहतर
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
