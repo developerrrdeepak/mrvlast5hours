@@ -42,7 +42,7 @@ export default function Index() {
     {
       icon: Smartphone,
       title: "सरल मोबाइल ऐप",
-      description: "आसान interface क�� साथ हिंदी में carbon farming track करें",
+      description: "आसान interface के साथ हिंदी में carbon farming track करें",
       color: "blue",
     },
     {
@@ -331,7 +331,16 @@ export default function Index() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 via-emerald-50 to-green-50">
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/1605270/pexels-photo-1605270.jpeg')`
+          }}
+        ></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-50/90 via-emerald-50/85 to-green-50/90"></div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
