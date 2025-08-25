@@ -81,7 +81,7 @@ export default function Index() {
     "प्रति एकड़ ₹5,000-15,000 अतिरिक्त आय",
     "Sustainable farming practices",
     "Government incentives के साथ support",
-    "Free training और technical guidance",
+    "Free training ��र technical guidance",
     "Real-time income tracking",
     "Community support network",
   ];
@@ -138,7 +138,7 @@ export default function Index() {
                 <br />
                 &nbsp;extra income&nbsp; &nbsp;
               </span>{" "}
-              पाएं। सबसे आसान तरीका sustainable farming का��
+              पाएं। सबसे आसान&nbsp;
             </p>
 
             {/* Quick Stats */}
