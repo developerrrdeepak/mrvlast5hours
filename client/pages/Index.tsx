@@ -114,7 +114,7 @@ export default function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/30 via-green-300/20 via-teal-300/15 to-blue-400/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-teal-200/30 via-transparent to-emerald-200/40"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 hover:from-emerald-200 hover:to-teal-200 text-lg px-8 py-4 font-bold tracking-wide shadow-xl border border-emerald-200">
