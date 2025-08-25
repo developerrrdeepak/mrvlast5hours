@@ -39,6 +39,38 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     useAuth();
   const navigate = useNavigate();
 
+  // Social Authentication Handlers
+  const handleSocialAuth = async (provider: 'google' | 'facebook' | 'github' | 'twitter') => {
+    setLoading(true);
+    try {
+      // Simulate social auth - in production, integrate with OAuth providers
+      const response = await fetch(`/api/auth/social/${provider}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ provider }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          toast.success(`${provider} login successful!`);
+          onOpenChange(false);
+          navigate("/farmer-dashboard");
+        } else {
+          toast.error(result.message || `${provider} login failed`);
+        }
+      } else {
+        // For now, show a demo message
+        toast.success(`${provider} integration coming soon! 🚀`);
+      }
+    } catch (error) {
+      toast.error(`${provider} authentication temporarily unavailable`);
+    }
+    setLoading(false);
+  };
+
   const handleSendOTP = async () => {
     if (!email) {
       toast.error("Please enter your email");
