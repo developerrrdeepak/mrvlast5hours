@@ -215,10 +215,14 @@ export default function Index() {
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-500/20 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 text-white">
                   <p className="font-bold text-xl mb-1">स्मार्ट फार्मिंग</p>
-                  <p className="text-sm opacity-90 font-medium">आधुनिक तकनीक से खेती</p>
+                  <p className="text-sm opacity-90 font-medium">
+                    आधुनिक तकनीक से खेती
+                  </p>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <Badge className="bg-emerald-500/90 text-white border-0">AI Powered</Badge>
+                  <Badge className="bg-emerald-500/90 text-white border-0">
+                    AI Powered
+                  </Badge>
                 </div>
               </div>
 
@@ -231,10 +235,14 @@ export default function Index() {
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 via-green-500/20 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 text-white">
                   <p className="font-bold text-xl mb-1">डिजिटल कृषि</p>
-                  <p className="text-sm opacity-90 font-medium">तकनी�� से बेहतर फसल</p>
+                  <p className="text-sm opacity-90 font-medium">
+                    तकनी�� से बेहतर फसल
+                  </p>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <Badge className="bg-green-500/90 text-white border-0">Carbon Income</Badge>
+                  <Badge className="bg-green-500/90 text-white border-0">
+                    Carbon Income
+                  </Badge>
                 </div>
               </div>
 
@@ -247,10 +255,14 @@ export default function Index() {
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-500/20 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 text-white">
                   <p className="font-bold text-xl mb-1">नवीकरणीय ऊर्जा</p>
-                  <p className="text-sm opacity-90 font-medium">सस्टेनेबल भविष्य</p>
+                  <p className="text-sm opacity-90 font-medium">
+                    सस्टेनेबल भविष्य
+                  </p>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <Badge className="bg-blue-500/90 text-white border-0">Green Tech</Badge>
+                  <Badge className="bg-blue-500/90 text-white border-0">
+                    Green Tech
+                  </Badge>
                 </div>
               </div>
             </div>
@@ -357,7 +369,10 @@ export default function Index() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">भविष्��� की तकनीक</span> <br />
+              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                भविष्��� की तकनीक
+              </span>{" "}
+              <br />
               आज ही अपनाएं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
@@ -373,10 +388,13 @@ export default function Index() {
                     <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center">
                       <Zap className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">AI-Powered Monitoring</h3>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      AI-Powered Monitoring
+                    </h3>
                   </div>
                   <p className="text-gray-700 font-medium">
-                    रियल-टाइम monitoring से अपनी carbon credits track करें और optimized farming ���रें
+                    रियल-टाइम monitoring से अपनी carbon credits track करें और
+                    optimized farming ���रें
                   </p>
                 </CardContent>
               </Card>
@@ -387,10 +405,13 @@ export default function Index() {
                     <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center">
                       <BarChart3 className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Smart Analytics</h3>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Smart Analytics
+                    </h3>
                   </div>
                   <p className="text-gray-700 font-medium">
-                    Advanced analytics से बेहतर yield और higher carbon income पाएं
+                    Advanced analytics से बेहतर yield और higher carbon income
+                    पाएं
                   </p>
                 </CardContent>
               </Card>
