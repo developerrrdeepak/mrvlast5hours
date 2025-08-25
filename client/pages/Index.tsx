@@ -61,7 +61,7 @@ export default function Index() {
     {
       icon: TreePine,
       title: "पेड़ लगाएं",
-      description: "Agroforestry projects में participate करे��",
+      description: "Agroforestry projects में participate ���रे��",
       color: "emerald",
     },
     {
@@ -284,27 +284,59 @@ export default function Index() {
             </motion.div>
 
             {/* Language Selector */}
-            <div className="mb-8">
-              <Card className="border-2 border-green-200 bg-green-50/80 backdrop-blur max-w-2xl mx-auto">
-                <CardContent className="p-6 text-center">
-                  <div className="flex items-center justify-center space-x-2 mb-3">
-                    <Languages className="h-5 w-5 text-green-600" />
-                    <h3 className="text-lg font-bold text-green-800">
-                      अपनी भाषा चुनें / Choose Your Language
-                    </h3>
-                  </div>
-                  <p className="text-green-700 mb-4 text-sm">
-                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी पाएं
-                  </p>
-                  <LanguageSelector
-                    selectedLanguage={language}
-                    onLanguageChange={changeLanguage}
-                    showModal={showLanguageModal}
-                    onModalChange={setShowLanguageModal}
-                  />
-                </CardContent>
-              </Card>
-            </div>
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.5 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.02, y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Card className="border-2 border-green-200/50 bg-gradient-to-br from-green-50/80 via-emerald-50/80 to-teal-50/80 backdrop-blur-md max-w-2xl mx-auto shadow-2xl overflow-hidden relative">
+                  {/* Glassmorphism overlay */}
+                  <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+
+                  <CardContent className="p-6 text-center relative z-10">
+                    <motion.div
+                      className="flex items-center justify-center space-x-2 mb-3"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <motion.div
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                      >
+                        <Languages className="h-5 w-5 text-green-600" />
+                      </motion.div>
+                      <h3 className="text-lg font-bold text-green-800">
+                        अपनी भाषा चुनें / Choose Your Language
+                      </h3>
+                    </motion.div>
+                    <motion.p
+                      className="text-green-700 mb-4 text-sm"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 2.8 }}
+                    >
+                      किसानों के लिए - अपनी सुविधाजनक भाषा में जानकारी पाएं
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 3 }}
+                    >
+                      <LanguageSelector
+                        selectedLanguage={language}
+                        onLanguageChange={changeLanguage}
+                        showModal={showLanguageModal}
+                        onModalChange={setShowLanguageModal}
+                      />
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button
