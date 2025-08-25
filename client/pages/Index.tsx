@@ -119,17 +119,47 @@ export default function Index() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        {/* Background Image */}
-        <div
+      <section className="relative overflow-hidden py-20 lg:py-32 min-h-screen">
+        {/* Parallax Background Image */}
+        <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/2909065/pexels-photo-2909065.jpeg')`
+            backgroundImage: `url('https://images.pexels.com/photos/2909065/pexels-photo-2909065.jpeg')`,
+            y: heroY,
+            scale: heroScale,
           }}
-        ></div>
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-green-800/30 to-teal-900/25"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-white/40 to-transparent"></div>
+        ></motion.div>
+
+        {/* Animated Overlay Gradients */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-green-800/40 to-teal-900/35"
+          style={{ opacity: heroOpacity }}
+        ></motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/50 to-transparent"></div>
+
+        {/* Floating Particles Effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-emerald-300/30 rounded-full"
+              animate={{
+                y: [0, -100, 0],
+                x: [0, Math.random() * 50 - 25, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 hover:from-emerald-200 hover:to-teal-200 text-lg px-8 py-4 font-bold tracking-wide shadow-xl border border-emerald-200">
@@ -352,7 +382,7 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
-                <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
+                <span className="text-emerald-600">फायदे</span> जो आपको मिलेंग���
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
                 Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
@@ -496,7 +526,7 @@ export default function Index() {
       <section className="py-20 bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight">
-            शुरू करने के लिए त��यार ��ैं?
+            शुरू करने के लिए त��यार हैं?
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
             आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
