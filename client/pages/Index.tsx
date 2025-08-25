@@ -61,7 +61,7 @@ export default function Index() {
     {
       icon: TreePine,
       title: "पेड़ लगाएं",
-      description: "Agroforestry projects में participate ���रे��",
+      description: "Agroforestry projects में participate करे��",
       color: "emerald",
     },
     {
@@ -338,25 +338,53 @@ export default function Index() {
               </motion.div>
             </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Button
-                size="lg"
-                onClick={() => setShowAuthModal(true)}
-                className="bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 hover:from-teal-700 hover:via-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 3.2 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                आज ही शुरू करें
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Link to="/solutions">
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="border-teal-600 text-teal-600 hover:bg-gradient-to-r hover:from-teal-100 hover:to-emerald-100 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
+                  onClick={() => setShowAuthModal(true)}
+                  className="bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 hover:from-teal-700 hover:via-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                 >
-                  और जानें
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.3 }}
+                  />
+                  <span className="relative z-10">आज ही शुरू करें</span>
+                  <motion.div
+                    animate={{ x: [0, 3, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    className="relative z-10"
+                  >
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </motion.div>
                 </Button>
+              </motion.div>
+
+              <Link to="/solutions">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-teal-600/70 text-teal-600 hover:bg-gradient-to-r hover:from-teal-100/90 hover:to-emerald-100/90 text-lg px-8 font-semibold tracking-wide hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/80 hover:border-teal-500"
+                  >
+                    और जानें
+                  </Button>
+                </motion.div>
               </Link>
-            </div>
+            </motion.div>
 
             {/* Hero Images - Modern AI Generated */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -554,7 +582,7 @@ export default function Index() {
                 भविष्��� की तकनीक
               </span>{" "}
               <br />
-              आज ही अपनाएं
+              आज ही अपना��ं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
               AI और IOT से जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
@@ -575,7 +603,7 @@ export default function Index() {
                   </div>
                   <p className="text-gray-700 font-medium">
                     रियल-टाइम monitoring से अपनी carbon credits track करें और
-                    optimized farming ���रें
+                    optimized farming ���रे��
                   </p>
                 </CardContent>
               </Card>
