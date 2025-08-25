@@ -204,7 +204,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
         if (!open) resetForm();
       }}
     >
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Sign In</DialogTitle>
         </DialogHeader>
