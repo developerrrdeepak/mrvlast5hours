@@ -179,12 +179,7 @@ export default function Index() {
               className="text-hero font-display font-black text-gray-900 leading-none mb-8"
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 1,
-                delay: 0.4,
-                type: "spring",
-                stiffness: 100,
-              }}
+              transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 100 }}
             >
               <motion.span
                 className="text-green-600 inline-block"
@@ -259,12 +254,12 @@ export default function Index() {
                     duration: 0.5,
                     delay: 2 + index * 0.1,
                     type: "spring",
-                    stiffness: 100,
+                    stiffness: 100
                   }}
                   whileHover={{
                     scale: 1.05,
                     y: -5,
-                    transition: { duration: 0.2 },
+                    transition: { duration: 0.2 }
                   }}
                 >
                   <Card className="border-0 shadow-xl bg-gradient-to-br from-emerald-100/95 to-teal-100/95 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:from-emerald-200/95 hover:to-teal-200/95 group overflow-hidden relative">
@@ -314,11 +309,7 @@ export default function Index() {
                     >
                       <motion.div
                         animate={{ rotate: [0, 10, -10, 0] }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatDelay: 3,
-                        }}
+                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
                       >
                         <Languages className="h-5 w-5 text-green-600" />
                       </motion.div>
@@ -374,11 +365,7 @@ export default function Index() {
                   <span className="relative z-10">आज ही शुरू करें</span>
                   <motion.div
                     animate={{ x: [0, 3, 0] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatDelay: 2,
-                    }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
                     className="relative z-10"
                   >
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -419,17 +406,17 @@ export default function Index() {
                   badge: "AI Powered",
                   gradientFrom: "emerald-900/90",
                   gradientVia: "emerald-500/30",
-                  badgeColor: "emerald-500/90",
+                  badgeColor: "emerald-500/90"
                 },
                 {
                   src: "https://images.pexels.com/photos/28270760/pexels-photo-28270760.jpeg",
                   alt: "Technology-enabled farming in green paddy fields",
-                  title: "डिजि���ल कृषि",
+                  title: "डिजि���ल कृ��ि",
                   subtitle: "तकनीक से बेहतर फसल",
                   badge: "Carbon Income",
                   gradientFrom: "green-900/90",
                   gradientVia: "green-500/30",
-                  badgeColor: "green-500/90",
+                  badgeColor: "green-500/90"
                 },
                 {
                   src: "https://images.pexels.com/photos/9799712/pexels-photo-9799712.jpeg",
@@ -439,8 +426,8 @@ export default function Index() {
                   badge: "Green Tech",
                   gradientFrom: "blue-900/90",
                   gradientVia: "blue-500/30",
-                  badgeColor: "blue-500/90",
-                },
+                  badgeColor: "blue-500/90"
+                }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -451,13 +438,13 @@ export default function Index() {
                     duration: 0.6,
                     delay: 3.7 + index * 0.2,
                     type: "spring",
-                    stiffness: 120,
+                    stiffness: 120
                   }}
                   whileHover={{
                     scale: 1.05,
                     y: -8,
                     rotateY: 5,
-                    transition: { duration: 0.3 },
+                    transition: { duration: 0.3 }
                   }}
                 >
                   {/* Glassmorphism overlay */}
@@ -471,9 +458,7 @@ export default function Index() {
                     transition={{ duration: 0.5 }}
                   />
 
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-t from-${item.gradientFrom} via-${item.gradientVia} to-transparent`}
-                  ></div>
+                  <div className={`absolute inset-0 bg-gradient-to-t from-${item.gradientFrom} via-${item.gradientVia} to-transparent`}></div>
 
                   {/* Content overlay */}
                   <motion.div
@@ -500,9 +485,7 @@ export default function Index() {
                     transition={{ delay: 4.2 + index * 0.2 }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    <Badge
-                      className={`bg-${item.badgeColor} text-white border-0 backdrop-blur-sm shadow-lg`}
-                    >
+                    <Badge className={`bg-${item.badgeColor} text-white border-0 backdrop-blur-sm shadow-lg`}>
                       {item.badge}
                     </Badge>
                   </motion.div>
@@ -510,7 +493,7 @@ export default function Index() {
                   {/* Shine effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                    style={{ width: "50%" }}
+                    style={{ width: '50%' }}
                   ></motion.div>
                 </motion.div>
               ))}
@@ -570,32 +553,73 @@ export default function Index() {
               आसान, फायदेमंद, और पर्यावरण ��े लिए बेहतर
             </p>
           </div>
-          <div className="grid lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
             {features.map((feature, index) => (
-              <Card
+              <motion.div
                 key={index}
-                className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white/95 to-emerald-50/95 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.8 + index * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
+                viewport={{ once: true }}
               >
-                <CardHeader>
-                  <div
-                    className={`w-16 h-16 bg-${feature.color}-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <feature.icon
-                      className={`h-8 w-8 text-${feature.color}-600`}
-                    />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-gray-900">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 font-medium leading-relaxed text-lg">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+                <Card className="border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 group bg-gradient-to-br from-white/95 via-emerald-50/20 to-emerald-50/95 backdrop-blur-md h-full relative overflow-hidden">
+                  {/* Subtle background pattern */}
+                  <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-emerald-200 to-teal-200"></div>
+
+                  {/* Glowing border effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-200/20 via-transparent to-teal-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
+
+                  <CardHeader className="relative z-10">
+                    <motion.div
+                      className={`w-20 h-20 bg-gradient-to-br from-${feature.color}-100 to-${feature.color}-200 rounded-2xl flex items-center justify-center mb-6 shadow-lg`}
+                      whileHover={{
+                        scale: 1.1,
+                        rotate: 5,
+                        transition: { type: "spring", stiffness: 300 }
+                      }}
+                    >
+                      <feature.icon
+                        className={`h-10 w-10 text-${feature.color}-600`}
+                      />
+                    </motion.div>
+                    <CardTitle className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors duration-300">
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="relative z-10">
+                    <p className="text-gray-600 font-medium leading-relaxed text-lg group-hover:text-gray-700 transition-colors duration-300">
+                      {feature.description}
+                    </p>
+                  </CardContent>
+
+                  {/* Animated corner accent */}
+                  <motion.div
+                    className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-emerald-200/30 to-transparent rounded-bl-3xl"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1 + index * 0.15, duration: 0.5 }}
+                    viewport={{ once: true }}
+                  ></motion.div>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -605,7 +629,7 @@ export default function Index() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/1605270/pexels-photo-1605270.jpeg')`,
+            backgroundImage: `url('https://images.pexels.com/photos/1605270/pexels-photo-1605270.jpeg')`
           }}
         ></div>
         {/* Overlay */}
@@ -667,7 +691,7 @@ export default function Index() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/2909065/pexels-photo-2909065.jpeg')`,
+            backgroundImage: `url('https://images.pexels.com/photos/2909065/pexels-photo-2909065.jpeg')`
           }}
         ></div>
         {/* Overlay */}
