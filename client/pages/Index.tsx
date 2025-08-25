@@ -30,8 +30,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import LanguageSelector, { useLanguage } from "@/components/LanguageSelector";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AuthModal from "@/components/AuthModal";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Index() {
   const { language, changeLanguage } = useLanguage();
@@ -42,7 +43,7 @@ export default function Index() {
     {
       icon: Smartphone,
       title: "सरल मोबाइल ऐप",
-      description: "आसान interface के साथ हिंदी में carbon farming track करें",
+      description: "आसान interface के स���थ हिंदी में carbon farming track करें",
       color: "blue",
     },
     {
@@ -348,7 +349,7 @@ export default function Index() {
                 <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
-                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
+                Carbon farming से न केवल आपकी आय बढ़ेग��, बल्कि पर्यावरण भी बेहतर
                 होगा।
               </p>
               <div className="space-y-4">
