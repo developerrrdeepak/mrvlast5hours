@@ -203,44 +203,53 @@ export default function Index() {
               </Link>
             </div>
 
-            {/* Hero Images */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+            {/* Hero Images - Modern AI Generated */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                 <img
-                  src="https://images.pexels.com/photos/20527463/pexels-photo-20527463.jpeg"
-                  alt="भारतीय महिला किसान गेहूं की फसल के साथ"
-                  className="w-full h-64 object-cover"
+                  src="https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg"
+                  alt="Sustainable greenhouse farming with modern technology"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">पारंपरिक ज्ञान</p>
-                  <p className="text-sm opacity-90">आधुनिक तकनीक</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-500/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <p className="font-bold text-xl mb-1">स्मार्ट फार्मिंग</p>
+                  <p className="text-sm opacity-90 font-medium">आधुनिक तकनीक से खेती</p>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge className="bg-emerald-500/90 text-white border-0">AI Powered</Badge>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                 <img
-                  src="https://images.pexels.com/photos/20527455/pexels-photo-20527455.jpeg"
-                  alt="भारतीय महिला किसान हरी सब्जियों के साथ"
-                  className="w-full h-64 object-cover"
+                  src="https://images.pexels.com/photos/28270760/pexels-photo-28270760.jpeg"
+                  alt="Technology-enabled farming in green paddy fields"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">महिला किसान</p>
-                  <p className="text-sm opacity-90">बदलाव की अगुआई</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 via-green-500/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <p className="font-bold text-xl mb-1">डिजिटल कृषि</p>
+                  <p className="text-sm opacity-90 font-medium">तकनीक से बेहतर फसल</p>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge className="bg-green-500/90 text-white border-0">Carbon Income</Badge>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                 <img
-                  src="https://images.pexels.com/photos/7782861/pexels-photo-7782861.jpeg"
-                  alt="हाथों में बीज - कृषि और विकास का प्रतीक"
-                  className="w-full h-64 object-cover"
+                  src="https://images.pexels.com/photos/9799712/pexels-photo-9799712.jpeg"
+                  alt="Solar panels showcasing renewable energy and sustainability"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">बदलाव के बीज</p>
-                  <p className="text-sm opacity-90">जलवायु समाधान</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-500/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <p className="font-bold text-xl mb-1">नवीकरणीय ऊर्जा</p>
+                  <p className="text-sm opacity-90 font-medium">सस्टेनेबल भविष्य</p>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge className="bg-blue-500/90 text-white border-0">Green Tech</Badge>
                 </div>
               </div>
             </div>
