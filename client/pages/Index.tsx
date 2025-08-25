@@ -54,7 +54,7 @@ export default function Index() {
     {
       icon: TreePine,
       title: "पेड़ लगाएं",
-      description: "Agroforestry projects में participate करें",
+      description: "Agroforestry projects में participate करे��",
       color: "emerald",
     },
     {
@@ -259,7 +259,7 @@ export default function Index() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
@@ -274,7 +274,7 @@ export default function Index() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white/95 to-emerald-50/95 backdrop-blur-sm"
               >
                 <CardHeader>
                   <div
@@ -300,7 +300,7 @@ export default function Index() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-teal-50 via-emerald-50 to-green-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -333,8 +333,8 @@ export default function Index() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl p-8">
-                <div className="h-full bg-white rounded-2xl shadow-2xl p-8 flex flex-col justify-center items-center text-center">
+              <div className="aspect-square bg-gradient-to-br from-emerald-200 to-teal-200 rounded-3xl p-8">
+                <div className="h-full bg-gradient-to-br from-emerald-50 to-white rounded-2xl shadow-2xl p-8 flex flex-col justify-center items-center text-center">
                   <TrendingUp className="h-20 w-20 text-emerald-600 mb-6" />
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
                     ₹12,000
@@ -343,7 +343,7 @@ export default function Index() {
                     औसत मासिक अतिर��क्त आय
                   </p>
                   <p className="text-sm text-emerald-600 font-semibold mt-2">
-                    प्रति एकड़ carbon farming से
+                    प्र��ि एकड़ carbon farming से
                   </p>
                 </div>
               </div>
