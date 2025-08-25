@@ -341,7 +341,7 @@ export default function Index() {
         ></div>
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50/90 via-emerald-50/85 to-green-50/90"></div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
@@ -404,7 +404,7 @@ export default function Index() {
               आज ही अपनाएं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              AI और IOT स��� जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
+              AI और IOT से जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
             </p>
           </div>
 
