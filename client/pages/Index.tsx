@@ -54,7 +54,7 @@ export default function Index() {
     {
       icon: TreePine,
       title: "पेड़ लगाएं",
-      description: "Agroforestry projects में participate करें",
+      description: "Agroforestry projects में participate करे��",
       color: "emerald",
     },
     {
@@ -93,7 +93,7 @@ export default function Index() {
       description: "भारत भर में",
     },
     {
-      number: "₹50 करोड़+",
+      number: "₹50 करोड���+",
       label: "Carbon Income",
       description: "किसानों को मिली",
     },
@@ -113,15 +113,16 @@ export default function Index() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/10 to-amber-500/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/30 via-green-300/20 via-teal-300/15 to-blue-400/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-teal-200/30 via-transparent to-emerald-200/40"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge className="mb-6 bg-green-100 text-green-700 hover:bg-green-200 text-lg px-6 py-3 font-bold tracking-wide shadow-lg">
-              🌱 Carbon Farming India
+            <Badge className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 hover:from-emerald-200 hover:to-teal-200 text-lg px-8 py-4 font-bold tracking-wide shadow-xl border border-emerald-200">
+              🌱 Carbon Farming India - AI Powered
             </Badge>
             <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-8">
-              <span className="text-green-600">किसानों के लिए</span> <br />
-              <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent">
+              <span className="text-green-600">किसा���ों के लिए</span> <br />
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
                 Carbon Income
               </span>{" "}
               का नया रास्त���
@@ -143,7 +144,7 @@ export default function Index() {
               {stats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-lg bg-white/80 backdrop-blur"
+                  className="border-0 shadow-xl bg-gradient-to-br from-emerald-100/95 to-teal-100/95 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:from-emerald-200/95 hover:to-teal-200/95"
                 >
                   <CardContent className="p-4 text-center">
                     <div className="stat-number text-3xl text-emerald-600 mb-1">
@@ -171,7 +172,7 @@ export default function Index() {
                     </h3>
                   </div>
                   <p className="text-green-700 mb-4 text-sm">
-                    किसानों के लिए - अपनी सुविधाजनक भाषा में जानकारी पाएं
+                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी पाएं
                   </p>
                   <LanguageSelector
                     selectedLanguage={language}
@@ -187,7 +188,7 @@ export default function Index() {
               <Button
                 size="lg"
                 onClick={() => setShowAuthModal(true)}
-                className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+                className="bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 hover:from-teal-700 hover:via-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
               >
                 आज ही शुरू करें
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -196,51 +197,72 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-green-600 text-green-600 hover:bg-green-50 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
+                  className="border-teal-600 text-teal-600 hover:bg-gradient-to-r hover:from-teal-100 hover:to-emerald-100 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
                 >
                   और जानें
                 </Button>
               </Link>
             </div>
 
-            {/* Hero Images */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+            {/* Hero Images - Modern AI Generated */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                 <img
-                  src="https://images.pexels.com/photos/20527463/pexels-photo-20527463.jpeg"
-                  alt="भारतीय महिला किसान गेहूं की फसल के साथ"
-                  className="w-full h-64 object-cover"
+                  src="https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg"
+                  alt="Sustainable greenhouse farming with modern technology"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">पारंपरिक ज्ञान</p>
-                  <p className="text-sm opacity-90">आधुनिक तकनीक</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-500/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <p className="font-bold text-xl mb-1">स्मार्ट फार्मिंग</p>
+                  <p className="text-sm opacity-90 font-medium">
+                    आधुनिक तकनीक से खेती
+                  </p>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge className="bg-emerald-500/90 text-white border-0">
+                    AI Powered
+                  </Badge>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                 <img
-                  src="https://images.pexels.com/photos/20527455/pexels-photo-20527455.jpeg"
-                  alt="भारतीय महिला किसान हरी सब्जियों के साथ"
-                  className="w-full h-64 object-cover"
+                  src="https://images.pexels.com/photos/28270760/pexels-photo-28270760.jpeg"
+                  alt="Technology-enabled farming in green paddy fields"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">महिला किसान</p>
-                  <p className="text-sm opacity-90">बदलाव की अगुआई</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 via-green-500/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <p className="font-bold text-xl mb-1">डिजिटल कृषि</p>
+                  <p className="text-sm opacity-90 font-medium">
+                    तकनी�� से बेहतर फसल
+                  </p>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge className="bg-green-500/90 text-white border-0">
+                    Carbon Income
+                  </Badge>
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
                 <img
-                  src="https://images.pexels.com/photos/7782861/pexels-photo-7782861.jpeg"
-                  alt="हाथों में बीज - कृषि और विकास का प्रतीक"
-                  className="w-full h-64 object-cover"
+                  src="https://images.pexels.com/photos/9799712/pexels-photo-9799712.jpeg"
+                  alt="Solar panels showcasing renewable energy and sustainability"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-bold text-lg">बदलाव के बीज</p>
-                  <p className="text-sm opacity-90">जलवायु समाधान</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-500/20 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <p className="font-bold text-xl mb-1">नवीकरणीय ऊर्जा</p>
+                  <p className="text-sm opacity-90 font-medium">
+                    सस्टेनेबल भविष्य
+                  </p>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <Badge className="bg-blue-500/90 text-white border-0">
+                    Green Tech
+                  </Badge>
                 </div>
               </div>
             </div>
@@ -249,7 +271,7 @@ export default function Index() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-emerald-100 via-teal-100 to-green-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
@@ -264,7 +286,7 @@ export default function Index() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-white/95 to-emerald-50/95 backdrop-blur-sm"
               >
                 <CardHeader>
                   <div
@@ -290,7 +312,7 @@ export default function Index() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-teal-50 via-emerald-50 to-green-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -315,7 +337,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   onClick={() => setShowAuthModal(true)}
-                  className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+                  className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
                 >
                   अभी Registration करें
                   <Heart className="ml-2 h-5 w-5" />
@@ -323,17 +345,17 @@ export default function Index() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl p-8">
-                <div className="h-full bg-white rounded-2xl shadow-2xl p-8 flex flex-col justify-center items-center text-center">
+              <div className="aspect-square bg-gradient-to-br from-emerald-200 to-teal-200 rounded-3xl p-8">
+                <div className="h-full bg-gradient-to-br from-emerald-50 to-white rounded-2xl shadow-2xl p-8 flex flex-col justify-center items-center text-center">
                   <TrendingUp className="h-20 w-20 text-emerald-600 mb-6" />
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
                     ₹12,000
                   </h3>
                   <p className="text-lg text-gray-600 font-medium">
-                    औसत मासिक अतिर��क्त आय
+                    औसत मास��क अतिर��क्त आय
                   </p>
                   <p className="text-sm text-emerald-600 font-semibold mt-2">
-                    प्रति एकड़ carbon farming से
+                    प्र��ि एकड़ carbon farming से
                   </p>
                 </div>
               </div>
@@ -342,11 +364,95 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Modern Sustainability Showcase */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-teal-50 to-emerald-50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                भविष्��� की तकनीक
+              </span>{" "}
+              <br />
+              आज ही अपनाएं
+            </h2>
+            <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
+              AI और IOT से जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <Card className="border-0 shadow-xl bg-gradient-to-r from-teal-100 to-emerald-100 hover:shadow-2xl transition-all duration-300 hover:from-teal-200 hover:to-emerald-200">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                      <Zap className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      AI-Powered Monitoring
+                    </h3>
+                  </div>
+                  <p className="text-gray-700 font-medium">
+                    रियल-टाइम monitoring से अपनी carbon credits track करें और
+                    optimized farming ���रें
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-xl bg-gradient-to-r from-emerald-100 to-green-100 hover:shadow-2xl transition-all duration-300 hover:from-emerald-200 hover:to-green-200">
+                <CardContent className="p-8">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center">
+                      <BarChart3 className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Smart Analytics
+                    </h3>
+                  </div>
+                  <p className="text-gray-700 font-medium">
+                    Advanced analytics से बेहतर yield और higher carbon income
+                    पाएं
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300">
+                  <img
+                    src="https://images.pexels.com/photos/8849295/pexels-photo-8849295.jpeg"
+                    alt="AI technology illustration for smart farming"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-teal-900/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <p className="font-bold text-sm">AI Technology</p>
+                  </div>
+                </div>
+
+                <div className="relative overflow-hidden rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 mt-8">
+                  <img
+                    src="https://images.pexels.com/photos/17827016/pexels-photo-17827016.jpeg"
+                    alt="Wind turbine in green landscape for sustainable energy"
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/70 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <p className="font-bold text-sm">Green Energy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-green-600">
+      <section className="py-20 bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight">
-            शुरू करने के लिए तैयार हैं?
+            शुरू करने के लिए त��यार हैं?
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
             आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
@@ -356,7 +462,7 @@ export default function Index() {
             <Button
               size="lg"
               onClick={() => setShowAuthModal(true)}
-              className="bg-white text-emerald-600 hover:bg-green-50 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
+              className="bg-gradient-to-r from-amber-400 to-yellow-400 text-teal-800 hover:from-amber-500 hover:to-yellow-500 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
             >
               अभी Sign Up करें
               <ArrowRight className="ml-2 h-5 w-5" />
