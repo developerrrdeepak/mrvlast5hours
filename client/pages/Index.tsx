@@ -144,7 +144,7 @@ export default function Index() {
               {stats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-xl bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm hover:shadow-2xl transition-all duration-300"
+                  className="border-0 shadow-xl bg-gradient-to-br from-emerald-100/95 to-teal-100/95 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:from-emerald-200/95 hover:to-teal-200/95"
                 >
                   <CardContent className="p-4 text-center">
                     <div className="stat-number text-3xl text-emerald-600 mb-1">
@@ -197,7 +197,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-teal-600 text-teal-600 hover:bg-teal-50 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
+                  className="border-teal-600 text-teal-600 hover:bg-gradient-to-r hover:from-teal-100 hover:to-emerald-100 text-lg px-8 font-semibold tracking-wide hover:shadow-lg transition-all duration-200"
                 >
                   और जानें
                 </Button>
