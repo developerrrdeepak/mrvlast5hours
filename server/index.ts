@@ -13,6 +13,8 @@ import {
   updateFarmerStatus,
   farmerPasswordRegister,
   farmerPasswordLogin,
+  socialAuth,
+  socialCallback,
 } from "./routes/auth";
 
 export function createServer() {
