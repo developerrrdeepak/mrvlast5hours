@@ -235,26 +235,53 @@ export default function Index() {
             </motion.p>
 
             {/* Quick Stats */}
-            <div className="grid md:grid-cols-4 gap-6 mb-10 max-w-4xl mx-auto">
+            <motion.div
+              className="grid md:grid-cols-4 gap-6 mb-10 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+            >
               {stats.map((stat, index) => (
-                <Card
+                <motion.div
                   key={index}
-                  className="border-0 shadow-xl bg-gradient-to-br from-emerald-100/95 to-teal-100/95 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:from-emerald-200/95 hover:to-teal-200/95"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 2 + index * 0.1,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -5,
+                    transition: { duration: 0.2 }
+                  }}
                 >
-                  <CardContent className="p-4 text-center">
-                    <div className="stat-number text-3xl text-emerald-600 mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="stat-label text-gray-900 mb-1 text-sm font-bold">
-                      {stat.label}
-                    </div>
-                    <div className="text-gray-600 text-xs">
-                      {stat.description}
-                    </div>
-                  </CardContent>
-                </Card>
+                  <Card className="border-0 shadow-xl bg-gradient-to-br from-emerald-100/95 to-teal-100/95 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:from-emerald-200/95 hover:to-teal-200/95 group overflow-hidden relative">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 to-teal-400/10 opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.3 }}
+                    ></motion.div>
+                    <CardContent className="p-4 text-center relative z-10">
+                      <motion.div
+                        className="stat-number text-3xl text-emerald-600 mb-1"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {stat.number}
+                      </motion.div>
+                      <div className="stat-label text-gray-900 mb-1 text-sm font-bold">
+                        {stat.label}
+                      </div>
+                      <div className="text-gray-600 text-xs">
+                        {stat.description}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Language Selector */}
             <div className="mb-8">
