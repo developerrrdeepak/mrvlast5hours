@@ -567,7 +567,8 @@ export const socialAuth: RequestHandler = async (req, res) => {
         const client = new OAuth2Client(
           process.env.GOOGLE_CLIENT_ID || "your-google-client-id",
           process.env.GOOGLE_CLIENT_SECRET || "your-google-client-secret",
-          process.env.GOOGLE_REDIRECT_URI || "http://localhost:8080/api/auth/social/google/callback"
+          process.env.GOOGLE_REDIRECT_URI ||
+            "http://localhost:8080/api/auth/social/google/callback",
         );
 
         let ticket;
@@ -584,7 +585,9 @@ export const socialAuth: RequestHandler = async (req, res) => {
         } else if (access_token) {
           // Handle Access Token
           console.log("🔐 [GOOGLE AUTH] Verifying Google access token");
-          const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${access_token}`);
+          const response = await fetch(
+            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${access_token}`,
+          );
           if (!response.ok) {
             throw new Error("Invalid access token");
           }
@@ -592,8 +595,8 @@ export const socialAuth: RequestHandler = async (req, res) => {
         } else {
           // Generate OAuth URL for redirect-based flow
           const authUrl = client.generateAuthUrl({
-            access_type: 'offline',
-            scope: ['openid', 'email', 'profile'],
+            access_type: "offline",
+            scope: ["openid", "email", "profile"],
             include_granted_scopes: true,
           });
 
@@ -601,7 +604,7 @@ export const socialAuth: RequestHandler = async (req, res) => {
           return res.json({
             success: true,
             redirectUrl: authUrl,
-            message: "Redirect to Google for authentication"
+            message: "Redirect to Google for authentication",
           });
         }
 
@@ -619,7 +622,8 @@ export const socialAuth: RequestHandler = async (req, res) => {
           farmer = {
             id: `farmer-${Date.now()}`,
             email: payload.email!,
-            name: payload.name || payload.given_name + " " + payload.family_name,
+            name:
+              payload.name || payload.given_name + " " + payload.family_name,
             verified: true,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -627,9 +631,13 @@ export const socialAuth: RequestHandler = async (req, res) => {
           };
           farmers.push(farmer);
 
-          console.log(`🌾 [GOOGLE AUTH] New farmer created: ${farmer.name} (${farmer.email})`);
+          console.log(
+            `🌾 [GOOGLE AUTH] New farmer created: ${farmer.name} (${farmer.email})`,
+          );
         } else {
-          console.log(`🌾 [GOOGLE AUTH] Existing farmer logged in: ${farmer.name} (${farmer.email})`);
+          console.log(
+            `🌾 [GOOGLE AUTH] Existing farmer logged in: ${farmer.name} (${farmer.email})`,
+          );
         }
 
         // Create session
@@ -648,7 +656,6 @@ export const socialAuth: RequestHandler = async (req, res) => {
         };
 
         res.json(response);
-
       } catch (googleError) {
         console.error("❌ [GOOGLE AUTH] Error:", googleError);
 
@@ -690,7 +697,8 @@ export const socialAuth: RequestHandler = async (req, res) => {
 
         res.status(400).json({
           success: false,
-          message: "Google authentication failed. Please try again or use email/OTP login.",
+          message:
+            "Google authentication failed. Please try again or use email/OTP login.",
         });
       }
     } else {
@@ -716,7 +724,9 @@ export const socialCallback: RequestHandler = async (req, res) => {
 
     if (error) {
       console.error(`❌ [SOCIAL CALLBACK] OAuth error:`, error);
-      return res.redirect(`${process.env.CLIENT_URL || 'http://localhost:8080'}?auth_error=${error}`);
+      return res.redirect(
+        `${process.env.CLIENT_URL || "http://localhost:8080"}?auth_error=${error}`,
+      );
     }
 
     if (provider === "google" && code) {
@@ -728,7 +738,8 @@ export const socialCallback: RequestHandler = async (req, res) => {
         const client = new OAuth2Client(
           process.env.GOOGLE_CLIENT_ID || "your-google-client-id",
           process.env.GOOGLE_CLIENT_SECRET || "your-google-client-secret",
-          process.env.GOOGLE_REDIRECT_URI || "http://localhost:8080/api/auth/social/google/callback"
+          process.env.GOOGLE_REDIRECT_URI ||
+            "http://localhost:8080/api/auth/social/google/callback",
         );
 
         // Exchange code for tokens
@@ -737,7 +748,7 @@ export const socialCallback: RequestHandler = async (req, res) => {
 
         // Get user info
         const { data } = await client.request({
-          url: "https://www.googleapis.com/oauth2/v2/userinfo"
+          url: "https://www.googleapis.com/oauth2/v2/userinfo",
         });
 
         const userInfo = data as any;
@@ -755,7 +766,8 @@ export const socialCallback: RequestHandler = async (req, res) => {
           farmer = {
             id: `farmer-${Date.now()}`,
             email: userInfo.email,
-            name: userInfo.name || `${userInfo.given_name} ${userInfo.family_name}`,
+            name:
+              userInfo.name || `${userInfo.given_name} ${userInfo.family_name}`,
             verified: true,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -763,7 +775,9 @@ export const socialCallback: RequestHandler = async (req, res) => {
           };
           farmers.push(farmer);
 
-          console.log(`🌾 [GOOGLE CALLBACK] New farmer created: ${farmer.name} (${farmer.email})`);
+          console.log(
+            `🌾 [GOOGLE CALLBACK] New farmer created: ${farmer.name} (${farmer.email})`,
+          );
         }
 
         // Create session
@@ -776,22 +790,23 @@ export const socialCallback: RequestHandler = async (req, res) => {
         sessions[token] = user;
 
         // Redirect to frontend with token
-        const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
-        res.redirect(`${clientUrl}/farmer-dashboard?token=${token}&auth_success=true`);
-
+        const clientUrl = process.env.CLIENT_URL || "http://localhost:8080";
+        res.redirect(
+          `${clientUrl}/farmer-dashboard?token=${token}&auth_success=true`,
+        );
       } catch (googleError) {
         console.error("❌ [GOOGLE CALLBACK] Error:", googleError);
-        const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+        const clientUrl = process.env.CLIENT_URL || "http://localhost:8080";
         res.redirect(`${clientUrl}?auth_error=google_callback_failed`);
       }
     } else {
       // Other providers
-      const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+      const clientUrl = process.env.CLIENT_URL || "http://localhost:8080";
       res.redirect(`${clientUrl}?auth_error=provider_not_supported`);
     }
   } catch (error) {
     console.error(`❌ [SOCIAL CALLBACK] Error:`, error);
-    const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+    const clientUrl = process.env.CLIENT_URL || "http://localhost:8080";
     res.redirect(`${clientUrl}?auth_error=callback_failed`);
   }
 };

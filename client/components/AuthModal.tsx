@@ -54,7 +54,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     try {
       if (provider === "google") {
         // Check if Google Sign-In script is loaded
-        if (typeof window !== 'undefined' && (window as any).google) {
+        if (typeof window !== "undefined" && (window as any).google) {
           console.log("🔗 [GOOGLE AUTH] Using Google Sign-In");
 
           // Use Google One Tap or Sign-In button
@@ -63,7 +63,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
 
             // Initialize Google Sign-In
             google.accounts.id.initialize({
-              client_id: process.env.GOOGLE_CLIENT_ID || "your-google-client-id.apps.googleusercontent.com",
+              client_id:
+                process.env.GOOGLE_CLIENT_ID ||
+                "your-google-client-id.apps.googleusercontent.com",
               callback: async (credentialResponse: any) => {
                 try {
                   console.log("🔐 [GOOGLE AUTH] Received credential response");
@@ -74,7 +76,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                       "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                      credential: credentialResponse.credential
+                      credential: credentialResponse.credential,
                     }),
                   });
 
@@ -100,7 +102,6 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
 
             // Prompt the user to sign in
             google.accounts.id.prompt();
-
           } catch (googleError) {
             console.error("Google Sign-In error:", googleError);
             // Fallback to demo login for development
@@ -108,12 +109,16 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
           }
         } else {
           // Fallback: redirect to OAuth flow or demo login
-          console.log("🔗 [GOOGLE AUTH] Google Sign-In not available, using fallback");
+          console.log(
+            "🔗 [GOOGLE AUTH] Google Sign-In not available, using fallback",
+          );
           await handleDemoGoogleLogin();
         }
       } else {
         // Other providers - show coming soon message
-        toast.info(`${provider} integration coming soon! Use Google or email/password for now. 🚀`);
+        toast.info(
+          `${provider} integration coming soon! Use Google or email/password for now. 🚀`,
+        );
         setLoading(false);
       }
     } catch (error) {
