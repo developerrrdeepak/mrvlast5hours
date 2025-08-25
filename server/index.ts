@@ -43,6 +43,10 @@ export function createServer() {
   app.put("/api/auth/update-profile", updateProfile);
   app.post("/api/auth/logout", logout);
 
+  // Social Authentication routes
+  app.post("/api/auth/social/:provider", socialAuth);
+  app.get("/api/auth/social/:provider/callback", socialCallback);
+
   // Admin routes
   app.get("/api/admin/farmers", getFarmers);
   app.put("/api/admin/farmer-status", updateFarmerStatus);
