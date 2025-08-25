@@ -142,7 +142,7 @@ export default function Index() {
               </span>{" "}
               और महीने में{" "}
               <span className="font-bold text-amber-600">
-                &nbsp; ₹5,000-15,000&nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; ��5,000-15,000&nbsp; &nbsp; &nbsp; &nbsp;
                 <br />
                 &nbsp;extra income&nbsp; &nbsp;
               </span>{" "}
@@ -393,7 +393,16 @@ export default function Index() {
       </section>
 
       {/* Modern Sustainability Showcase */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-teal-50 to-emerald-50">
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/2909065/pexels-photo-2909065.jpeg')`
+          }}
+        ></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50/95 via-teal-50/90 to-emerald-50/95"></div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
