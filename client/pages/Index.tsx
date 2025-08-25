@@ -113,15 +113,16 @@ export default function Index() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/10 to-amber-500/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/30 via-green-300/20 via-teal-300/15 to-blue-400/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/60"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge className="mb-6 bg-green-100 text-green-700 hover:bg-green-200 text-lg px-6 py-3 font-bold tracking-wide shadow-lg">
-              🌱 Carbon Farming India
+            <Badge className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 hover:from-emerald-200 hover:to-teal-200 text-lg px-8 py-4 font-bold tracking-wide shadow-xl border border-emerald-200">
+              🌱 Carbon Farming India - AI Powered
             </Badge>
             <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-8">
               <span className="text-green-600">किसानों के लिए</span> <br />
-              <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
                 Carbon Income
               </span>{" "}
               का नया रास्त���
@@ -143,7 +144,7 @@ export default function Index() {
               {stats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="border-0 shadow-lg bg-white/80 backdrop-blur"
+                  className="border-0 shadow-xl bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm hover:shadow-2xl transition-all duration-300"
                 >
                   <CardContent className="p-4 text-center">
                     <div className="stat-number text-3xl text-emerald-600 mb-1">
