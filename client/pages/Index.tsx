@@ -81,7 +81,7 @@ export default function Index() {
     "प्रति एकड़ ₹5,000-15,000 अतिरिक्त आय",
     "Sustainable farming practices",
     "Government incentives के साथ support",
-    "Free training ��र technical guidance",
+    "Free training और technical guidance",
     "Real-time income tracking",
     "Community support network",
   ];
@@ -113,8 +113,16 @@ export default function Index() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/30 via-green-300/20 via-teal-300/15 to-blue-400/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-teal-200/30 via-transparent to-emerald-200/40"></div>
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.pexels.com/photos/2909065/pexels-photo-2909065.jpeg')`
+          }}
+        ></div>
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-green-800/30 to-teal-900/25"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-white/40 to-transparent"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 hover:from-emerald-200 hover:to-teal-200 text-lg px-8 py-4 font-bold tracking-wide shadow-xl border border-emerald-200">
@@ -281,7 +289,7 @@ export default function Index() {
               <span className="text-emerald-600">Carbon Farming?</span>
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              आसान, फायदेमंद, और पर्यावरण के लिए बेहतर
+              आसान, फायदेमंद, और पर्याव��ण के लिए बेहतर
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -458,7 +466,7 @@ export default function Index() {
           </h2>
           <p className="text-xl text-green-100 font-medium max-w-3xl mx-auto mb-8">
             आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
-            करें
+            कर��ं
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
