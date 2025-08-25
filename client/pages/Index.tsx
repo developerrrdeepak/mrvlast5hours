@@ -402,7 +402,7 @@ export default function Index() {
                   src: "https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg",
                   alt: "Sustainable greenhouse farming with modern technology",
                   title: "स्मार्ट फार्मिंग",
-                  subtitle: "आधुनिक तकनीक ���े खेती",
+                  subtitle: "आधुनिक तकनीक से खेती",
                   badge: "AI Powered",
                   gradientFrom: "emerald-900/90",
                   gradientVia: "emerald-500/30",
@@ -411,7 +411,7 @@ export default function Index() {
                 {
                   src: "https://images.pexels.com/photos/28270760/pexels-photo-28270760.jpeg",
                   alt: "Technology-enabled farming in green paddy fields",
-                  title: "डिजिटल कृषि",
+                  title: "डिजि���ल कृषि",
                   subtitle: "तकनीक से बेहतर फसल",
                   badge: "Carbon Income",
                   gradientFrom: "green-900/90",
@@ -504,15 +504,45 @@ export default function Index() {
 
       {/* Features Section */}
       <section className="relative py-20 overflow-hidden">
-        {/* Background Image */}
-        <div
+        {/* Parallax Background Image */}
+        <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg')`
+            backgroundImage: `url('https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg')`,
+            y: featuresY,
           }}
-        ></div>
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/95 via-white/90 to-green-50/95"></div>
+        ></motion.div>
+
+        {/* Animated Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-3 h-3 bg-emerald-200/40 rounded-full"
+              animate={{
+                y: [0, -80, 0],
+                x: [0, Math.random() * 30 - 15, 0],
+                opacity: [0, 0.6, 0],
+                scale: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Enhanced Overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-emerald-50/95 via-white/90 to-green-50/95"
+          style={{ opacity: featuresOpacity }}
+        ></motion.div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
@@ -570,7 +600,7 @@ export default function Index() {
                 <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
-                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्क�� पर्यावरण भी बेहतर
+                Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
                 होगा।
               </p>
               <div className="space-y-4">
