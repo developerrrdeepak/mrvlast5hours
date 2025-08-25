@@ -160,11 +160,17 @@ export default function Index() {
             />
           ))}
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center">
-            <Badge className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 hover:from-emerald-200 hover:to-teal-200 text-lg px-8 py-4 font-bold tracking-wide shadow-xl border border-emerald-200">
-              🌱 Carbon Farming India - AI Powered
-            </Badge>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <Badge className="mb-6 bg-gradient-to-r from-emerald-100/90 to-teal-100/90 text-emerald-800 hover:from-emerald-200/90 hover:to-teal-200/90 text-lg px-8 py-4 font-bold tracking-wide shadow-2xl border border-emerald-200/50 backdrop-blur-sm">
+                🌱 Carbon Farming India - AI Powered
+              </Badge>
+            </motion.div>
             <h1 className="text-hero font-display font-black text-gray-900 leading-none mb-8">
               <span className="text-green-600">किसानों&nbsp; &nbsp;लिए</span> <br />
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-blue-600 bg-clip-text text-transparent">
@@ -219,7 +225,7 @@ export default function Index() {
                     </h3>
                   </div>
                   <p className="text-green-700 mb-4 text-sm">
-                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी पाएं
+                    किसानों के लिए - अपनी सुविधाजन��� भाषा में जानकारी प��एं
                   </p>
                   <LanguageSelector
                     selectedLanguage={language}
@@ -382,7 +388,7 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl lg:text-5xl font-display font-black text-gray-900 mb-6 leading-tight">
-                <span className="text-emerald-600">फायदे</span> जो आपको मिलेंग���
+                <span className="text-emerald-600">फायदे</span> जो आपको मिलेंगे
               </h2>
               <p className="text-xl text-gray-600 mb-8 font-medium leading-relaxed">
                 Carbon farming से न केवल आपकी आय बढ़ेगी, बल्कि पर्यावरण भी बेहतर
