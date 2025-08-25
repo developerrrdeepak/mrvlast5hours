@@ -387,67 +387,113 @@ export default function Index() {
             </motion.div>
 
             {/* Hero Images - Modern AI Generated */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
-                <img
-                  src="https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg"
-                  alt="Sustainable greenhouse farming with modern technology"
-                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-500/20 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="font-bold text-xl mb-1">स्मार्ट फार्मिंग</p>
-                  <p className="text-sm opacity-90 font-medium">
-                    आधुनिक तकनीक से खेती
-                  </p>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-emerald-500/90 text-white border-0">
-                    AI Powered
-                  </Badge>
-                </div>
-              </div>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 3.5 }}
+            >
+              {[
+                {
+                  src: "https://images.pexels.com/photos/7299994/pexels-photo-7299994.jpeg",
+                  alt: "Sustainable greenhouse farming with modern technology",
+                  title: "स्मार्ट फार्मिंग",
+                  subtitle: "आधुनिक तकनीक से खेती",
+                  badge: "AI Powered",
+                  gradientFrom: "emerald-900/90",
+                  gradientVia: "emerald-500/30",
+                  badgeColor: "emerald-500/90"
+                },
+                {
+                  src: "https://images.pexels.com/photos/28270760/pexels-photo-28270760.jpeg",
+                  alt: "Technology-enabled farming in green paddy fields",
+                  title: "डिजिटल कृषि",
+                  subtitle: "तकनीक से बेहतर फसल",
+                  badge: "Carbon Income",
+                  gradientFrom: "green-900/90",
+                  gradientVia: "green-500/30",
+                  badgeColor: "green-500/90"
+                },
+                {
+                  src: "https://images.pexels.com/photos/9799712/pexels-photo-9799712.jpeg",
+                  alt: "Solar panels showcasing renewable energy and sustainability",
+                  title: "नवीकरणीय ऊर्जा",
+                  subtitle: "सस्टेनेबल भविष्य",
+                  badge: "Green Tech",
+                  gradientFrom: "blue-900/90",
+                  gradientVia: "blue-500/30",
+                  badgeColor: "blue-500/90"
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="relative overflow-hidden rounded-3xl shadow-2xl group cursor-pointer"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 3.7 + index * 0.2,
+                    type: "spring",
+                    stiffness: 120
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -8,
+                    rotateY: 5,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {/* Glassmorphism overlay */}
+                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
 
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
-                <img
-                  src="https://images.pexels.com/photos/28270760/pexels-photo-28270760.jpeg"
-                  alt="Technology-enabled farming in green paddy fields"
-                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 via-green-500/20 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="font-bold text-xl mb-1">डिजिटल कृषि</p>
-                  <p className="text-sm opacity-90 font-medium">
-                    तकनी�� से बेहतर फसल
-                  </p>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-green-500/90 text-white border-0">
-                    Carbon Income
-                  </Badge>
-                </div>
-              </div>
+                  <motion.img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-72 object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  />
 
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 group">
-                <img
-                  src="https://images.pexels.com/photos/9799712/pexels-photo-9799712.jpeg"
-                  alt="Solar panels showcasing renewable energy and sustainability"
-                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-500/20 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="font-bold text-xl mb-1">नवीकरणीय ऊर्जा</p>
-                  <p className="text-sm opacity-90 font-medium">
-                    सस्टेनेबल भविष्य
-                  </p>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-blue-500/90 text-white border-0">
-                    Green Tech
-                  </Badge>
-                </div>
-              </div>
-            </div>
+                  <div className={`absolute inset-0 bg-gradient-to-t from-${item.gradientFrom} via-${item.gradientVia} to-transparent`}></div>
+
+                  {/* Content overlay */}
+                  <motion.div
+                    className="absolute bottom-6 left-6 text-white z-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 4 + index * 0.2 }}
+                  >
+                    <motion.p
+                      className="font-bold text-xl mb-1"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {item.title}
+                    </motion.p>
+                    <p className="text-sm opacity-90 font-medium">
+                      {item.subtitle}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute top-4 right-4 z-20"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 4.2 + index * 0.2 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    <Badge className={`bg-${item.badgeColor} text-white border-0 backdrop-blur-sm shadow-lg`}>
+                      {item.badge}
+                    </Badge>
+                  </motion.div>
+
+                  {/* Shine effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                    style={{ width: '50%' }}
+                  ></motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -470,7 +516,7 @@ export default function Index() {
               <span className="text-emerald-600">Carbon Farming?</span>
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
-              आसान, फायदेमंद, और पर्यावरण के लिए बेहतर
+              आसान, फायदेमंद, और पर्यावरण ��े लिए बेहतर
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -552,7 +598,7 @@ export default function Index() {
                     ₹12,000
                   </h3>
                   <p className="text-lg text-gray-600 font-medium">
-                    औसत मास��क अतिर��क्त आय
+                    औसत मास��क अतिर��क्त आ���
                   </p>
                   <p className="text-sm text-emerald-600 font-semibold mt-2">
                     प्र��ि एकड़ carbon farming से
