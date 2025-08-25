@@ -706,27 +706,93 @@ export const socialAuth: RequestHandler = async (req, res) => {
   }
 };
 
-// Social OAuth callback handler (placeholder)
+// Social OAuth callback handler
 export const socialCallback: RequestHandler = async (req, res) => {
   try {
-    const { provider, code, state } = req.query;
+    const { provider } = req.params;
+    const { code, state, error } = req.query;
 
     console.log(`🔗 [SOCIAL CALLBACK] ${provider} callback received`);
 
-    // Production implementation would:
-    // 1. Exchange code for access token
-    // 2. Fetch user profile from provider
-    // 3. Create/update farmer in database
-    // 4. Create session
-    // 5. Redirect to dashboard
+    if (error) {
+      console.error(`❌ [SOCIAL CALLBACK] OAuth error:`, error);
+      return res.redirect(`${process.env.CLIENT_URL || 'http://localhost:8080'}?auth_error=${error}`);
+    }
 
-    res.json({
-      success: false,
-      message: `${provider} callback handling coming soon!`,
-    });
+    if (provider === "google" && code) {
+      try {
+        // Import Google OAuth library
+        const { OAuth2Client } = await import("google-auth-library");
+
+        // Initialize Google OAuth client
+        const client = new OAuth2Client(
+          process.env.GOOGLE_CLIENT_ID || "your-google-client-id",
+          process.env.GOOGLE_CLIENT_SECRET || "your-google-client-secret",
+          process.env.GOOGLE_REDIRECT_URI || "http://localhost:8080/api/auth/social/google/callback"
+        );
+
+        // Exchange code for tokens
+        const { tokens } = await client.getToken(code as string);
+        client.setCredentials(tokens);
+
+        // Get user info
+        const { data } = await client.request({
+          url: "https://www.googleapis.com/oauth2/v2/userinfo"
+        });
+
+        const userInfo = data as any;
+
+        if (!userInfo.email) {
+          throw new Error("Unable to get user email from Google");
+        }
+
+        console.log(`✅ [GOOGLE CALLBACK] User verified: ${userInfo.email}`);
+
+        // Find or create farmer
+        let farmer = farmers.find((f) => f.email === userInfo.email);
+
+        if (!farmer) {
+          farmer = {
+            id: `farmer-${Date.now()}`,
+            email: userInfo.email,
+            name: userInfo.name || `${userInfo.given_name} ${userInfo.family_name}`,
+            verified: true,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            estimatedIncome: 0,
+          };
+          farmers.push(farmer);
+
+          console.log(`🌾 [GOOGLE CALLBACK] New farmer created: ${farmer.name} (${farmer.email})`);
+        }
+
+        // Create session
+        const token = generateToken();
+        const user: AuthUser = {
+          type: "farmer",
+          farmer,
+        };
+
+        sessions[token] = user;
+
+        // Redirect to frontend with token
+        const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+        res.redirect(`${clientUrl}/farmer-dashboard?token=${token}&auth_success=true`);
+
+      } catch (googleError) {
+        console.error("❌ [GOOGLE CALLBACK] Error:", googleError);
+        const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+        res.redirect(`${clientUrl}?auth_error=google_callback_failed`);
+      }
+    } else {
+      // Other providers
+      const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+      res.redirect(`${clientUrl}?auth_error=provider_not_supported`);
+    }
   } catch (error) {
     console.error(`❌ [SOCIAL CALLBACK] Error:`, error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
+    res.redirect(`${clientUrl}?auth_error=callback_failed`);
   }
 };
 
