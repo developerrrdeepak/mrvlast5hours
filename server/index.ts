@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { handleDemo } from "./routes/demo";
+import { healthCheck } from "./routes/health";
 import {
   sendOTP,
   verifyOTP,
@@ -25,13 +25,24 @@ export function createServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // Example API routes
+  // Request logging middleware (only in development)
+  if (process.env.NODE_ENV !== 'production') {
+    app.use((req, res, next) => {
+      console.log(`📝 [${req.method}] ${req.path}`, req.body ? JSON.stringify(req.body).substring(0, 100) + '...' : '');
+      next();
+    });
+  }
+
+  // System routes
   app.get("/api/ping", (_req, res) => {
-    const ping = process.env.PING_MESSAGE ?? "ping";
-    res.json({ message: ping });
+    res.json({ 
+      message: process.env.PING_MESSAGE ?? "pong",
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || "development"
+    });
   });
 
-  app.get("/api/demo", handleDemo);
+  app.get("/api/health", healthCheck);
 
   // Authentication routes
   app.post("/api/auth/send-otp", sendOTP);
@@ -47,18 +58,9 @@ export function createServer() {
   app.post("/api/auth/social/:provider", socialAuth);
   app.get("/api/auth/social/:provider/callback", socialCallback);
 
-  // Admin routes
+  // Admin routes (protected)
   app.get("/api/admin/farmers", getFarmers);
   app.put("/api/admin/farmer-status", updateFarmerStatus);
-
-  // Health check endpoint
-  app.get("/api/health", (_req, res) => {
-    res.json({
-      status: "ok",
-      timestamp: new Date().toISOString(),
-      environment: process.env.NODE_ENV || "development",
-    });
-  });
 
   // Global error handler
   app.use(
@@ -72,25 +74,75 @@ export function createServer() {
         path: req.path,
         method: req.method,
         error: error.message,
-        stack: error.stack,
+        timestamp: new Date().toISOString(),
+        ...(process.env.NODE_ENV !== "production" && { 
+          stack: error.stack,
+          body: req.body 
+        }),
       });
 
       res.status(500).json({
         success: false,
         message: "Internal server error",
-        ...(process.env.NODE_ENV !== "production" && { error: error.message }),
+        timestamp: new Date().toISOString(),
+        ...(process.env.NODE_ENV !== "production" && { 
+          error: error.message,
+          path: req.path 
+        }),
       });
     },
   );
 
   // 404 handler for API routes
   app.use("/api", (req, res) => {
-    console.log("❓ [404] API endpoint not found:", req.path);
+    console.log("❓ [404] API endpoint not found:", req.method, req.path);
     res.status(404).json({
       success: false,
-      message: `API endpoint not found: ${req.path}`,
+      message: `API endpoint not found: ${req.method} ${req.path}`,
+      timestamp: new Date().toISOString(),
+      availableEndpoints: [
+        'GET /api/ping',
+        'GET /api/health',
+        'POST /api/auth/send-otp',
+        'POST /api/auth/verify-otp',
+        'POST /api/auth/admin-login',
+        'POST /api/auth/farmer-register',
+        'POST /api/auth/farmer-login',
+        'GET /api/auth/verify',
+        'PUT /api/auth/update-profile',
+        'POST /api/auth/logout',
+        'POST /api/auth/social/:provider',
+        'GET /api/auth/social/:provider/callback',
+        'GET /api/admin/farmers',
+        'PUT /api/admin/farmer-status'
+      ]
     });
   });
 
   return app;
 }
+
+// Handle graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('🛑 [SHUTDOWN] SIGTERM received, shutting down gracefully...');
+  try {
+    const Database = await import('./lib/database');
+    await Database.default.getInstance().disconnect();
+    console.log('✅ [SHUTDOWN] Database disconnected successfully');
+  } catch (error) {
+    console.error('❌ [SHUTDOWN] Error during database disconnect:', error);
+  }
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  console.log('🛑 [SHUTDOWN] SIGINT received, shutting down gracefully...');
+  try {
+    const Database = await import('./lib/database');
+    await Database.default.getInstance().disconnect();
+    console.log('✅ [SHUTDOWN] Database disconnected successfully');
+  } catch (error) {
+    console.error('❌ [SHUTDOWN] Error during database disconnect:', error);
+  }
+  process.exit(0);
+});
