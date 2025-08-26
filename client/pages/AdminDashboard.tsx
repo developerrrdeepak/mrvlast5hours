@@ -184,7 +184,7 @@ export default function AdminDashboard() {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-emerald-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
@@ -195,66 +195,66 @@ export default function AdminDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-lg">
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-blue-100">
+                  <p className="text-sm font-medium text-gray-600">
                     Total Farmers
                   </p>
-                  <p className="text-3xl font-bold text-white">
+                  <p className="text-3xl font-bold text-gray-900">
                     {stats.totalFarmers}
                   </p>
                 </div>
-                <Users className="h-8 w-8 text-blue-200" />
+                <Users className="h-8 w-8 text-emerald-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-green-500 to-emerald-600 border-0 shadow-lg">
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-green-100">
+                  <p className="text-sm font-medium text-gray-600">
                     Verified Farmers
                   </p>
-                  <p className="text-3xl font-bold text-white">
+                  <p className="text-3xl font-bold text-gray-900">
                     {stats.verifiedFarmers}
                   </p>
                 </div>
-                <CheckCircle className="h-8 w-8 text-green-200" />
+                <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 border-0 shadow-lg">
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-emerald-100">
+                  <p className="text-sm font-medium text-gray-600">
                     Total Credits
                   </p>
-                  <p className="text-3xl font-bold text-white">
+                  <p className="text-3xl font-bold text-gray-900">
                     {stats.totalCredits.toFixed(1)}
                   </p>
                 </div>
-                <TreePine className="h-8 w-8 text-emerald-200" />
+                <TreePine className="h-8 w-8 text-emerald-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-amber-500 to-orange-600 border-0 shadow-lg">
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-amber-100">
+                  <p className="text-sm font-medium text-gray-600">
                     Total Land (Ha)
                   </p>
-                  <p className="text-3xl font-bold text-white">
+                  <p className="text-3xl font-bold text-gray-900">
                     {stats.totalLand.toFixed(1)}
                   </p>
                 </div>
-                <MapPin className="h-8 w-8 text-amber-200" />
+                <MapPin className="h-8 w-8 text-amber-600" />
               </div>
             </CardContent>
           </Card>
@@ -269,7 +269,7 @@ export default function AdminDashboard() {
           </TabsList>
 
           <TabsContent value="farmers">
-            <Card className="bg-gradient-to-br from-white to-blue-50 border-blue-200 shadow-lg">
+            <Card className="bg-white/90 border border-emerald-100 shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="projects">
-            <Card className="bg-gradient-to-br from-white to-green-50 border-green-200 shadow-lg">
+            <Card className="bg-white/90 border border-emerald-100 shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -498,7 +498,7 @@ export default function AdminDashboard() {
                   {projects.map((project) => (
                     <Card
                       key={project.id}
-                      className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-l-green-500 shadow-md"
+                      className="bg-white border-l-4 border-l-green-500 shadow-sm"
                     >
                       <CardContent className="p-4">
                         <div className="space-y-3">
@@ -548,7 +548,7 @@ export default function AdminDashboard() {
 
           <TabsContent value="mrv">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-gradient-to-br from-white to-emerald-50 border-emerald-200 shadow-lg">
+              <Card className="bg-white/90 border border-emerald-100 shadow-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <BarChart3 className="h-5 w-5" />
@@ -586,7 +586,7 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-white to-purple-50 border-purple-200 shadow-lg">
+              <Card className="bg-white/90 border border-emerald-100 shadow-sm">
                 <CardHeader>
                   <CardTitle>Verification Tools</CardTitle>
                 </CardHeader>
@@ -627,7 +627,7 @@ export default function AdminDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200 shadow-md">
+                  <Card className="p-4 bg-white border border-emerald-100 shadow-sm">
                     <h3 className="font-semibold mb-2">Farmer Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Comprehensive farmer data and verification status
@@ -654,7 +654,7 @@ export default function AdminDashboard() {
                     </div>
                   </Card>
 
-                  <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-md">
+                  <Card className="p-4 bg-white border border-emerald-100 shadow-sm">
                     <h3 className="font-semibold mb-2">Carbon Credit Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Detailed carbon credit calculations and verification
@@ -681,7 +681,7 @@ export default function AdminDashboard() {
                     </div>
                   </Card>
 
-                  <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 shadow-md">
+                  <Card className="p-4 bg-white border border-emerald-100 shadow-sm">
                     <h3 className="font-semibold mb-2">Project Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Project performance and participant data
