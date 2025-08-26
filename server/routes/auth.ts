@@ -10,11 +10,12 @@ import {
 } from "@shared/auth";
 import Database from "../lib/database";
 import AuthService from "../lib/services";
-import nodemailer from "nodemailer";
+import EmailService from "../lib/emailService";
 
-// Initialize database and auth service
+// Initialize services
 const db = Database.getInstance();
 const authService = new AuthService();
+const emailService = EmailService.getInstance();
 
 // Email configuration
 const createEmailTransporter = () => {
