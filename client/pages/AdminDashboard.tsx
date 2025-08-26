@@ -184,7 +184,7 @@ export default function AdminDashboard() {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
@@ -195,7 +195,7 @@ export default function AdminDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -206,12 +206,12 @@ export default function AdminDashboard() {
                     {stats.totalFarmers}
                   </p>
                 </div>
-                <Users className="h-8 w-8 text-blue-600" />
+                <Users className="h-8 w-8 text-emerald-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -227,7 +227,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -243,7 +243,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -269,7 +269,7 @@ export default function AdminDashboard() {
           </TabsList>
 
           <TabsContent value="farmers">
-            <Card>
+            <Card className="bg-white/90 border border-emerald-100 shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="projects">
-            <Card>
+            <Card className="bg-white/90 border border-emerald-100 shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -498,7 +498,7 @@ export default function AdminDashboard() {
                   {projects.map((project) => (
                     <Card
                       key={project.id}
-                      className="border-l-4 border-l-green-500"
+                      className="bg-white border-l-4 border-l-green-500 shadow-sm"
                     >
                       <CardContent className="p-4">
                         <div className="space-y-3">
@@ -548,7 +548,7 @@ export default function AdminDashboard() {
 
           <TabsContent value="mrv">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
+              <Card className="bg-white/90 border border-emerald-100 shadow-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <BarChart3 className="h-5 w-5" />
@@ -586,7 +586,7 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white/90 border border-emerald-100 shadow-sm">
                 <CardHeader>
                   <CardTitle>Verification Tools</CardTitle>
                 </CardHeader>
@@ -615,7 +615,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="reports">
-            <Card>
+            <Card className="bg-gradient-to-br from-white to-indigo-50 border-indigo-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <FileText className="h-5 w-5" />
@@ -627,7 +627,7 @@ export default function AdminDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Card className="p-4">
+                  <Card className="p-4 bg-white border border-emerald-100 shadow-sm">
                     <h3 className="font-semibold mb-2">Farmer Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Comprehensive farmer data and verification status
@@ -654,7 +654,7 @@ export default function AdminDashboard() {
                     </div>
                   </Card>
 
-                  <Card className="p-4">
+                  <Card className="p-4 bg-white border border-emerald-100 shadow-sm">
                     <h3 className="font-semibold mb-2">Carbon Credit Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Detailed carbon credit calculations and verification
@@ -681,7 +681,7 @@ export default function AdminDashboard() {
                     </div>
                   </Card>
 
-                  <Card className="p-4">
+                  <Card className="p-4 bg-white border border-emerald-100 shadow-sm">
                     <h3 className="font-semibold mb-2">Project Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Project performance and participant data
