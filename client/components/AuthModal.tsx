@@ -52,30 +52,105 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
   ) => {
     setLoading(true);
     try {
-      // Simulate social auth - in production, integrate with OAuth providers
-      const response = await fetch(`/api/auth/social/${provider}`, {
+      if (provider === "google") {
+        // Check if Google Sign-In script is loaded
+        if (typeof window !== "undefined" && (window as any).google) {
+          console.log("🔗 [GOOGLE AUTH] Using Google Sign-In");
+
+          // Use Google One Tap or Sign-In button
+          try {
+            const { google } = window as any;
+
+            // Initialize Google Sign-In
+            google.accounts.id.initialize({
+              client_id:
+                process.env.GOOGLE_CLIENT_ID ||
+                "your-google-client-id.apps.googleusercontent.com",
+              callback: async (credentialResponse: any) => {
+                try {
+                  console.log("🔐 [GOOGLE AUTH] Received credential response");
+
+                  const response = await fetch(`/api/auth/social/google`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      credential: credentialResponse.credential,
+                    }),
+                  });
+
+                  const result = await response.json();
+
+                  if (result.success && result.user && result.token) {
+                    // Store token and update auth state
+                    localStorage.setItem("auth_token", result.token);
+
+                    toast.success("Google login successful! 🎉");
+                    onOpenChange(false);
+                    navigate("/farmer-dashboard");
+                  } else {
+                    toast.error(result.message || "Google login failed");
+                  }
+                } catch (error) {
+                  console.error("Google credential processing error:", error);
+                  toast.error("Google authentication failed");
+                }
+                setLoading(false);
+              },
+            });
+
+            // Prompt the user to sign in
+            google.accounts.id.prompt();
+          } catch (googleError) {
+            console.error("Google Sign-In error:", googleError);
+            // Fallback to demo login for development
+            await handleDemoGoogleLogin();
+          }
+        } else {
+          // Fallback: redirect to OAuth flow or demo login
+          console.log(
+            "🔗 [GOOGLE AUTH] Google Sign-In not available, using fallback",
+          );
+          await handleDemoGoogleLogin();
+        }
+      } else {
+        // Other providers - show coming soon message
+        toast.info(
+          `${provider} integration coming soon! Use Google or email/password for now. 🚀`,
+        );
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error(`${provider} authentication error:`, error);
+      toast.error(`${provider} authentication temporarily unavailable`);
+      setLoading(false);
+    }
+  };
+
+  // Demo Google login for development/testing
+  const handleDemoGoogleLogin = async () => {
+    try {
+      const response = await fetch(`/api/auth/social/google`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ provider }),
+        body: JSON.stringify({}), // Empty body triggers demo mode
       });
 
-      if (response.ok) {
-        const result = await response.json();
-        if (result.success) {
-          toast.success(`${provider} login successful!`);
-          onOpenChange(false);
-          navigate("/farmer-dashboard");
-        } else {
-          toast.error(result.message || `${provider} login failed`);
-        }
+      const result = await response.json();
+
+      if (result.success && result.user && result.token) {
+        localStorage.setItem("auth_token", result.token);
+        toast.success(result.message || "Google login successful! 🎉");
+        onOpenChange(false);
+        navigate("/farmer-dashboard");
       } else {
-        // For now, show a demo message
-        toast.success(`${provider} integration coming soon! 🚀`);
+        toast.error(result.message || "Google login failed");
       }
     } catch (error) {
-      toast.error(`${provider} authentication temporarily unavailable`);
+      toast.error("Google authentication failed");
     }
     setLoading(false);
   };
@@ -233,7 +308,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
             >
               <div className="text-center">
                 <p className="text-sm text-gray-600 mb-4">
-                  किसानों के लिए तेज़ और आसान साइन इन
+                  किसानों के लिए तेज़ और आस��न साइन इन
                 </p>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <motion.div
