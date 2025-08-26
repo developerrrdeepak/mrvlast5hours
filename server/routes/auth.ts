@@ -413,6 +413,14 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
       `✅ [FARMER REGISTER] Farmer registered successfully: ${email}`,
     );
 
+    // Send welcome email to new farmer
+    try {
+      await sendWelcomeEmail(email, farmer.name || 'Farmer', farmer.estimatedIncome || 0);
+    } catch (emailError) {
+      console.error(`⚠️ [WELCOME EMAIL] Failed to send welcome email to ${email}:`, emailError);
+      // Don't fail the registration if email fails
+    }
+
     const response: LoginResponse = {
       success: true,
       user,
