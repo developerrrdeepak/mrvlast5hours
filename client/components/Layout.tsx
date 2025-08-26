@@ -109,6 +109,21 @@ export default function Layout({ children }: LayoutProps) {
                 <span className="hidden lg:inline">Kisan AI</span>
               </Button>
 
+              {/* Development Mode - Email Test */}
+              {import.meta.env.DEV && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="flex items-center space-x-2 border-blue-200 hover:bg-blue-50 text-blue-700"
+                >
+                  <Link to="/test-email">
+                    <span className="text-sm">📧</span>
+                    <span className="hidden lg:inline text-xs">Email Test</span>
+                  </Link>
+                </Button>
+              )}
+
               {isAuthenticated ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
