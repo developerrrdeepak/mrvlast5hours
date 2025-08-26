@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { healthCheck } from "./routes/health";
+import { testEmail, getEmailStatus } from "./routes/test";
 import {
   sendOTP,
   verifyOTP,
@@ -26,22 +27,19 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Request logging middleware (only in development)
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     app.use((req, res, next) => {
-      console.log(
-        `📝 [${req.method}] ${req.path}`,
-        req.body ? JSON.stringify(req.body).substring(0, 100) + "..." : "",
-      );
+      console.log(`📝 [${req.method}] ${req.path}`, req.body ? JSON.stringify(req.body).substring(0, 100) + '...' : '');
       next();
     });
   }
 
   // System routes
   app.get("/api/ping", (_req, res) => {
-    res.json({
+    res.json({ 
       message: process.env.PING_MESSAGE ?? "pong",
       timestamp: new Date().toISOString(),
-      environment: process.env.NODE_ENV || "development",
+      environment: process.env.NODE_ENV || "development"
     });
   });
 
@@ -78,9 +76,9 @@ export function createServer() {
         method: req.method,
         error: error.message,
         timestamp: new Date().toISOString(),
-        ...(process.env.NODE_ENV !== "production" && {
+        ...(process.env.NODE_ENV !== "production" && { 
           stack: error.stack,
-          body: req.body,
+          body: req.body 
         }),
       });
 
@@ -88,9 +86,9 @@ export function createServer() {
         success: false,
         message: "Internal server error",
         timestamp: new Date().toISOString(),
-        ...(process.env.NODE_ENV !== "production" && {
+        ...(process.env.NODE_ENV !== "production" && { 
           error: error.message,
-          path: req.path,
+          path: req.path 
         }),
       });
     },
@@ -104,21 +102,21 @@ export function createServer() {
       message: `API endpoint not found: ${req.method} ${req.path}`,
       timestamp: new Date().toISOString(),
       availableEndpoints: [
-        "GET /api/ping",
-        "GET /api/health",
-        "POST /api/auth/send-otp",
-        "POST /api/auth/verify-otp",
-        "POST /api/auth/admin-login",
-        "POST /api/auth/farmer-register",
-        "POST /api/auth/farmer-login",
-        "GET /api/auth/verify",
-        "PUT /api/auth/update-profile",
-        "POST /api/auth/logout",
-        "POST /api/auth/social/:provider",
-        "GET /api/auth/social/:provider/callback",
-        "GET /api/admin/farmers",
-        "PUT /api/admin/farmer-status",
-      ],
+        'GET /api/ping',
+        'GET /api/health',
+        'POST /api/auth/send-otp',
+        'POST /api/auth/verify-otp',
+        'POST /api/auth/admin-login',
+        'POST /api/auth/farmer-register',
+        'POST /api/auth/farmer-login',
+        'GET /api/auth/verify',
+        'PUT /api/auth/update-profile',
+        'POST /api/auth/logout',
+        'POST /api/auth/social/:provider',
+        'GET /api/auth/social/:provider/callback',
+        'GET /api/admin/farmers',
+        'PUT /api/admin/farmer-status'
+      ]
     });
   });
 
@@ -126,26 +124,26 @@ export function createServer() {
 }
 
 // Handle graceful shutdown
-process.on("SIGTERM", async () => {
-  console.log("🛑 [SHUTDOWN] SIGTERM received, shutting down gracefully...");
+process.on('SIGTERM', async () => {
+  console.log('🛑 [SHUTDOWN] SIGTERM received, shutting down gracefully...');
   try {
-    const Database = await import("./lib/database");
+    const Database = await import('./lib/database');
     await Database.default.getInstance().disconnect();
-    console.log("✅ [SHUTDOWN] Database disconnected successfully");
+    console.log('✅ [SHUTDOWN] Database disconnected successfully');
   } catch (error) {
-    console.error("❌ [SHUTDOWN] Error during database disconnect:", error);
+    console.error('❌ [SHUTDOWN] Error during database disconnect:', error);
   }
   process.exit(0);
 });
 
-process.on("SIGINT", async () => {
-  console.log("🛑 [SHUTDOWN] SIGINT received, shutting down gracefully...");
+process.on('SIGINT', async () => {
+  console.log('🛑 [SHUTDOWN] SIGINT received, shutting down gracefully...');
   try {
-    const Database = await import("./lib/database");
+    const Database = await import('./lib/database');
     await Database.default.getInstance().disconnect();
-    console.log("✅ [SHUTDOWN] Database disconnected successfully");
+    console.log('✅ [SHUTDOWN] Database disconnected successfully');
   } catch (error) {
-    console.error("❌ [SHUTDOWN] Error during database disconnect:", error);
+    console.error('❌ [SHUTDOWN] Error during database disconnect:', error);
   }
   process.exit(0);
 });
