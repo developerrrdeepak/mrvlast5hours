@@ -63,6 +63,12 @@ export function createServer() {
   app.get("/api/admin/farmers", getFarmers);
   app.put("/api/admin/farmer-status", updateFarmerStatus);
 
+  // Test routes (development only)
+  if (process.env.NODE_ENV !== 'production') {
+    app.post("/api/test/email", testEmail);
+    app.get("/api/test/email-status", getEmailStatus);
+  }
+
   // Global error handler
   app.use(
     (
