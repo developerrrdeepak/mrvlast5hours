@@ -4,9 +4,8 @@
   publish = "dist/spa"
 
 [functions]
-  external_node_modules = ["express", "serverless-http"]
   node_bundler = "esbuild"
-  included_files = ["server/**/*", "shared/**/*"]
+  included_files = ["server/routes/**/*", "server/lib/**/*", "shared/**/*"]
 
 # API redirects
 [[redirects]]
