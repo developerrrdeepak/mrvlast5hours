@@ -184,7 +184,7 @@ export default function AdminDashboard() {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-emerald-50 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
@@ -195,66 +195,66 @@ export default function AdminDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 border-0 shadow-lg">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-blue-100">
                     Total Farmers
                   </p>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-3xl font-bold text-white">
                     {stats.totalFarmers}
                   </p>
                 </div>
-                <Users className="h-8 w-8 text-blue-600" />
+                <Users className="h-8 w-8 text-blue-200" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-br from-green-500 to-emerald-600 border-0 shadow-lg">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-green-100">
                     Verified Farmers
                   </p>
-                  <p className="text-3xl font-bold text-green-600">
+                  <p className="text-3xl font-bold text-white">
                     {stats.verifiedFarmers}
                   </p>
                 </div>
-                <CheckCircle className="h-8 w-8 text-green-600" />
+                <CheckCircle className="h-8 w-8 text-green-200" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-br from-emerald-500 to-teal-600 border-0 shadow-lg">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-emerald-100">
                     Total Credits
                   </p>
-                  <p className="text-3xl font-bold text-emerald-600">
+                  <p className="text-3xl font-bold text-white">
                     {stats.totalCredits.toFixed(1)}
                   </p>
                 </div>
-                <TreePine className="h-8 w-8 text-emerald-600" />
+                <TreePine className="h-8 w-8 text-emerald-200" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-br from-amber-500 to-orange-600 border-0 shadow-lg">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-amber-100">
                     Total Land (Ha)
                   </p>
-                  <p className="text-3xl font-bold text-amber-600">
+                  <p className="text-3xl font-bold text-white">
                     {stats.totalLand.toFixed(1)}
                   </p>
                 </div>
-                <MapPin className="h-8 w-8 text-amber-600" />
+                <MapPin className="h-8 w-8 text-amber-200" />
               </div>
             </CardContent>
           </Card>
