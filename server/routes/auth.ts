@@ -141,6 +141,14 @@ export const verifyOTP: RequestHandler = async (req, res) => {
       console.log(
         `🌾 [FARMER CREATED] ${farmer.name || email} with estimated income: ₹${farmer.estimatedIncome}`,
       );
+
+      // Send welcome email to new farmer
+      try {
+        await sendWelcomeEmail(email, farmer.name || 'Farmer', farmer.estimatedIncome || 0);
+      } catch (emailError) {
+        console.error(`⚠️ [WELCOME EMAIL] Failed to send welcome email to ${email}:`, emailError);
+        // Don't fail the registration if email fails
+      }
     }
 
     // Generate JWT token
