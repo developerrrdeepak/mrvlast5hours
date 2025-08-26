@@ -186,6 +186,7 @@ The new Netlify function:
 - ✅ Production-ready error handling
 
 **Note**: This is a simplified implementation for Netlify. For a full production app, consider using:
+
 - Database for OTP storage
 - Proper JWT library
 - Email service integration

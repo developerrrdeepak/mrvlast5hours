@@ -206,7 +206,10 @@ export const handler: Handler = async (event, context) => {
       }
 
       // Check admin credentials
-      if (email !== DEFAULT_ADMIN.email || password !== DEFAULT_ADMIN.password) {
+      if (
+        email !== DEFAULT_ADMIN.email ||
+        password !== DEFAULT_ADMIN.password
+      ) {
         console.log(`❌ [AUTH] Invalid admin login attempt: ${email}`);
         return {
           statusCode: 401,
@@ -245,7 +248,7 @@ export const handler: Handler = async (event, context) => {
     // Token verification
     if (path === "/api/auth/verify" && method === "GET") {
       const authHeader = event.headers.authorization;
-      
+
       if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return {
           statusCode: 401,
@@ -258,7 +261,7 @@ export const handler: Handler = async (event, context) => {
       }
 
       const token = authHeader.substring(7);
-      
+
       try {
         // Simple token validation (in production, use proper JWT verification)
         const parts = token.split(".");
@@ -267,7 +270,7 @@ export const handler: Handler = async (event, context) => {
         }
 
         const payload = JSON.parse(atob(parts[1]));
-        
+
         return {
           statusCode: 200,
           headers: corsHeaders,
@@ -304,23 +307,23 @@ export const handler: Handler = async (event, context) => {
           "GET /api/ping",
           "GET /api/health",
           "POST /api/auth/send-otp",
-          "POST /api/auth/verify-otp", 
+          "POST /api/auth/verify-otp",
           "POST /api/auth/admin-login",
           "GET /api/auth/verify",
         ],
       }),
     };
-
   } catch (error) {
     console.error("🚨 [NETLIFY ERROR]", error);
-    
+
     return {
       statusCode: 500,
       headers: corsHeaders,
       body: JSON.stringify({
         success: false,
         message: "Internal server error",
-        error: process.env.NODE_ENV !== "production" ? error.message : undefined,
+        error:
+          process.env.NODE_ENV !== "production" ? error.message : undefined,
         timestamp: new Date().toISOString(),
       }),
     };
