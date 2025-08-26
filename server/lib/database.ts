@@ -1,5 +1,5 @@
-import { MongoClient, Db, Collection } from 'mongodb';
-import { Farmer, Admin } from '@shared/auth';
+import { MongoClient, Db, Collection } from "mongodb";
+import { Farmer, Admin } from "@shared/auth";
 
 class Database {
   private static instance: Database;
@@ -18,25 +18,24 @@ class Database {
   async connect(): Promise<void> {
     try {
       const connectionString = process.env.MONGODB_URI;
-      
+
       if (!connectionString) {
-        throw new Error('MONGODB_URI environment variable is not set');
+        throw new Error("MONGODB_URI environment variable is not set");
       }
 
       this.client = new MongoClient(connectionString);
       await this.client.connect();
-      
+
       // Get database name from connection string or use default
-      const dbName = process.env.DB_NAME || 'carbonroots';
+      const dbName = process.env.DB_NAME || "carbonroots";
       this.db = this.client.db(dbName);
-      
-      console.log('✅ Connected to MongoDB successfully');
-      
+
+      console.log("✅ Connected to MongoDB successfully");
+
       // Create indexes for better performance
       await this.createIndexes();
-      
     } catch (error) {
-      console.error('❌ MongoDB connection failed:', error);
+      console.error("❌ MongoDB connection failed:", error);
       throw error;
     }
   }
@@ -46,81 +45,99 @@ class Database {
       await this.client.close();
       this.client = null;
       this.db = null;
-      console.log('📤 Disconnected from MongoDB');
+      console.log("📤 Disconnected from MongoDB");
     }
   }
 
   getDb(): Db {
     if (!this.db) {
-      throw new Error('Database not connected. Call connect() first.');
+      throw new Error("Database not connected. Call connect() first.");
     }
     return this.db;
   }
 
   // Collection getters with proper typing
   getFarmersCollection(): Collection<Farmer> {
-    return this.getDb().collection<Farmer>('farmers');
+    return this.getDb().collection<Farmer>("farmers");
   }
 
   getAdminsCollection(): Collection<Admin> {
-    return this.getDb().collection<Admin>('admins');
+    return this.getDb().collection<Admin>("admins");
   }
 
-  getOTPCollection(): Collection<{ 
-    email: string; 
-    otp: string; 
-    expires: Date; 
-    type: 'registration' | 'login' | 'password_reset';
+  getOTPCollection(): Collection<{
+    email: string;
+    otp: string;
+    expires: Date;
+    type: "registration" | "login" | "password_reset";
   }> {
-    return this.getDb().collection('otps');
+    return this.getDb().collection("otps");
   }
 
   getSessionsCollection(): Collection<{
     token: string;
     userId: string;
-    userType: 'farmer' | 'admin';
+    userType: "farmer" | "admin";
     createdAt: Date;
     expiresAt: Date;
     isActive: boolean;
   }> {
-    return this.getDb().collection('sessions');
+    return this.getDb().collection("sessions");
   }
 
   getPasswordsCollection(): Collection<{
     userId: string;
-    userType: 'farmer' | 'admin';
+    userType: "farmer" | "admin";
     hashedPassword: string;
     createdAt: Date;
     updatedAt: Date;
   }> {
-    return this.getDb().collection('passwords');
+    return this.getDb().collection("passwords");
   }
 
   private async createIndexes(): Promise<void> {
     try {
       // Farmers collection indexes
-      await this.getFarmersCollection().createIndex({ email: 1 }, { unique: true });
+      await this.getFarmersCollection().createIndex(
+        { email: 1 },
+        { unique: true },
+      );
       await this.getFarmersCollection().createIndex({ phone: 1 });
-      await this.getFarmersCollection().createIndex({ 'location.pincode': 1 });
+      await this.getFarmersCollection().createIndex({ "location.pincode": 1 });
 
       // Admins collection indexes
-      await this.getAdminsCollection().createIndex({ email: 1 }, { unique: true });
+      await this.getAdminsCollection().createIndex(
+        { email: 1 },
+        { unique: true },
+      );
 
-      // OTPs collection indexes  
+      // OTPs collection indexes
       await this.getOTPCollection().createIndex({ email: 1 });
-      await this.getOTPCollection().createIndex({ expires: 1 }, { expireAfterSeconds: 0 });
+      await this.getOTPCollection().createIndex(
+        { expires: 1 },
+        { expireAfterSeconds: 0 },
+      );
 
       // Sessions collection indexes
-      await this.getSessionsCollection().createIndex({ token: 1 }, { unique: true });
+      await this.getSessionsCollection().createIndex(
+        { token: 1 },
+        { unique: true },
+      );
       await this.getSessionsCollection().createIndex({ userId: 1 });
-      await this.getSessionsCollection().createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 });
+      await this.getSessionsCollection().createIndex(
+        { expiresAt: 1 },
+        { expireAfterSeconds: 0 },
+      );
 
       // Passwords collection indexes
-      await this.getPasswordsCollection().createIndex({ userId: 1, userType: 1 }, { unique: true });
+      await this.getPasswordsCollection().createIndex(
+        { userId: 1, userType: 1 },
+        { unique: true },
+      );
 
-      console.log('📊 Database indexes created successfully');
+      console.log("📊 Database indexes created successfully");
     } catch (error) {
-      console.error('❌ Failed to create database indexes:', error);
+      console.error("❌ Failed to create database indexes:", error);
     }
   }
 
@@ -130,7 +147,7 @@ class Database {
       await this.getDb().admin().ping();
       return true;
     } catch (error) {
-      console.error('❌ Database health check failed:', error);
+      console.error("❌ Database health check failed:", error);
       return false;
     }
   }

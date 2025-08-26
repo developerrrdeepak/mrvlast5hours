@@ -10,7 +10,7 @@ import {
 } from "@shared/auth";
 import Database from "../lib/database";
 import AuthService from "../lib/services";
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 // Initialize database and auth service
 const db = Database.getInstance();
@@ -19,9 +19,9 @@ const authService = new AuthService();
 // Email configuration
 const createEmailTransporter = () => {
   // For development, use a test account or configure with your email service
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === "production") {
     return nodemailer.createTransporter({
-      service: process.env.EMAIL_SERVICE || 'gmail',
+      service: process.env.EMAIL_SERVICE || "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
@@ -37,7 +37,7 @@ const createEmailTransporter = () => {
 async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
   try {
     const transporter = createEmailTransporter();
-    
+
     if (!transporter) {
       // Development mode - just log to console
       console.log(`\n🔐 [OTP GENERATED] for ${email}: ${otp}`);
@@ -47,9 +47,9 @@ async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
 
     // Production mode - send actual email
     const mailOptions = {
-      from: process.env.EMAIL_FROM || 'noreply@carbonroots.com',
+      from: process.env.EMAIL_FROM || "noreply@carbonroots.com",
       to: email,
-      subject: 'Your Carbon Roots Login OTP',
+      subject: "Your Carbon Roots Login OTP",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #10b981;">Carbon Roots - Login Verification</h2>
@@ -81,24 +81,29 @@ async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
 async function initializeDatabase() {
   try {
     await db.connect();
-    
+
     // Create default admin if not exists
     const adminEmail = process.env.ADMIN_EMAIL;
     if (adminEmail) {
       const existingAdmin = await authService.findAdminByEmail(adminEmail);
       if (!existingAdmin) {
-        const admin = await authService.createDefaultAdmin(adminEmail, 'System Admin');
-        
+        const admin = await authService.createDefaultAdmin(
+          adminEmail,
+          "System Admin",
+        );
+
         // Set admin password if provided
         const adminPassword = process.env.ADMIN_PASSWORD;
         if (adminPassword) {
-          await authService.storePassword(admin.id, 'admin', adminPassword);
-          console.log(`✅ [ADMIN CREATED] Default admin created: ${adminEmail}`);
+          await authService.storePassword(admin.id, "admin", adminPassword);
+          console.log(
+            `✅ [ADMIN CREATED] Default admin created: ${adminEmail}`,
+          );
         }
       }
     }
   } catch (error) {
-    console.error('❌ [DATABASE INIT] Failed to initialize database:', error);
+    console.error("❌ [DATABASE INIT] Failed to initialize database:", error);
     throw error;
   }
 }
@@ -120,9 +125,9 @@ export const sendOTP: RequestHandler = async (req, res) => {
     }
 
     const otp = authService.generateOTP();
-    
+
     // Store OTP in database
-    await authService.storeOTP(email, otp, 'login');
+    await authService.storeOTP(email, otp, "login");
 
     // Send OTP email
     const emailSent = await sendOTPEmail(email, otp);
@@ -136,7 +141,10 @@ export const sendOTP: RequestHandler = async (req, res) => {
       };
 
       // Only include OTP in response for development/testing
-      if (process.env.NODE_ENV !== "production" || process.env.DEBUG_AUTH === "true") {
+      if (
+        process.env.NODE_ENV !== "production" ||
+        process.env.DEBUG_AUTH === "true"
+      ) {
         response.otp = otp;
       }
 
@@ -169,9 +177,9 @@ export const verifyOTP: RequestHandler = async (req, res) => {
 
     if (!isValidOTP) {
       console.log(`❌ [OTP VERIFICATION] Invalid or expired OTP for ${email}`);
-      return res.status(400).json({ 
-        success: false, 
-        message: "Invalid or expired OTP" 
+      return res.status(400).json({
+        success: false,
+        message: "Invalid or expired OTP",
       });
     }
 
@@ -181,11 +189,13 @@ export const verifyOTP: RequestHandler = async (req, res) => {
     if (!farmer) {
       // Create new farmer
       farmer = await authService.createFarmer(email, registrationData);
-      console.log(`🌾 [FARMER CREATED] ${farmer.name || email} with estimated income: ₹${farmer.estimatedIncome}`);
+      console.log(
+        `🌾 [FARMER CREATED] ${farmer.name || email} with estimated income: ₹${farmer.estimatedIncome}`,
+      );
     }
 
     // Generate JWT token
-    const token = authService.generateJWTToken(farmer.id, 'farmer');
+    const token = authService.generateJWTToken(farmer.id, "farmer");
 
     const user: AuthUser = {
       type: "farmer",
@@ -222,28 +232,32 @@ export const adminLogin: RequestHandler = async (req, res) => {
 
     // Find admin
     const admin = await authService.findAdminByEmail(email);
-    
+
     if (!admin) {
       console.log(`❌ [ADMIN LOGIN] Admin not found: ${email}`);
-      return res.status(401).json({ 
-        success: false, 
-        message: "Invalid credentials" 
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials",
       });
     }
 
     // Verify password
-    const isValidPassword = await authService.verifyUserPassword(admin.id, 'admin', password);
-    
+    const isValidPassword = await authService.verifyUserPassword(
+      admin.id,
+      "admin",
+      password,
+    );
+
     if (!isValidPassword) {
       console.log(`❌ [ADMIN LOGIN] Invalid password for: ${email}`);
-      return res.status(401).json({ 
-        success: false, 
-        message: "Invalid credentials" 
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials",
       });
     }
 
     // Generate JWT token
-    const token = authService.generateJWTToken(admin.id, 'admin');
+    const token = authService.generateJWTToken(admin.id, "admin");
 
     const user: AuthUser = {
       type: "admin",
@@ -279,9 +293,9 @@ export const verifyToken: RequestHandler = async (req, res) => {
     const user = await authService.getUserByToken(token);
 
     if (!user) {
-      return res.status(401).json({ 
-        success: false, 
-        message: "Invalid or expired token" 
+      return res.status(401).json({
+        success: false,
+        message: "Invalid or expired token",
       });
     }
 
@@ -311,7 +325,10 @@ export const updateProfile: RequestHandler = async (req, res) => {
     }
 
     const updates = req.body;
-    const updatedFarmer = await authService.updateFarmer(user.farmer!.id, updates);
+    const updatedFarmer = await authService.updateFarmer(
+      user.farmer!.id,
+      updates,
+    );
 
     if (!updatedFarmer) {
       return res
@@ -324,7 +341,9 @@ export const updateProfile: RequestHandler = async (req, res) => {
       farmer: updatedFarmer,
     };
 
-    console.log(`📝 [PROFILE UPDATED] ${updatedFarmer.name} - New estimated income: ₹${updatedFarmer.estimatedIncome}`);
+    console.log(
+      `📝 [PROFILE UPDATED] ${updatedFarmer.name} - New estimated income: ₹${updatedFarmer.estimatedIncome}`,
+    );
 
     res.json({ success: true, user: updatedUser });
   } catch (error) {
@@ -406,34 +425,36 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
     // Create new farmer
     const farmerData: EnhancedFarmerRegistration = {
       name: name || email.split("@")[0],
-      phone: phone || '',
-      farmName: '',
+      phone: phone || "",
+      farmName: "",
       landSize: 0,
-      landUnit: 'acres',
-      farmingType: 'conventional',
+      landUnit: "acres",
+      farmingType: "conventional",
       primaryCrops: [],
-      irrigationType: 'rain_fed',
-      address: '',
-      pincode: '',
-      state: '',
+      irrigationType: "rain_fed",
+      address: "",
+      pincode: "",
+      state: "",
       interestedProjects: [],
-      sustainablePractices: []
+      sustainablePractices: [],
     };
 
     const farmer = await authService.createFarmer(email, farmerData);
 
     // Store password
-    await authService.storePassword(farmer.id, 'farmer', password);
+    await authService.storePassword(farmer.id, "farmer", password);
 
     // Generate JWT token
-    const token = authService.generateJWTToken(farmer.id, 'farmer');
+    const token = authService.generateJWTToken(farmer.id, "farmer");
 
     const user: AuthUser = {
       type: "farmer",
       farmer,
     };
 
-    console.log(`✅ [FARMER REGISTER] Farmer registered successfully: ${email}`);
+    console.log(
+      `✅ [FARMER REGISTER] Farmer registered successfully: ${email}`,
+    );
 
     const response: LoginResponse = {
       success: true,
@@ -472,8 +493,12 @@ export const farmerPasswordLogin: RequestHandler = async (req, res) => {
     }
 
     // Verify password
-    const isValidPassword = await authService.verifyUserPassword(farmer.id, 'farmer', password);
-    
+    const isValidPassword = await authService.verifyUserPassword(
+      farmer.id,
+      "farmer",
+      password,
+    );
+
     if (!isValidPassword) {
       console.log(`❌ [FARMER LOGIN] Invalid password for: ${email}`);
       return res
@@ -482,7 +507,7 @@ export const farmerPasswordLogin: RequestHandler = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = authService.generateJWTToken(farmer.id, 'farmer');
+    const token = authService.generateJWTToken(farmer.id, "farmer");
 
     const user: AuthUser = {
       type: "farmer",
@@ -527,8 +552,11 @@ export const socialAuth: RequestHandler = async (req, res) => {
 
         let payload;
 
-        if (!process.env.GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID === 'your-google-client-id') {
-          throw new Error('Google OAuth credentials not configured');
+        if (
+          !process.env.GOOGLE_CLIENT_ID ||
+          process.env.GOOGLE_CLIENT_ID === "your-google-client-id"
+        ) {
+          throw new Error("Google OAuth credentials not configured");
         }
 
         if (credential) {
@@ -577,29 +605,34 @@ export const socialAuth: RequestHandler = async (req, res) => {
         if (!farmer) {
           // Create new farmer from Google profile
           const farmerData: EnhancedFarmerRegistration = {
-            name: payload.name || `${payload.given_name} ${payload.family_name}`,
-            phone: '',
-            farmName: '',
+            name:
+              payload.name || `${payload.given_name} ${payload.family_name}`,
+            phone: "",
+            farmName: "",
             landSize: 0,
-            landUnit: 'acres',
-            farmingType: 'conventional',
+            landUnit: "acres",
+            farmingType: "conventional",
             primaryCrops: [],
-            irrigationType: 'rain_fed',
-            address: '',
-            pincode: '',
-            state: '',
+            irrigationType: "rain_fed",
+            address: "",
+            pincode: "",
+            state: "",
             interestedProjects: [],
-            sustainablePractices: []
+            sustainablePractices: [],
           };
 
           farmer = await authService.createFarmer(payload.email, farmerData);
-          console.log(`🌾 [GOOGLE AUTH] New farmer created: ${farmer.name} (${farmer.email})`);
+          console.log(
+            `🌾 [GOOGLE AUTH] New farmer created: ${farmer.name} (${farmer.email})`,
+          );
         } else {
-          console.log(`🌾 [GOOGLE AUTH] Existing farmer logged in: ${farmer.name} (${farmer.email})`);
+          console.log(
+            `🌾 [GOOGLE AUTH] Existing farmer logged in: ${farmer.name} (${farmer.email})`,
+          );
         }
 
         // Generate JWT token
-        const token = authService.generateJWTToken(farmer.id, 'farmer');
+        const token = authService.generateJWTToken(farmer.id, "farmer");
 
         const user: AuthUser = {
           type: "farmer",
@@ -617,7 +650,8 @@ export const socialAuth: RequestHandler = async (req, res) => {
         console.error("❌ [GOOGLE AUTH] Error:", googleError);
         res.status(400).json({
           success: false,
-          message: "Google authentication failed. Please configure Google OAuth credentials or use email/password login.",
+          message:
+            "Google authentication failed. Please configure Google OAuth credentials or use email/password login.",
         });
       }
     } else {
@@ -681,27 +715,30 @@ export const socialCallback: RequestHandler = async (req, res) => {
 
         if (!farmer) {
           const farmerData: EnhancedFarmerRegistration = {
-            name: userInfo.name || `${userInfo.given_name} ${userInfo.family_name}`,
-            phone: '',
-            farmName: '',
+            name:
+              userInfo.name || `${userInfo.given_name} ${userInfo.family_name}`,
+            phone: "",
+            farmName: "",
             landSize: 0,
-            landUnit: 'acres',
-            farmingType: 'conventional',
+            landUnit: "acres",
+            farmingType: "conventional",
             primaryCrops: [],
-            irrigationType: 'rain_fed',
-            address: '',
-            pincode: '',
-            state: '',
+            irrigationType: "rain_fed",
+            address: "",
+            pincode: "",
+            state: "",
             interestedProjects: [],
-            sustainablePractices: []
+            sustainablePractices: [],
           };
 
           farmer = await authService.createFarmer(userInfo.email, farmerData);
-          console.log(`🌾 [GOOGLE CALLBACK] New farmer created: ${farmer.name} (${farmer.email})`);
+          console.log(
+            `🌾 [GOOGLE CALLBACK] New farmer created: ${farmer.name} (${farmer.email})`,
+          );
         }
 
         // Generate JWT token
-        const token = authService.generateJWTToken(farmer.id, 'farmer');
+        const token = authService.generateJWTToken(farmer.id, "farmer");
 
         // Redirect to frontend with token
         const clientUrl = process.env.CLIENT_URL || "http://localhost:8080";
@@ -745,10 +782,10 @@ export const updateFarmerStatus: RequestHandler = async (req, res) => {
     }
 
     const { farmerId, status } = req.body;
-    
+
     const updatedFarmer = await authService.updateFarmer(farmerId, {
       verified: status === "verified",
-      updatedAt: new Date()
+      updatedAt: new Date(),
     });
 
     if (!updatedFarmer) {
