@@ -161,7 +161,7 @@ export default function FarmerDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-blue-50 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
@@ -190,11 +190,11 @@ export default function FarmerDashboard() {
         </div>
 
         {!profileComplete && (
-          <Card className="mb-6 border-orange-200 bg-orange-50">
+          <Card className="mb-6 bg-gradient-to-r from-orange-400 to-red-400 border-0 shadow-lg">
             <CardContent className="p-4">
               <div className="flex items-center space-x-2">
-                <AlertCircle className="h-5 w-5 text-orange-600" />
-                <p className="text-orange-800 font-medium">
+                <AlertCircle className="h-5 w-5 text-orange-100" />
+                <p className="text-white font-medium">
                   Please complete your profile to access all features
                 </p>
               </div>
@@ -211,7 +211,7 @@ export default function FarmerDashboard() {
           </TabsList>
 
           <TabsContent value="profile">
-            <Card>
+            <Card className="bg-gradient-to-br from-white to-blue-50 border-blue-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <User className="h-5 w-5" />
@@ -327,7 +327,7 @@ export default function FarmerDashboard() {
           </TabsContent>
 
           <TabsContent value="farm-data">
-            <Card>
+            <Card className="bg-gradient-to-br from-white to-green-50 border-green-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Sprout className="h-5 w-5" />
@@ -459,7 +459,7 @@ export default function FarmerDashboard() {
 
           <TabsContent value="carbon">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
+              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Calculator className="h-5 w-5" />
@@ -498,7 +498,7 @@ export default function FarmerDashboard() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200 shadow-lg">
                 <CardHeader>
                   <CardTitle>Carbon Credit Status</CardTitle>
                 </CardHeader>
@@ -532,7 +532,7 @@ export default function FarmerDashboard() {
 
           <TabsContent value="projects">
             <div className="space-y-6">
-              <Card>
+              <Card className="bg-gradient-to-br from-white to-emerald-50 border-emerald-200 shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <TreePine className="h-5 w-5" />
@@ -547,7 +547,7 @@ export default function FarmerDashboard() {
                     {projects.map((project) => (
                       <Card
                         key={project.id}
-                        className="border-l-4 border-l-green-500"
+                        className="bg-gradient-to-br from-green-50 to-teal-50 border-l-4 border-l-green-500 shadow-md"
                       >
                         <CardContent className="p-4">
                           <div className="space-y-3">
