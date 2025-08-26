@@ -218,7 +218,7 @@ export default function AdminDashboard() {
                   <p className="text-sm font-medium text-gray-600">
                     Verified Farmers
                   </p>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-3xl font-bold text-green-600">
                     {stats.verifiedFarmers}
                   </p>
                 </div>
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
                   <p className="text-sm font-medium text-gray-600">
                     Total Credits
                   </p>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-3xl font-bold text-emerald-600">
                     {stats.totalCredits.toFixed(1)}
                   </p>
                 </div>
@@ -250,7 +250,7 @@ export default function AdminDashboard() {
                   <p className="text-sm font-medium text-gray-600">
                     Total Land (Ha)
                   </p>
-                  <p className="text-3xl font-bold text-gray-900">
+                  <p className="text-3xl font-bold text-amber-600">
                     {stats.totalLand.toFixed(1)}
                   </p>
                 </div>
