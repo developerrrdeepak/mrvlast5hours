@@ -121,7 +121,11 @@ export function createServer() {
         'POST /api/auth/social/:provider',
         'GET /api/auth/social/:provider/callback',
         'GET /api/admin/farmers',
-        'PUT /api/admin/farmer-status'
+        'PUT /api/admin/farmer-status',
+        ...(process.env.NODE_ENV !== 'production' ? [
+          'POST /api/test/email',
+          'GET /api/test/email-status'
+        ] : [])
       ]
     });
   });
