@@ -269,7 +269,7 @@ export default function AdminDashboard() {
           </TabsList>
 
           <TabsContent value="farmers">
-            <Card>
+            <Card className="bg-gradient-to-br from-white to-blue-50 border-blue-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="projects">
-            <Card>
+            <Card className="bg-gradient-to-br from-white to-green-50 border-green-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
@@ -498,7 +498,7 @@ export default function AdminDashboard() {
                   {projects.map((project) => (
                     <Card
                       key={project.id}
-                      className="border-l-4 border-l-green-500"
+                      className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-l-green-500 shadow-md"
                     >
                       <CardContent className="p-4">
                         <div className="space-y-3">
@@ -548,7 +548,7 @@ export default function AdminDashboard() {
 
           <TabsContent value="mrv">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
+              <Card className="bg-gradient-to-br from-white to-emerald-50 border-emerald-200 shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <BarChart3 className="h-5 w-5" />
@@ -586,7 +586,7 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gradient-to-br from-white to-purple-50 border-purple-200 shadow-lg">
                 <CardHeader>
                   <CardTitle>Verification Tools</CardTitle>
                 </CardHeader>
@@ -615,7 +615,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="reports">
-            <Card>
+            <Card className="bg-gradient-to-br from-white to-indigo-50 border-indigo-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <FileText className="h-5 w-5" />
