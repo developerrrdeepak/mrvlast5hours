@@ -18,7 +18,8 @@ Expected response:
 {
   "status": "ok",
   "timestamp": "2024-01-XX...",
-  "environment": "production"
+  "environment": "production",
+  "message": "Netlify function is running"
 }
 ```
 
@@ -71,11 +72,15 @@ To set environment variables in Netlify:
 3. Check browser console for the generated OTP
 4. Enter the OTP to login
 
-Note: In production, OTP is not shown in console for security.
+**Important**: The OTP is displayed in the function logs for testing. In production, this would be sent via email.
 
 ## ❌ Common Issues & Solutions
 
-### Issue 1: "Invalid credentials" for Admin
+### Issue 1: "Server error 502" - Express module not found
+
+**Fixed**: The new implementation doesn't use Express and runs as a standalone Netlify function.
+
+### Issue 2: "Invalid credentials" for Admin
 
 **Cause**: Environment variables not set or incorrect
 **Solution**:
@@ -84,7 +89,7 @@ Note: In production, OTP is not shown in console for security.
 2. Use default credentials: `developerrdeepak@gmail.com` / `IITdelhi2023@`
 3. Redeploy after setting env vars
 
-### Issue 2: "Network error" or API not responding
+### Issue 3: "Network error" or API not responding
 
 **Cause**: Netlify function not deployed properly
 **Solution**:
@@ -94,35 +99,33 @@ Note: In production, OTP is not shown in console for security.
 3. Redeploy the site
 4. Check function logs for errors
 
-### Issue 3: "OTP not found" for Farmer login
+### Issue 4: "OTP not found" for Farmer login
 
-**Cause**: Function state not persisting between requests
+**Cause**: OTP storage limitations in serverless functions
 **Solution**:
 
-1. This is a limitation of serverless functions
-2. In production, use a database or Redis for OTP storage
-3. For testing, use the OTP displayed in browser console
+1. OTPs are stored in memory for 5 minutes
+2. Check function logs for generated OTP
+3. In production, use a database for OTP storage
 
-### Issue 4: Functions timing out
+### Issue 5: Functions timing out
 
 **Cause**: Cold start or function taking too long
 **Solution**:
 
-1. Check function logs for timeout errors
-2. Optimize function bundle size
+1. New simplified function should be much faster
+2. Check function logs for timeout errors
 3. Consider upgrading Netlify plan for better performance
 
 ## 🛠️ Advanced Debugging
 
 ### Enable Debug Mode
 
-Set environment variable in Netlify:
+The function automatically shows more detailed logs. Check the Netlify function logs for:
 
-```
-DEBUG_AUTH=true
-```
-
-This will show OTP in API responses even in production.
+- OTP generation messages
+- Authentication attempts
+- Error details
 
 ### Check Network Tab
 
@@ -131,13 +134,18 @@ This will show OTP in API responses even in production.
 3. Look for API calls to `/api/auth/*`
 4. Check response status and content
 
-### Function Bundle Check
+### Function Response Format
 
-If functions are too large:
+All API responses follow this format:
 
-1. Check `netlify.toml` `included_files`
-2. Verify `external_node_modules` list
-3. Consider excluding unnecessary files
+```json
+{
+  "success": true/false,
+  "message": "Description",
+  "user": { /* user data */ },
+  "token": "jwt_token"
+}
+```
 
 ## 📞 Getting Help
 
@@ -150,11 +158,12 @@ If issues persist:
 
 ## 🔄 Recommended Testing Order
 
-1. Test API health endpoint
-2. Test admin login with default credentials
-3. Test farmer OTP generation
-4. Test farmer OTP verification
-5. Check all error scenarios
+1. Test API health endpoint: `/api/health`
+2. Test ping endpoint: `/api/ping`
+3. Test admin login with default credentials
+4. Test farmer OTP generation
+5. Test farmer OTP verification
+6. Check all error scenarios
 
 ## 📋 Pre-deployment Checklist
 
@@ -164,3 +173,21 @@ If issues persist:
 - [ ] API redirects working
 - [ ] Both login flows tested locally
 - [ ] Error handling tested
+
+## 🔧 New Implementation Details
+
+The new Netlify function:
+
+- ✅ No Express dependencies
+- ✅ Standalone implementation
+- ✅ CORS support built-in
+- ✅ In-memory OTP storage
+- ✅ Simple JWT implementation
+- ✅ Production-ready error handling
+
+**Note**: This is a simplified implementation for Netlify. For a full production app, consider using:
+- Database for OTP storage
+- Proper JWT library
+- Email service integration
+- Rate limiting
+- Enhanced security features
