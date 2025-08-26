@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { toast } from 'sonner';
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { toast } from "sonner";
 
 interface EmailTestResponse {
   success: boolean;
@@ -23,7 +23,7 @@ interface EmailTestResponse {
 }
 
 export default function TestEmail() {
-  const [email, setEmail] = useState('test@example.com');
+  const [email, setEmail] = useState("test@example.com");
   const [loading, setLoading] = useState(false);
   const [emailStatus, setEmailStatus] = useState<any>(null);
   const [lastResult, setLastResult] = useState<EmailTestResponse | null>(null);
@@ -31,30 +31,30 @@ export default function TestEmail() {
   const checkEmailStatus = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/test/email-status');
+      const response = await fetch("/api/test/email-status");
       const data = await response.json();
       setEmailStatus(data);
-      toast.success('Email service status checked');
+      toast.success("Email service status checked");
     } catch (error) {
-      toast.error('Failed to check email service status');
-      console.error('Email status error:', error);
+      toast.error("Failed to check email service status");
+      console.error("Email status error:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const testEmail = async (type: 'otp' | 'welcome') => {
+  const testEmail = async (type: "otp" | "welcome") => {
     if (!email) {
-      toast.error('Please enter an email address');
+      toast.error("Please enter an email address");
       return;
     }
 
     try {
       setLoading(true);
-      const response = await fetch('/api/test/email', {
-        method: 'POST',
+      const response = await fetch("/api/test/email", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, type }),
       });
@@ -68,8 +68,8 @@ export default function TestEmail() {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error('Failed to send test email');
-      console.error('Test email error:', error);
+      toast.error("Failed to send test email");
+      console.error("Test email error:", error);
     } finally {
       setLoading(false);
     }
@@ -96,30 +96,45 @@ export default function TestEmail() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button 
-                onClick={checkEmailStatus} 
+              <Button
+                onClick={checkEmailStatus}
                 disabled={loading}
                 className="w-full"
               >
-                {loading ? 'Checking...' : 'Check Service Status'}
+                {loading ? "Checking..." : "Check Service Status"}
               </Button>
-              
+
               {emailStatus && (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-medium">Provider:</span>
-                    <Badge variant={emailStatus.email_service?.configured ? 'default' : 'secondary'}>
-                      {emailStatus.email_service?.provider || 'Unknown'}
+                    <Badge
+                      variant={
+                        emailStatus.email_service?.configured
+                          ? "default"
+                          : "secondary"
+                      }
+                    >
+                      {emailStatus.email_service?.provider || "Unknown"}
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="font-medium">Status:</span>
-                    <Badge variant={emailStatus.email_service?.configured ? 'default' : 'destructive'}>
-                      {emailStatus.email_service?.configured ? 'Configured' : 'Not Configured'}
+                    <Badge
+                      variant={
+                        emailStatus.email_service?.configured
+                          ? "default"
+                          : "destructive"
+                      }
+                    >
+                      {emailStatus.email_service?.configured
+                        ? "Configured"
+                        : "Not Configured"}
                     </Badge>
                   </div>
                   <div className="text-sm text-gray-600">
-                    Last checked: {new Date(emailStatus.timestamp).toLocaleString()}
+                    Last checked:{" "}
+                    {new Date(emailStatus.timestamp).toLocaleString()}
                   </div>
                 </div>
               )}
@@ -146,22 +161,22 @@ export default function TestEmail() {
                   className="w-full"
                 />
               </div>
-              
+
               <div className="space-y-3">
-                <Button 
-                  onClick={() => testEmail('otp')}
+                <Button
+                  onClick={() => testEmail("otp")}
                   disabled={loading}
                   className="w-full bg-blue-600 hover:bg-blue-700"
                 >
-                  {loading ? 'Sending...' : '📱 Send Test OTP Email'}
+                  {loading ? "Sending..." : "📱 Send Test OTP Email"}
                 </Button>
-                
-                <Button 
-                  onClick={() => testEmail('welcome')}
+
+                <Button
+                  onClick={() => testEmail("welcome")}
                   disabled={loading}
                   className="w-full bg-green-600 hover:bg-green-700"
                 >
-                  {loading ? 'Sending...' : '🎉 Send Test Welcome Email'}
+                  {loading ? "Sending..." : "🎉 Send Test Welcome Email"}
                 </Button>
               </div>
             </CardContent>
@@ -180,34 +195,47 @@ export default function TestEmail() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-medium">Success:</span>
-                  <Badge variant={lastResult.success ? 'default' : 'destructive'}>
-                    {lastResult.success ? 'Yes' : 'No'}
+                  <Badge
+                    variant={lastResult.success ? "default" : "destructive"}
+                  >
+                    {lastResult.success ? "Yes" : "No"}
                   </Badge>
                 </div>
-                
+
                 <div>
                   <span className="font-medium">Message:</span>
-                  <p className="text-sm text-gray-600 mt-1">{lastResult.message}</p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {lastResult.message}
+                  </p>
                 </div>
-                
+
                 <Separator />
-                
+
                 <div>
                   <span className="font-medium">Email Service:</span>
                   <div className="mt-2 space-y-2">
                     <div className="flex justify-between">
                       <span className="text-sm">Provider:</span>
-                      <span className="text-sm font-mono">{lastResult.email_service.provider}</span>
+                      <span className="text-sm font-mono">
+                        {lastResult.email_service.provider}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Configured:</span>
-                      <Badge variant={lastResult.email_service.configured ? 'default' : 'destructive'} className="text-xs">
-                        {lastResult.email_service.configured ? 'Yes' : 'No'}
+                      <Badge
+                        variant={
+                          lastResult.email_service.configured
+                            ? "default"
+                            : "destructive"
+                        }
+                        className="text-xs"
+                      >
+                        {lastResult.email_service.configured ? "Yes" : "No"}
                       </Badge>
                     </div>
                   </div>
                 </div>
-                
+
                 {lastResult.test_data && (
                   <>
                     <Separator />
@@ -216,10 +244,17 @@ export default function TestEmail() {
                       <div className="mt-2 bg-gray-50 p-3 rounded-lg text-sm font-mono">
                         <div>Email: {lastResult.test_data.email}</div>
                         <div>Type: {lastResult.test_data.type}</div>
-                        {lastResult.test_data.otp && <div>OTP: {lastResult.test_data.otp}</div>}
-                        {lastResult.test_data.farmer_name && <div>Farmer: {lastResult.test_data.farmer_name}</div>}
+                        {lastResult.test_data.otp && (
+                          <div>OTP: {lastResult.test_data.otp}</div>
+                        )}
+                        {lastResult.test_data.farmer_name && (
+                          <div>Farmer: {lastResult.test_data.farmer_name}</div>
+                        )}
                         {lastResult.test_data.estimated_income && (
-                          <div>Income: ₹{lastResult.test_data.estimated_income.toLocaleString()}</div>
+                          <div>
+                            Income: ₹
+                            {lastResult.test_data.estimated_income.toLocaleString()}
+                          </div>
                         )}
                       </div>
                     </div>
@@ -239,11 +274,26 @@ export default function TestEmail() {
           </CardHeader>
           <CardContent className="text-blue-700">
             <div className="space-y-2 text-sm">
-              <p>• <strong>Check Service Status:</strong> Verify if SendGrid is properly configured</p>
-              <p>• <strong>Test OTP Email:</strong> Sends a verification code email (like for login)</p>
-              <p>• <strong>Test Welcome Email:</strong> Sends a farmer onboarding email with income estimate</p>
-              <p>• If SendGrid is not configured, emails will be logged to console instead</p>
-              <p>• Check the browser console and server logs for detailed information</p>
+              <p>
+                • <strong>Check Service Status:</strong> Verify if SendGrid is
+                properly configured
+              </p>
+              <p>
+                • <strong>Test OTP Email:</strong> Sends a verification code
+                email (like for login)
+              </p>
+              <p>
+                • <strong>Test Welcome Email:</strong> Sends a farmer onboarding
+                email with income estimate
+              </p>
+              <p>
+                • If SendGrid is not configured, emails will be logged to
+                console instead
+              </p>
+              <p>
+                • Check the browser console and server logs for detailed
+                information
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -253,9 +303,9 @@ export default function TestEmail() {
           <p className="text-gray-600 text-sm mb-4">
             This page is only available in development mode
           </p>
-          <Button 
-            variant="outline" 
-            onClick={() => window.location.href = '/'}
+          <Button
+            variant="outline"
+            onClick={() => (window.location.href = "/")}
           >
             ← Back to Home
           </Button>

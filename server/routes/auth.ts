@@ -22,8 +22,16 @@ async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
   return await emailService.sendOTPEmail(email, otp);
 }
 
-async function sendWelcomeEmail(email: string, farmerName: string, estimatedIncome: number): Promise<boolean> {
-  return await emailService.sendWelcomeEmail(email, farmerName, estimatedIncome);
+async function sendWelcomeEmail(
+  email: string,
+  farmerName: string,
+  estimatedIncome: number,
+): Promise<boolean> {
+  return await emailService.sendWelcomeEmail(
+    email,
+    farmerName,
+    estimatedIncome,
+  );
 }
 
 // Initialize database connection
@@ -144,9 +152,16 @@ export const verifyOTP: RequestHandler = async (req, res) => {
 
       // Send welcome email to new farmer
       try {
-        await sendWelcomeEmail(email, farmer.name || 'Farmer', farmer.estimatedIncome || 0);
+        await sendWelcomeEmail(
+          email,
+          farmer.name || "Farmer",
+          farmer.estimatedIncome || 0,
+        );
       } catch (emailError) {
-        console.error(`⚠️ [WELCOME EMAIL] Failed to send welcome email to ${email}:`, emailError);
+        console.error(
+          `⚠️ [WELCOME EMAIL] Failed to send welcome email to ${email}:`,
+          emailError,
+        );
         // Don't fail the registration if email fails
       }
     }
@@ -415,9 +430,16 @@ export const farmerPasswordRegister: RequestHandler = async (req, res) => {
 
     // Send welcome email to new farmer
     try {
-      await sendWelcomeEmail(email, farmer.name || 'Farmer', farmer.estimatedIncome || 0);
+      await sendWelcomeEmail(
+        email,
+        farmer.name || "Farmer",
+        farmer.estimatedIncome || 0,
+      );
     } catch (emailError) {
-      console.error(`⚠️ [WELCOME EMAIL] Failed to send welcome email to ${email}:`, emailError);
+      console.error(
+        `⚠️ [WELCOME EMAIL] Failed to send welcome email to ${email}:`,
+        emailError,
+      );
       // Don't fail the registration if email fails
     }
 

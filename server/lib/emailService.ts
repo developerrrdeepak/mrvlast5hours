@@ -1,4 +1,4 @@
-import sgMail from '@sendgrid/mail';
+import sgMail from "@sendgrid/mail";
 
 interface EmailTemplate {
   subject: string;
@@ -23,21 +23,23 @@ class EmailService {
 
   private initialize(): void {
     const apiKey = process.env.SENDGRID_API_KEY;
-    
-    if (apiKey && apiKey !== 'your-sendgrid-api-key') {
+
+    if (apiKey && apiKey !== "your-sendgrid-api-key") {
       sgMail.setApiKey(apiKey);
       this.isConfigured = true;
-      console.log('✅ [EMAIL SERVICE] SendGrid configured successfully');
+      console.log("✅ [EMAIL SERVICE] SendGrid configured successfully");
     } else {
       this.isConfigured = false;
-      console.log('⚠️ [EMAIL SERVICE] SendGrid API key not configured - emails will be logged to console');
+      console.log(
+        "⚠️ [EMAIL SERVICE] SendGrid API key not configured - emails will be logged to console",
+      );
     }
   }
 
   // OTP Email Template
   private createOTPTemplate(email: string, otp: string): EmailTemplate {
     return {
-      subject: 'Carbon Roots - आपका OTP Verification Code',
+      subject: "Carbon Roots - आपका OTP Verification Code",
       html: `
         <!DOCTYPE html>
         <html>
@@ -225,14 +227,17 @@ Carbon Roots - OTP Verification
 
 Carbon Roots
 किसानों के लिए Carbon Income का नया रास्ता
-      `
+      `,
     };
   }
 
   // Welcome Email Template
-  private createWelcomeTemplate(farmerName: string, estimatedIncome: number): EmailTemplate {
+  private createWelcomeTemplate(
+    farmerName: string,
+    estimatedIncome: number,
+  ): EmailTemplate {
     return {
-      subject: 'Carbon Roots में आपका स्वागत है! 🌱',
+      subject: "Carbon Roots में आपका स्वागत है! 🌱",
       html: `
         <!DOCTYPE html>
         <html>
@@ -349,7 +354,7 @@ Carbon Roots
               </div>
               
               <div style="text-align: center; margin: 30px 0;">
-                <a href="${process.env.CLIENT_URL || 'http://localhost:8080'}/farmer-dashboard" class="cta-button">
+                <a href="${process.env.CLIENT_URL || "http://localhost:8080"}/farmer-dashboard" class="cta-button">
                   Dashboard में जाएं →
                 </a>
               </div>
@@ -381,10 +386,10 @@ ${farmerName}, बधाई हो! आपका account successfully create ह
 • Income track करें
 • AI Assistant से guidance लें
 
-Dashboard में जाएं: ${process.env.CLIENT_URL || 'http://localhost:8080'}/farmer-dashboard
+Dashboard में जाएं: ${process.env.CLIENT_URL || "http://localhost:8080"}/farmer-dashboard
 
 Carbon Roots - किसानों के लिए Carbon Income का नया रास्ता
-      `
+      `,
     };
   }
 
@@ -400,12 +405,12 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
       }
 
       const template = this.createOTPTemplate(email, otp);
-      
+
       const msg = {
         to: email,
         from: {
-          email: process.env.SENDGRID_FROM_EMAIL || 'noreply@carbonroots.com',
-          name: 'Carbon Roots'
+          email: process.env.SENDGRID_FROM_EMAIL || "noreply@carbonroots.com",
+          name: "Carbon Roots",
         },
         subject: template.subject,
         text: template.text,
@@ -415,35 +420,43 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
       await sgMail.send(msg);
       console.log(`✅ [SENDGRID] OTP email sent successfully to ${email}`);
       return true;
-
     } catch (error) {
-      console.error(`❌ [SENDGRID] Failed to send OTP email to ${email}:`, error);
-      
+      console.error(
+        `❌ [SENDGRID] Failed to send OTP email to ${email}:`,
+        error,
+      );
+
       // Fallback to console logging in case of SendGrid failure
       console.log(`\n🔐 [OTP FALLBACK] Email: ${email}`);
       console.log(`📧 [OTP CODE]: ${otp}`);
       console.log(`⏰ [EXPIRES]: 5 minutes\n`);
-      
+
       return false;
     }
   }
 
   // Send Welcome Email
-  async sendWelcomeEmail(email: string, farmerName: string, estimatedIncome: number = 0): Promise<boolean> {
+  async sendWelcomeEmail(
+    email: string,
+    farmerName: string,
+    estimatedIncome: number = 0,
+  ): Promise<boolean> {
     try {
       if (!this.isConfigured) {
-        console.log(`\n🎉 [WELCOME EMAIL] Would send to: ${email} (${farmerName})`);
+        console.log(
+          `\n🎉 [WELCOME EMAIL] Would send to: ${email} (${farmerName})`,
+        );
         console.log(`💰 [ESTIMATED INCOME]: ₹${estimatedIncome}\n`);
         return true;
       }
 
       const template = this.createWelcomeTemplate(farmerName, estimatedIncome);
-      
+
       const msg = {
         to: email,
         from: {
-          email: process.env.SENDGRID_FROM_EMAIL || 'noreply@carbonroots.com',
-          name: 'Carbon Roots'
+          email: process.env.SENDGRID_FROM_EMAIL || "noreply@carbonroots.com",
+          name: "Carbon Roots",
         },
         subject: template.subject,
         text: template.text,
@@ -453,15 +466,20 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
       await sgMail.send(msg);
       console.log(`✅ [SENDGRID] Welcome email sent successfully to ${email}`);
       return true;
-
     } catch (error) {
-      console.error(`❌ [SENDGRID] Failed to send welcome email to ${email}:`, error);
+      console.error(
+        `❌ [SENDGRID] Failed to send welcome email to ${email}:`,
+        error,
+      );
       return false;
     }
   }
 
-  // Send Password Reset Email  
-  async sendPasswordResetEmail(email: string, resetToken: string): Promise<boolean> {
+  // Send Password Reset Email
+  async sendPasswordResetEmail(
+    email: string,
+    resetToken: string,
+  ): Promise<boolean> {
     try {
       if (!this.isConfigured) {
         console.log(`\n🔐 [PASSWORD RESET] Would send to: ${email}`);
@@ -469,15 +487,15 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
         return true;
       }
 
-      const resetUrl = `${process.env.CLIENT_URL || 'http://localhost:8080'}/reset-password?token=${resetToken}`;
-      
+      const resetUrl = `${process.env.CLIENT_URL || "http://localhost:8080"}/reset-password?token=${resetToken}`;
+
       const msg = {
         to: email,
         from: {
-          email: process.env.SENDGRID_FROM_EMAIL || 'noreply@carbonroots.com',
-          name: 'Carbon Roots'
+          email: process.env.SENDGRID_FROM_EMAIL || "noreply@carbonroots.com",
+          name: "Carbon Roots",
         },
-        subject: 'Carbon Roots - Password Reset Request',
+        subject: "Carbon Roots - Password Reset Request",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #10b981;">Password Reset Request</h2>
@@ -506,15 +524,19 @@ Reset करने के लिए इस link पर जाएं: ${resetUrl}
 अ��र आपने यह request नहीं की है, तो इस email को ignore करें।
 
 Carbon Roots
-        `
+        `,
       };
 
       await sgMail.send(msg);
-      console.log(`✅ [SENDGRID] Password reset email sent successfully to ${email}`);
+      console.log(
+        `✅ [SENDGRID] Password reset email sent successfully to ${email}`,
+      );
       return true;
-
     } catch (error) {
-      console.error(`❌ [SENDGRID] Failed to send password reset email to ${email}:`, error);
+      console.error(
+        `❌ [SENDGRID] Failed to send password reset email to ${email}:`,
+        error,
+      );
       return false;
     }
   }
@@ -528,7 +550,7 @@ Carbon Roots
   getStatus(): { configured: boolean; provider: string } {
     return {
       configured: this.isConfigured,
-      provider: this.isConfigured ? 'SendGrid' : 'Console (Development)'
+      provider: this.isConfigured ? "SendGrid" : "Console (Development)",
     };
   }
 }
