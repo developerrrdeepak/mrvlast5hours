@@ -627,7 +627,7 @@ export default function AdminDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <Card className="p-4">
+                  <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200 shadow-md">
                     <h3 className="font-semibold mb-2">Farmer Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Comprehensive farmer data and verification status
@@ -654,7 +654,7 @@ export default function AdminDashboard() {
                     </div>
                   </Card>
 
-                  <Card className="p-4">
+                  <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-md">
                     <h3 className="font-semibold mb-2">Carbon Credit Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Detailed carbon credit calculations and verification
@@ -681,7 +681,7 @@ export default function AdminDashboard() {
                     </div>
                   </Card>
 
-                  <Card className="p-4">
+                  <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 shadow-md">
                     <h3 className="font-semibold mb-2">Project Report</h3>
                     <p className="text-sm text-gray-600 mb-3">
                       Project performance and participant data
