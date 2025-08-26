@@ -38,6 +38,10 @@ const App = () => (
               <Route path="/about" element={<AboutUs />} />
               <Route path="/farmer-dashboard" element={<FarmerDashboard />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              {/* Development only routes */}
+              {import.meta.env.DEV && (
+                <Route path="/test-email" element={<TestEmail />} />
+              )}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
