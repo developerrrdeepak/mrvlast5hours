@@ -17,65 +17,13 @@ const db = Database.getInstance();
 const authService = new AuthService();
 const emailService = EmailService.getInstance();
 
-// Email configuration
-const createEmailTransporter = () => {
-  // For development, use a test account or configure with your email service
-  if (process.env.NODE_ENV === "production") {
-    return nodemailer.createTransporter({
-      service: process.env.EMAIL_SERVICE || "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
-  } else {
-    // For development, log to console
-    return null;
-  }
-};
-
-// Send OTP email
+// Email service wrapper functions
 async function sendOTPEmail(email: string, otp: string): Promise<boolean> {
-  try {
-    const transporter = createEmailTransporter();
+  return await emailService.sendOTPEmail(email, otp);
+}
 
-    if (!transporter) {
-      // Development mode - just log to console
-      console.log(`\n🔐 [OTP GENERATED] for ${email}: ${otp}`);
-      console.log(`⏰ Valid for 5 minutes\n`);
-      return true;
-    }
-
-    // Production mode - send actual email
-    const mailOptions = {
-      from: process.env.EMAIL_FROM || "noreply@carbonroots.com",
-      to: email,
-      subject: "Your Carbon Roots Login OTP",
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #10b981;">Carbon Roots - Login Verification</h2>
-          <p>Your OTP for login is:</p>
-          <div style="background-color: #f3f4f6; padding: 20px; text-align: center; margin: 20px 0;">
-            <h1 style="color: #059669; margin: 0; font-size: 32px; letter-spacing: 5px;">${otp}</h1>
-          </div>
-          <p>This OTP is valid for 5 minutes only.</p>
-          <p>If you didn't request this OTP, please ignore this email.</p>
-          <hr style="margin: 30px 0;">
-          <p style="color: #6b7280; font-size: 14px;">
-            Carbon Roots - Sustainable Farming Solutions<br>
-            किसानों के लिए Carbon Income का नया रास्ता
-          </p>
-        </div>
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log(`✅ [EMAIL SENT] OTP sent to ${email}`);
-    return true;
-  } catch (error) {
-    console.error(`❌ [EMAIL ERROR] Failed to send OTP to ${email}:`, error);
-    return false;
-  }
+async function sendWelcomeEmail(email: string, farmerName: string, estimatedIncome: number): Promise<boolean> {
+  return await emailService.sendWelcomeEmail(email, farmerName, estimatedIncome);
 }
 
 // Initialize database connection
