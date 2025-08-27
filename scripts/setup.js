@@ -23,7 +23,7 @@ async function setupDatabase() {
     DB_NAME,
     ADMIN_EMAIL,
     ADMIN_PASSWORD,
-    JWT_SECRET = 'change-this-in-production'
+    JWT_SECRET = 'default-jwt-secret'
   } = process.env;
 
   console.log('📊 Configuration:');
