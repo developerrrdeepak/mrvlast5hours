@@ -108,7 +108,8 @@ export const handler: Handler = async (event, context) => {
           success: true,
           message: "OTP sent successfully",
           // Only show OTP in strict local development
-          ...(process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH === "true" && { otp }),
+          ...(process.env.NODE_ENV === "development" &&
+            process.env.DEBUG_AUTH === "true" && { otp }),
         }),
       };
     }
@@ -207,7 +208,9 @@ export const handler: Handler = async (event, context) => {
 
       // Validate admin credentials are configured
       if (!DEFAULT_ADMIN.email || !DEFAULT_ADMIN.password) {
-        console.error(`❌ [AUTH] Admin credentials not configured in environment variables`);
+        console.error(
+          `❌ [AUTH] Admin credentials not configured in environment variables`,
+        );
         return {
           statusCode: 500,
           headers: corsHeaders,

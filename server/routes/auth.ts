@@ -98,7 +98,10 @@ export const sendOTP: RequestHandler = async (req, res) => {
       };
 
       // Only include OTP in response for strict local development
-      if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH === "true") {
+      if (
+        process.env.NODE_ENV === "development" &&
+        process.env.DEBUG_AUTH === "true"
+      ) {
         response.otp = otp;
       }
 

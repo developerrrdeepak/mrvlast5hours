@@ -7,33 +7,39 @@
 Netlify Dashboard में जाकर **Site Configuration > Environment Variables** में निम्नलिखित variables add करें:
 
 ### 1. Production Environment
+
 ```
 NODE_ENV=production
 ```
 
 ### 2. SendGrid Email Configuration
+
 ```
 SENDGRID_API_KEY=SG.xxxxxxxxxxxxxxxxxx
 SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 ```
 
 ### 3. Database Configuration
+
 ```
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 ```
 
 ### 4. Admin Credentials
+
 ```
 ADMIN_EMAIL=admin@yourdomain.com
 ADMIN_PASSWORD=your_secure_admin_password
 ```
 
 ### 5. JWT Configuration
+
 ```
 JWT_SECRET=your_super_secure_jwt_secret_key_here
 ```
 
 ### 6. Optional: Google OAuth (if using social login)
+
 ```
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
@@ -41,6 +47,7 @@ GOOGLE_REDIRECT_URI=https://your-app.netlify.app/api/auth/social/google/callback
 ```
 
 ### 7. Client URL
+
 ```
 CLIENT_URL=https://your-app.netlify.app
 ```
@@ -95,15 +102,19 @@ CLIENT_URL=https://your-app.netlify.app
 ## Common Issues & Solutions
 
 ### Issue: "SendGrid API key not configured"
+
 **Solution**: Netlify environment variables में proper `SENDGRID_API_KEY` set करें
 
 ### Issue: OTP test mode में दिख रहा है
+
 **Solution**: `NODE_ENV=production` set करें Netlify में
 
 ### Issue: Database connection failed
+
 **Solution**: `MONGODB_URI` properly set करें और network access allow करें
 
 ### Issue: Admin login not working
+
 **Solution**: `ADMIN_EMAIL` और `ADMIN_PASSWORD` environment variables set करें
 
 ## Environment Variables Verification
