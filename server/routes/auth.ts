@@ -97,11 +97,8 @@ export const sendOTP: RequestHandler = async (req, res) => {
         message: "OTP sent successfully",
       };
 
-      // Only include OTP in response for development/testing
-      if (
-        process.env.NODE_ENV !== "production" ||
-        process.env.DEBUG_AUTH === "true"
-      ) {
+      // Only include OTP in response for strict local development
+      if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH === "true") {
         response.otp = otp;
       }
 
