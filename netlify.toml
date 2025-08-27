@@ -3,9 +3,6 @@
   functions = "netlify/functions"
   publish = "dist/spa"
 
-# Explicitly specify no extensions to prevent auto-installation
-[extensions]
-
 [functions]
   node_bundler = "esbuild"
 
