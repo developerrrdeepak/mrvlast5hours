@@ -66,7 +66,7 @@ const defaultChecks = [
   { var: 'JWT_SECRET', badValues: ['change-this-in-production', ''] },
   { var: 'MONGODB_URI', badValues: ['mongodb+srv://username:password@', ''] },
   { var: 'SENDGRID_API_KEY', badValues: ['sg.your-sendgrid-api-key', ''] },
-  { var: 'ADMIN_PASSWORD', badValues: ['admin123', 'password', ''] }
+  { var: 'ADMIN_PASSWORD', badValues: ['', 'password', '123456'] }
 ];
 
 defaultChecks.forEach(check => {

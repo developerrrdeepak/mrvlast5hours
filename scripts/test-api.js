@@ -44,9 +44,14 @@ async function testAPI() {
         } else if (endpoint.path === '/auth/verify-otp') {
           body = { email: 'test@example.com', otp: '123456' };
         } else if (endpoint.path === '/auth/admin-login') {
-          body = { 
-            email: process.env.ADMIN_EMAIL || 'admin@carbonroots.com',
-            password: process.env.ADMIN_PASSWORD || 'admin123'
+          // Skip admin login test if credentials not provided
+          if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+            console.log('   ⏭️  Skipped (credentials not configured)');
+            continue;
+          }
+          body = {
+            email: process.env.ADMIN_EMAIL,
+            password: process.env.ADMIN_PASSWORD
           };
         }
         
