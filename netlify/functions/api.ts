@@ -3,10 +3,10 @@ import type { Handler } from "@netlify/functions";
 // Simple in-memory storage for OTPs (in production, use a database)
 const otpStore = new Map<string, { otp: string; timestamp: number }>();
 
-// Default admin credentials
+// Admin credentials - must be set in environment variables
 const DEFAULT_ADMIN = {
-  email: process.env.ADMIN_EMAIL || "developerrdeepak@gmail.com",
-  password: process.env.ADMIN_PASSWORD || "IITdelhi2023@",
+  email: process.env.ADMIN_EMAIL,
+  password: process.env.ADMIN_PASSWORD,
 };
 
 // Helper functions
@@ -107,8 +107,9 @@ export const handler: Handler = async (event, context) => {
         body: JSON.stringify({
           success: true,
           message: "OTP sent successfully",
-          // In development, show OTP in response
-          ...(process.env.NODE_ENV !== "production" && { otp }),
+          // Only show OTP in strict local development
+          ...(process.env.NODE_ENV === "development" &&
+            process.env.DEBUG_AUTH === "true" && { otp }),
         }),
       };
     }
@@ -201,6 +202,21 @@ export const handler: Handler = async (event, context) => {
           body: JSON.stringify({
             success: false,
             message: "Email and password are required",
+          }),
+        };
+      }
+
+      // Validate admin credentials are configured
+      if (!DEFAULT_ADMIN.email || !DEFAULT_ADMIN.password) {
+        console.error(
+          `❌ [AUTH] Admin credentials not configured in environment variables`,
+        );
+        return {
+          statusCode: 500,
+          headers: corsHeaders,
+          body: JSON.stringify({
+            success: false,
+            message: "Admin authentication not configured",
           }),
         };
       }
