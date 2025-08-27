@@ -205,6 +205,19 @@ export const handler: Handler = async (event, context) => {
         };
       }
 
+      // Validate admin credentials are configured
+      if (!DEFAULT_ADMIN.email || !DEFAULT_ADMIN.password) {
+        console.error(`❌ [AUTH] Admin credentials not configured in environment variables`);
+        return {
+          statusCode: 500,
+          headers: corsHeaders,
+          body: JSON.stringify({
+            success: false,
+            message: "Admin authentication not configured",
+          }),
+        };
+      }
+
       // Check admin credentials
       if (
         email !== DEFAULT_ADMIN.email ||
