@@ -2,9 +2,7 @@
   command = "npm run build:client"
   functions = "netlify/functions"
   publish = "dist/spa"
-
-# Explicitly prevent automatic plugin installation
-[[plugins]]
+  ignore = "false"
 
 [functions]
   node_bundler = "esbuild"
