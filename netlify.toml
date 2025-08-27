@@ -3,6 +3,9 @@
   functions = "netlify/functions"
   publish = "dist/spa"
 
+# Explicitly prevent automatic plugin installation
+[[plugins]]
+
 [functions]
   node_bundler = "esbuild"
 
