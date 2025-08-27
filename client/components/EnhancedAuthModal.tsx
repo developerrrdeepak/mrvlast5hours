@@ -1106,7 +1106,7 @@ export default function EnhancedAuthModal({
                   <Input
                     id="admin-email"
                     type="email"
-                    placeholder="admin@carbonroots.com"
+                    placeholder="admin@example.com"
                     value={adminCredentials.email}
                     onChange={(e) =>
                       setAdminCredentials((prev) => ({
