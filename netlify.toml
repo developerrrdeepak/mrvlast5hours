@@ -3,9 +3,8 @@
   functions = "netlify/functions"
   publish = "dist/spa"
 
-[build.environment]
-  # Disable automatic Neon extension installation
-  NETLIFY_EXPERIMENTAL_USE_NODE_20 = "true"
+# Explicitly specify no extensions to prevent auto-installation
+[extensions]
 
 [functions]
   node_bundler = "esbuild"
