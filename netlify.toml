@@ -2,6 +2,7 @@
   command = "npm run build:client"
   functions = "netlify/functions"
   publish = "dist/spa"
+  environment = { SECRETS_SCAN_OMIT_PATHS = "*.md,.env.example,AGENTS.md,SETUP_GUIDE.md,PRODUCTION_READY.md,NETLIFY_*.md,AUTH_TESTING_GUIDE.md,.builder/**/*,scripts/**/*,docs/**/*,.netlify/plugins/**/*,pnpm-lock.yaml" }
 
 [functions]
   node_bundler = "esbuild"
