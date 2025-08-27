@@ -2,7 +2,6 @@
   command = "npm run build:client"
   functions = "netlify/functions"
   publish = "dist/spa"
-  ignore = "false"
 
 [functions]
   node_bundler = "esbuild"
