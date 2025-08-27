@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId, OptionalId } from "mongodb";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Database from "./database";
