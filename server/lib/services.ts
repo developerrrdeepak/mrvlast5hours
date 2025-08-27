@@ -309,7 +309,7 @@ class AuthService {
       createdAt: new Date(),
     };
 
-    const result = await adminsCollection.insertOne(adminData);
+    const result = await adminsCollection.insertOne(adminData as OptionalId<DatabaseAdmin>);
 
     return {
       id: result.insertedId.toString(),
