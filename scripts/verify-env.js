@@ -64,9 +64,9 @@ recommendedVars.forEach(varName => {
 console.log('\n🔍 CHECKING FOR DEFAULT VALUES:');
 const defaultChecks = [
   { var: 'JWT_SECRET', badValues: ['change-this-in-production', ''] },
-  { var: 'MONGODB_URI', badValues: ['mongodb+srv://username:password@', ''] },
-  { var: 'SENDGRID_API_KEY', badValues: ['sg.your-sendgrid-api-key', ''] },
-  { var: 'ADMIN_PASSWORD', badValues: ['', 'password', '123456'] }
+  { var: 'MONGODB_URI', badValues: ['mongodb+srv://user:pass@', ''] },
+  { var: 'SENDGRID_API_KEY', badValues: ['SG.your-api-key', ''] },
+  { var: 'ADMIN_PASSWORD', badValues: ['', 'weak', 'default'] }
 ];
 
 defaultChecks.forEach(check => {
