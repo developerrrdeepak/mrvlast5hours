@@ -198,7 +198,7 @@ class AuthService {
       }),
     };
 
-    const result = await farmersCollection.insertOne(farmerData);
+    const result = await farmersCollection.insertOne(farmerData as OptionalId<DatabaseFarmer>);
 
     return {
       id: result.insertedId.toString(),
