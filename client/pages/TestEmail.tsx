@@ -245,9 +245,6 @@ export default function TestEmail() {
                         <div>Email: {lastResult.test_data.email}</div>
                         <div>Type: {lastResult.test_data.type}</div>
                         {lastResult.test_data.otp && <div>OTP: {lastResult.test_data.otp}</div>}
-                          <div>OTP: {lastResult.test_data.otp}</div>
-                          {/* Remove the testing message */}
-                        )}
                         {lastResult.test_data.farmer_name && (
                           <div>Farmer: {lastResult.test_data.farmer_name}</div>
                         )}
