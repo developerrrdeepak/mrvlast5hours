@@ -1,6 +1,10 @@
 import path from "path";
 import { createServer } from "./index";
+import { initializeDatabase } from "./routes/auth";
 import * as express from "express";
+
+// Initialize database on server startup
+initializeDatabase().catch(console.error);
 
 const app = createServer();
 const port = process.env.PORT || 3000;

@@ -64,7 +64,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
             // Initialize Google Sign-In
             google.accounts.id.initialize({
               client_id:
-                process.env.GOOGLE_CLIENT_ID ||
+                import.meta.env.VITE_GOOGLE_CLIENT_ID ||
                 "your-google-client-id.apps.googleusercontent.com",
               callback: async (credentialResponse: any) => {
                 try {

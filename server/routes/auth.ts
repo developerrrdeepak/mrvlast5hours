@@ -35,7 +35,7 @@ async function sendWelcomeEmail(
 }
 
 // Initialize database connection
-async function initializeDatabase() {
+export async function initializeDatabase() {
   try {
     await db.connect();
 
@@ -65,8 +65,7 @@ async function initializeDatabase() {
   }
 }
 
-// Initialize database on module load
-initializeDatabase().catch(console.error);
+// Note: Database initialization is now handled by server startup, not module load
 
 export const sendOTP: RequestHandler = async (req, res) => {
   try {

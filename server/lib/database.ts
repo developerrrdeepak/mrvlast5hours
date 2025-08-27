@@ -57,12 +57,12 @@ class Database {
   }
 
   // Collection getters with proper typing
-  getFarmersCollection(): Collection<Farmer> {
-    return this.getDb().collection<Farmer>("farmers");
+  getFarmersCollection(): Collection<import("./services").DatabaseFarmer> {
+    return this.getDb().collection("farmers");
   }
 
-  getAdminsCollection(): Collection<Admin> {
-    return this.getDb().collection<Admin>("admins");
+  getAdminsCollection(): Collection<import("./services").DatabaseAdmin> {
+    return this.getDb().collection("admins");
   }
 
   getOTPCollection(): Collection<{

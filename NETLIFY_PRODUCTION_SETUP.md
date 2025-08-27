@@ -44,7 +44,10 @@ JWT_SECRET=your_super_secure_jwt_secret_key_here
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 GOOGLE_REDIRECT_URI=https://your-app.netlify.app/api/auth/social/google/callback
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
 ```
+
+**Note**: `VITE_GOOGLE_CLIENT_ID` should have the same value as `GOOGLE_CLIENT_ID`. The `VITE_` prefix is required for client-side access in the browser.
 
 ### 7. Client URL
 
