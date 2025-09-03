@@ -299,24 +299,17 @@ export default function Layout({ children }: LayoutProps) {
             </div>
             <div>
               <h3 className="text-sm font-bold mb-4 tracking-wide uppercase text-slate-900">
-                Contact
+                Links
               </h3>
               <ul className="space-y-2 text-sm font-medium">
                 <li>
-                  <a
-                    href="mailto:info@terramrv.org"
-                    className="hover:text-primary transition-colors"
-                  >
-                    info@terramrv.org
-                  </a>
+                  <Link to="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
                 </li>
                 <li>
-                  <a
-                    href="tel:+910000000000"
-                    className="hover:text-primary transition-colors"
-                  >
-                    +91 00000 00000
-                  </a>
+                  <a href="https://docs.terramrv.org" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Docs</a>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
                 </li>
               </ul>
             </div>
