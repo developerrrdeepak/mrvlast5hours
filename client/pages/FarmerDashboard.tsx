@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -38,7 +38,22 @@ import {
   CheckCircle,
   Clock,
   AlertCircle,
+  Target,
+  ListChecks,
+  BarChart3,
 } from "lucide-react";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  BarChart,
+  Bar,
+  Legend,
+} from "recharts";
 
 export default function FarmerDashboard() {
   const { user, isAuthenticated, updateProfile } = useAuth();
@@ -61,6 +76,28 @@ export default function FarmerDashboard() {
   });
   const [loading, setLoading] = useState(false);
   const [profileComplete, setProfileComplete] = useState(false);
+
+  const earningsData = useMemo(() => {
+    const landSize = parseFloat((user?.farmer?.landSize as any) || profile.landSize || "0") || 0;
+    const creditsPerHectare = 2.5;
+    const pricePerCredit = 500;
+    const monthly = Array.from({ length: 6 }).map((_, i) => {
+      const base = landSize * creditsPerHectare * pricePerCredit;
+      const seasonal = Math.sin((i / 6) * Math.PI) * 0.15;
+      const income = Math.max(0, Math.round(base * (1 + seasonal)));
+      return { month: new Date(new Date().setMonth(new Date().getMonth() - (5 - i))).toLocaleString("en-US", { month: "short" }), income };
+    });
+    return monthly;
+  }, [user, profile.landSize]);
+
+  const waterData = useMemo(() => (
+    [
+      { name: "Drip", value: 40 },
+      { name: "Sprinkler", value: 25 },
+      { name: "Flood", value: 20 },
+      { name: "Rain-fed", value: 15 },
+    ]
+  ), []);
 
   useEffect(() => {
     if (user?.farmer) {
@@ -172,25 +209,35 @@ export default function FarmerDashboard() {
         <div className="mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
             <div className="lg:col-span-2">
-              <h1 className="text-3xl font-bold text-gray-900">
-                Farmer Dashboard
-              </h1>
-              <p className="text-gray-600 mt-2">
-                Welcome, {user?.farmer?.name || user?.farmer?.email}
-              </p>
+              <h1 className="text-3xl font-bold text-gray-900">Farmer Dashboard</h1>
+              <p className="text-gray-600 mt-2">Welcome, {user?.farmer?.name || user?.farmer?.email}</p>
+
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                  <Upload className="h-4 w-4 mr-2" /> Upload Documents
+                </Button>
+                <Button size="sm" variant="outline">
+                  <Target className="h-4 w-4 mr-2" /> Join Project
+                </Button>
+                <Button size="sm" variant="outline">
+                  <ListChecks className="h-4 w-4 mr-2" /> Complete Profile
+                </Button>
+              </div>
             </div>
             <div className="lg:col-span-1">
-              <div className="relative overflow-hidden rounded-2xl shadow-lg h-32">
-                <img
-                  src="https://images.pexels.com/photos/20841296/pexels-photo-20841296.jpeg"
-                  alt="Farmer working in green paddy fields"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-emerald-600/20"></div>
-                <div className="absolute bottom-2 left-3 text-white">
-                  <p className="font-semibold text-sm">Your Farm Data</p>
-                </div>
-              </div>
+              <Card className="relative overflow-hidden shadow-lg h-32 border-emerald-200">
+                <CardContent className="p-0 h-full">
+                  <img
+                    src="https://images.pexels.com/photos/20841296/pexels-photo-20841296.jpeg"
+                    alt="Farmer working in green paddy fields"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-600/30 to-emerald-600/30" />
+                  <div className="absolute bottom-2 left-3 text-white">
+                    <p className="font-semibold text-sm">Your Farm Data</p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -212,7 +259,7 @@ export default function FarmerDashboard() {
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="profile">Profile</TabsTrigger>
             <TabsTrigger value="farm-data">Farm Data</TabsTrigger>
-            <TabsTrigger value="carbon">Carbon Credits</TabsTrigger>
+            <TabsTrigger value="carbon">Carbon</TabsTrigger>
             <TabsTrigger value="projects">Projects</TabsTrigger>
           </TabsList>
 
@@ -464,43 +511,30 @@ export default function FarmerDashboard() {
           </TabsContent>
 
           <TabsContent value="carbon">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-white/90 border border-emerald-100 shadow-sm">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+              <Card className="bg-white/90 border border-emerald-100 shadow-sm xl:col-span-2">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
-                    <Calculator className="h-5 w-5" />
-                    <span>Carbon Credit Calculator</span>
+                    <BarChart3 className="h-5 w-5" />
+                    <span>Earnings (last 6 months)</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Land Size:</span>
-                      <span className="font-medium">
-                        {profile.landSize || 0} hectares
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">
-                        Credits per hectare:
-                      </span>
-                      <span className="font-medium">2.5 credits</span>
-                    </div>
-                    <Separator />
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Total Credits:</span>
-                      <span className="font-bold text-green-600">
-                        {totalCredits.toFixed(1)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">Estimated Income:</span>
-                      <span className="font-bold text-green-600 flex items-center">
-                        <IndianRupee className="h-4 w-4 mr-1" />
-                        {estimatedIncome.toLocaleString("en-IN")}
-                      </span>
-                    </div>
-                  </div>
+                <CardContent className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={earningsData} margin={{ left: -20, right: 10 }}>
+                      <defs>
+                        <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.6}/>
+                          <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                      <XAxis dataKey="month" stroke="#6b7280" />
+                      <YAxis stroke="#6b7280" />
+                      <Tooltip formatter={(v: any) => [`₹${Number(v).toLocaleString("en-IN")}`, "Income"]} />
+                      <Area type="monotone" dataKey="income" stroke="#059669" fillOpacity={1} fill="url(#colorIncome)" />
+                    </AreaChart>
+                  </ResponsiveContainer>
                 </CardContent>
               </Card>
 
