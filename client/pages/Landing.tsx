@@ -115,9 +115,7 @@ export default function Landing() {
               key={i}
               className="rounded-xl p-5 bg-white/5 border border-white/10 backdrop-blur"
             >
-              <div className="text-3xl font-extrabold text-white">
-                {s.k}
-              </div>
+              <div className="text-3xl font-extrabold text-white">{s.k}</div>
               <div className="text-white/80 mt-1 text-sm font-medium">
                 {s.v}
               </div>
@@ -133,7 +131,9 @@ export default function Landing() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Leaf className="w-5 h-5 text-primary" />
-                <span className="font-semibold text-white">Verification Progress</span>
+                <span className="font-semibold text-white">
+                  Verification Progress
+                </span>
               </div>
               <span className="text-emerald-300 font-semibold">60%</span>
             </div>
@@ -196,7 +196,10 @@ export default function Landing() {
                     <p className="text-sm text-white/80 line-clamp-2 mt-1">
                       {n.desc}
                     </p>
-                    <Button variant="link" className="text-emerald-300 p-0 mt-1">
+                    <Button
+                      variant="link"
+                      className="text-emerald-300 p-0 mt-1"
+                    >
                       Read More <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </div>

@@ -43,9 +43,10 @@ export default function Layout({ children }: LayoutProps) {
     { name: "About Us", href: "/about" },
   ];
 
-  const bgClass = resolvedTheme === "dark"
-    ? "bg-black"
-    : "bg-[radial-gradient(ellipse_at_top,_rgba(6,95,70,0.2),_transparent_60%),linear-gradient(to_bottom,_#0b1320,_#07130d_60%)]";
+  const bgClass =
+    resolvedTheme === "dark"
+      ? "bg-black"
+      : "bg-[radial-gradient(ellipse_at_top,_rgba(6,95,70,0.2),_transparent_60%),linear-gradient(to_bottom,_#0b1320,_#07130d_60%)]";
 
   return (
     <div className={cn("min-h-screen text-foreground", bgClass)}>
@@ -298,13 +299,30 @@ export default function Layout({ children }: LayoutProps) {
               </h3>
               <ul className="space-y-2 text-sm font-medium">
                 <li>
-                  <Link to="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
+                  <Link
+                    to="/privacy"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Privacy
+                  </Link>
                 </li>
                 <li>
-                  <a href="https://docs.terramrv.org" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Docs</a>
+                  <a
+                    href="https://docs.terramrv.org"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Docs
+                  </a>
                 </li>
                 <li>
-                  <Link to="/contact" className="hover:text-primary transition-colors">Contact</Link>
+                  <Link
+                    to="/contact"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Contact
+                  </Link>
                 </li>
               </ul>
             </div>
