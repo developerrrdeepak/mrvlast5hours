@@ -17,7 +17,8 @@ export default function Signup() {
   }, [open, isAuthenticated, navigate, location.state]);
 
   if (isAuthenticated) {
-    const path = user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
+    const path =
+      user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
     return <Navigate to={path} replace />;
   }
 

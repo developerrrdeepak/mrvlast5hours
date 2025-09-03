@@ -78,26 +78,34 @@ export default function FarmerDashboard() {
   const [profileComplete, setProfileComplete] = useState(false);
 
   const earningsData = useMemo(() => {
-    const landSize = parseFloat((user?.farmer?.landSize as any) || profile.landSize || "0") || 0;
+    const landSize =
+      parseFloat((user?.farmer?.landSize as any) || profile.landSize || "0") ||
+      0;
     const creditsPerHectare = 2.5;
     const pricePerCredit = 500;
     const monthly = Array.from({ length: 6 }).map((_, i) => {
       const base = landSize * creditsPerHectare * pricePerCredit;
       const seasonal = Math.sin((i / 6) * Math.PI) * 0.15;
       const income = Math.max(0, Math.round(base * (1 + seasonal)));
-      return { month: new Date(new Date().setMonth(new Date().getMonth() - (5 - i))).toLocaleString("en-US", { month: "short" }), income };
+      return {
+        month: new Date(
+          new Date().setMonth(new Date().getMonth() - (5 - i)),
+        ).toLocaleString("en-US", { month: "short" }),
+        income,
+      };
     });
     return monthly;
   }, [user, profile.landSize]);
 
-  const waterData = useMemo(() => (
-    [
+  const waterData = useMemo(
+    () => [
       { name: "Drip", value: 40 },
       { name: "Sprinkler", value: 25 },
       { name: "Flood", value: 20 },
       { name: "Rain-fed", value: 15 },
-    ]
-  ), []);
+    ],
+    [],
+  );
 
   useEffect(() => {
     if (user?.farmer) {
@@ -209,8 +217,12 @@ export default function FarmerDashboard() {
         <div className="mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
             <div className="lg:col-span-2">
-              <h1 className="text-3xl font-bold text-gray-900">Farmer Dashboard</h1>
-              <p className="text-gray-600 mt-2">Welcome, {user?.farmer?.name || user?.farmer?.email}</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Farmer Dashboard
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Welcome, {user?.farmer?.name || user?.farmer?.email}
+              </p>
 
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
                 <Button size="sm" className="bg-green-600 hover:bg-green-700">
@@ -521,18 +533,46 @@ export default function FarmerDashboard() {
                 </CardHeader>
                 <CardContent className="h-64">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={earningsData} margin={{ left: -20, right: 10 }}>
+                    <AreaChart
+                      data={earningsData}
+                      margin={{ left: -20, right: 10 }}
+                    >
                       <defs>
-                        <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.6}/>
-                          <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                        <linearGradient
+                          id="colorIncome"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="5%"
+                            stopColor="#10b981"
+                            stopOpacity={0.6}
+                          />
+                          <stop
+                            offset="95%"
+                            stopColor="#10b981"
+                            stopOpacity={0}
+                          />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                       <XAxis dataKey="month" stroke="#6b7280" />
                       <YAxis stroke="#6b7280" />
-                      <Tooltip formatter={(v: any) => [`₹${Number(v).toLocaleString("en-IN")}`, "Income"]} />
-                      <Area type="monotone" dataKey="income" stroke="#059669" fillOpacity={1} fill="url(#colorIncome)" />
+                      <Tooltip
+                        formatter={(v: any) => [
+                          `₹${Number(v).toLocaleString("en-IN")}`,
+                          "Income",
+                        ]}
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="income"
+                        stroke="#059669"
+                        fillOpacity={1}
+                        fill="url(#colorIncome)"
+                      />
                     </AreaChart>
                   </ResponsiveContainer>
                 </CardContent>

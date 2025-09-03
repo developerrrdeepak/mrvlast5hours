@@ -137,7 +137,9 @@ export default function AdminDashboard() {
   });
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<string | undefined>(undefined);
+  const [statusFilter, setStatusFilter] = useState<string | undefined>(
+    undefined,
+  );
 
   const filteredFarmers = useMemo(() => {
     return farmers.filter((f) => {
@@ -150,13 +152,17 @@ export default function AdminDashboard() {
     });
   }, [farmers, searchQuery, statusFilter]);
 
-  const growthData = useMemo(() => (
-    Array.from({ length: 6 }).map((_, i) => ({
-      month: new Date(new Date().setMonth(new Date().getMonth() - (5 - i))).toLocaleString("en-US", { month: "short" }),
-      farmers: Math.floor(20 + i * 8 + (i % 2 ? 5 : 0)),
-      credits: Math.round(200 + i * 60 + (i % 2 ? 40 : 0)),
-    }))
-  ), []);
+  const growthData = useMemo(
+    () =>
+      Array.from({ length: 6 }).map((_, i) => ({
+        month: new Date(
+          new Date().setMonth(new Date().getMonth() - (5 - i)),
+        ).toLocaleString("en-US", { month: "short" }),
+        farmers: Math.floor(20 + i * 8 + (i % 2 ? 5 : 0)),
+        credits: Math.round(200 + i * 60 + (i % 2 ? 40 : 0)),
+      })),
+    [],
+  );
 
   const location = useLocation();
 
@@ -228,8 +234,12 @@ export default function AdminDashboard() {
         <div className="mb-8">
           <div className="flex items-start justify-between gap-4 flex-col md:flex-row">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="text-gray-600 mt-2">Welcome, {user?.admin?.name || user?.admin?.email}</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Admin Dashboard
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Welcome, {user?.admin?.name || user?.admin?.email}
+              </p>
             </div>
             <div className="flex gap-2 w-full md:w-auto">
               <div className="relative flex-1 md:w-64">
@@ -241,7 +251,10 @@ export default function AdminDashboard() {
                 />
                 <Search className="h-4 w-4 absolute left-2 top-1/2 -translate-y-1/2 text-gray-500" />
               </div>
-              <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v)}>
+              <Select
+                value={statusFilter}
+                onValueChange={(v) => setStatusFilter(v)}
+              >
                 <SelectTrigger className="w-36">
                   <SelectValue placeholder="All Status" />
                 </SelectTrigger>
@@ -261,8 +274,12 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Farmers</p>
-                  <p className="text-3xl font-bold text-gray-900">{stats.totalFarmers}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Farmers
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {stats.totalFarmers}
+                  </p>
                 </div>
                 <Users className="h-8 w-8 text-emerald-600" />
               </div>
@@ -273,8 +290,12 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Verified Farmers</p>
-                  <p className="text-3xl font-bold text-green-600">{stats.verifiedFarmers}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Verified Farmers
+                  </p>
+                  <p className="text-3xl font-bold text-green-600">
+                    {stats.verifiedFarmers}
+                  </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
@@ -285,8 +306,12 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Credits</p>
-                  <p className="text-3xl font-bold text-emerald-600">{stats.totalCredits.toFixed(1)}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Credits
+                  </p>
+                  <p className="text-3xl font-bold text-emerald-600">
+                    {stats.totalCredits.toFixed(1)}
+                  </p>
                 </div>
                 <TreePine className="h-8 w-8 text-emerald-600" />
               </div>
@@ -297,8 +322,12 @@ export default function AdminDashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Land (Ha)</p>
-                  <p className="text-3xl font-bold text-amber-600">{stats.totalLand.toFixed(1)}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Land (Ha)
+                  </p>
+                  <p className="text-3xl font-bold text-amber-600">
+                    {stats.totalLand.toFixed(1)}
+                  </p>
                 </div>
                 <MapPin className="h-8 w-8 text-amber-600" />
               </div>
@@ -309,27 +338,53 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
           <Card className="xl:col-span-2 border-emerald-100">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><BarChart3 className="h-5 w-5" /> Trends</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="h-5 w-5" /> Trends
+              </CardTitle>
             </CardHeader>
             <CardContent className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={growthData} margin={{ left: -20, right: 10 }}>
                   <defs>
-                    <linearGradient id="colorFarmers" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.5}/>
-                      <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    <linearGradient
+                      id="colorFarmers"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.5} />
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                     </linearGradient>
-                    <linearGradient id="colorCredits" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.5}/>
-                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
+                    <linearGradient
+                      id="colorCredits"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.5} />
+                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis dataKey="month" stroke="#6b7280" />
                   <YAxis stroke="#6b7280" />
                   <Tooltip />
-                  <Area type="monotone" dataKey="farmers" stroke="#059669" fill="url(#colorFarmers)" name="Farmers" />
-                  <Area type="monotone" dataKey="credits" stroke="#f59e0b" fill="url(#colorCredits)" name="Credits" />
+                  <Area
+                    type="monotone"
+                    dataKey="farmers"
+                    stroke="#059669"
+                    fill="url(#colorFarmers)"
+                    name="Farmers"
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="credits"
+                    stroke="#f59e0b"
+                    fill="url(#colorCredits)"
+                    name="Credits"
+                  />
                 </AreaChart>
               </ResponsiveContainer>
             </CardContent>
@@ -341,8 +396,12 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent className="grid gap-2">
               <Button className="w-full">Create Project</Button>
-              <Button variant="outline" className="w-full">Verify Pending Farmers</Button>
-              <Button variant="outline" className="w-full">Export Reports</Button>
+              <Button variant="outline" className="w-full">
+                Verify Pending Farmers
+              </Button>
+              <Button variant="outline" className="w-full">
+                Export Reports
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -364,7 +423,11 @@ export default function AdminDashboard() {
                     <span>Farmer Management</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button variant="outline" size="sm" onClick={() => setStatusFilter(undefined)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setStatusFilter(undefined)}
+                    >
                       <Filter className="h-4 w-4 mr-2" />
                       Reset Filters
                     </Button>
