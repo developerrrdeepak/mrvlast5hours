@@ -49,7 +49,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className={cn("min-h-screen text-foreground", bgClass)}>
-      <header className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:bg-black/60 shadow-sm sticky top-0 z-40">
+      <header className="bg-[#0b3a2a]/70 backdrop-blur supports-[backdrop-filter]:bg-[#0b3a2a]/70 shadow-sm sticky top-0 z-40">
         <nav
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
           aria-label="Top"
@@ -311,7 +311,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
           <div className="mt-8 pt-8 border-t border-slate-200">
             <p className="text-sm text-center font-medium">
-              �� 2024 TerraMRV. All rights reserved. Empowering climate-smart
+              © 2024 TerraMRV. All rights reserved. Empowering climate-smart
               agriculture through technology.
             </p>
           </div>
