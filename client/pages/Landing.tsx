@@ -27,30 +27,30 @@ export default function Landing() {
       {/* Hero */}
       <section className="relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-14">
-          <Badge className="bg-emerald-500/10 border-emerald-400/30 text-emerald-300">
+          <Badge className="bg-primary/10 border-primary/30 text-primary-foreground/80">
             TerraMRV • AI Powered
           </Badge>
           <h1 className="mt-6 text-4xl sm:text-5xl font-black tracking-tight leading-tight">
-            <span className="text-white">Discover Your Path to </span>
-            <span className="bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent">
+            <span className="text-foreground">Discover Your Path to </span>
+            <span className="text-primary">
               Carbon Income
             </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-slate-300 text-lg">
+          <p className="mt-5 max-w-2xl text-foreground/80 text-lg">
             AI-powered tools to calculate, verify, and maximize carbon credits
             for farmers and organizations.
           </p>
           <div className="mt-8 flex gap-3 flex-wrap">
             <Button
               asChild
-              className="bg-gradient-to-r from-emerald-500 to-green-400 hover:from-emerald-400 hover:to-green-300 text-slate-900 font-semibold shadow-[0_0_30px_rgba(16,185,129,0.35)] hover:shadow-[0_0_40px_rgba(16,185,129,0.55)]"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
             >
               <Link to="/tools">Estimate Credits</Link>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10"
+              className="border-primary/50 text-primary-foreground hover:bg-primary/10"
             >
               <Link to="/solutions">Explore Features</Link>
             </Button>
@@ -85,17 +85,17 @@ export default function Landing() {
           ].map((f, i) => (
             <Card
               key={i}
-              className="border-emerald-900/40 bg-slate-950/60 text-slate-100"
+              className="border-primary/30 bg-secondary text-foreground"
             >
               <CardHeader className="pb-3">
-                <div className="w-9 h-9 rounded-md border border-emerald-400/30 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-md border border-primary/30 flex items-center justify-center">
                   <f.icon className="w-4.5 h-4.5 text-emerald-300" />
                 </div>
-                <CardTitle className="mt-3 text-white text-lg">
+                <CardTitle className="mt-3 text-foreground text-lg">
                   {f.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-300 text-sm leading-relaxed">
+              <CardContent className="text-foreground/80 text-sm leading-relaxed">
                 {f.desc}
               </CardContent>
             </Card>
@@ -114,12 +114,12 @@ export default function Landing() {
           ].map((s, i) => (
             <div
               key={i}
-              className="rounded-xl p-5 bg-emerald-500/10 border border-emerald-400/30"
+              className="rounded-xl p-5 bg-primary/10 border border-primary/30"
             >
-              <div className="text-3xl font-extrabold text-emerald-300">
+              <div className="text-3xl font-extrabold text-primary-foreground/90">
                 {s.k}
               </div>
-              <div className="text-slate-300 mt-1 text-sm font-medium">
+              <div className="text-foreground/80 mt-1 text-sm font-medium">
                 {s.v}
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function Landing() {
       {/* Progress Tracker */}
       <section className="py-6">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl p-5 bg-slate-950/60 border border-emerald-900/40">
+          <div className="rounded-xl p-5 bg-secondary border border-primary/30">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Leaf className="w-5 h-5 text-emerald-300" />
@@ -138,10 +138,10 @@ export default function Landing() {
               </div>
               <span className="text-emerald-300 font-semibold">60%</span>
             </div>
-            <div className="relative h-2.5 w-full rounded-full bg-slate-800 overflow-hidden">
+            <div className="relative h-2.5 w-full rounded-full bg-foreground/20 overflow-hidden">
               <div className="absolute inset-y-0 left-0 w-[60%] bg-gradient-to-r from-emerald-500 to-green-400" />
             </div>
-            <div className="grid grid-cols-4 text-xs mt-3 text-slate-300">
+            <div className="grid grid-cols-4 text-xs mt-3 text-foreground/80">
               <div className="flex items-center justify-between">
                 <span>Profile</span>
                 <span>20%</span>
@@ -182,7 +182,7 @@ export default function Landing() {
             ].map((n, i) => (
               <Card
                 key={i}
-                className="overflow-hidden border-emerald-900/40 bg-slate-950/60"
+                className="overflow-hidden border-primary/30 bg-secondary"
               >
                 <div className="grid grid-cols-[120px_1fr] gap-4">
                   <img
@@ -212,7 +212,7 @@ export default function Landing() {
           {/* Trend Chart (CSS-based) */}
           <Card className="border-emerald-900/40 bg-slate-950/60">
             <CardHeader>
-              <CardTitle className="text-white">
+              <CardTitle className="text-foreground">
                 Carbon Credit Growth Trend
               </CardTitle>
             </CardHeader>
@@ -223,16 +223,16 @@ export default function Landing() {
                     key={d.name}
                     className="grid grid-cols-[60px_1fr_50px] items-center gap-3"
                   >
-                    <span className="text-slate-300 text-sm">{d.name}</span>
-                    <div className="h-4 bg-slate-800 rounded-full overflow-hidden">
+                    <span className="text-foreground/80 text-sm">{d.name}</span>
+                    <div className="h-4 bg-foreground/20 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-emerald-500 to-green-400"
+                        className="h-full bg-primary"
                         style={{
                           width: `${(d.value / Math.max(...trendData.map((t) => t.value))) * 100}%`,
                         }}
                       />
                     </div>
-                    <span className="text-emerald-300 font-semibold text-sm">
+                    <span className="text-primary-foreground/80 font-semibold text-sm">
                       {d.value}
                     </span>
                   </div>
