@@ -26,9 +26,12 @@ import {
 interface AuthModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialTab?: "farmer" | "admin";
+  defaultFarmerAuthType?: "otp" | "password";
+  defaultIsRegistering?: boolean;
 }
 
-export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
+export default function AuthModal({ open, onOpenChange, initialTab = "farmer", defaultFarmerAuthType = "password", defaultIsRegistering = false, }: AuthModalProps) {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
@@ -38,9 +41,10 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
   const [loading, setLoading] = useState(false);
   const [generatedOTP, setGeneratedOTP] = useState("");
   const [farmerAuthType, setFarmerAuthType] = useState<"otp" | "password">(
-    "password",
-  ); // Default to password
-  const [isRegistering, setIsRegistering] = useState(false);
+    defaultFarmerAuthType,
+  );
+  const [isRegistering, setIsRegistering] = useState(defaultIsRegistering);
+  const [tab, setTab] = useState<"farmer" | "admin">(initialTab);
 
   const { sendOTP, verifyOTP, adminLogin, farmerRegister, farmerLogin } =
     useAuth();
@@ -295,8 +299,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setPhone("");
     setOtpSent(false);
     setGeneratedOTP("");
-    setIsRegistering(false);
-    setFarmerAuthType("password");
+    setIsRegistering(defaultIsRegistering);
+    setFarmerAuthType(defaultFarmerAuthType);
+    setTab(initialTab);
   };
 
   return (
@@ -311,7 +316,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
         <DialogHeader>
           <DialogTitle>Sign In</DialogTitle>
         </DialogHeader>
-        <Tabs defaultValue="farmer" className="w-full">
+        <Tabs value={tab} onValueChange={(v: any) => setTab(v)} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="farmer">👨‍🌾 Farmer</TabsTrigger>
             <TabsTrigger value="admin">👨‍💻 Admin</TabsTrigger>
