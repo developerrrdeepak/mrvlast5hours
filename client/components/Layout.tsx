@@ -8,6 +8,10 @@ import {
   User,
   LogOut,
   MessageCircle,
+  Twitter,
+  Facebook,
+  Linkedin,
+  Youtube,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -248,107 +252,84 @@ export default function Layout({ children }: LayoutProps) {
       <main>{children}</main>
 
       <footer className="bg-black text-white">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="bg-primary p-2 rounded-lg">
                   <Leaf className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <span className="text-2xl font-display font-extrabold tracking-tight">
-                  TerraMRV
-                </span>
+                <span className="text-2xl font-display font-extrabold tracking-tight">TerraMRV</span>
               </div>
-              <p className="text-white/70 max-w-md leading-relaxed font-medium">
-                Enabling scalable and affordable MRV solutions for agroforestry
-                and rice-based carbon projects across India's smallholder
-                farming communities.
+              <p className="text-white/70 leading-relaxed font-medium max-w-md">
+                Scalable MRV for agroforestry and rice-based carbon projects. Built for India's smallholder farming communities.
               </p>
+              <div className="flex items-center gap-3 mt-5">
+                <a href="https://twitter.com" aria-label="Twitter" className="p-2 rounded-md bg-white/10 hover:bg-white/20 transition-colors">
+                  <Twitter className="h-4 w-4" />
+                </a>
+                <a href="https://facebook.com" aria-label="Facebook" className="p-2 rounded-md bg-white/10 hover:bg-white/20 transition-colors">
+                  <Facebook className="h-4 w-4" />
+                </a>
+                <a href="https://linkedin.com" aria-label="LinkedIn" className="p-2 rounded-md bg-white/10 hover:bg-white/20 transition-colors">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+                <a href="https://youtube.com" aria-label="YouTube" className="p-2 rounded-md bg-white/10 hover:bg-white/20 transition-colors">
+                  <Youtube className="h-4 w-4" />
+                </a>
+              </div>
             </div>
+
             <div>
-              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">
-                Solutions
-              </h3>
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">Quick Links</h3>
               <ul className="space-y-2 text-sm text-white/70 font-medium">
-                <li>
-                  <Link
-                    to="/solutions"
-                    className="hover:text-white transition-colors"
-                  >
-                    MRV Prototypes
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/tools"
-                    className="hover:text-white transition-colors"
-                  >
-                    Data Collection
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/case-studies"
-                    className="hover:text-white transition-colors"
-                  >
-                    Verification
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    Reporting
-                  </Link>
-                </li>
+                <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/solutions" className="hover:text-white transition-colors">Solutions</Link></li>
+                <li><Link to="/tools" className="hover:text-white transition-colors">Tools</Link></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               </ul>
             </div>
+
             <div>
-              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">
-                Resources
-              </h3>
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">Resources</h3>
               <ul className="space-y-2 text-sm text-white/70 font-medium">
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    Documentation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/case-studies"
-                    className="hover:text-white transition-colors"
-                  >
-                    Case Studies
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    API Reference
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    Support
-                  </Link>
-                </li>
+                <li><Link to="/resources" className="hover:text-white transition-colors">Documentation</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
+                <li><Link to="/resources" className="hover:text-white transition-colors">API Reference</Link></li>
+                <li><Link to="/resources" className="hover:text-white transition-colors">Support</Link></li>
               </ul>
+            </div>
+
+            <div className="md:col-span-2">
+              <h3 className="text-sm font-bold mb-3 tracking-wide uppercase">Subscribe for updates</h3>
+              <p className="text-sm text-white/70 mb-3 max-w-md">Get product updates and MRV insights delivered to your inbox.</p>
+              <form
+                className="flex gap-2"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="Your email address"
+                  className="w-full rounded-md bg-white/10 placeholder:text-white/60 px-3 py-2 outline-none focus:ring-2 focus:ring-primary"
+                />
+                <Button type="submit" className="bg-primary text-primary-foreground hover:opacity-95">Subscribe</Button>
+              </form>
+              <p className="text-xs text-white/60 mt-2">By subscribing you agree to our privacy policy.</p>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-white/10">
-            <p className="text-sm text-white/70 text-center font-medium">
-              © 2024 TerraMRV. All rights reserved. Empowering climate-smart
-              agriculture through technology.
+
+          <div className="mt-10 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3">
+            <p className="text-sm text-white/70 font-medium">
+              © {new Date().getFullYear()} TerraMRV. All rights reserved.
             </p>
+            <div className="text-xs text-white/60 space-x-4">
+              <Link to="/resources" className="hover:text-white/80">Privacy</Link>
+              <Link to="/resources" className="hover:text-white/80">Terms</Link>
+              <Link to="/resources" className="hover:text-white/80">Contact</Link>
+            </div>
           </div>
         </div>
       </footer>
