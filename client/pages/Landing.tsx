@@ -32,9 +32,7 @@ export default function Landing() {
           </Badge>
           <h1 className="mt-6 text-4xl sm:text-5xl font-black tracking-tight leading-tight">
             <span className="text-foreground">Discover Your Path to </span>
-            <span className="text-primary">
-              Carbon Income
-            </span>
+            <span className="text-primary">Carbon Income</span>
           </h1>
           <p className="mt-5 max-w-2xl text-foreground/80 text-lg">
             AI-powered tools to calculate, verify, and maximize carbon credits

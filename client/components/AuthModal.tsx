@@ -59,7 +59,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
             if (window.top !== window.self) return false; // avoid iframes
             // Check permissions policy if available
             // @ts-ignore - experimental API
-            const pp = (document as any).permissionsPolicy || (document as any).featurePolicy;
+            const pp =
+              (document as any).permissionsPolicy ||
+              (document as any).featurePolicy;
             if (pp && typeof pp.allowedFeatures === "function") {
               return pp.allowedFeatures().includes("identity-credentials-get");
             }
@@ -70,7 +72,11 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
         })();
 
         // If Google script loaded and FedCM allowed, try One Tap
-        if (typeof window !== "undefined" && (window as any).google && canUseFedCM) {
+        if (
+          typeof window !== "undefined" &&
+          (window as any).google &&
+          canUseFedCM
+        ) {
           try {
             const { google } = window as any;
             google.accounts.id.initialize({
@@ -82,7 +88,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   const response = await fetch(`/api/auth/social/google`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ credential: credentialResponse.credential }),
+                    body: JSON.stringify({
+                      credential: credentialResponse.credential,
+                    }),
                   });
                   const result = await response.json();
                   if (result.success && result.user && result.token) {
@@ -119,7 +127,9 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
             return;
           }
         } catch (e) {
-          console.warn("Redirect-based Google OAuth not available, using demo login");
+          console.warn(
+            "Redirect-based Google OAuth not available, using demo login",
+          );
         }
 
         await handleDemoGoogleLogin();

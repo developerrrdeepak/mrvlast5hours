@@ -123,7 +123,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         console.error("❌ [CLIENT] OTP request failed:", response.status, raw);
         return {
           success: false,
-          message: parsed?.message || `Server error: ${response.status} - ${raw}`,
+          message:
+            parsed?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 

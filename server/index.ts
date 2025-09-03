@@ -24,7 +24,10 @@ export function createServer() {
 
   // Best-effort DB initialization (falls back to in-memory if env missing)
   initializeDatabase().catch((e) => {
-    console.warn("⚠️ [DB INIT] Continuing with in-memory store:", e?.message || e);
+    console.warn(
+      "⚠️ [DB INIT] Continuing with in-memory store:",
+      e?.message || e,
+    );
   });
 
   // Middleware

@@ -46,10 +46,20 @@ export interface SessionRecord {
 }
 
 const memory = {
-  otps: new Map<string, { otp: string; expires: number; type: "registration" | "login" | "password_reset" }>(),
+  otps: new Map<
+    string,
+    {
+      otp: string;
+      expires: number;
+      type: "registration" | "login" | "password_reset";
+    }
+  >(),
   farmers: new Map<string, Farmer>(),
   admins: new Map<string, Admin>(),
-  passwords: new Map<string, { userId: string; userType: "farmer" | "admin"; hashedPassword: string }>(),
+  passwords: new Map<
+    string,
+    { userId: string; userType: "farmer" | "admin"; hashedPassword: string }
+  >(),
 };
 
 function dbAvailable() {
@@ -330,17 +340,29 @@ class AuthService {
       const existing = await this.findFarmerById(id);
       if (!existing) return null;
       const updatesCopy: any = { ...updates };
-      if (updatesCopy.landSize || updatesCopy.landUnit || updatesCopy.sustainablePractices) {
+      if (
+        updatesCopy.landSize ||
+        updatesCopy.landUnit ||
+        updatesCopy.sustainablePractices
+      ) {
         const farmer = existing;
         const landSize = updatesCopy.landSize || farmer.landSize || 0;
         const landUnit = updatesCopy.landUnit || farmer.landUnit || "acres";
-        const practices = updatesCopy.sustainablePractices || farmer.sustainablePractices || [];
-        const landSizeInHectares = landUnit === "acres" ? landSize * 0.405 : landSize;
+        const practices =
+          updatesCopy.sustainablePractices || farmer.sustainablePractices || [];
+        const landSizeInHectares =
+          landUnit === "acres" ? landSize * 0.405 : landSize;
         const baseIncome = landSizeInHectares * 1000;
         const practiceMultiplier = 1 + practices.length * 0.1;
-        updatesCopy.estimatedIncome = Math.round(baseIncome * practiceMultiplier);
+        updatesCopy.estimatedIncome = Math.round(
+          baseIncome * practiceMultiplier,
+        );
       }
-      const updated: Farmer = { ...existing, ...updatesCopy, updatedAt: new Date() } as Farmer;
+      const updated: Farmer = {
+        ...existing,
+        ...updatesCopy,
+        updatedAt: new Date(),
+      } as Farmer;
       memory.farmers.set(existing.email, updated);
       return updated;
     }
@@ -423,7 +445,13 @@ class AuthService {
     name: string = "Admin",
   ): Promise<Admin> {
     if (!dbAvailable()) {
-      const admin: Admin = { id: genId(), email, name, role: "admin", createdAt: new Date() } as Admin;
+      const admin: Admin = {
+        id: genId(),
+        email,
+        name,
+        role: "admin",
+        createdAt: new Date(),
+      } as Admin;
       memory.admins.set(admin.id, admin);
       return admin;
     }
@@ -453,7 +481,11 @@ class AuthService {
   ): Promise<void> {
     const hashedPassword = await this.hashPassword(password);
     if (!dbAvailable()) {
-      memory.passwords.set(`${userType}:${userId}`, { userId, userType, hashedPassword });
+      memory.passwords.set(`${userType}:${userId}`, {
+        userId,
+        userType,
+        hashedPassword,
+      });
       return;
     }
 
@@ -563,7 +595,8 @@ class AuthService {
     } else {
       if (!dbAvailable()) {
         for (const a of memory.admins.values()) {
-          if (a.id === decoded.userId) return { type: "admin", admin: a } as AuthUser;
+          if (a.id === decoded.userId)
+            return { type: "admin", admin: a } as AuthUser;
         }
         return null;
       }

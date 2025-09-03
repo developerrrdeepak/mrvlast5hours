@@ -261,22 +261,34 @@ export default function Layout({ children }: LayoutProps) {
               </h3>
               <ul className="space-y-2 text-sm text-white/70 font-medium">
                 <li>
-                  <Link to="/solutions" className="hover:text-white transition-colors">
+                  <Link
+                    to="/solutions"
+                    className="hover:text-white transition-colors"
+                  >
                     MRV Prototypes
                   </Link>
                 </li>
                 <li>
-                  <Link to="/tools" className="hover:text-white transition-colors">
+                  <Link
+                    to="/tools"
+                    className="hover:text-white transition-colors"
+                  >
                     Data Collection
                   </Link>
                 </li>
                 <li>
-                  <Link to="/case-studies" className="hover:text-white transition-colors">
+                  <Link
+                    to="/case-studies"
+                    className="hover:text-white transition-colors"
+                  >
                     Verification
                   </Link>
                 </li>
                 <li>
-                  <Link to="/resources" className="hover:text-white transition-colors">
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
                     Reporting
                   </Link>
                 </li>
@@ -288,22 +300,34 @@ export default function Layout({ children }: LayoutProps) {
               </h3>
               <ul className="space-y-2 text-sm text-white/70 font-medium">
                 <li>
-                  <Link to="/resources" className="hover:text-white transition-colors">
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
                     Documentation
                   </Link>
                 </li>
                 <li>
-                  <Link to="/case-studies" className="hover:text-white transition-colors">
+                  <Link
+                    to="/case-studies"
+                    className="hover:text-white transition-colors"
+                  >
                     Case Studies
                   </Link>
                 </li>
                 <li>
-                  <Link to="/resources" className="hover:text-white transition-colors">
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
                     API Reference
                   </Link>
                 </li>
                 <li>
-                  <Link to="/resources" className="hover:text-white transition-colors">
+                  <Link
+                    to="/resources"
+                    className="hover:text-white transition-colors"
+                  >
                     Support
                   </Link>
                 </li>
