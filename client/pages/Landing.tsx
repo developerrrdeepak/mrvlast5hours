@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Leaf, Satellite, Trees as TreeIcon, Cpu, FileLock2, ArrowRight } from "lucide-react";
+import { Leaf, Satellite, TreePine as TreeIcon, Cpu, FileLock2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const trendData = [
