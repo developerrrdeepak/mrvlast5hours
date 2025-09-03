@@ -28,7 +28,8 @@ function Home() {
   const { isAuthenticated, user, isLoading } = useAuth();
   if (isLoading) return null;
   if (isAuthenticated) {
-    const target = user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
+    const target =
+      user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
     return <Navigate to={target} replace />;
   }
   return <Landing />;

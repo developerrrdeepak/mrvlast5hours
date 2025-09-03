@@ -170,7 +170,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: parsed?.message || `Server error: ${response.status} - ${raw}`,
+          message:
+            parsed?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 
@@ -314,7 +315,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: (parsed as any)?.message || `Server error: ${response.status} - ${raw}`,
+          message:
+            (parsed as any)?.message ||
+            `Server error: ${response.status} - ${raw}`,
         };
       }
 
@@ -365,15 +368,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const { parsed, raw } = await readJsonOrText(response);
 
       if (!response.ok) {
-        console.error(
-          "❌ [CLIENT] Farmer login failed:",
-          response.status,
-          raw,
-        );
+        console.error("❌ [CLIENT] Farmer login failed:", response.status, raw);
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: (parsed as any)?.message || `Server error: ${response.status} - ${raw}`,
+          message:
+            (parsed as any)?.message ||
+            `Server error: ${response.status} - ${raw}`,
         };
       }
 
