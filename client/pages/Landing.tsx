@@ -25,16 +25,17 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero */}
-      <section className="relative">
+      <section className="relative bg-[radial-gradient(ellipse_at_center,_rgba(34,197,94,0.15),_transparent_60%),linear-gradient(120deg,_#0b3a2a_0%,_#0f5132_60%,_#0b3a2a_100%)] text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-14">
           <Badge className="bg-primary/10 border-primary/20 text-primary">
             TerraMRV • AI Powered
           </Badge>
           <h1 className="mt-6 text-4xl sm:text-5xl font-black tracking-tight leading-tight">
-            <span className="text-foreground">Discover Your Path to </span>
-            <span className="text-primary">Carbon Income</span>
+            <span className="text-white">A new path to </span>
+            <span className="text-emerald-400">Carbon Income</span>
+            <span className="text-white"> for farmers</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-foreground/80 text-lg">
+          <p className="mt-5 max-w-2xl text-white/80 text-lg">
             AI-powered tools to calculate, verify, and maximize carbon credits
             for farmers and organizations.
           </p>
@@ -48,7 +49,7 @@ export default function Landing() {
             <Button
               asChild
               variant="outline"
-              className="border-primary text-primary hover:bg-primary/10"
+              className="border-white/20 text-white hover:bg-white/10"
             >
               <Link to="/solutions">Explore Features</Link>
             </Button>
