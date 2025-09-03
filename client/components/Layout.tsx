@@ -79,8 +79,8 @@ export default function Layout({ children }: LayoutProps) {
                   className={cn(
                     "text-sm font-semibold transition-colors",
                     location.pathname === item.href
-                      ? "text-primary font-bold"
-                      : "text-foreground/80 hover:text-primary",
+                      ? "text-emerald-300 font-bold"
+                      : "text-white/80 hover:text-emerald-300",
                   )}
                 >
                   {item.name}
