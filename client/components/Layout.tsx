@@ -136,9 +136,14 @@ export default function Layout({ children }: LayoutProps) {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button asChild>
-                  <Link to="/login">Login</Link>
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" asChild>
+                    <Link to="/login">Login</Link>
+                  </Button>
+                  <Button asChild>
+                    <Link to="/signup">Sign Up</Link>
+                  </Button>
+                </div>
               )}
             </div>
 
@@ -224,9 +229,14 @@ export default function Layout({ children }: LayoutProps) {
                       </Button>
                     </div>
                   ) : (
-                    <Button asChild className="w-full">
-                      <Link to="/login">Login</Link>
-                    </Button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button variant="outline" asChild className="w-full">
+                        <Link to="/login">Login</Link>
+                      </Button>
+                      <Button asChild className="w-full">
+                        <Link to="/signup">Sign Up</Link>
+                      </Button>
+                    </div>
                   )}
                 </div>
               </div>
