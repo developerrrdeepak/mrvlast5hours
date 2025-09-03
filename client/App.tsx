@@ -44,7 +44,7 @@ const App = () => (
           <BrowserRouter>
             <Layout>
               <Routes>
-                <Route path="/" element={<Landing />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/case-studies" element={<CaseStudies />} />
