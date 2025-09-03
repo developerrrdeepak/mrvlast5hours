@@ -362,7 +362,7 @@ export default function Index() {
               >
                 <Button
                   size="lg"
-                  onClick={() => (window.location.href="/login")}
+                  onClick={() => (window.location.href = "/login")}
                   className="bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 hover:from-teal-700 hover:via-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                 >
                   <motion.div
@@ -672,7 +672,7 @@ export default function Index() {
               <div className="mt-8">
                 <Button
                   size="lg"
-                  onClick={() => (window.location.href="/login")}
+                  onClick={() => (window.location.href = "/login")}
                   className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
                 >
                   अभी Registration करें
@@ -851,8 +851,8 @@ export default function Index() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            आज ही carbon farming की श���रुआत करें और sustainable income पाना शुरू
-            कर���ं
+            आज ही carbon farming की श���रुआत करें और sustainable income पाना
+            शुरू कर���ं
           </motion.p>
 
           <motion.div
@@ -869,7 +869,7 @@ export default function Index() {
             >
               <Button
                 size="lg"
-                onClick={() => (window.location.href="/login")}
+                onClick={() => (window.location.href = "/login")}
                 className="bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 text-teal-900 hover:from-amber-500 hover:via-yellow-500 hover:to-orange-500 text-xl px-10 py-4 font-bold tracking-wide shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden group border-2 border-yellow-300/50"
               >
                 <motion.div
@@ -905,7 +905,6 @@ export default function Index() {
           </motion.div>
         </div>
       </section>
-
     </div>
   );
 }

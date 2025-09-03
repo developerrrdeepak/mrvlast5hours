@@ -105,7 +105,6 @@ export default function Layout({ children }: LayoutProps) {
                 <span className="hidden lg:inline">Kisan AI</span>
               </Button>
 
-
               {isAuthenticated ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
