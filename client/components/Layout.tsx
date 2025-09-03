@@ -1,4 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
+import { useTheme } from "next-themes";
+import Sidebar from "./Sidebar";
 import { Button } from "@/components/ui/button";
 import {
   TreePine,
@@ -33,6 +35,7 @@ export default function Layout({ children }: LayoutProps) {
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const location = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
+  const { theme, resolvedTheme } = useTheme();
   const { language, changeLanguage } = useLanguage();
 
   const navigation = [
@@ -41,9 +44,17 @@ export default function Layout({ children }: LayoutProps) {
     { name: "About Us", href: "/about" },
   ];
 
+  const isSystem = theme === "system";
+  const bgClass = isSystem
+    ? "bg-[radial-gradient(ellipse_at_top,_rgba(6,95,70,0.25),_transparent_60%),linear-gradient(to_bottom,_#0b1320,_#07130d_60%)]"
+    : resolvedTheme === "dark"
+    ? "bg-black"
+    : "bg-background";
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="bg-white shadow-sm sticky top-0 z-50">
+    <div className={cn("min-h-screen text-foreground", bgClass)}>
+      <Sidebar />
+      <header className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:bg-black/60 shadow-sm sticky top-0 z-40 md:pl-64">
         <nav
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
           aria-label="Top"
@@ -235,9 +246,9 @@ export default function Layout({ children }: LayoutProps) {
         </nav>
       </header>
 
-      <main>{children}</main>
+      <main className="md:pl-64">{children}</main>
 
-      <footer className="bg-gray-100 text-slate-600">
+      <footer className="bg-gray-100/90 dark:bg-black/70 backdrop-blur text-slate-600 md:pl-64">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
