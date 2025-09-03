@@ -23,7 +23,7 @@ const trendData = [
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-white">
       {/* Hero */}
       <section className="relative bg-[radial-gradient(ellipse_at_center,_rgba(34,197,94,0.15),_transparent_60%),linear-gradient(120deg,_#0b3a2a_0%,_#0f5132_60%,_#0b3a2a_100%)] text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-14">
