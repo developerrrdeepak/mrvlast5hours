@@ -94,6 +94,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
     checkAuth();
   }, []);
 
+  const readJsonOrText = async (res: Response) => {
+    const text = await res.text();
+    try {
+      return { parsed: JSON.parse(text), raw: text };
+    } catch {
+      return { parsed: null as any, raw: text };
+    }
+  };
+
   const sendOTP = async (data: OTPRequest) => {
     try {
       console.log("🔐 [CLIENT] Sending OTP request for:", data.email);
@@ -108,20 +117,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       console.log("📡 [CLIENT] OTP Response status:", response.status);
 
+      const { parsed, raw } = await readJsonOrText(response);
+
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error(
-          "❌ [CLIENT] OTP request failed:",
-          response.status,
-          errorText,
-        );
+        console.error("❌ [CLIENT] OTP request failed:", response.status, raw);
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`,
+          message:
+            parsed?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 
-      const result = await response.json();
+      const result = parsed ?? { success: true };
       console.log("✅ [CLIENT] OTP request successful:", result.success);
       return result;
     } catch (error) {

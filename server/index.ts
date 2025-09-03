@@ -16,15 +16,33 @@ import {
   farmerPasswordLogin,
   socialAuth,
   socialCallback,
+  initializeDatabase,
 } from "./routes/auth";
 
 export function createServer() {
   const app = express();
 
+  // Best-effort DB initialization (falls back to in-memory if env missing)
+  initializeDatabase().catch((e) => {
+    console.warn(
+      "⚠️ [DB INIT] Continuing with in-memory store:",
+      e?.message || e,
+    );
+  });
+
   // Middleware
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  // Permissions-Policy for FedCM / Google Identity Services
+  app.use((_, res, next) => {
+    res.setHeader(
+      "Permissions-Policy",
+      'identity-credentials-get=(self "https://accounts.google.com")',
+    );
+    next();
+  });
 
   // Request logging middleware (only in development)
   if (process.env.NODE_ENV !== "production") {
@@ -58,9 +76,9 @@ export function createServer() {
   app.put("/api/auth/update-profile", updateProfile);
   app.post("/api/auth/logout", logout);
 
-  // Social Authentication routes (temporarily disabled due to path-to-regexp issue)
-  // app.post("/api/auth/social/:provider", socialAuth);
-  // app.get("/api/auth/social/:provider/callback", socialCallback);
+  // Social Authentication routes
+  app.post("/api/auth/social/:provider", socialAuth);
+  app.get("/api/auth/social/:provider/callback", socialCallback);
 
   // Admin routes (protected)
   app.get("/api/admin/farmers", getFarmers);

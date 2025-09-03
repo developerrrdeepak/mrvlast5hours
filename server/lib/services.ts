@@ -45,6 +45,31 @@ export interface SessionRecord {
   isActive: boolean;
 }
 
+const memory = {
+  otps: new Map<
+    string,
+    {
+      otp: string;
+      expires: number;
+      type: "registration" | "login" | "password_reset";
+    }
+  >(),
+  farmers: new Map<string, Farmer>(),
+  admins: new Map<string, Admin>(),
+  passwords: new Map<
+    string,
+    { userId: string; userType: "farmer" | "admin"; hashedPassword: string }
+  >(),
+};
+
+function dbAvailable() {
+  return !!process.env.MONGODB_URI;
+}
+
+function genId() {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
 class AuthService {
   private db: Database;
   private saltRounds = 12;
@@ -60,7 +85,9 @@ class AuthService {
 
   // Generate JWT token
   generateJWTToken(userId: string, userType: "farmer" | "admin"): string {
-    const secret = process.env.JWT_SECRET;
+    const secret =
+      process.env.JWT_SECRET ||
+      (process.env.NODE_ENV !== "production" ? "dev-secret" : "");
     if (!secret) {
       throw new Error("JWT_SECRET environment variable is not set");
     }
@@ -72,7 +99,7 @@ class AuthService {
         iat: Date.now() / 1000,
       },
       secret,
-      { expiresIn: "7d" }, // Token expires in 7 days
+      { expiresIn: "7d" },
     );
   }
 
@@ -81,7 +108,9 @@ class AuthService {
     token: string,
   ): { userId: string; userType: "farmer" | "admin" } | null {
     try {
-      const secret = process.env.JWT_SECRET;
+      const secret =
+        process.env.JWT_SECRET ||
+        (process.env.NODE_ENV !== "production" ? "dev-secret" : "");
       if (!secret) {
         throw new Error("JWT_SECRET environment variable is not set");
       }
@@ -112,15 +141,22 @@ class AuthService {
     otp: string,
     type: "registration" | "login" | "password_reset",
   ): Promise<void> {
-    const otpCollection = this.db.getOTPCollection();
+    if (!dbAvailable()) {
+      memory.otps.set(email, {
+        otp,
+        expires: Date.now() + 5 * 60 * 1000,
+        type,
+      });
+      return;
+    }
 
-    // Remove any existing OTPs for this email
+    const otpCollection = this.db.getOTPCollection();
     await otpCollection.deleteMany({ email });
 
     const otpRecord: OTPRecord = {
       email,
       otp,
-      expires: new Date(Date.now() + 5 * 60 * 1000), // 5 minutes
+      expires: new Date(Date.now() + 5 * 60 * 1000),
       type,
       createdAt: new Date(),
     };
@@ -129,8 +165,16 @@ class AuthService {
   }
 
   async verifyOTP(email: string, otp: string): Promise<boolean> {
-    const otpCollection = this.db.getOTPCollection();
+    if (!dbAvailable()) {
+      const rec = memory.otps.get(email);
+      if (rec && rec.otp === otp && rec.expires > Date.now()) {
+        memory.otps.delete(email);
+        return true;
+      }
+      return false;
+    }
 
+    const otpCollection = this.db.getOTPCollection();
     const otpRecord = await otpCollection.findOne({
       email,
       otp,
@@ -138,7 +182,6 @@ class AuthService {
     });
 
     if (otpRecord) {
-      // Clean up used OTP
       await otpCollection.deleteOne({ _id: otpRecord._id });
       return true;
     }
@@ -151,6 +194,54 @@ class AuthService {
     email: string,
     registrationData?: EnhancedFarmerRegistration,
   ): Promise<Farmer> {
+    if (!dbAvailable()) {
+      let estimatedIncome = 0;
+      if (registrationData) {
+        const landSizeInHectares =
+          registrationData.landUnit === "acres"
+            ? registrationData.landSize * 0.405
+            : registrationData.landSize;
+        const baseIncome = landSizeInHectares * 1000;
+        const practiceMultiplier =
+          1 + registrationData.sustainablePractices.length * 0.1;
+        estimatedIncome = Math.round(baseIncome * practiceMultiplier);
+      }
+      const farmer: Farmer = {
+        id: genId(),
+        email,
+        verified: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        estimatedIncome,
+        ...(registrationData && {
+          name: registrationData.name,
+          phone: registrationData.phone,
+          farmName: registrationData.farmName,
+          landSize: registrationData.landSize,
+          landUnit: registrationData.landUnit,
+          farmingType: registrationData.farmingType,
+          primaryCrops: registrationData.primaryCrops,
+          irrigationType: registrationData.irrigationType,
+          location: {
+            address: registrationData.address,
+            pincode: registrationData.pincode,
+            state: registrationData.state,
+            district: registrationData.district,
+            latitude: registrationData.latitude,
+            longitude: registrationData.longitude,
+          },
+          aadhaarId: registrationData.aadhaarNumber,
+          panNumber: registrationData.panNumber,
+          bankAccountNumber: registrationData.bankAccountNumber,
+          ifscCode: registrationData.ifscCode,
+          interestedProjects: registrationData.interestedProjects,
+          sustainablePractices: registrationData.sustainablePractices,
+        }),
+      } as Farmer;
+      memory.farmers.set(email, farmer);
+      return farmer;
+    }
+
     const farmersCollection = this.db.getFarmersCollection();
 
     // Calculate estimated income
@@ -207,6 +298,10 @@ class AuthService {
   }
 
   async findFarmerByEmail(email: string): Promise<Farmer | null> {
+    if (!dbAvailable()) {
+      return memory.farmers.get(email) || null;
+    }
+
     const farmersCollection = this.db.getFarmersCollection();
     const farmer = await farmersCollection.findOne({ email });
 
@@ -219,6 +314,13 @@ class AuthService {
   }
 
   async findFarmerById(id: string): Promise<Farmer | null> {
+    if (!dbAvailable()) {
+      for (const f of memory.farmers.values()) {
+        if (f.id === id) return f;
+      }
+      return null;
+    }
+
     const farmersCollection = this.db.getFarmersCollection();
     const farmer = await farmersCollection.findOne({ _id: new ObjectId(id) });
 
@@ -234,6 +336,37 @@ class AuthService {
     id: string,
     updates: Partial<Farmer>,
   ): Promise<Farmer | null> {
+    if (!dbAvailable()) {
+      const existing = await this.findFarmerById(id);
+      if (!existing) return null;
+      const updatesCopy: any = { ...updates };
+      if (
+        updatesCopy.landSize ||
+        updatesCopy.landUnit ||
+        updatesCopy.sustainablePractices
+      ) {
+        const farmer = existing;
+        const landSize = updatesCopy.landSize || farmer.landSize || 0;
+        const landUnit = updatesCopy.landUnit || farmer.landUnit || "acres";
+        const practices =
+          updatesCopy.sustainablePractices || farmer.sustainablePractices || [];
+        const landSizeInHectares =
+          landUnit === "acres" ? landSize * 0.405 : landSize;
+        const baseIncome = landSizeInHectares * 1000;
+        const practiceMultiplier = 1 + practices.length * 0.1;
+        updatesCopy.estimatedIncome = Math.round(
+          baseIncome * practiceMultiplier,
+        );
+      }
+      const updated: Farmer = {
+        ...existing,
+        ...updatesCopy,
+        updatedAt: new Date(),
+      } as Farmer;
+      memory.farmers.set(existing.email, updated);
+      return updated;
+    }
+
     const farmersCollection = this.db.getFarmersCollection();
 
     // Recalculate estimated income if relevant fields are updated
@@ -274,6 +407,10 @@ class AuthService {
   }
 
   async getAllFarmers(): Promise<Farmer[]> {
+    if (!dbAvailable()) {
+      return Array.from(memory.farmers.values());
+    }
+
     const farmersCollection = this.db.getFarmersCollection();
     const farmers = await farmersCollection.find({}).toArray();
 
@@ -285,6 +422,13 @@ class AuthService {
 
   // Admin Operations
   async findAdminByEmail(email: string): Promise<Admin | null> {
+    if (!dbAvailable()) {
+      for (const a of memory.admins.values()) {
+        if (a.email === email) return a;
+      }
+      return null;
+    }
+
     const adminsCollection = this.db.getAdminsCollection();
     const admin = await adminsCollection.findOne({ email });
 
@@ -300,6 +444,18 @@ class AuthService {
     email: string,
     name: string = "Admin",
   ): Promise<Admin> {
+    if (!dbAvailable()) {
+      const admin: Admin = {
+        id: genId(),
+        email,
+        name,
+        role: "admin",
+        createdAt: new Date(),
+      } as Admin;
+      memory.admins.set(admin.id, admin);
+      return admin;
+    }
+
     const adminsCollection = this.db.getAdminsCollection();
 
     const adminData: DatabaseAdmin = {
@@ -323,8 +479,17 @@ class AuthService {
     userType: "farmer" | "admin",
     password: string,
   ): Promise<void> {
-    const passwordsCollection = this.db.getPasswordsCollection();
     const hashedPassword = await this.hashPassword(password);
+    if (!dbAvailable()) {
+      memory.passwords.set(`${userType}:${userId}`, {
+        userId,
+        userType,
+        hashedPassword,
+      });
+      return;
+    }
+
+    const passwordsCollection = this.db.getPasswordsCollection();
 
     const passwordRecord: PasswordRecord = {
       userId,
@@ -344,6 +509,12 @@ class AuthService {
     userType: "farmer" | "admin",
     password: string,
   ): Promise<boolean> {
+    if (!dbAvailable()) {
+      const rec = memory.passwords.get(`${userType}:${userId}`);
+      if (!rec) return false;
+      return await this.verifyPassword(password, rec.hashedPassword);
+    }
+
     const passwordsCollection = this.db.getPasswordsCollection();
     const passwordRecord = await passwordsCollection.findOne({
       userId,
@@ -422,6 +593,13 @@ class AuthService {
       const farmer = await this.findFarmerById(decoded.userId);
       return farmer ? { type: "farmer", farmer } : null;
     } else {
+      if (!dbAvailable()) {
+        for (const a of memory.admins.values()) {
+          if (a.id === decoded.userId)
+            return { type: "admin", admin: a } as AuthUser;
+        }
+        return null;
+      }
       const adminsCollection = this.db.getAdminsCollection();
       const admin = await adminsCollection.findOne({
         _id: new ObjectId(decoded.userId),

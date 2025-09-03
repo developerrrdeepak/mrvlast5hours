@@ -53,39 +53,48 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setLoading(true);
     try {
       if (provider === "google") {
-        // Check if Google Sign-In script is loaded
-        if (typeof window !== "undefined" && (window as any).google) {
-          console.log("🔗 [GOOGLE AUTH] Using Google Sign-In");
+        const canUseFedCM = (() => {
+          try {
+            if (typeof window === "undefined") return false;
+            if (window.top !== window.self) return false; // avoid iframes
+            // Check permissions policy if available
+            // @ts-ignore - experimental API
+            const pp =
+              (document as any).permissionsPolicy ||
+              (document as any).featurePolicy;
+            if (pp && typeof pp.allowedFeatures === "function") {
+              return pp.allowedFeatures().includes("identity-credentials-get");
+            }
+            return true; // assume allowed if API not present
+          } catch {
+            return false;
+          }
+        })();
 
-          // Use Google One Tap or Sign-In button
+        // If Google script loaded and FedCM allowed, try One Tap
+        if (
+          typeof window !== "undefined" &&
+          (window as any).google &&
+          canUseFedCM
+        ) {
           try {
             const { google } = window as any;
-
-            // Initialize Google Sign-In
             google.accounts.id.initialize({
               client_id:
                 import.meta.env.VITE_GOOGLE_CLIENT_ID ||
                 "your-google-client-id.apps.googleusercontent.com",
               callback: async (credentialResponse: any) => {
                 try {
-                  console.log("🔐 [GOOGLE AUTH] Received credential response");
-
                   const response = await fetch(`/api/auth/social/google`, {
                     method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                       credential: credentialResponse.credential,
                     }),
                   });
-
                   const result = await response.json();
-
                   if (result.success && result.user && result.token) {
-                    // Store token and update auth state
                     localStorage.setItem("auth_token", result.token);
-
                     toast.success("Google login successful! 🎉");
                     onOpenChange(false);
                     navigate("/farmer-dashboard");
@@ -93,27 +102,37 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                     toast.error(result.message || "Google login failed");
                   }
                 } catch (error) {
-                  console.error("Google credential processing error:", error);
                   toast.error("Google authentication failed");
                 }
                 setLoading(false);
               },
             });
-
-            // Prompt the user to sign in
             google.accounts.id.prompt();
+            return;
           } catch (googleError) {
-            console.error("Google Sign-In error:", googleError);
-            // Fallback to demo login for development
-            await handleDemoGoogleLogin();
+            console.error("Google One Tap error:", googleError);
           }
-        } else {
-          // Fallback: redirect to OAuth flow or demo login
-          console.log(
-            "🔗 [GOOGLE AUTH] Google Sign-In not available, using fallback",
-          );
-          await handleDemoGoogleLogin();
         }
+
+        // Fallback: start redirect flow via backend (works in iframes and without FedCM)
+        try {
+          const resp = await fetch(`/api/auth/social/google`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({}),
+          });
+          const data = await resp.json();
+          if (data.redirectUrl) {
+            window.location.href = data.redirectUrl;
+            return;
+          }
+        } catch (e) {
+          console.warn(
+            "Redirect-based Google OAuth not available, using demo login",
+          );
+        }
+
+        await handleDemoGoogleLogin();
       } else {
         // Other providers - show coming soon message
         toast.info(
