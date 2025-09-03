@@ -39,14 +39,14 @@ class EmailService {
   // OTP Email Template
   private createOTPTemplate(email: string, otp: string): EmailTemplate {
     return {
-      subject: "Carbon Roots - आपका OTP Verification Code",
+      subject: "TerraMRV - आपका OTP Verification Code",
       html: `
         <!DOCTYPE html>
         <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Carbon Roots OTP</title>
+          <title>TerraMRV OTP</title>
           <style>
             body { 
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -166,7 +166,7 @@ class EmailService {
         <body>
           <div class="container">
             <div class="header">
-              <div class="logo">🌱 Carbon Roots</div>
+              <div class="logo">🌱 TerraMRV</div>
               <p class="tagline">किसानों के लिए Carbon Income का नया रास्ता</p>
             </div>
             
@@ -184,7 +184,7 @@ class EmailService {
               
               <div class="instructions">
                 <h3>🔐 कैसे use करें:</h3>
-                <p>1. Carbon Roots app में वापस जाएं<br>
+                <p>1. TerraMRV app में वापस जाएं<br>
                 2. यह 6-digit code enter करें<br>
                 3. "Verify OTP" पर click करें</p>
               </div>
@@ -194,12 +194,12 @@ class EmailService {
               </div>
               
               <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
-                Carbon Roots platform में आपका स्वागत है! हमारे साथ sustainable farming की शुरुआत करें।
+                TerraMRV platform में आपका स्वागत है! हमारे साथ sustainable farming की शुरुआत करें।
               </p>
             </div>
             
             <div class="footer">
-              <p><strong>Carbon Roots</strong> - Sustainable Farming Solutions</p>
+              <p><strong>TerraMRV</strong> - Sustainable Farming Solutions</p>
               <p>किसानों को carbon credits से extra income दिलाने में मदद करते हैं</p>
               <p style="margin-top: 15px; font-size: 12px;">
                 यह एक automated email है। कृपया reply न करें।
@@ -210,7 +210,7 @@ class EmailService {
         </html>
       `,
       text: `
-Carbon Roots - OTP Verification
+TerraMRV - OTP Verification
 
 नमस्ते!
 
@@ -219,13 +219,13 @@ Carbon Roots - OTP Verification
 यह code केवल 5 मिनट के लिए valid है।
 
 कैसे use करें:
-1. Carbon Roots app में वापस जाएं
+1. TerraMRV app में वापस जाएं
 2. यह 6-digit code enter करें  
 3. "Verify OTP" पर click करें
 
 अगर आपने यह OTP request नहीं किया है, तो इस email को ignore करें।
 
-Carbon Roots
+TerraMRV
 किसानों के लिए Carbon Income का नया रास्ता
       `,
     };
@@ -237,14 +237,14 @@ Carbon Roots
     estimatedIncome: number,
   ): EmailTemplate {
     return {
-      subject: "Carbon Roots में आपका स्वागत है! 🌱",
+      subject: "TerraMRV में आपका स्वागत है! 🌱",
       html: `
         <!DOCTYPE html>
         <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Welcome to Carbon Roots</title>
+          <title>Welcome to TerraMRV</title>
           <style>
             body { 
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -312,7 +312,7 @@ Carbon Roots
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0; font-size: 32px;">🌱 Carbon Roots में आपका स्वागत है!</h1>
+              <h1 style="margin: 0; font-size: 32px;">🌱 TerraMRV में आपका स्वागत है!</h1>
               <p style="margin: 15px 0 0 0; font-size: 18px; opacity: 0.9;">
                 ${farmerName}, sustainable farming की नई ��ुरुआत करें
               </p>
@@ -320,7 +320,7 @@ Carbon Roots
             
             <div class="content">
               <p style="font-size: 18px; color: #374151;">
-                बधाई हो! आपका Carbon Roots account successfully create हो गया है।
+                बधाई हो! आपका TerraMRV account successfully create हो गया है।
               </p>
               
               <div class="income-highlight">
@@ -365,7 +365,7 @@ Carbon Roots
             </div>
             
             <div class="footer">
-              <p><strong>Carbon Roots</strong> - Sustainable Farming Solutions</p>
+              <p><strong>TerraMRV</strong> - Sustainable Farming Solutions</p>
               <p>किसानों को carbon credits से extra income दिलाने में मदद करते हैं</p>
             </div>
           </div>
@@ -373,7 +373,7 @@ Carbon Roots
         </html>
       `,
       text: `
-Carbon Roots में आपका स्वागत है!
+TerraMRV में आप��ा स्वागत है!
 
 ${farmerName}, बधाई हो! आपका account successfully create हो गया है।
 
@@ -388,7 +388,7 @@ ${farmerName}, बधाई हो! आपका account successfully create ह
 
 Dashboard में जाएं: ${process.env.CLIENT_URL || "http://localhost:8080"}/farmer-dashboard
 
-Carbon Roots - किसानों के लिए Carbon Income का नया रास्ता
+TerraMRV - किसानों के लिए Carbon Income का नया रास्ता
       `,
     };
   }
@@ -410,7 +410,7 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
         to: email,
         from: {
           email: process.env.SENDGRID_FROM_EMAIL || "noreply@carbonroots.com",
-          name: "Carbon Roots",
+          name: "TerraMRV",
         },
         subject: template.subject,
         text: template.text,
@@ -456,7 +456,7 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
         to: email,
         from: {
           email: process.env.SENDGRID_FROM_EMAIL || "noreply@carbonroots.com",
-          name: "Carbon Roots",
+          name: "TerraMRV",
         },
         subject: template.subject,
         text: template.text,
@@ -493,9 +493,9 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
         to: email,
         from: {
           email: process.env.SENDGRID_FROM_EMAIL || "noreply@carbonroots.com",
-          name: "Carbon Roots",
+          name: "TerraMRV",
         },
-        subject: "Carbon Roots - Password Reset Request",
+        subject: "TerraMRV - Password Reset Request",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #10b981;">Password Reset Request</h2>
@@ -509,13 +509,13 @@ Carbon Roots - किसानों के लिए Carbon Income का न�
             <p>यह link 1 घंटे के लिए valid है।</p>
             <p>अगर आपने यह request नहीं की है, तो इस email को ignore करें।</p>
             <hr style="margin: 30px 0;">
-            <p style="color: #6b7280; font-size: 14px;">Carbon Roots - किसानों के लिए Carbon Income का नया रास्ता</p>
+            <p style="color: #6b7280; font-size: 14px;">TerraMRV - किसानों के लिए Carbon Income का नया रास्ता</p>
           </div>
         `,
         text: `
 Password Reset Request
 
-आपने Carbon Roots के लिए password reset की request की है।
+आपने TerraMRV के लिए password reset की request की है।
 
 Reset करने के लिए इस link पर जाएं: ${resetUrl}
 
@@ -523,7 +523,7 @@ Reset करने के लिए इस link पर जाएं: ${resetUrl}
 
 अ��र आपने यह request नहीं की है, तो इस email को ignore करें।
 
-Carbon Roots
+TerraMRV
         `,
       };
 
