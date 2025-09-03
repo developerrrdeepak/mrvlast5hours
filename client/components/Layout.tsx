@@ -261,17 +261,26 @@ export default function Layout({ children }: LayoutProps) {
               </h3>
               <ul className="space-y-2 text-sm font-medium">
                 <li>
-                  <Link to="/about" className="hover:text-primary transition-colors">
+                  <Link
+                    to="/about"
+                    className="hover:text-primary transition-colors"
+                  >
                     Company
                   </Link>
                 </li>
                 <li>
-                  <Link to="/case-studies" className="hover:text-primary transition-colors">
+                  <Link
+                    to="/case-studies"
+                    className="hover:text-primary transition-colors"
+                  >
                     Case Studies
                   </Link>
                 </li>
                 <li>
-                  <Link to="/resources" className="hover:text-primary transition-colors">
+                  <Link
+                    to="/resources"
+                    className="hover:text-primary transition-colors"
+                  >
                     Resources
                   </Link>
                 </li>
@@ -283,12 +292,18 @@ export default function Layout({ children }: LayoutProps) {
               </h3>
               <ul className="space-y-2 text-sm font-medium">
                 <li>
-                  <a href="mailto:info@terramrv.org" className="hover:text-primary transition-colors">
+                  <a
+                    href="mailto:info@terramrv.org"
+                    className="hover:text-primary transition-colors"
+                  >
                     info@terramrv.org
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+910000000000" className="hover:text-primary transition-colors">
+                  <a
+                    href="tel:+910000000000"
+                    className="hover:text-primary transition-colors"
+                  >
                     +91 00000 00000
                   </a>
                 </li>

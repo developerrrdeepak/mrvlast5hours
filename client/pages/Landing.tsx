@@ -195,10 +195,7 @@ export default function Landing() {
                     <p className="text-sm text-slate-600 line-clamp-2 mt-1">
                       {n.desc}
                     </p>
-                    <Button
-                      variant="link"
-                      className="text-primary p-0 mt-1"
-                    >
+                    <Button variant="link" className="text-primary p-0 mt-1">
                       Read More <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </div>
