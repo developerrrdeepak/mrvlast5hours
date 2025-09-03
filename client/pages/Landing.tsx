@@ -27,7 +27,7 @@ export default function Landing() {
       {/* Hero */}
       <section className="relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-14">
-          <Badge className="bg-primary/10 border-primary/30 text-primary-foreground/80">
+          <Badge className="bg-primary/10 border-primary/20 text-primary">
             TerraMRV • AI Powered
           </Badge>
           <h1 className="mt-6 text-4xl sm:text-5xl font-black tracking-tight leading-tight">
@@ -48,7 +48,7 @@ export default function Landing() {
             <Button
               asChild
               variant="outline"
-              className="border-primary/50 text-primary-foreground hover:bg-primary/10"
+              className="border-primary text-primary hover:bg-primary/10"
             >
               <Link to="/solutions">Explore Features</Link>
             </Button>
@@ -83,17 +83,17 @@ export default function Landing() {
           ].map((f, i) => (
             <Card
               key={i}
-              className="border-primary/30 bg-secondary text-foreground"
+              className="bg-white border border-slate-200 shadow-sm"
             >
               <CardHeader className="pb-3">
-                <div className="w-9 h-9 rounded-md border border-primary/30 flex items-center justify-center">
-                  <f.icon className="w-4.5 h-4.5 text-emerald-300" />
+                <div className="w-9 h-9 rounded-md border border-slate-200 flex items-center justify-center">
+                  <f.icon className="w-4.5 h-4.5 text-primary" />
                 </div>
-                <CardTitle className="mt-3 text-foreground text-lg">
+                <CardTitle className="mt-3 text-slate-800 text-lg">
                   {f.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-foreground/80 text-sm leading-relaxed">
+              <CardContent className="text-slate-600 text-sm leading-relaxed">
                 {f.desc}
               </CardContent>
             </Card>
@@ -114,10 +114,10 @@ export default function Landing() {
               key={i}
               className="rounded-xl p-5 bg-primary/10 border border-primary/30"
             >
-              <div className="text-3xl font-extrabold text-primary-foreground/90">
+              <div className="text-3xl font-extrabold text-slate-900">
                 {s.k}
               </div>
-              <div className="text-foreground/80 mt-1 text-sm font-medium">
+              <div className="text-slate-600 mt-1 text-sm font-medium">
                 {s.v}
               </div>
             </div>
@@ -128,15 +128,15 @@ export default function Landing() {
       {/* Progress Tracker */}
       <section className="py-6">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl p-5 bg-secondary border border-primary/30">
+          <div className="rounded-xl p-5 bg-white border border-slate-200 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Leaf className="w-5 h-5 text-emerald-300" />
+                <Leaf className="w-5 h-5 text-primary" />
                 <span className="font-semibold">Verification Progress</span>
               </div>
-              <span className="text-emerald-300 font-semibold">60%</span>
+              <span className="text-primary font-semibold">60%</span>
             </div>
-            <div className="relative h-2.5 w-full rounded-full bg-foreground/20 overflow-hidden">
+            <div className="relative h-2.5 w-full rounded-full bg-slate-200 overflow-hidden">
               <div className="absolute inset-y-0 left-0 w-[60%] bg-gradient-to-r from-emerald-500 to-green-400" />
             </div>
             <div className="grid grid-cols-4 text-xs mt-3 text-foreground/80">
@@ -180,7 +180,7 @@ export default function Landing() {
             ].map((n, i) => (
               <Card
                 key={i}
-                className="overflow-hidden border-primary/30 bg-secondary"
+                className="overflow-hidden border-slate-200 bg-white shadow-sm"
               >
                 <div className="grid grid-cols-[120px_1fr] gap-4">
                   <img
@@ -189,15 +189,15 @@ export default function Landing() {
                     className="h-28 w-full object-cover"
                   />
                   <div className="p-4">
-                    <h4 className="font-semibold text-white line-clamp-2">
+                    <h4 className="font-semibold text-slate-800 line-clamp-2">
                       {n.title}
                     </h4>
-                    <p className="text-sm text-slate-300 line-clamp-2 mt-1">
+                    <p className="text-sm text-slate-600 line-clamp-2 mt-1">
                       {n.desc}
                     </p>
                     <Button
                       variant="link"
-                      className="text-emerald-300 p-0 mt-1"
+                      className="text-primary p-0 mt-1"
                     >
                       Read More <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
@@ -208,7 +208,7 @@ export default function Landing() {
           </div>
 
           {/* Trend Chart (CSS-based) */}
-          <Card className="border-emerald-900/40 bg-slate-950/60">
+          <Card className="border-slate-200 bg-white shadow-sm">
             <CardHeader>
               <CardTitle className="text-foreground">
                 Carbon Credit Growth Trend
@@ -230,7 +230,7 @@ export default function Landing() {
                         }}
                       />
                     </div>
-                    <span className="text-primary-foreground/80 font-semibold text-sm">
+                    <span className="text-slate-700 font-semibold text-sm">
                       {d.value}
                     </span>
                   </div>
