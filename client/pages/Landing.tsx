@@ -23,7 +23,7 @@ const trendData = [
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-[#0c1513] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Hero */}
       <section className="relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-14">
