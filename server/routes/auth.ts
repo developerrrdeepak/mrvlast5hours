@@ -36,52 +36,32 @@ async function sendWelcomeEmail(
 
 // Initialize database connection
 export async function initializeDatabase() {
-  const hasMongo = !!process.env.MONGODB_URI;
   try {
-    if (hasMongo) {
-      await db.connect();
-    } else {
-      console.warn(
-        "⚠️ [DATABASE INIT] MONGODB_URI not set - using in-memory store",
-      );
-    }
-  } catch (error) {
-    console.warn(
-      "⚠️ [DATABASE INIT] Failed to connect to MongoDB, falling back to in-memory store:",
-      (error as any)?.message || error,
-    );
-  }
+    await db.connect();
 
-  try {
+    // Create default admin if not exists
     const adminEmail = process.env.ADMIN_EMAIL;
-    if (!adminEmail) {
-      console.warn(
-        "⚠️ [ADMIN INIT] ADMIN_EMAIL not set - admin login disabled",
-      );
-      return;
-    }
-
-    const existingAdmin = await authService.findAdminByEmail(adminEmail);
-    if (!existingAdmin) {
-      const admin = await authService.createDefaultAdmin(
-        adminEmail,
-        "System Admin",
-      );
-
-      const adminPassword = process.env.ADMIN_PASSWORD;
-      if (adminPassword) {
-        await authService.storePassword(admin.id, "admin", adminPassword);
-        console.log(
-          `✅ [ADMIN INIT] Default admin ready: ${adminEmail} (${hasMongo ? "database" : "memory"})`,
+    if (adminEmail) {
+      const existingAdmin = await authService.findAdminByEmail(adminEmail);
+      if (!existingAdmin) {
+        const admin = await authService.createDefaultAdmin(
+          adminEmail,
+          "System Admin",
         );
-      } else {
-        console.warn(
-          "⚠️ [ADMIN INIT] ADMIN_PASSWORD not set - you won't be able to login as admin",
-        );
+
+        // Set admin password if provided
+        const adminPassword = process.env.ADMIN_PASSWORD;
+        if (adminPassword) {
+          await authService.storePassword(admin.id, "admin", adminPassword);
+          console.log(
+            `✅ [ADMIN CREATED] Default admin created: ${adminEmail}`,
+          );
+        }
       }
     }
   } catch (error) {
-    console.error("❌ [ADMIN INIT] Failed to ensure default admin:", error);
+    console.error("❌ [DATABASE INIT] Failed to initialize database:", error);
+    throw error;
   }
 }
 
