@@ -31,7 +31,13 @@ interface AuthModalProps {
   defaultIsRegistering?: boolean;
 }
 
-export default function AuthModal({ open, onOpenChange, initialTab = "farmer", defaultFarmerAuthType = "password", defaultIsRegistering = false, }: AuthModalProps) {
+export default function AuthModal({
+  open,
+  onOpenChange,
+  initialTab = "farmer",
+  defaultFarmerAuthType = "password",
+  defaultIsRegistering = false,
+}: AuthModalProps) {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
@@ -316,7 +322,11 @@ export default function AuthModal({ open, onOpenChange, initialTab = "farmer", d
         <DialogHeader>
           <DialogTitle>Sign In</DialogTitle>
         </DialogHeader>
-        <Tabs value={tab} onValueChange={(v: any) => setTab(v)} className="w-full">
+        <Tabs
+          value={tab}
+          onValueChange={(v: any) => setTab(v)}
+          className="w-full"
+        >
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="farmer">👨‍🌾 Farmer</TabsTrigger>
             <TabsTrigger value="admin">👨‍💻 Admin</TabsTrigger>
