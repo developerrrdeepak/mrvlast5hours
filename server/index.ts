@@ -16,10 +16,16 @@ import {
   farmerPasswordLogin,
   socialAuth,
   socialCallback,
+  initializeDatabase,
 } from "./routes/auth";
 
 export function createServer() {
   const app = express();
+
+  // Best-effort DB initialization (falls back to in-memory if env missing)
+  initializeDatabase().catch((e) => {
+    console.warn("⚠️ [DB INIT] Continuing with in-memory store:", e?.message || e);
+  });
 
   // Middleware
   app.use(cors());
