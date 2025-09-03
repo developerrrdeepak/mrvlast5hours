@@ -125,8 +125,16 @@ export default function AdminDashboard() {
   });
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  if (!isAuthenticated || user?.type !== "admin") {
-    return <Navigate to="/" replace />;
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return (
+      <Navigate to="/login" replace state={{ from: location.pathname }} />
+    );
+  }
+  if (user?.type !== "admin") {
+    const fallback = user?.type === "farmer" ? "/farmer-dashboard" : "/";
+    return <Navigate to={fallback} replace />;
   }
 
   const handleFarmerStatusUpdate = (farmerId: string, newStatus: string) => {
