@@ -85,7 +85,7 @@ export default function Layout({ children }: LayoutProps) {
                     "text-sm font-semibold transition-colors",
                     location.pathname === item.href
                       ? "text-primary font-bold"
-                      : "text-slate-800 hover:text-primary",
+                      : "text-foreground/80 hover:text-primary",
                   )}
                 >
                   {item.name}
