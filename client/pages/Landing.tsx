@@ -20,7 +20,7 @@ export default function Landing() {
       {/* Hero */}
       <section className="relative">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-14">
-          <Badge className="bg-emerald-500/10 border-emerald-400/30 text-emerald-300">Carbon Roots • AI Powered</Badge>
+          <Badge className="bg-emerald-500/10 border-emerald-400/30 text-emerald-300">TerraMRV • AI Powered</Badge>
           <h1 className="mt-6 text-4xl sm:text-5xl font-black tracking-tight leading-tight" >
             <span className="text-white">Discover Your Path to </span>
             <span className="bg-gradient-to-r from-emerald-400 to-green-300 bg-clip-text text-transparent">Carbon Income</span>
