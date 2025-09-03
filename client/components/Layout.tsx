@@ -43,12 +43,9 @@ export default function Layout({ children }: LayoutProps) {
     { name: "About Us", href: "/about" },
   ];
 
-  const isSystem = theme === "system";
-  const bgClass = isSystem
-    ? "bg-[radial-gradient(ellipse_at_top,_rgba(6,95,70,0.25),_transparent_60%),linear-gradient(to_bottom,_#0b1320,_#07130d_60%)]"
-    : resolvedTheme === "dark"
+  const bgClass = resolvedTheme === "dark"
     ? "bg-black"
-    : "bg-background";
+    : "bg-[radial-gradient(ellipse_at_top,_rgba(6,95,70,0.2),_transparent_60%),linear-gradient(to_bottom,_#0b1320,_#07130d_60%)]";
 
   return (
     <div className={cn("min-h-screen text-foreground", bgClass)}>
@@ -314,7 +311,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
           <div className="mt-8 pt-8 border-t border-slate-200">
             <p className="text-sm text-center font-medium">
-              © 2024 TerraMRV. All rights reserved. Empowering climate-smart
+              �� 2024 TerraMRV. All rights reserved. Empowering climate-smart
               agriculture through technology.
             </p>
           </div>
