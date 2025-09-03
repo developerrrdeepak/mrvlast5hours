@@ -14,7 +14,6 @@ import {
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
-import EnhancedAuthModal from "./EnhancedAuthModal";
 import EnhancedAIChatbot from "./EnhancedAIChatbot";
 import LanguageSelector, { useLanguage } from "./LanguageSelector";
 import {
@@ -32,7 +31,6 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const location = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
@@ -43,6 +41,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: "Solutions", href: "/solutions" },
     { name: "MRV Prototype", href: "/tools" },
     { name: "Farmer App", href: "/case-studies" },
+    { name: "Resources", href: "/resources" },
     { name: "About Us", href: "/about" },
   ];
 
@@ -163,10 +162,10 @@ export default function Layout({ children }: LayoutProps) {
                 </DropdownMenu>
               ) : (
                 <Button
-                  onClick={() => setAuthModalOpen(true)}
+                  asChild
                   className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200"
                 >
-                  Sign in (Farmer)
+                  <Link to="/login">Login</Link>
                 </Button>
               )}
             </div>
@@ -256,10 +255,10 @@ export default function Layout({ children }: LayoutProps) {
                     </div>
                   ) : (
                     <Button
-                      onClick={() => setAuthModalOpen(true)}
+                      asChild
                       className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide"
                     >
-                      Sign in (Farmer)
+                      <Link to="/login">Login</Link>
                     </Button>
                   )}
                 </div>
@@ -377,7 +376,6 @@ export default function Layout({ children }: LayoutProps) {
         </div>
       </footer>
 
-      <EnhancedAuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
       <EnhancedAIChatbot
         open={chatbotOpen}
         onOpenChange={setChatbotOpen}
