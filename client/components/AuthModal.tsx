@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -299,10 +299,13 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setFarmerAuthType("password");
   };
 
-  // OTP timer countdown
-  if (otpTimer > 0) {
-    setTimeout(() => setOtpTimer((t) => (t > 0 ? t - 1 : 0)), 1000);
-  }
+  useEffect(() => {
+    if (!otpSent || otpTimer <= 0) return;
+    const id = setInterval(() => {
+      setOtpTimer((t) => (t > 0 ? t - 1 : 0));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [otpSent, otpTimer]);
 
   return (
     <Dialog
@@ -520,7 +523,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 {!otpSent ? (
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="farmer-email-otp">Email</Label>
+                      <Label htmlFor="farmer-email-otp">Email or Phone</Label>
                       <Input
                         id="farmer-email-otp"
                         type="email"
