@@ -155,21 +155,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       console.log("📡 [CLIENT] Verify OTP Response status:", response.status);
 
+      const { parsed, raw } = await readJsonOrText(response);
+
       if (!response.ok) {
-        const errorText = await response.text();
         console.error(
           "❌ [CLIENT] OTP verification failed:",
           response.status,
-          errorText,
+          raw,
         );
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`,
+          message: parsed?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 
-      const result = await response.json();
+      const result = parsed as LoginResponse;
       console.log("📊 [CLIENT] OTP verification result:", {
         success: result.success,
         hasUser: !!result.user,
@@ -211,21 +212,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       console.log("📡 [CLIENT] Admin login Response status:", response.status);
 
+      const { parsed, raw } = await readJsonOrText(response);
+
       if (!response.ok) {
-        const errorText = await response.text();
         console.error(
           "❌ [CLIENT] Admin login failed:",
           response.status,
-          errorText,
+          raw,
         );
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`,
+          message: parsed?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 
-      const result = await response.json();
+      const result = parsed as LoginResponse;
       console.log("📊 [CLIENT] Admin login result:", {
         success: result.success,
         hasUser: !!result.user,
@@ -268,8 +270,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        dispatch({ type: "SET_USER", payload: result.user });
+        const { parsed } = await readJsonOrText(response);
+        dispatch({ type: "SET_USER", payload: (parsed as any).user });
       }
     } catch (error) {
       console.error("Profile update failed:", error);
@@ -296,21 +298,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
         response.status,
       );
 
+      const { parsed, raw } = await readJsonOrText(response);
+
       if (!response.ok) {
-        const errorText = await response.text();
         console.error(
           "❌ [CLIENT] Farmer registration failed:",
           response.status,
-          errorText,
+          raw,
         );
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`,
+          message: (parsed as any)?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 
-      const result = await response.json();
+      const result = parsed as LoginResponse;
       console.log("📊 [CLIENT] Farmer register result:", {
         success: result.success,
         hasUser: !!result.user,
@@ -354,21 +357,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       console.log("📡 [CLIENT] Farmer login Response status:", response.status);
 
+      const { parsed, raw } = await readJsonOrText(response);
+
       if (!response.ok) {
-        const errorText = await response.text();
         console.error(
           "❌ [CLIENT] Farmer login failed:",
           response.status,
-          errorText,
+          raw,
         );
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: `Server error: ${response.status} - ${errorText}`,
+          message: (parsed as any)?.message || `Server error: ${response.status} - ${raw}`,
         };
       }
 
-      const result = await response.json();
+      const result = parsed as LoginResponse;
       console.log("📊 [CLIENT] Farmer login result:", {
         success: result.success,
         hasUser: !!result.user,
