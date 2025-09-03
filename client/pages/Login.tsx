@@ -9,13 +9,6 @@ export default function Login() {
   const { isAuthenticated, user } = useAuth();
   const [open, setOpen] = useState(true);
 
-  // If already authenticated, send user to their dashboard
-  if (isAuthenticated) {
-    const path =
-      user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
-    return <Navigate to={path} replace />;
-  }
-
   useEffect(() => {
     // Only navigate back if modal closed WITHOUT logging in
     if (!open && !isAuthenticated) {
@@ -23,6 +16,12 @@ export default function Login() {
       navigate(from, { replace: true });
     }
   }, [open, isAuthenticated, navigate, location.state]);
+
+  // If already authenticated, send user to their dashboard
+  if (isAuthenticated) {
+    const path = user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
+    return <Navigate to={path} replace />;
+  }
 
   return (
     <div className="min-h-[60vh]">
