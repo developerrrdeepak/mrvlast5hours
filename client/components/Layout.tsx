@@ -43,7 +43,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="bg-background border-b border-border sticky top-0 z-50">
+      <header className="bg-white shadow-sm sticky top-0 z-50">
         <nav
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
           aria-label="Top"
@@ -74,7 +74,7 @@ export default function Layout({ children }: LayoutProps) {
                     "text-sm font-semibold transition-colors",
                     location.pathname === item.href
                       ? "text-primary font-bold"
-                      : "opacity-80 hover:text-primary",
+                      : "text-slate-800 hover:text-primary",
                   )}
                 >
                   {item.name}
@@ -237,7 +237,7 @@ export default function Layout({ children }: LayoutProps) {
 
       <main>{children}</main>
 
-      <footer className="bg-black text-white">
+      <footer className="bg-gray-100 text-slate-600">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
@@ -245,97 +245,58 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="bg-primary p-2 rounded-lg">
                   <Leaf className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <span className="text-2xl font-display font-extrabold tracking-tight">
+                <span className="text-2xl font-display font-extrabold tracking-tight text-slate-900">
                   TerraMRV
                 </span>
               </div>
-              <p className="text-white/70 max-w-md leading-relaxed font-medium">
+              <p className="max-w-md leading-relaxed font-medium">
                 Enabling scalable and affordable MRV solutions for agroforestry
                 and rice-based carbon projects across India's smallholder
                 farming communities.
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">
-                Solutions
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase text-slate-900">
+                About
               </h3>
-              <ul className="space-y-2 text-sm text-white/70 font-medium">
+              <ul className="space-y-2 text-sm font-medium">
                 <li>
-                  <Link
-                    to="/solutions"
-                    className="hover:text-white transition-colors"
-                  >
-                    MRV Prototypes
+                  <Link to="/about" className="hover:text-primary transition-colors">
+                    Company
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/tools"
-                    className="hover:text-white transition-colors"
-                  >
-                    Data Collection
+                  <Link to="/case-studies" className="hover:text-primary transition-colors">
+                    Case Studies
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/case-studies"
-                    className="hover:text-white transition-colors"
-                  >
-                    Verification
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    Reporting
+                  <Link to="/resources" className="hover:text-primary transition-colors">
+                    Resources
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase">
-                Resources
+              <h3 className="text-sm font-bold mb-4 tracking-wide uppercase text-slate-900">
+                Contact
               </h3>
-              <ul className="space-y-2 text-sm text-white/70 font-medium">
+              <ul className="space-y-2 text-sm font-medium">
                 <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    Documentation
-                  </Link>
+                  <a href="mailto:info@terramrv.org" className="hover:text-primary transition-colors">
+                    info@terramrv.org
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    to="/case-studies"
-                    className="hover:text-white transition-colors"
-                  >
-                    Case Studies
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    API Reference
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/resources"
-                    className="hover:text-white transition-colors"
-                  >
-                    Support
-                  </Link>
+                  <a href="tel:+910000000000" className="hover:text-primary transition-colors">
+                    +91 00000 00000
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-white/10">
-            <p className="text-sm text-white/70 text-center font-medium">
+          <div className="mt-8 pt-8 border-t border-slate-200">
+            <p className="text-sm text-center font-medium">
               © 2024 TerraMRV. All rights reserved. Empowering climate-smart
               agriculture through technology.
             </p>
