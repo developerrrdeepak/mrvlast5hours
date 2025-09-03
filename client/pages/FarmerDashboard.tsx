@@ -87,9 +87,7 @@ export default function FarmerDashboard() {
   const location = useLocation();
 
   if (!isAuthenticated) {
-    return (
-      <Navigate to="/login" replace state={{ from: location.pathname }} />
-    );
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   }
   if (user?.type !== "farmer") {
     const fallback = user?.type === "admin" ? "/admin-dashboard" : "/";

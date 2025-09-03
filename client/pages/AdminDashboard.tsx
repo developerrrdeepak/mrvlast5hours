@@ -128,9 +128,7 @@ export default function AdminDashboard() {
   const location = useLocation();
 
   if (!isAuthenticated) {
-    return (
-      <Navigate to="/login" replace state={{ from: location.pathname }} />
-    );
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   }
   if (user?.type !== "admin") {
     const fallback = user?.type === "farmer" ? "/farmer-dashboard" : "/";

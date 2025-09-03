@@ -11,7 +11,8 @@ export default function Login() {
 
   // If already authenticated, send user to their dashboard
   if (isAuthenticated) {
-    const path = user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
+    const path =
+      user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
     return <Navigate to={path} replace />;
   }
 
