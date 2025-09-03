@@ -139,26 +139,26 @@ export default function Landing() {
             ))}
           </div>
 
-          {/* Trend Chart */}
+          {/* Trend Chart (CSS-based) */}
           <Card className="border-emerald-800/40 bg-slate-900/60">
             <CardHeader>
               <CardTitle className="text-white">Carbon Credit Growth Trend</CardTitle>
             </CardHeader>
-            <CardContent className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={trendData} margin={{ left: 8, right: 8, top: 8 }}>
-                  <XAxis dataKey="name" stroke="#9CA3AF" tick={{ fill: '#9CA3AF' }} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#9CA3AF" tick={{ fill: '#9CA3AF' }} tickLine={false} axisLine={false} />
-                  <Tooltip cursor={{ fill: "rgba(16,185,129,0.08)" }} contentStyle={{ background: "#0b1411", border: "1px solid rgba(52,211,153,0.25)", color: "#E5E7EB" }} />
-                  <Bar dataKey="value" fill="url(#g)" radius={[6,6,0,0]} />
-                  <defs>
-                    <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
-                      <stop offset="0%" stopColor="#10B981" />
-                      <stop offset="100%" stopColor="#34D399" />
-                    </linearGradient>
-                  </defs>
-                </BarChart>
-              </ResponsiveContainer>
+            <CardContent>
+              <div className="space-y-3">
+                {trendData.map((d) => (
+                  <div key={d.name} className="grid grid-cols-[60px_1fr_50px] items-center gap-3">
+                    <span className="text-slate-300 text-sm">{d.name}</span>
+                    <div className="h-4 bg-slate-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-emerald-500 to-green-400"
+                        style={{ width: `${(d.value / Math.max(...trendData.map(t => t.value))) * 100}%` }}
+                      />
+                    </div>
+                    <span className="text-emerald-300 font-semibold text-sm">{d.value}</span>
+                  </div>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
