@@ -14,7 +14,6 @@ import {
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
-import EnhancedAuthModal from "./EnhancedAuthModal";
 import EnhancedAIChatbot from "./EnhancedAIChatbot";
 import LanguageSelector, { useLanguage } from "./LanguageSelector";
 import {
@@ -32,7 +31,6 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const location = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
@@ -40,9 +38,7 @@ export default function Layout({ children }: LayoutProps) {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Solutions", href: "/solutions" },
-    { name: "MRV Prototype", href: "/tools" },
-    { name: "Farmer App", href: "/case-studies" },
+    { name: "Resources", href: "/resources" },
     { name: "About Us", href: "/about" },
   ];
 
@@ -66,7 +62,7 @@ export default function Layout({ children }: LayoutProps) {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xl font-display font-black bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent tracking-tight leading-none">
-                    Carbon Roots
+                    TerraMRV
                   </span>
                   <span className="text-xs font-semibold text-gray-600 tracking-wide">
                     KISAN CARBONTECH
@@ -109,21 +105,6 @@ export default function Layout({ children }: LayoutProps) {
                 <span className="hidden lg:inline">Kisan AI</span>
               </Button>
 
-              {/* Development Mode - Email Test */}
-              {import.meta.env.DEV && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="flex items-center space-x-2 border-blue-200 hover:bg-blue-50 text-blue-700"
-                >
-                  <Link to="/test-email">
-                    <span className="text-sm">📧</span>
-                    <span className="hidden lg:inline text-xs">Email Test</span>
-                  </Link>
-                </Button>
-              )}
-
               {isAuthenticated ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -163,10 +144,10 @@ export default function Layout({ children }: LayoutProps) {
                 </DropdownMenu>
               ) : (
                 <Button
-                  onClick={() => setAuthModalOpen(true)}
+                  asChild
                   className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200"
                 >
-                  Sign in (Farmer)
+                  <Link to="/login">Login</Link>
                 </Button>
               )}
             </div>
@@ -256,10 +237,10 @@ export default function Layout({ children }: LayoutProps) {
                     </div>
                   ) : (
                     <Button
-                      onClick={() => setAuthModalOpen(true)}
+                      asChild
                       className="w-full bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 hover:from-green-700 hover:via-emerald-700 hover:to-amber-600 font-bold tracking-wide"
                     >
-                      Sign in (Farmer)
+                      <Link to="/login">Login</Link>
                     </Button>
                   )}
                 </div>
@@ -280,7 +261,7 @@ export default function Layout({ children }: LayoutProps) {
                   <Leaf className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-2xl font-display font-extrabold tracking-tight">
-                  CarbonMRV
+                  TerraMRV
                 </span>
               </div>
               <p className="text-gray-400 max-w-md leading-relaxed font-medium">
@@ -370,14 +351,13 @@ export default function Layout({ children }: LayoutProps) {
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800">
             <p className="text-sm text-gray-400 text-center font-medium">
-              © 2024 CarbonMRV. All rights reserved. Empowering climate-smart
+              © 2024 TerraMRV. All rights reserved. Empowering climate-smart
               agriculture through technology.
             </p>
           </div>
         </div>
       </footer>
 
-      <EnhancedAuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
       <EnhancedAIChatbot
         open={chatbotOpen}
         onOpenChange={setChatbotOpen}

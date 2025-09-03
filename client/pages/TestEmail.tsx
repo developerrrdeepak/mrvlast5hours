@@ -83,7 +83,7 @@ export default function TestEmail() {
             📧 Email Service Test Dashboard
           </h1>
           <p className="text-lg text-gray-600">
-            SendGrid integration testing for Carbon Roots
+            SendGrid integration testing for TerraMRV
           </p>
         </div>
 

@@ -31,13 +31,11 @@ import {
 import { Link } from "react-router-dom";
 import LanguageSelector, { useLanguage } from "@/components/LanguageSelector";
 import { useState, useEffect } from "react";
-import AuthModal from "@/components/AuthModal";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Index() {
   const { language, changeLanguage } = useLanguage();
   const [showLanguageModal, setShowLanguageModal] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
 
   // Scroll animations
   const { scrollY } = useScroll();
@@ -104,7 +102,7 @@ export default function Index() {
       description: "भारत भर में",
     },
     {
-      number: "₹50 करोड���+",
+      number: "₹50 करोड����+",
       label: "Carbon Income",
       description: "किसानों को मिली",
     },
@@ -165,7 +163,7 @@ export default function Index() {
           ))}
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-          <div className="text-center">
+          <div className="hidden">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -364,7 +362,7 @@ export default function Index() {
               >
                 <Button
                   size="lg"
-                  onClick={() => setShowAuthModal(true)}
+                  onClick={() => (window.location.href = "/login")}
                   className="bg-gradient-to-r from-teal-600 via-emerald-600 to-green-600 hover:from-teal-700 hover:via-emerald-700 hover:to-green-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                 >
                   <motion.div
@@ -674,7 +672,7 @@ export default function Index() {
               <div className="mt-8">
                 <Button
                   size="lg"
-                  onClick={() => setShowAuthModal(true)}
+                  onClick={() => (window.location.href = "/login")}
                   className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-lg px-8 font-bold tracking-wide shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200"
                 >
                   अभी Registration करें
@@ -720,7 +718,7 @@ export default function Index() {
                 भविष्��� की तकनीक
               </span>{" "}
               <br />
-              आज ही अपना��ं
+              आज ही अपना����ं
             </h2>
             <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
               AI और IOT से जुड़ी आधुनिक तकनीक के ���ाथ carbon farming करें
@@ -741,7 +739,7 @@ export default function Index() {
                   </div>
                   <p className="text-gray-700 font-medium">
                     रियल-टाइम monitoring से अपनी carbon credits track करें और
-                    optimized farming ���रे��
+                    optimized farming ���रे����
                   </p>
                 </CardContent>
               </Card>
@@ -853,8 +851,8 @@ export default function Index() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
-            कर���ं
+            आज ही carbon farming की श���रुआत करें और sustainable income पाना
+            शुरू कर���ं
           </motion.p>
 
           <motion.div
@@ -871,7 +869,7 @@ export default function Index() {
             >
               <Button
                 size="lg"
-                onClick={() => setShowAuthModal(true)}
+                onClick={() => (window.location.href = "/login")}
                 className="bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 text-teal-900 hover:from-amber-500 hover:via-yellow-500 hover:to-orange-500 text-xl px-10 py-4 font-bold tracking-wide shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden group border-2 border-yellow-300/50"
               >
                 <motion.div
@@ -889,7 +887,7 @@ export default function Index() {
               </Button>
             </motion.div>
 
-            <Link to="/about-us">
+            <Link to="/about">
               <motion.div
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.98 }}
@@ -907,9 +905,6 @@ export default function Index() {
           </motion.div>
         </div>
       </section>
-
-      {/* Auth Modal */}
-      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </div>
   );
 }

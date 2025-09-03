@@ -68,7 +68,7 @@ export default function AboutUs() {
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             About{" "}
             <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-amber-500 bg-clip-text text-transparent">
-              Carbon Roots
+              TerraMRV
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">

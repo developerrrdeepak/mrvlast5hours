@@ -410,7 +410,7 @@ export default function EnhancedAuthModal({
       <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">
-            Welcome to Carbon Roots
+            Welcome to TerraMRV
           </DialogTitle>
         </DialogHeader>
 
