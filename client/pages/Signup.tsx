@@ -9,18 +9,17 @@ export default function Signup() {
   const { isAuthenticated, user } = useAuth();
   const [open, setOpen] = useState(true);
 
-  if (isAuthenticated) {
-    const path =
-      user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
-    return <Navigate to={path} replace />;
-  }
-
   useEffect(() => {
     if (!open && !isAuthenticated) {
       const from = (location.state as any)?.from || "/";
       navigate(from, { replace: true });
     }
   }, [open, isAuthenticated, navigate, location.state]);
+
+  if (isAuthenticated) {
+    const path = user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
+    return <Navigate to={path} replace />;
+  }
 
   return (
     <div className="min-h-[60vh]">
