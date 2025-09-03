@@ -95,11 +95,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const readJsonOrText = async (res: Response) => {
-    const text = await res.text();
     try {
-      return { parsed: JSON.parse(text), raw: text };
-    } catch {
-      return { parsed: null as any, raw: text };
+      const text = await res.text();
+      try {
+        return { parsed: JSON.parse(text), raw: text };
+      } catch {
+        return { parsed: null as any, raw: text };
+      }
+    } catch (e) {
+      return { parsed: null as any, raw: "" };
     }
   };
 
@@ -212,22 +216,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       console.log("📡 [CLIENT] Admin login Response status:", response.status);
 
-      const { parsed, raw } = await readJsonOrText(response);
-
       if (!response.ok) {
-        console.error(
-          "❌ [CLIENT] Admin login failed:",
-          response.status,
-          raw,
-        );
+        console.error("❌ [CLIENT] Admin login failed:", response.status);
         dispatch({ type: "SET_LOADING", payload: false });
         return {
           success: false,
-          message: parsed?.message || `Server error: ${response.status} - ${raw}`,
+          message: `Server error: ${response.status}`,
         };
       }
 
-      const result = parsed as LoginResponse;
+      let result: LoginResponse;
+      try {
+        result = (await response.json()) as LoginResponse;
+      } catch {
+        dispatch({ type: "SET_LOADING", payload: false });
+        return { success: false, message: "Invalid server response" };
+      }
+
       console.log("📊 [CLIENT] Admin login result:", {
         success: result.success,
         hasUser: !!result.user,
