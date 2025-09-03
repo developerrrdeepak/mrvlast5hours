@@ -84,17 +84,17 @@ export default function Landing() {
           ].map((f, i) => (
             <Card
               key={i}
-              className="bg-white border border-slate-200 shadow-sm"
+              className="border border-white/10 bg-white/5 backdrop-blur supports-[backdrop-filter]:bg-white/5 shadow-sm"
             >
               <CardHeader className="pb-3">
-                <div className="w-9 h-9 rounded-md border border-slate-200 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-md border border-white/10 bg-white/5 flex items-center justify-center">
                   <f.icon className="w-4.5 h-4.5 text-primary" />
                 </div>
-                <CardTitle className="mt-3 text-slate-800 text-lg">
+                <CardTitle className="mt-3 text-white text-lg">
                   {f.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-600 text-sm leading-relaxed">
+              <CardContent className="text-white/80 text-sm leading-relaxed">
                 {f.desc}
               </CardContent>
             </Card>
@@ -113,12 +113,12 @@ export default function Landing() {
           ].map((s, i) => (
             <div
               key={i}
-              className="rounded-xl p-5 bg-primary/10 border border-primary/30"
+              className="rounded-xl p-5 bg-white/5 border border-white/10 backdrop-blur"
             >
-              <div className="text-3xl font-extrabold text-slate-900">
+              <div className="text-3xl font-extrabold text-white">
                 {s.k}
               </div>
-              <div className="text-slate-600 mt-1 text-sm font-medium">
+              <div className="text-white/80 mt-1 text-sm font-medium">
                 {s.v}
               </div>
             </div>
@@ -129,18 +129,18 @@ export default function Landing() {
       {/* Progress Tracker */}
       <section className="py-6">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl p-5 bg-white border border-slate-200 shadow-sm">
+          <div className="rounded-xl p-5 border border-white/10 bg-white/5 backdrop-blur shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Leaf className="w-5 h-5 text-primary" />
-                <span className="font-semibold">Verification Progress</span>
+                <span className="font-semibold text-white">Verification Progress</span>
               </div>
-              <span className="text-primary font-semibold">60%</span>
+              <span className="text-emerald-300 font-semibold">60%</span>
             </div>
-            <div className="relative h-2.5 w-full rounded-full bg-slate-200 overflow-hidden">
+            <div className="relative h-2.5 w-full rounded-full bg-white/10 overflow-hidden">
               <div className="absolute inset-y-0 left-0 w-[60%] bg-gradient-to-r from-emerald-500 to-green-400" />
             </div>
-            <div className="grid grid-cols-4 text-xs mt-3 text-foreground/80">
+            <div className="grid grid-cols-4 text-xs mt-3 text-white/80">
               <div className="flex items-center justify-between">
                 <span>Profile</span>
                 <span>20%</span>
@@ -181,7 +181,7 @@ export default function Landing() {
             ].map((n, i) => (
               <Card
                 key={i}
-                className="overflow-hidden border-slate-200 bg-white shadow-sm"
+                className="overflow-hidden border border-white/10 bg-white/5 backdrop-blur shadow-sm"
               >
                 <div className="grid grid-cols-[120px_1fr] gap-4">
                   <img
@@ -190,13 +190,13 @@ export default function Landing() {
                     className="h-28 w-full object-cover"
                   />
                   <div className="p-4">
-                    <h4 className="font-semibold text-slate-800 line-clamp-2">
+                    <h4 className="font-semibold text-white line-clamp-2">
                       {n.title}
                     </h4>
-                    <p className="text-sm text-slate-600 line-clamp-2 mt-1">
+                    <p className="text-sm text-white/80 line-clamp-2 mt-1">
                       {n.desc}
                     </p>
-                    <Button variant="link" className="text-primary p-0 mt-1">
+                    <Button variant="link" className="text-emerald-300 p-0 mt-1">
                       Read More <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </div>
@@ -206,9 +206,9 @@ export default function Landing() {
           </div>
 
           {/* Trend Chart (CSS-based) */}
-          <Card className="border-slate-200 bg-white shadow-sm">
+          <Card className="border border-white/10 bg-white/5 backdrop-blur shadow-sm">
             <CardHeader>
-              <CardTitle className="text-foreground">
+              <CardTitle className="text-white">
                 Carbon Credit Growth Trend
               </CardTitle>
             </CardHeader>
@@ -219,8 +219,8 @@ export default function Landing() {
                     key={d.name}
                     className="grid grid-cols-[60px_1fr_50px] items-center gap-3"
                   >
-                    <span className="text-foreground/80 text-sm">{d.name}</span>
-                    <div className="h-4 bg-foreground/20 rounded-full overflow-hidden">
+                    <span className="text-white/80 text-sm">{d.name}</span>
+                    <div className="h-4 bg-white/10 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-primary"
                         style={{
@@ -228,7 +228,7 @@ export default function Landing() {
                         }}
                       />
                     </div>
-                    <span className="text-slate-700 font-semibold text-sm">
+                    <span className="text-emerald-300 font-semibold text-sm">
                       {d.value}
                     </span>
                   </div>
