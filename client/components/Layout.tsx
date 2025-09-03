@@ -1,13 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Menu,
-  X,
-  Leaf,
-  User,
-  LogOut,
-  MessageCircle,
-} from "lucide-react";
+import { Menu, X, Leaf, User, LogOut, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
