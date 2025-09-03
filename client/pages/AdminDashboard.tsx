@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -125,8 +125,14 @@ export default function AdminDashboard() {
   });
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  if (!isAuthenticated || user?.type !== "admin") {
-    return <Navigate to="/" replace />;
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  }
+  if (user?.type !== "admin") {
+    const fallback = user?.type === "farmer" ? "/farmer-dashboard" : "/";
+    return <Navigate to={fallback} replace />;
   }
 
   const handleFarmerStatusUpdate = (farmerId: string, newStatus: string) => {

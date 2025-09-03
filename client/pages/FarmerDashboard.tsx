@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -84,8 +84,14 @@ export default function FarmerDashboard() {
     }
   }, [user]);
 
-  if (!isAuthenticated || user?.type !== "farmer") {
-    return <Navigate to="/" replace />;
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  }
+  if (user?.type !== "farmer") {
+    const fallback = user?.type === "admin" ? "/admin-dashboard" : "/";
+    return <Navigate to={fallback} replace />;
   }
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
