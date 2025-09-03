@@ -102,7 +102,7 @@ export default function Index() {
       description: "भारत भर में",
     },
     {
-      number: "₹50 करोड���+",
+      number: "₹50 करोड����+",
       label: "Carbon Income",
       description: "किसानों को मिली",
     },
@@ -163,7 +163,7 @@ export default function Index() {
           ))}
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-          <div className="text-center">
+          <div className="hidden">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -851,7 +851,7 @@ export default function Index() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            आज ही carbon farming की शुरुआत करें और sustainable income पाना शुरू
+            आज ही carbon farming की श���रुआत करें और sustainable income पाना शुरू
             कर���ं
           </motion.p>
 
@@ -887,7 +887,7 @@ export default function Index() {
               </Button>
             </motion.div>
 
-            <Link to="/about-us">
+            <Link to="/about">
               <motion.div
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.98 }}
