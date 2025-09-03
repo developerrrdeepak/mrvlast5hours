@@ -24,6 +24,16 @@ import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
 
+function Home() {
+  const { isAuthenticated, user, isLoading } = useAuth();
+  if (isLoading) return null;
+  if (isAuthenticated) {
+    const target = user?.type === "admin" ? "/admin-dashboard" : "/farmer-dashboard";
+    return <Navigate to={target} replace />;
+  }
+  return <Landing />;
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
