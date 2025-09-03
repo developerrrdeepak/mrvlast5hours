@@ -257,7 +257,7 @@ export default function Layout({ children }: LayoutProps) {
             </div>
             <div>
               <h3 className="text-sm font-bold mb-4 tracking-wide uppercase text-slate-900">
-                About
+                Quick Links
               </h3>
               <ul className="space-y-2 text-sm font-medium">
                 <li>
