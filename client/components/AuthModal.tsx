@@ -299,6 +299,11 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setFarmerAuthType("password");
   };
 
+  // OTP timer countdown
+  if (otpTimer > 0) {
+    setTimeout(() => setOtpTimer((t) => (t > 0 ? t - 1 : 0)), 1000);
+  }
+
   return (
     <Dialog
       open={open}
@@ -327,7 +332,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
             >
               <div className="text-center">
                 <p className="text-sm text-gray-600 mb-4">
-                  किसानों के लिए तेज़ और आस��न साइन इन
+                  किसानों के ��िए तेज़ और आस��न साइन इन
                 </p>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <motion.div
